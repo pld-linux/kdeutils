@@ -1,0 +1,34 @@
+--- kdeutils-3.0.3/kedit/kedit.cpp--	2002-08-31 10:07:58.000000000 +0200
++++ kdeutils-3.0.3/kedit/kedit.cpp	2002-08-31 10:17:59.000000000 +0200
+@@ -124,6 +124,8 @@ void TopLevel::setupEditWidget()
+ 	  SLOT(setEnabled(bool)));
+   connect(eframe, SIGNAL(copyAvailable(bool)),copyAction,
+ 	  SLOT(setEnabled(bool)));
++  connect( eframe, SIGNAL(selectionChanged()),this,
++	  SLOT(slotSelectionChanged()));
+ 
+   undoAction->setEnabled(false);
+   redoAction->setEnabled(false);
+@@ -175,6 +177,12 @@ void TopLevel::setupEditWidget()
+   */
+ }
+ 
++void TopLevel::slotSelectionChanged()
++{
++  bool state = eframe->hasSelectedText();
++  cutAction->setEnabled( state );
++  copyAction->setEnabled( state );
++}
+ 
+ void TopLevel::setupActions()
+ {
+--- kdeutils-3.0.3/kedit/kedit.h--	2002-08-31 10:16:05.000000000 +0200
++++ kdeutils-3.0.3/kedit/kedit.h	2002-08-31 10:18:45.000000000 +0200
+@@ -218,6 +218,7 @@ private slots:
+       void setMiscOption( const SMiscState &misc );
+       void editKeys();
+       void editToolbars();
++      void slotSelectionChanged();
+ };
+ 
+ #endif
