@@ -1,6 +1,10 @@
-#
-%define		_state		stable
-%define		_ver		3.2.3
+
+%define		_state		unstable
+%define		_ver		3.3.0
+%define		_snap		rc2
+
+%define		_minlibsevr	9:3.3.0
+%define		_minbaseevr	9:3.3.0
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -12,29 +16,31 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	0.%{_snap}.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	3a98f8a0a6f4582e03d4503708cb218a
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Icon:		kde-utils.xpm
-#Patch100:		%{name}-branch.diff
+# Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+# Source0-md5:	e843f709f18ae44a3207b5413c3c9d77
 Patch0:		%{name}-kdf-label.patch
-Patch1:		%{name}-vcategories.patch
-Patch2:		%{name}-userinfo.patch
+#Patch1:		%{name}-kedit-confirmoverwrite.patch
+#Patch2:		%{name}-fix-kdf-mem-leak.patch
+Patch3:		%{name}-vcategories.patch
+#Patch4:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
-BuildRequires:	kdebase-devel >= 9:%{version}
+BuildRequires:	ed
+BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 %ifarch ppc
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake
+BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -187,7 +193,7 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kdeutils
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Requires:	kdebase-devel >= 9:%{version}
+Requires:	kdebase-devel >= %{_minbaseevr}
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
@@ -210,7 +216,7 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description ark
 Ark is a program for managing and quickly extracting archives. It
@@ -229,7 +235,7 @@ Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcalc
 
 %description kcalc
@@ -246,7 +252,7 @@ Summary:	KDE Character Selector
 Summary(pl):	Program do wybierania znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcharselect
 
 %description kcharselect
@@ -259,7 +265,7 @@ Program do wybierania znaków.
 Summary:	KDE frontend for the Linux Infrared Remote Control system
 Summary(pl):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwieni±)
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kdelirc
 KDELIRC is a KDE frontend for the Linux Infrared Remote Control
@@ -279,29 +285,12 @@ Control - zdalnego sterowania podczerwieni±). Ma dwa cele:
 - zapewnienie apletu tacki systemowej s³u¿±cego jako proxy pomiêdzy
   systemem LIRC oraz KDE (aplikacjami).
 
-%package kdepasswd
-Summary:	KDE Passwd
-Summary(pl):	passwd dla KDE
-Summary(pt_BR):	Ferramenta de mudança de senha
-Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
-Obsoletes:	kdepasswd
-
-%description kdepasswd
-Application that allows changing your password.
-
-%description kdepasswd -l pl
-Program do zmiany has³a z poziomu KDE.
-
-%description kdepasswd -l pt_BR
-Ferramenta de mudança de senha.
-
 %package kdessh
 Summary:	KDE SSH Frontend
 Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdessh
 
 %description kdessh
@@ -318,7 +307,7 @@ Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
-Requires:	kdebase-infocenter >= 9:%{version}
+Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	kdf
 
 %description kdf
@@ -335,7 +324,7 @@ Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kedit
 
 %description kedit
@@ -352,7 +341,7 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	dosfstools
 Obsoletes:	kfloppy
 
@@ -371,7 +360,7 @@ Ferramenta de formatação de disquetes.
 Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kgpg
 
 %description kgpg
@@ -409,7 +398,7 @@ Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	khexedit
 
 %description khexedit
@@ -426,7 +415,7 @@ Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kjots
 
 %description kjots
@@ -444,7 +433,7 @@ Summary:	KDE Laptop Daemon
 Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
-Requires:	kdebase-infocenter >= 9:%{version}
+Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	laptop
 
 %description klaptopdaemon
@@ -460,9 +449,7 @@ Miniaplicativo de status de bateria para laptops
 Summary:	KDE support for various types of hardware input devices
 Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
-Obsoletes:	kdeutils-kmilo-kvaio
-Obsoletes:	kdeutils-kmilo-powerbook
+Requires:	kdelibs >= %{_minlibsevr}
 
 %description kmilo
 This is a kded module that can be extended to support various types of
@@ -478,11 +465,52 @@ klawiaturze. Aktualnie obs³uguje:
 - PowerBooki
 - laptopy Sony Vaio (testowany na Vaio z serii PCG-GRX)
 
+%package kmilo-kvaio
+Summary:	Sony Vaio KMilo module
+Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
+Group:		X11/Applications
+Requires:	kdebase-core >= %{_minbaseevr}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
+
+%description kmilo-kvaio
+KMilo module for Sony Vaio laptop support.
+
+%description kmilo-kvaio -l pl
+Modu³ KMilo dla laptopów Sony Vaio.
+
+%package kmilo-powerbook
+Summary:	PowerBook KMilo module
+Summary(pl):	Modu³ KMilo dla PowerBooków
+Group:		X11/Applications
+Requires:	kdebase-core >= %{_minbaseevr}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
+
+%description kmilo-powerbook
+KMilo module for PowerBooks support.
+
+%description kmilo-powerbook -l pl
+Modu³ KMilo dla PowerBooków.
+
+%package kmilo-thinkpad
+Summary:	ThinkPad KMilo module
+Summary(pl):	Modu³ KMilo dla ThinkPadów
+Group:		X11/Applications
+Requires:	kdebase-core >= %{_minbaseevr}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+
+%description kmilo-thinkpad
+KMilo module for ThinkPads support.
+
+%description kmilo-thinkpad -l pl
+Modu³ KMilo dla ThinkPadów.
+
 %package kregexpeditor
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kregexpeditor
 
 %description kregexpeditor
@@ -495,7 +523,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
-Requires:	kdebase-desktop >= 9:%{version}
+Requires:	kdebase-desktop >= %{_minbaseevr}
 
 %description ksim
 A KDE system monitoring tool that features:
@@ -529,7 +557,7 @@ Summary:	KDE Timer
 Summary(pl):	Timer dla KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	ktimer
 
 %description ktimer
@@ -549,7 +577,7 @@ Monitor de tempo em forma de mini-aplicativo.
 Summary:	Password management tool for KDE
 Summary(pl):	Narzêdzie do zarz±dzania has³ami dla KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kwalletmanager
 Password management tool for KDE.
@@ -557,48 +585,32 @@ Password management tool for KDE.
 %description kwalletmanager -l pl
 Narzêdzie do zarz±dzania has³ami w KDE.
 
-%package userinfo
-Summary:	User account information editor
-Summary(pl):	Edytor informacji o koncie u¿ytkownika
-Group:		X11/Applications
-Requires:	kdm >= 9:%{version}
-
-%description userinfo
-A tool for changing information for a system account also supports
-changing the password.
-
-%description userinfo -l pl
-userinfo zmienia informacje o koncie u¿ytkownika. Ten modu³ zawiera
-funkcjonalno¶æ programu kdepasswd.
-
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
-echo "KDE_OPTIONS=nofinal" >> ksim/monitors/snmp/Makefile.am
-
-for f in `find . -name *.desktop | xargs grep -l '^Terminal=0'`; do
-	%{__sed} -i -e 's/^Terminal=0/Terminal=false/' $f
-done
-%{__sed} -i -e '/\[Desktop Entry\]/aEncoding=UTF-8' ksim/ksim.desktop
+#%patch1 -p1
+#%patch2 -p1
+%patch3 -p1
+#%patch4 -p1
 
 %build
-cp %{_datadir}/automake/config.sub admin
-export kde_htmldir=%{_kdedocdir}
-export kde_libs_htmldir=%{_kdedocdir}
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
+echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
-	--with-qt-libraries=%{_libdir} \
 	--disable-rpath \
-	--enable-final
+	--enable-final \
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT *.lang
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -606,6 +618,26 @@ rm -rf $RPM_BUILD_ROOT
 	kde_libs_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
+
+%find_lang ark			--with-kde
+%find_lang irkick		--with-kde
+%find_lang KRegExpEditor	--with-kde
+%find_lang kcalc		--with-kde
+%find_lang kcharselect		--with-kde
+%find_lang kcontrol		--with-kde
+%find_lang kdf			--with-kde
+%find_lang blockdevices		--with-kde
+cat blockdevices.lang >> kdf.lang
+%find_lang kcmlirc		--with-kde
+cat kcmlirc.lang >> irkick.lang
+%find_lang kedit		--with-kde
+%find_lang kfloppy		--with-kde
+%find_lang kgpg			--with-kde
+%find_lang khexedit		--with-kde
+%find_lang kjots		--with-kde
+%find_lang ksim			--with-kde
+%find_lang ktimer		--with-kde
+%find_lang kwallet		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -630,24 +662,28 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libksimcore.so
 %{_includedir}/*
 
-%files ark
+%files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %{_libdir}/libkdeinit_ark.la
 %attr(755,root,root) %{_libdir}/libkdeinit_ark.so
 %{_libdir}/kde3/ark.la
 %attr(755,root,root) %{_libdir}/kde3/ark.so
+#%{_libdir}/kde3/libarkplugin.la
+#%attr(755,root,root) %{_libdir}/kde3/libarkplugin.so
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
+#%{_datadir}/applnk/.hidden/arkplugin.desktop
 %{_datadir}/apps/ark
-%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
-%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
+#%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
+#%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
+%{_datadir}/config.kcfg/ark.kcfg
 %{_datadir}/services/ark_part.desktop
+#%{_datadir}/services/ark_plugin.desktop
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
-%{_kdedocdir}/en/ark
 
-%files kcalc
+%files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %{_libdir}/libkdeinit_kcalc.la
@@ -659,19 +695,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kcalc.kcfg
 %{_desktopdir}/kde/kcalc.desktop
 %{_iconsdir}/*/*/apps/kcalc.*
-%{_kdedocdir}/en/kcalc
 
-%files kcharselect
+%files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
+%{_datadir}/apps/kconf_update/kcharselect.upd
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
-%{_kdedocdir}/en/kcharselect
 
-%files kdelirc
+%files kdelirc -f irkick.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
@@ -694,19 +729,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/irkick.desktop
 %{_desktopdir}/kde/kcmlirc.desktop
 %{_iconsdir}/hicolor/*/apps/irkick.png
-%{_kdedocdir}/en/irkick
-%{_kdedocdir}/en/kcmlirc
-
-%files kdepasswd
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kdepasswd
-%{_desktopdir}/kde/kdepasswd.desktop
 
 %files kdessh
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
-%files kdf
+%files kdf -f kdf.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
@@ -719,10 +747,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/kcmdf.*
 %{_iconsdir}/*/*/apps/kdf.*
 %{_iconsdir}/*/*/apps/kwikdisk.*
-%{_kdedocdir}/en/kdf
 %{_kdedocdir}/en/kinfocenter/blockdevices
 
-%files kedit
+%files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %{_libdir}/libkdeinit_kedit.la
@@ -733,16 +760,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kedit.kcfg
 %{_desktopdir}/kde/KEdit.desktop
 %{_iconsdir}/*/*/apps/kedit.*
-%{_kdedocdir}/en/kedit
 
-%files kfloppy
+%files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_desktopdir}/kde/KFloppy.desktop
 %{_iconsdir}/*/*/apps/kfloppy.*
-%{_kdedocdir}/en/kfloppy
 
-%files kgpg
+%files kgpg -f kgpg.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgpg
 %{_datadir}/apps/kgpg
@@ -752,9 +777,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kgpg.kcfg
 %{_desktopdir}/kde/kgpg.desktop
 %{_iconsdir}/*/*/apps/kgpg.png
-%{_kdedocdir}/en/kgpg
 
-%files khexedit
+%files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_libdir}/kde3/libkbyteseditwidget.la
@@ -763,16 +787,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kbyteseditwidget.desktop
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
-%{_kdedocdir}/en/khexedit
 
-%files kjots
+%files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
 %{_datadir}/config.kcfg/kjots.kcfg
 %{_desktopdir}/kde/Kjots.desktop
 %{_iconsdir}/*/*/apps/kjots.*
-%{_kdedocdir}/en/kjots
 
 %files kmilo
 %defattr(644,root,root,755)
@@ -798,7 +820,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
 
-%files klaptopdaemon
+%files kmilo-thinkpad
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kcm_thinkpad.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_thinkpad.so
+%{_libdir}/kde3/kmilo_thinkpad.la
+%attr(755,root,root) %{_libdir}/kde3/kmilo_thinkpad.so
+%{_datadir}/services/kmilo/kmilo_thinkpad.desktop
+%{_desktopdir}/kde/thinkpad.desktop
+
+%files klaptopdaemon -f kcontrol.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %{_libdir}/libkcmlaptop.la
@@ -816,7 +847,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_kdedocdir}/en/kcontrol/laptop
 %{_kdedocdir}/en/kcontrol/powerctrl
 
-%files kregexpeditor
+%files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
 %{_libdir}/libkregexpeditorcommon.la
@@ -826,9 +857,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 %{_desktopdir}/kde/kregexpeditor.desktop
-%{_kdedocdir}/en/KRegExpEditor
+%{_iconsdir}/*/*/*/kregexpeditor.png
 
-%files ksim
+%files ksim -f ksim.lang
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/ksim
 #%{_libdir}/ksim.la
@@ -845,14 +876,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/devices/ksim*.png
 %{_kdedocdir}/en/ksim
 
-%files ktimer
+%files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
 %{_kdedocdir}/en/ktimer
 
-%files kwalletmanager
+%files kwalletmanager -f kwallet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
 %{_libdir}/kde3/kcm_kwallet.la
@@ -864,10 +895,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
 %{_kdedocdir}/en/kwallet
-
-%files userinfo
-%defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_userinfo.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
-%{_datadir}/apps/kdm/pics/users/*
-%{_desktopdir}/kde/userinfo.desktop
