@@ -1,14 +1,25 @@
+%define		_ver		3.0
+#define		_sub_ver
+%define		_rel		1
+
+%{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
+%{!?_sub_ver:	%define	_version	%{_ver}}
+%{?_sub_ver:	%define	_release	0.%{_sub_ver}.%{_rel}}
+%{!?_sub_ver:	%define	_release	%{_rel}}
+%{!?_sub_ver:	%define	_ftpdir	stable}
+%{?_sub_ver:	%define	_ftpdir	unstable/kde-%{version}%{_sub_ver}}
+
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
-version:	2.2.2
-Release:	3
+Version:	%{_version}
+Release:	%{_release}
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
@@ -128,36 +139,21 @@ archiwów.
 %description ark -l pt_BR
 Gerenciador de pacotes TAR/comprimidos do KDE.
 
-%package kab
-Summary:	KDE Address Book
-Summary(pl):	Ksi±¿ka adresowa dla KDE
-Summary(pt_BR):	Gerenciador do livro de endereços
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description kab
-Kab is a simple address book for KDE.
-
-%description kab -l pl
-Kab jest prost± ksi±¿k± adresow± dla KDE.
-
-%description kab -l pt_BR
-Gerenciador do livro de endereços.
-
-%package karm
-Summary:	KDE Time Tracker
-Summary(pl):	Time Tracker dla KDE
-Summary(pt_BR):	Gerenciador pessoal de tempo e tarefas
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description karm
-KArm is a time tracker for busy people who need to keep track of the
-amount of time they spend on various tasks.
-
-%description karm -l pl
-Narzêdzie pozwalaj±ce ustaliæ ile czasu siê spêdzi³o robi±c ró¿ne
-rzeczy.
+#%package kab
+#Summary:	KDE Address Book
+#Summary(pl):	Ksi±¿ka adresowa dla KDE
+#Summary(pt_BR):	Gerenciador do livro de endereços
+#Group:		X11/Applications
+#Requires:	kdelibs >= %{version}
+#
+#%description kab
+#Kab is a simple address book for KDE.
+#
+#%description kab -l pl
+#Kab jest prost± ksi±¿k± adresow± dla KDE.
+#
+#%description kab -l pt_BR
+#Gerenciador do livro de endereços.
 
 %package kcalc
 Summary:	KDE Calculator
@@ -455,6 +451,18 @@ Zegarek.
 %description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
 
+%package kregexpeditor
+Summary:	Graphical regular expression editor
+Summary(pl):	Graficzny edytor wyra¿eñ regularnych
+Group:		X11/Applications
+Requires:	kdelibs = %{version}
+
+%description kregexpeditor
+Graphical regular expression editor.
+
+%description kregexpeditor -l pl
+Graficzny edytor wyra¿eñ regularnych.
+
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
@@ -481,7 +489,6 @@ que usem as bibliotecas do kdeutils
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%{__make} -f Makefile.cvs
 %configure \
 	%{!?debug:--disable-debug} \
 	--with-qt-dir=%{_prefix} \
@@ -489,15 +496,24 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 	--with-pam="yes"
 %{__make}
 
+# Doesn't build.
+#%{__make} -C kab
+#%{__make} -C kcardtools
+
 %install
 rm -rf $RPM_BUILD_ROOT
 
 install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+# Doesn't build.
+#%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
+#%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+
+%find_lang KRegExpEditor --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -520,36 +536,27 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/ark.*
 %lang(en) %{_htmldir}/en/ark
 
-%files kab
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kab
-%{_applnkdir}/Utilities/kab.desktop
-%{_datadir}/apps/kab
-%{_pixmapsdir}/*/*/apps/kab.*
-%lang(en) %{_htmldir}/en/kab
-
-%files karm
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/karm
-%{_applnkdir}/Utilities/karm.desktop
-%{_datadir}/apps/karm
-%{_pixmapsdir}/*/*/apps/karm.*
-%lang(en) %{_htmldir}/en/karm
+#%files kab
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/kab
+#%{_applnkdir}/Utilities/kab.desktop
+#%{_datadir}/apps/kab
+#%{_pixmapsdir}/*/*/apps/kab.*
+#%lang(en) %{_htmldir}/en/kab
 
 %files kcalc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %attr(755,root,root) %{_libdir}/kcalc.*
 %{_applnkdir}/Utilities/kcalc.desktop
-%{_datadir}/apps/kcalc
 %{_pixmapsdir}/*/*/apps/kcalc.*
 %lang(en) %{_htmldir}/en/kcalc
 
 %files kcharselect
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/libkcharselectapplet.??
-%attr(755,root,root) %{_libdir}/libkcharselectapplet.so.*.*.*
+%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.la
+%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so.*.*.*
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
@@ -567,7 +574,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
-%attr(755,root,root) %{_libdir}/libkcm_kdf.*
+%attr(755,root,root) %{_libdir}/kde3/kcm_kdf.??
 %{_datadir}/apps/kdf
 %{_applnkdir}/System/kdf.desktop
 %{_applnkdir}/System/kwikdisk.desktop
@@ -580,26 +587,16 @@ rm -rf $RPM_BUILD_ROOT
 %files kedit
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%attr(755,root,root) %{_libdir}/kde2/kedit.*
+%attr(755,root,root) %{_libdir}/kde3/kedit.*
 %{_applnkdir}/Development/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
 %{_pixmapsdir}/*/*/apps/kedit.*
 %lang(en) %{_htmldir}/en/kedit
 
-%files kfind
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kfind
-%attr(755,root,root) %{_libdir}/kfind.*
-%{_applnkdir}/Kfind.desktop
-%{_datadir}/apps/kfind
-%{_pixmapsdir}/*/*/apps/kfind.*
-%lang(en) %{_htmldir}/en/kfind
-
 %files kfloppy
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
-%{_datadir}/apps/kfloppy
 %{_pixmapsdir}/*/*/apps/kfloppy.*
 %lang(en) %{_htmldir}/en/kfloppy
 
@@ -622,13 +619,15 @@ rm -rf $RPM_BUILD_ROOT
 %files klaptopdaemon
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
-%attr(755,root,root) %{_libdir}/libkcm_laptop.*
+%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.??
+%attr(755,root,root) %{_libdir}/klaptopdaemon.??
 %{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/battery.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/bwarning.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/cwarning.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/power.desktop
 %{_datadir}/apps/klaptopdaemon
+%{_datadir}/services/klaptopdaemon.desktop
 %{_pixmapsdir}/*/*/apps/laptop_battery.*
 %{_pixmapsdir}/*/*/apps/laptop_pcmcia.*
 %{_pixmapsdir}/*/*/apps/klaptopdaemon.*
@@ -657,30 +656,34 @@ rm -rf $RPM_BUILD_ROOT
 
 %files knotes
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/knotes
-%{_applnkdir}/Utilities/knotes.desktop
-%{_datadir}/apps/knotes
-%{_datadir}/config/knotesrc
-%{_includedir}/KNotesIface.h
-%{_pixmapsdir}/*/*/apps/knotes.*
-%lang(en) %{_htmldir}/en/knotes
+#%attr(755,root,root) %{_bindir}/knotes
+#%{_applnkdir}/Utilities/knotes.desktop
+#%{_datadir}/apps/knotes
+#%{_datadir}/config/knotesrc
+#%{_includedir}/KNotesIface.h
+#%{_pixmapsdir}/*/*/apps/knotes.*
+#%lang(en) %{_htmldir}/en/knotes
 
-%files kpm
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kpm
-%attr(755,root,root) %{_bindir}/kpmdocked
-%{_applnkdir}/System/kpm.desktop
-%{_pixmapsdir}/*/*/apps/kpm.*
-%lang(en) %{_htmldir}/en/kpm
+#%files kpm
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/kpm
+#%attr(755,root,root) %{_bindir}/kpmdocked
+#%{_applnkdir}/System/kpm.desktop
+#%{_pixmapsdir}/*/*/apps/kpm.*
+#%lang(en) %{_htmldir}/en/kpm
 
 %files ktimer
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_applnkdir}/Utilities/ktimer.desktop
 
+%files kregexpeditor -f KRegExpEditor.lang
+%defattr(644,root,root,755)
+%{_libdir}/kde3/libkregexpeditorgui.??
+%{_datadir}/apps/kregexpeditor
+%{_datadir}/services/kregexpeditorgui.desktop
+
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/libark.so
-%attr(755,root,root) %{_libdir}/libkcharselectapplet.so
+%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so
 %{_includedir}/*
