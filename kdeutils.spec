@@ -1,16 +1,16 @@
-Summary:     K Desktop Environment - utilities
-Summary(pl): K Desktop Environment - narzêdzia
-Name:        kdeutils
-Version:     1.1.1
-Release:     2
+Summary:	K Desktop Environment - utilities
+Summary(pl):	K Desktop Environment - narzêdzia
+Name:		kdeutils
+Version:	1.1.1
+Release:	3
 #ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
-Source:      %{name}-%{version}.tar.bz2
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Copyright:   GPL
-Requires:    qt >= 1.44, kdelibs = %{version}
-Vendor:      The KDE Team
-BuildRoot:   /tmp/%{name}-%{version}-root
+Source:		%{name}-%{version}.tar.bz2
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Copyright:	GPL
+Requires:	qt >= 1.44, kdelibs = %{version}
+Vendor:		The KDE Team
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define _prefix	/usr/X11R6
 
@@ -237,7 +237,7 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 
 %build
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" \
 CCOPTS="$RPM_OPT_FLAGS -Wall" \
 ./configure %{_target_platform} \
