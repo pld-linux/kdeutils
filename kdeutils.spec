@@ -1,6 +1,6 @@
 %define		_ver		3.0.3
 #define		_sub_ver
-%define		_rel		0.1
+%define		_rel		1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -535,15 +535,12 @@ que usem as bibliotecas do kdeutils
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-if [ -f %{_pkgconfigdir}/libpng12.pc ] ; then
-        CPPFLAGS="`pkg-config libpng12 --cflags`"
-fi
-
 %configure \
 	%{!?debug:--disable-debug} \
 	--with-qt-dir=%{_prefix} \
 	--with-install-root=$RPM_BUILD_ROOT \
-	--with-pam="yes"
+	--with-pam="yes" \
+	--enable-final
 %{__make}
 
 %{__make} -C kab
@@ -596,6 +593,8 @@ cat kcmlaptop.lang >> klaptopdaemon.lang
 %find_lang ktimer	--with-kde
 #%find_lang cdbakeoven	--with-kde
 #%find_lang ksim	--with-kde
+# Does not build:
+%find_lang kcardchooser	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
