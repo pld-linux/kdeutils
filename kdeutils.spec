@@ -1,9 +1,9 @@
 
 %define		_state		unstable
-%define		_ver		3.3.91
+%define		_ver		3.3.92
 
-%define		_minlibsevr	9:3.3.91
-%define		_minbaseevr	9:3.3.91
+%define		_minlibsevr	9:3.3.92
+%define		_minbaseevr	9:3.3.92
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -20,7 +20,7 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	89ad0a4e21011b76b8d5b0181bfa1386
+# Source0-md5:	4638a8f5bac946148b636540dc3199b3
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
