@@ -1,6 +1,6 @@
-%define		_ver		3.0.1
+%define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		2
+%define		_rel		1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -21,7 +21,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
-Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+#Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
@@ -467,6 +467,44 @@ Graphical regular expression editor.
 %description kregexpeditor -l pl
 Graficzny edytor wyra¿eñ regularnych.
 
+%package cdbakeoven
+Summary:	Intuitive tool for burning CDs
+Summary(pl):	Intuicyjne narzêdzie do wypalania CD
+Group:		X11/Applications
+Requires:	kdelibs = %{version}
+
+%description cdbakeoven
+CD Bake Oven was designed with one goal in mind: combine the power and
+stability of great command line utilities with contemporary easy to use
+user interface. CDBO enables you to create data or music CDs in the most
+intuitive matter, allowing you to control every aspect of the process.
+It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
+and 'cdparanoia' encapsulating most of the options those utilities
+provide. This makes creating professional quality media as easy as
+making a few mouse clicks.
+
+%description cdbakeoven -l pl
+CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
+i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
+interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
+intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
+Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
+,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
+ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
+klikanie myszk±.
+
+%package ksim
+Summary:	K System Information Monitor
+Summary(pl):	K System Information Monitor
+Group:		X11/Applications
+Requires:	kdelibs = %{version}
+
+%description ksim
+K System Information Monitor.
+
+%description ksim -l pl
+K System Information Monitor.
+
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
@@ -519,37 +557,34 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
-mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl,CDBakeOven} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
+#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+%find_lang ark --with-kde
 %find_lang KRegExpEditor --with-kde
 %find_lang kcalc --with-kde
 %find_lang kcharselect --with-kde
-%find_lang kcharselectapplet --with-kde
-cat kcharselectapplet.lang >> kcharselect.lang
-%find_lang kdepasswd --with-kde
-%find_lang kdessh --with-kde
+#%find_lang kcharselectapplet --with-kde
+#cat kcharselectapplet.lang >> kcharselect.lang
+#%find_lang kdepasswd --with-kde
+#%find_lang kdessh --with-kde
 %find_lang kdf --with-kde
 %find_lang kedit --with-kde
 %find_lang kfloppy --with-kde
 %find_lang khexedit --with-kde
 %find_lang kjots --with-kde
-%find_lang klaptopdaemon --with-kde
-%find_lang kcmlaptop --with-kde
-cat kcmlaptop.lang >> klaptopdaemon.lang
+#%find_lang klaptopdaemon --with-kde
+#%find_lang kcmlaptop --with-kde
+#cat kcmlaptop.lang >> klaptopdaemon.lang
 %find_lang kljettool --with-kde
 %find_lang klpq --with-kde
 %find_lang klprfax --with-kde
 %find_lang ktimer --with-kde
-
-# This sucks. We need either move documentation outside %{_docdir} or correct
-# find_lang.sh
-for f in *.lang; do
-	mv $f $f.tmp
-	grep -v /usr/share/doc/kde/HTML/en < $f.tmp > $f
-	rm $f.tmp
-done
+#%find_lang cdbakeoven --with-kde
+%find_lang ksim --with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -560,7 +595,7 @@ rm -rf $RPM_BUILD_ROOT
 %post   kcharselect -p /sbin/ldconfig
 %postun kcharselect -p /sbin/ldconfig
 
-%files ark
+%files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %attr(755,root,root) %{_libdir}/libark.??
@@ -570,7 +605,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/arkpart.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
-%lang(en) %{_htmldir}/en/ark
 
 #%files kab
 #%defattr(644,root,root,755)
@@ -578,7 +612,6 @@ rm -rf $RPM_BUILD_ROOT
 #%{_applnkdir}/Utilities/kab.desktop
 #%{_datadir}/apps/kab
 #%{_pixmapsdir}/*/*/apps/kab.*
-#%lang(en) %{_htmldir}/en/kab
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
@@ -586,7 +619,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kcalc.*
 %{_applnkdir}/Utilities/kcalc.desktop
 %{_pixmapsdir}/*/*/apps/kcalc.*
-%lang(en) %{_htmldir}/en/kcalc
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
@@ -597,12 +629,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
 
-%files kdepasswd -f kdepasswd.lang
+%files kdepasswd
+#-f kdepasswd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
 
-%files kdessh -f kdessh.lang
+%files kdessh
+#-f kdessh.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
@@ -618,7 +652,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kcmdf.*
 %{_pixmapsdir}/*/*/apps/kdf.*
 %{_pixmapsdir}/*/*/apps/kwikdisk.*
-%lang(en) %{_htmldir}/en/kdf
 
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
@@ -627,14 +660,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Development/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
 %{_pixmapsdir}/*/*/apps/kedit.*
-%lang(en) %{_htmldir}/en/kedit
 
 %files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
 %{_pixmapsdir}/*/*/apps/kfloppy.*
-%lang(en) %{_htmldir}/en/kfloppy
 
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
@@ -642,7 +673,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/khexedit.desktop
 %{_datadir}/apps/khexedit
 %{_pixmapsdir}/*/*/apps/khexedit.*
-%lang(en) %{_htmldir}/en/khexedit
 
 %files kjots -f kjots.lang
 %defattr(644,root,root,755)
@@ -650,9 +680,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/Kjots.desktop
 %{_datadir}/apps/kjots
 %{_pixmapsdir}/*/*/apps/kjots.*
-%lang(en) %{_htmldir}/en/kjots
 
-%files klaptopdaemon -f klaptopdaemon.lang
+%files klaptopdaemon
+#-f klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.??
@@ -674,21 +704,18 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/KLJetTool.desktop
 %{_datadir}/apps/kljettool
 %{_pixmapsdir}/*/*/apps/kljettool.*
-%lang(en) %{_htmldir}/en/kljettool
 
 %files klpq -f klpq.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klpq
 %{_applnkdir}/Utilities/KLpq.desktop
 %{_pixmapsdir}/*/*/apps/klpq.*
-%lang(en) %{_htmldir}/en/klpq
 
 %files klprfax -f klprfax.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klprfax*
 %{_applnkdir}/Utilities/klprfax.desktop
 %{_pixmapsdir}/*/*/apps/klprfax.*
-%lang(en) %{_htmldir}/en/klprfax
 
 #%files knotes
 #%defattr(644,root,root,755)
@@ -698,7 +725,6 @@ rm -rf $RPM_BUILD_ROOT
 #%{_datadir}/config/knotesrc
 #%{_includedir}/KNotesIface.h
 #%{_pixmapsdir}/*/*/apps/knotes.*
-#%lang(en) %{_htmldir}/en/knotes
 #
 #%files kpm
 #%defattr(644,root,root,755)
@@ -706,7 +732,6 @@ rm -rf $RPM_BUILD_ROOT
 #%attr(755,root,root) %{_bindir}/kpmdocked
 #%{_applnkdir}/System/kpm.desktop
 #%{_pixmapsdir}/*/*/apps/kpm.*
-#%lang(en) %{_htmldir}/en/kpm
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
@@ -719,7 +744,34 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 
+%files cdbakeoven
+#-f cdbakeoven.lang
+%defattr(644,root,root,755)
+%{_bindir}/cdbakeoven
+%{_libdir}/kde3/libkcm_cdbo*
+%{_datadir}/apps/cdbakeoven
+%{_datadir}/mimelnk/application/cdbo-file-list.desktop
+%{_datadir}/mimelnk/inode/ISO-image.desktop
+%{_pixmapsdir}/*/*/mimetypes/cd*.png
+%{_pixmapsdir}/*/*/apps/cd*.png
+%{_applnkdir}/Utilities/cdbakeoven.desktop
+%{_applnkdir}/Settings/KDE/CDBakeOven
+
+%files ksim -f ksim.lang
+%defattr(644,root,root,755)
+%{_bindir}/ksim
+%{_libdir}/ksim.??
+%{_libdir}/libksimcore.la
+%{_libdir}/libksimcore.so.*.*.*
+%{_libdir}/kde3/ksim*
+%{_datadir}/apps/ksim
+%{_datadir}/config/ksimrc
+%{_pixmapsdir}/*/*/apps/ksim*.png
+%{_pixmapsdir}/*/*/devices/ksim*.png
+%{_applnkdir}/System/ksim.desktop
+
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so
 %{_includedir}/*
+%{_libdir}/libksimcore.so
