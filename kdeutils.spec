@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030512
+%define		_snap		030516
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
