@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	5
+Release:	6
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -525,7 +525,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab
 %{_applnkdir}/Utilities/kab.desktop
-%{_datadir}/apps/kab
+%{_datadir}/apps/kab/htmlexport
+%{_datadir}/apps/kab/pics/*
 %{_pixmapsdir}/*/*/apps/kab.*
 %lang(en) %{_htmldir}/en/kab
 
