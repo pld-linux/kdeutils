@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	2
+Release:	3
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -22,7 +22,7 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _prefix         /usr/X11R6
 %define         _fontdir        /usr/share/fonts
-%define         _htmldir        %{_datadir}/doc/kde/HTML
+%define         _htmldir        /usr/share/doc/kde/HTML
 
 %description
 KDE utilities. Package includes:
