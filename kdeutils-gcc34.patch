@@ -23,7 +23,7 @@
    for (it = locatedFiles.begin(); it != locatedFiles.end(); ++it)
 -    addPlugin(*it);
 +    const KDesktopFile kdf(*it, true);
-+    addPlugin(kdf);
++    addPlugin(this->kdf);
  }
  
  void KSim::MainView::addPlugin(const QString& _file, bool force)
