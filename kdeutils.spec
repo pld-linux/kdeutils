@@ -1,14 +1,10 @@
-%define		_ver		3.0.3
-#define		_sub_ver
-%define		_rel		1
-
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
-Version:	%{_ver}
-Release:	%{_rel}
+Version:	3.0.3
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
@@ -246,21 +242,21 @@ Ten program pokazuje zajêto¶æ dysku dla zamontowanych urz±dzeñ.
 %description kdf -l pt_BR
 Mostra o status de espaço em disco.
 
-#%package kfind
-#Summary:	KDE Find
-#Summary(pl):	find dla KDE
-#Summary(pt_BR):	Ferramenta de procura de arquivos
-#Group:		X11/Applications
-#Requires:	kdelibs >= %{version}
-#
-#%description kfind
-#Find Util.
-#
-#%description kfind -l pl
-#Wyszukiwarka plików dla KDE.
-#
-#%description kfind -l pt_BR
-#Ferramenta de procura de arquivos.
+%package kfind
+Summary:	KDE Find
+Summary(pl):	find dla KDE
+Summary(pt_BR):	Ferramenta de procura de arquivos
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+
+%description kfind
+Find Util.
+
+%description kfind -l pl
+Wyszukiwarka plików dla KDE.
+
+%description kfind -l pt_BR
+Ferramenta de procura de arquivos.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
@@ -392,46 +388,46 @@ Program ten umo¿liwia wysy³anie faksów przez drukowanie ich do lpd.
 %description klprfax -l pt_BR
 Interface para impressão em saída de fax.
 
-#%package knotes
-#Summary:	KDE Notes
-#Summary(pl):	Notes dla KDE
-#Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
-#Group:		X11/Applications
-#Requires:	kdelibs >= %{version}
-#
-#%description knotes
-#KNotes is ment to be a really usable and good looking notes
-#application for the KDE project.
-#
-#%description knotes -l pl
-#KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich
-#widocznych na ekranie.
-#
-#%description knotes -l pt_BR
-#Pequeno editor de texto para guardar notas rápidas.
-#
-#%package kpm
-#Summary:	KDE Process Manager
-#Summary(pl):	Zarz±dca procesów dla KDE
-#Summary(pt_BR):	Monitor gráfico de processos e do sistema
-#Group:		X11/Applications
-#Requires:	kdelibs >= %{version}
-#
-#%description kpm
-#kpm allows you to view and modify the processes of your Linux
-#computer. It shows detailed information of running processes, computer
-#resources like RAM, swap space, CPU utilization and so on. You can
-#kill processes and modify their priority.
-#
-#%description kpm -l pl
-#kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
-#szczegó³owe informacje na temat uruchomionych procesów, zasobów
-#systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
-#wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
-#modyfikowania ich priorytetów.
-#
-#%description kpm -l pt_BR
-#Monitor gráfico de processos e do sistema.
+%package knotes
+Summary:	KDE Notes
+Summary(pl):	Notes dla KDE
+Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+
+%description knotes
+KNotes is ment to be a really usable and good looking notes
+application for the KDE project.
+
+%description knotes -l pl
+KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich
+widocznych na ekranie.
+
+%description knotes -l pt_BR
+Pequeno editor de texto para guardar notas rápidas.
+
+%package kpm
+Summary:	KDE Process Manager
+Summary(pl):	Zarz±dca procesów dla KDE
+Summary(pt_BR):	Monitor gráfico de processos e do sistema
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+
+%description kpm
+kpm allows you to view and modify the processes of your Linux
+computer. It shows detailed information of running processes, computer
+resources like RAM, swap space, CPU utilization and so on. You can
+kill processes and modify their priority.
+
+%description kpm -l pl
+kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
+szczegó³owe informacje na temat uruchomionych procesów, zasobów
+systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
+wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
+modyfikowania ich priorytetów.
+
+%description kpm -l pt_BR
+Monitor gráfico de processos e do sistema.
 
 %package ktimer
 Summary:	KDE Timer
@@ -461,47 +457,47 @@ Graphical regular expression editor.
 %description kregexpeditor -l pl
 Graficzny edytor wyra¿eñ regularnych.
 
-#%package cdbakeoven
-#Summary:	Intuitive tool for burning CDs
-#Summary(pl):	Intuicyjne narzêdzie do wypalania CD
-#Group:		X11/Applications
-#Requires:	kdelibs = %{version}
-#Requires:	cdrtools
-#Requires:	cdrtools-cdda2wav
-#Requires:	cdrtools-mkisofs
-#Requires:	cdparanoia-III
-#
-#%description cdbakeoven
-#CD Bake Oven was designed with one goal in mind: combine the power and
-#stability of great command line utilities with contemporary easy to use
-#user interface. CDBO enables you to create data or music CDs in the most
-#intuitive matter, allowing you to control every aspect of the process.
-#It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
-#and 'cdparanoia' encapsulating most of the options those utilities
-#provide. This makes creating professional quality media as easy as
-#making a few mouse clicks.
-#
-#%description cdbakeoven -l pl
-#CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
-#i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
-#interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
-#intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
-#Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
-#,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
-#ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
-#klikanie myszk±.
+%package cdbakeoven
+Summary:	Intuitive tool for burning CDs
+Summary(pl):	Intuicyjne narzêdzie do wypalania CD
+Group:		X11/Applications
+Requires:	kdelibs = %{version}
+Requires:	cdrtools
+Requires:	cdrtools-cdda2wav
+Requires:	cdrtools-mkisofs
+Requires:	cdparanoia-III
 
-#%package ksim
-#Summary:	K System Information Monitor
-#Summary(pl):	K System Information Monitor
-#Group:		X11/Applications
-#Requires:	kdelibs = %{version}
-#
-#%description ksim
-#K System Information Monitor.
-#
-#%description ksim -l pl
-#K System Information Monitor.
+%description cdbakeoven
+CD Bake Oven was designed with one goal in mind: combine the power and
+stability of great command line utilities with contemporary easy to use
+user interface. CDBO enables you to create data or music CDs in the most
+intuitive matter, allowing you to control every aspect of the process.
+It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
+and 'cdparanoia' encapsulating most of the options those utilities
+provide. This makes creating professional quality media as easy as
+making a few mouse clicks.
+
+%description cdbakeoven -l pl
+CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
+i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
+interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
+intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
+Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
+,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
+ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
+klikanie myszk±.
+
+%package ksim
+Summary:	K System Information Monitor
+Summary(pl):	K System Information Monitor
+Group:		X11/Applications
+Requires:	kdelibs = %{version}
+
+%description ksim
+K System Information Monitor.
+
+%description ksim -l pl
+K System Information Monitor.
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
@@ -598,8 +594,8 @@ rm -rf $RPM_BUILD_ROOT
 %post   kcharselect -p /sbin/ldconfig
 %postun kcharselect -p /sbin/ldconfig
 
-#%post   ksim -p /sbin/ldconfig
-#%postun ksim -p /sbin/ldconfig
+%post   ksim -p /sbin/ldconfig
+%postun ksim -p /sbin/ldconfig
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
