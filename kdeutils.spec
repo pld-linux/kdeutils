@@ -26,7 +26,7 @@ Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-vcategories.patch
 Patch2:		%{name}-userinfo.patch
-Patch3:		%{name}-gcc34.patch
+Patch3:         %{name}-gcc34.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -579,7 +579,9 @@ funkcjonalno¶æ programu kdepasswd.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%%%patch3 -p1
+
+echo "KDE_OPTIONS=nofinal" >> ksim/monitors/snmp/Makefile.am
 
 %build
 cp %{_datadir}/automake/config.sub admin
@@ -628,7 +630,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libksimcore.so
 %{_includedir}/*
 
-%files ark -f ark_en.lang
+%files ark 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %{_libdir}/libkdeinit_ark.la
@@ -643,8 +645,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/ark_part.desktop
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
+%{_kdedocdir}/en/ark
 
-%files kcalc -f kcalc_en.lang
+%files kcalc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %{_libdir}/libkdeinit_kcalc.la
@@ -656,8 +659,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kcalc.kcfg
 %{_desktopdir}/kde/kcalc.desktop
 %{_iconsdir}/*/*/apps/kcalc.*
+%{_kdedocdir}/en/kcalc
 
-%files kcharselect -f kcharselect_en.lang
+%files kcharselect 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
@@ -665,6 +669,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
+%{_kdedocdir}/en/kcharselect
 
 %files kdelirc
 %defattr(644,root,root,755)
@@ -689,6 +694,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/irkick.desktop
 %{_desktopdir}/kde/kcmlirc.desktop
 %{_iconsdir}/hicolor/*/apps/irkick.png
+%{_kdedocdir}/en/irkick
+%{_kdedocdir}/en/kcmlirc
 
 %files kdepasswd
 %defattr(644,root,root,755)
@@ -699,7 +706,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
-%files kdf -f kdf_en.lang
+%files kdf
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
@@ -712,8 +719,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/kcmdf.*
 %{_iconsdir}/*/*/apps/kdf.*
 %{_iconsdir}/*/*/apps/kwikdisk.*
+%{_kdedocdir}/en/kdf
+%{_kdedocdir}/en/kinfocenter/blockdevices
 
-%files kedit -f kedit_en.lang
+%files kedit 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %{_libdir}/libkdeinit_kedit.la
@@ -724,14 +733,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kedit.kcfg
 %{_desktopdir}/kde/KEdit.desktop
 %{_iconsdir}/*/*/apps/kedit.*
+%{_kdedocdir}/en/kedit
 
-%files kfloppy -f kfloppy_en.lang
+%files kfloppy 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_desktopdir}/kde/KFloppy.desktop
 %{_iconsdir}/*/*/apps/kfloppy.*
+%{_kdedocdir}/en/kfloppy
 
-%files kgpg -f kgpg_en.lang
+%files kgpg 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgpg
 %{_datadir}/apps/kgpg
@@ -741,8 +752,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/config.kcfg/kgpg.kcfg
 %{_desktopdir}/kde/kgpg.desktop
 %{_iconsdir}/*/*/apps/kgpg.png
+%{_kdedocdir}/en/kgpg
 
-%files khexedit -f khexedit_en.lang
+%files khexedit 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_libdir}/kde3/libkbyteseditwidget.la
@@ -751,14 +763,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kbyteseditwidget.desktop
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
+%{_kdedocdir}/en/khexedit
 
-%files kjots -f kjots_en.lang
+%files kjots 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
 %{_datadir}/config.kcfg/kjots.kcfg
 %{_desktopdir}/kde/Kjots.desktop
 %{_iconsdir}/*/*/apps/kjots.*
+%{_kdedocdir}/en/kjots
 
 %files kmilo
 %defattr(644,root,root,755)
@@ -784,7 +798,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
 
-%files klaptopdaemon -f klaptopdaemon_en.lang
+%files klaptopdaemon
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %{_libdir}/libkcmlaptop.la
@@ -798,8 +812,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/laptop.desktop
 %{_desktopdir}/kde/pcmcia.desktop
 %{_iconsdir}/*/*/*/*laptop*
+%{_kdedocdir}/en/kcontrol/kcmlowbat*
+%{_kdedocdir}/en/kcontrol/laptop
+%{_kdedocdir}/en/kcontrol/powerctrl
 
-%files kregexpeditor -f KRegExpEditor_en.lang
+%files kregexpeditor 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
 %{_libdir}/libkregexpeditorcommon.la
@@ -809,8 +826,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 %{_desktopdir}/kde/kregexpeditor.desktop
+%{_kdedocdir}/en/KRegExpEditor
 
-%files ksim -f ksim_en.lang
+%files ksim 
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/ksim
 #%{_libdir}/ksim.la
@@ -825,14 +843,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ksim.desktop
 %{_iconsdir}/*/*/apps/ksim*.png
 %{_iconsdir}/*/*/devices/ksim*.png
+%{_kdedocdir}/en/ksim
 
-%files ktimer -f ktimer_en.lang
+%files ktimer
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
+%{_kdedocdir}/en/ktimer
 
-%files kwalletmanager -f kwallet_en.lang
+%files kwalletmanager 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
 %{_libdir}/kde3/kcm_kwallet.la
@@ -843,6 +863,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
+%{_kdedocdir}/en/kwallet
 
 %files userinfo
 %defattr(644,root,root,755)
