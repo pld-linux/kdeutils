@@ -213,7 +213,7 @@ u¿ywaj±cych bibliotek kdeutils.
 
 %description devel -l pt_BR
 Arquivos de inclusão para desenvolvimento e compilação de programas
-que usem as bibliotecas do kdeutils
+que usem as bibliotecas do kdeutils.
 
 %package ark
 Summary:	KDE Archive Manager
@@ -224,7 +224,6 @@ Requires:	kdelibs >= %{version}
 Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
 Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
 Obsoletes:	kdeutils-khexdit
 Obsoletes:	kdeutils-knotes
 Obsoletes:	kdeutils-kpm
