@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030406
+%define		_snap		030418
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -640,10 +640,8 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
 for plik in `find ./ -name *.desktop` ; do
-	if [ -d $plik ]; then
 	echo $plik
-	sed -ie 's/\[nb\]/\[no\]/g' $plik
-	fi
+	sed -i -e 's/\[nb\]/\[no\]/g' $plik
 done
 
 %configure --with-pam="yes"
@@ -655,9 +653,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-
-mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings/[!K]*,Settings/KDE}
+mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -736,7 +732,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kcm_kdf.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kdf.so
 %{_datadir}/apps/kdf
-%{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
+%{_applnkdir}/KDE-Settings/Information/kcmdf.desktop
 %{_desktopdir}/kdf.desktop
 %{_desktopdir}/kwikdisk.desktop
 %{_pixmapsdir}/*/*/apps/kcmdf.*
@@ -792,8 +788,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/kded/klaptopdaemon.desktop
-%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/*.desktop
+%{_applnkdir}/KDE-Settings/Information/pcmcia.desktop
+%{_applnkdir}/KDE-Settings/PowerControl/*.desktop
 %{_pixmapsdir}/*/*/*/*laptop*
 
 %files kregexpeditor -f KRegExpEditor.lang
@@ -830,4 +826,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kcm_userinfo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
 %{_datadir}/apps/userinfo
-%{_applnkdir}/Settings/KDE/Components/userinfo.desktop
+%{_applnkdir}/KDE-Settings/Components/userinfo.desktop
