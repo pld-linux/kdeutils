@@ -771,14 +771,15 @@ cat kcmlaptop.lang >> klaptopdaemon.lang
 # Does not build:
 %find_lang kcardchooser	--with-kde
 
+cd $RPM_BUILD_ROOT%{_libdir}/kde3
+ln -sf kcharselectapplet.so.1.0.0 kcharselectapplet.so.1
+cd -
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 %post   ark -p /sbin/ldconfig
 %postun ark -p /sbin/ldconfig
-
-%post   kcharselect /sbin/ldconfig -n %{_libdir}/kde3
-%postun kcharselect /sbin/ldconfig -n %{_libdir}/kde3
 
 %post   ksim -p /sbin/ldconfig
 %postun ksim -p /sbin/ldconfig
@@ -813,7 +814,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.la
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so.*.*.*
+%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so.*
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
