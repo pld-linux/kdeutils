@@ -1,8 +1,8 @@
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
-version:	2.2
-Release:	2
+version:	2.2.1
+Release:	1
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -368,7 +368,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %attr(755,root,root) %{_libdir}/kcalc.*
-%{_applnkdir}/Utilities/karm.desktop
+%{_applnkdir}/Utilities/kcalc.desktop
 %{_datadir}/apps/kcalc
 %{_pixmapsdir}/*/*/apps/kcalc.*
 %lang(en) %{_htmldir}/en/kcalc
@@ -479,7 +479,8 @@ rm -rf $RPM_BUILD_ROOT
 %files klprfax
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klprfax*
-%{_applnkdir}/Utilities/knotes.desktop
+%{_applnkdir}/Utilities/klprfax.desktop
+%{_pixmapsdir}/*/*/apps/klprfax.*
 %lang(en) %{_htmldir}/en/klprfax
 
 %files knotes
