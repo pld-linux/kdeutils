@@ -2,7 +2,6 @@
 %define		_state		snapshots
 %define		_ver		3.2.91
 %define		_snap		040630
-%define		_packager	adgor
 
 %define		_minlibsevr	9:3.2.91.040629
 %define		_minbaseevr	9:3.2.91.040629
@@ -21,10 +20,7 @@ Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-#Source0:	%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	5f180133247bf75097f0de9693e43e78
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
