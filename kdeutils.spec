@@ -1,7 +1,7 @@
 
 %define         _state          unstable
 %define         _ver		3.1
-%define         _rcver		rc6
+%define         _rcver		rc7
 %define         _kdever		kde-%{_ver}-%{_rcver}
 
 Summary:	K Desktop Environment - utilities
@@ -13,9 +13,9 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	%{_ver}%{_rcver}
-Release:	2
-Epoch:		7
+Version:	%{_ver}
+Release:	3
+Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
@@ -34,7 +34,6 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_fontdir	/usr/share/fonts
 %define		_htmldir	/usr/share/doc/kde/HTML
 
 %define		no_install_post_chrpath		1
@@ -843,28 +842,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/ark.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
 
-#%files cdbakeoven
-#-f cdbakeoven.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/cdbakeoven
-#%{_libdir}/kde3/libkcm_cdbo*
-#%{_datadir}/apps/cdbakeoven
-#%{_datadir}/mimelnk/application/cdbo-file-list.desktop
-#%{_datadir}/mimelnk/inode/ISO-image.desktop
-#%{_pixmapsdir}/*/*/mimetypes/cd*.png
-#%{_pixmapsdir}/*/*/apps/cd*.png
-#%{_applnkdir}/Utilities/cdbakeoven.desktop
-#%{_applnkdir}/Settings/KDE/CDBakeOven
-
-#%files kab -f kab.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kab3
-#%attr(755,root,root) %{_libdir}/kde3/libkab3part*
-#%{_applnkdir}/Utilities/kab3.desktop
-#%{_datadir}/apps/kab3
-#%{_pixmapsdir}/*/*/apps/kab3.*
-#%{_datadir}/services/kab3_part.desktop
-
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
@@ -943,47 +920,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/*.desktop
 %{_pixmapsdir}/*/*/*/*laptop*
-
-##%files kljettool -f kljettool.lang
-#%files kljettool
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kljettool
-#%{_applnkdir}/Utilities/KLJetTool.desktop
-#%{_datadir}/apps/kljettool
-#%{_pixmapsdir}/*/*/apps/kljettool.*
-
-#%files klpq -f klpq.lang
-#%files klpq
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/klpq
-#%{_applnkdir}/Utilities/KLpq.desktop
-#%{_pixmapsdir}/*/*/apps/klpq.*
-
-#%files klprfax -f klprfax.lang
-#%files klprfax
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/*fax*
-#%attr(755,root,root) %{_bindir}/efix
-#%{_applnkdir}/Utilities/klprfax.desktop
-#%{_pixmapsdir}/*/*/apps/klprfax.*
-#%{_mandir}/man1/*fax.1
-#%{_mandir}/man1/efix.1
-
-#%files knotes
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/knotes
-#%{_applnkdir}/Utilities/knotes.desktop
-#%{_datadir}/apps/knotes
-#%{_datadir}/config/knotesrc
-#%{_includedir}/KNotesIface.h
-#%{_pixmapsdir}/*/*/apps/knotes.*
-#
-#%files kpm -l kpm.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kpm
-#%attr(755,root,root) %{_bindir}/kpmdocked
-#%{_applnkdir}/System/kpm.desktop
-#%{_pixmapsdir}/*/*/apps/kpm.*
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
