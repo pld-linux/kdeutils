@@ -3,13 +3,21 @@ Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
 Version:	1.1.1
 Release:	3
-#ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
-Source:		%{name}-%{version}.tar.bz2
-Group:		X11/KDE/Utilities
-Group(pl):	X11/KDE/Narzêdzia
-Copyright:	GPL
-Requires:	qt >= 1.44, kdelibs = %{version}
-Vendor:		The KDE Team
+Copyright:      GPL
+Group:          X11/KDE/Utilities
+Group(pl):      X11/KDE/Narzêdzia
+Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
+BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	qt-devel >= 1.44
+BuildRequires:	libstdc++-devel
+BuildRequires:	XFree86-devel
+BuildRequires:	libtiff-devel
+BuildRequires:	libjpeg-devel
+BuildRequires:	libungif-devel
+BuildRequires:	libpng-devel
+BuildRequires:	zlib-devel
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 BuildRoot:	/tmp/%{name}-%{version}-root
 
 %define 	_prefix		/usr/X11R6
@@ -17,75 +25,90 @@ BuildRoot:	/tmp/%{name}-%{version}-root
 %description
 KDE utilities.
 Package includes:
-  KAb - 
+  Ark - archive manager
+  KAb - address book
   KArm - time tracker
   KCalc - calculator
   KEdit - text editor
   KFloppy - floppy formating tool
   KHexEdit - HEX file editor
   KJots - note taker
-  KLipper
+  KLipper - clipboard viewer
   KLJetTool - tool for LaserJet priter users
-  KLpq - lpq 
+  KLpq - print manager
   KNotes - notes
-  Kpm - 
-  KTop - 
-  KWrite - 
+  Kpm - process manager
+  KTop - task manager
+  KWrite - text editor
 
 %description -l pl
-Narzêdzia KDE.
+Narzêdzia dla KDE.
 Pakiet zawiera:
-  KArm
+  Ark - program do zarz±dzania archiwami
+  KAb - ksi±¿ka adresowa
+  KArm - czasomierz
   KCalc - kalkulator
   KEdit - edytor tekstu
   KFloppy - narzêdzie do formatowania dyskietek
-  KHexdit - edytor plików
+  KHexdit - edytor plików binarnych
   KJots - notatnik
   KLJetTool - narzêdzie dla u¿ytkowników drukarek LaserJet
   KNotes - inny notatnik
-  KZip
+  Kpm - program do zarz±dzania procesami
+  KTop - program do zarz±dzania procesami
+  KWrite - rozbudowany edytor tekstu
 
 %package ark
-Summary:     KDE 
-Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Archive Manager 
+Summary(pl):	Zarz±dca archiwów dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description ark
+Ark is a program for managing and quickly extracting archives.
 
 %description -l pl ark
+Ark jest programem s³u¿±cym do zarz±dzania i szybkiego rozpakowywania
+archiwów. 
 
 %package kab
-Summary:     KDE 
-Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Address Book
+Summary(pl):	Ksi±¿ka adresowa dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kab
+Kab is a simple address book for KDE.
 
 %description -l pl kab
+Kab jest prost± ksi±¿k± adresow± dla KDE.
 
 %package karm
-Summary:     KDE Time Tracker
-Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Time Tracker
+Summary(pl):	Time Tracker dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description karm
-KArm is a time tracker for busy people who need
-to keep track of the amount of time they spend
-on various tasks.
+KArm is a time tracker for busy people who need to keep track of the amount 
+of time they spend on various tasks.
 
 %description -l pl karm
 Narzêdzie pozwalaj±ce ustaliæ ile czasu siê spêdzi³o robi±c ró¿ne rzeczy.
 
 %package kcalc
-Summary:     KDE Calculator	
-Summary(pl): Kalkulator KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Calculator	
+Summary(pl):	Kalkulator dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kcalc
 Calculator for KDE.
@@ -94,10 +117,12 @@ Calculator for KDE.
 Kalkulator dla KDE.
 
 %package kedit
-Summary:     KDE Text Editor	
-Summary(pl): Edytor tekstu dla KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Text Editor	
+Summary(pl):	Edytor tekstu dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kedit
 Simple text editor for KDE.
@@ -106,10 +131,12 @@ Simple text editor for KDE.
 Prosty edytor tekstu dla KDE.
 
 %package kfloppy
-Summary:     KDE Floppy Formater	
-Summary(pl): Formatowanie dyskietek z KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Floppy Formater	
+Summary(pl):	Program formatuj±cy dyskietki dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
@@ -118,46 +145,55 @@ KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
 KFloppy formatuje dyskietki i zak³ada na nich system pliku DOS lub ext2.
 
 %package khexdit
-Summary:     KDE Hex Editor	
-Summary(pl): Edytor szesnastkowy KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Hex Editor	
+Summary(pl):	Edytor szesnastkowy dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description khexdit
 Hex Editor is a small and simple viewer for binary files.
 
 %description -l pl khexdit
-Prosta przegl±darka do plików binarnych.
+Hex Editor jest ma³ym i prostym edytorem plików binarnych.
 
 %package kjots
-Summary:     KDE Note taker
-Summary(pl): Notatnik KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Note taker
+Summary(pl):	Notatnik dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kjots
 kjots is a small note taker program. Name and idea are taken from
 the jots program included in the tkgoodstuff package.
 
 %description -l pl kjots
-KJots to ma³y program do zbierania notatek.
+KJots to ma³y program do zapisywania notatek.
 
 %package klipper
-Summary:     KDE Note taker
-Summary(pl): Notatnik KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Cut & Paste History
+Summary(pl):	Historia schowka dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description klipper
+klipper displays cut&paste history.
 
 %description -l pl klipper
+klipper wy¶wietla historiê operacji 'wytnij i wklej'.
 
 %package kljettool
-Summary:     KDE LaserJet Tool	
-Summary(pl): Konfigurator drukarek LaserJet dla KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE LaserJet Tool	
+Summary(pl):	Konfigurator drukarek LaserJet dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kljettool
 KLJetTool is a program that lets you adjust your Hewlett Packard
@@ -175,62 +211,92 @@ KLJetToll to program umo¿liwiaj±cy konfiguracjê drukarek
 Hewlett Packard LaserJet.
 
 %package klpq 
-Summary:     KDE Notes
-Summary(pl): Notes KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Print Manager
+Summary(pl):	Zarz±dca wydruku dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description klpq
+Klpq is a frontend to the print spooler. Klpq does not modify the printqueue 
+by itself, but uses the underlying commands: lpq, lprm and lpc.
 
 %description -l pl klpq
+Klpq jest nak³adk± graficzn± dla KDE, umo¿liwiaj±c± zarz±dzanie wydrukami.
+Nie modyfikuje kolejki wydruków sammodzielnie, lecz wykorzystuje do tego
+celu polecenia: lpq, lprm i lpc.
 
 %package knotes 
-Summary:     KDE Notes
-Summary(pl): Notes KDE
-Group:       X11/KDE/Utilities
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Notes
+Summary(pl):	Notes dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description knotes
-KNotes is ment to be a really usable and good looking notes
-application for the KDE project.
+KNotes is ment to be a really usable and good looking notes application 
+for the KDE project.
 
 %description -l pl knotes
-KNotes to program umo¿liwiaj±cy spisywanie sobie notatek i trzymanie ich na
-ekranie komputera.
+KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich 
+widocznych na ekranie.
 
 %package kpm
-Summary:     KDE Archive Handling Tool
-Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Process Manager
+Summary(pl):	Zarz±dca procesów dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kpm
+kpm allows you to view and modify the processes of your Linux computer. 
+It shows detailed information of running processes, computer resources 
+like RAM, swap space, CPU utilization and so on. 
+You can kill processes and modify their priority. 
 
 %description -l pl kpm
+kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
+szczegó³owe informacje na temat uruchomionych procesów, zasobów systemu
+jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany, wykorzystanie
+procesora, itp. Masz mo¿liwo¶æ zabijania procesów i modyfikowania ich
+priorytetów.
 
 %package ktop
-Summary:     KDE Archive Handling Tool
-Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Task Manager
+Summary(pl):	Zarz±dca zadañ dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description ktop
+KTop is the KDE Task Manager. It displays the processes running on
+computer in list and tree form. Processes can be killed and various
+other signals can be send to specific processes. It also features a
+processor load and memory usage monitor.
 
 %description -l pl ktop
+KTop jest zarz±dc± zadañ dla KDE. Wy¶wietla on listê aktualnie uruchomionych
+procesów. Masz mo¿liwo¶æ zabijania okre¶lonych procesów jak równie¿ wysy³ania 
+do nich ró¿nych innych sygna³ów. KTop posiada równie¿ monitor obci±¿enia
+procesora i wykorzystania pamiêci.
 
 %package kwrite
-Summary:     KDE Archive Handling Tool
-Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utilities
-Group(pl):   X11/KDE/Narzêdzia
-Requires:    qt >= 1.40, kdelibs = %{version}
+Summary:	KDE Text Editor
+Summary(pl):	Edytor tekstu dla KDE
+Group:		X11/KDE/Utilities
+Group(pl):	X11/KDE/Narzêdzia
+Requires:	qt >= 1.44
+Requires:	kdelibs = %{version}
 
 %description kwrite
+KWrite is an enhanced text editor for KDE.
 
 %description -l pl kwrite
+KWrite jest rozbudowanym edytorem tekstu dla KDE.
 
 %prep
 %setup -q
@@ -251,18 +317,18 @@ rm -rf $RPM_BUILD_ROOT
 export KDEDIR=%{_prefix}
 make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
 
-%find_lang ark ark.lang
-%find_lang kab kab.lang
-%find_lang karm karm.lang
-%find_lang kcalc kcalc.lang
-%find_lang kedit kedit.lang
-%find_lang kfloppy kfloppy.lang
-%find_lang khexdit khexdit.lang
-%find_lang kjots kjots.lang
-%find_lang klipper klipper.lang
-%find_lang kljettool kljettool.lang
-%find_lang klpq klpq.lang
-%find_lang knotes knotes.lang
+%find_lang ark 
+%find_lang kab 
+%find_lang karm
+%find_lang kcalc
+%find_lang kedit
+%find_lang kfloppy
+%find_lang khexdit
+%find_lang kjots
+%find_lang klipper
+%find_lang kljettool
+%find_lang klpq
+%find_lang knotes
 
 %clean
 rm -rf $RPM_BUILD_ROOT
