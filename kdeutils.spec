@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030610
+%define		_snap		030613
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	de51fee2a0de9bc8a7155c09522ec572
+# Source0-md5:	2d6c036770d697fcf20ab6d0713cc6ba
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -38,6 +38,7 @@ BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_htmldir	%{_docdir}/kde/HTML
+%define		_icondir	%{_datadir}/icons
 
 %define		no_install_post_chrpath		1
 
@@ -537,7 +538,7 @@ Miniaplicativo de status de bateria para laptops
 
 %package kmilo
 Summary:	KDE Special Key Notifier
-Summary(pl):	KDE Special Key Notifier
+Summary(pl):	TODO
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:      kdeutils-cdbakeoven                                             
@@ -555,6 +556,7 @@ Obsoletes:	kregexpeditor-devel
 KDE Special Key Notifier
 
 %description kmilo -l pl
+TODO
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
@@ -659,9 +661,6 @@ Zmienia informacje o koncie u¿ytkownika.
 %patch4 -p1
 
 %build
-kde_htmldir="%{_htmldir}"; export kde_htmldir
-kde_icondir="%{_pixmapsdir}"; export kde_icondir
-kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
 for plik in `find ./ -name *.desktop` ; do
 	echo $plik
@@ -675,7 +674,10 @@ done
 %install
 rm -rf $RPM_BUILD_ROOT
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_appsdir=%{_applnkdir} \
+	kde_htmldir=%{_htmldir}
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
 
@@ -733,7 +735,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/ark_part.desktop
 %{_desktopdir}/ark.desktop
-%{_pixmapsdir}/*/*/apps/ark.*
+%{_icondir}/*/*/apps/ark.*
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
@@ -741,7 +743,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kcalc.la
 %attr(755,root,root) %{_libdir}/kcalc.so
 %{_desktopdir}/kcalc.desktop
-%{_pixmapsdir}/*/*/apps/kcalc.*
+%{_icondir}/*/*/apps/kcalc.*
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
@@ -750,7 +752,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_desktopdir}/KCharSelect.desktop
-%{_pixmapsdir}/*/*/apps/kcharselect.*
+%{_icondir}/*/*/apps/kcharselect.*
 
 %files kdepasswd
 %defattr(644,root,root,755)
@@ -771,9 +773,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/KDE-Settings/Information/kcmdf.desktop
 %{_desktopdir}/kdf.desktop
 %{_desktopdir}/kwikdisk.desktop
-%{_pixmapsdir}/*/*/apps/kcmdf.*
-%{_pixmapsdir}/*/*/apps/kdf.*
-%{_pixmapsdir}/*/*/apps/kwikdisk.*
+%{_icondir}/*/*/apps/kcmdf.*
+%{_icondir}/*/*/apps/kdf.*
+%{_icondir}/*/*/apps/kwikdisk.*
 
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
@@ -782,13 +784,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kedit.so
 %{_datadir}/apps/kedit
 %{_desktopdir}/KEdit.desktop
-%{_pixmapsdir}/*/*/apps/kedit.*
+%{_icondir}/*/*/apps/kedit.*
 
 %files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_desktopdir}/KFloppy.desktop
-%{_pixmapsdir}/*/*/apps/kfloppy.*
+%{_icondir}/*/*/apps/kfloppy.*
 
 %files kgpg
 %defattr(644,root,root,755)
@@ -797,30 +799,36 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
 %{_datadir}/autostart/kgpg.desktop
 %{_desktopdir}/kgpg.desktop
-%{_pixmapsdir}/*/*/apps/kgpg.png
+%{_icondir}/*/*/apps/kgpg.png
 
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_datadir}/apps/khexedit
 %{_desktopdir}/khexedit.desktop
-%{_pixmapsdir}/*/*/apps/khexedit.*
+%{_icondir}/*/*/apps/khexedit.*
 
 %files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
 %{_desktopdir}/Kjots.desktop
-%{_pixmapsdir}/*/*/apps/kjots.*
+%{_icondir}/*/*/apps/kjots.*
 
 %files kmilo
 %defattr(644,root,root,755)
 %{_libdir}/libkmilo.la
 %attr(755,root,root) %{_libdir}/libkmilo.so.*.*.*
+%{_libdir}/kde3/kcm_kvaio.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
 %{_libdir}/kde3/kded_kmilod.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
+%{_libdir}/kde3/kmilo_kvaio.la
+%attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
 %{_datadir}/services/kded/kmilod.desktop
+%{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_datadir}/servicetypes/kmilo
+%{_applnkdir}/KDE-Settings/System/kvaio.desktop
 
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
@@ -835,7 +843,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kded/klaptopdaemon.desktop
 %{_applnkdir}/KDE-Settings/Information/pcmcia.desktop
 %{_applnkdir}/KDE-Settings/PowerControl/*.desktop
-%{_pixmapsdir}/*/*/*/*laptop*
+%{_icondir}/*/*/*/*laptop*
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
@@ -859,8 +867,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksim
 %{_datadir}/config/ksim_panelextensionrc
 %{_desktopdir}/ksim.desktop
-%{_pixmapsdir}/*/*/apps/ksim*.png
-%{_pixmapsdir}/*/*/devices/ksim*.png
+%{_icondir}/*/*/apps/ksim*.png
+%{_icondir}/*/*/devices/ksim*.png
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
