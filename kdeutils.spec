@@ -20,6 +20,8 @@ Epoch:		7
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
+# generated from kde-i18n
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
@@ -516,6 +518,8 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%
 
 %find_lang KRegExpEditor --with-kde
 
