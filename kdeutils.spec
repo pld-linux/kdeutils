@@ -622,10 +622,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kab
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kab
-%{_applnkdir}/Utilities/kab.desktop
-%{_datadir}/apps/kab
-%{_pixmapsdir}/*/*/apps/kab.*
+%attr(755,root,root) %{_bindir}/kab3
+%attr(755,root,root) %{_libdir}/kde3/libkab3part*
+%{_applnkdir}/Utilities/kab3.desktop
+%{_datadir}/apps/kab3
+%{_pixmapsdir}/*/*/apps/kab3.*
+%{_datadir}/services/kab3_part.desktop
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
@@ -728,7 +730,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/efix
 %{_applnkdir}/Utilities/klprfax.desktop
 %{_pixmapsdir}/*/*/apps/klprfax.*
-%{_mandir}/man1/{efax,efix,fax}.1
+%{_mandir}/man1/*fax.1
+%{_mandir}/man1/efix.1
 
 #%files knotes
 #%defattr(644,root,root,755)
