@@ -1,5 +1,6 @@
 
 %define		_state		stable
+%define		_kdever		3.4
 %define		_ver		3.4.0
 
 %define		_minlibsevr	9:3.4.0
@@ -19,7 +20,7 @@ Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	cb7e5402eedaca816e210d460e22e53a
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
