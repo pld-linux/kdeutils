@@ -2,7 +2,7 @@ Summary:     K Desktop Environment - utilities
 Summary(pl): K Desktop Environment - narzêdzia
 Name:        kdeutils
 Version:     1.0
-Release:     4
+Release:     7
 Source:      ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
 Group:       X11/KDE/Utils
 Copyright:   GPL
@@ -452,6 +452,10 @@ rm -rf $RPM_BUILD_ROOT
 %lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kzip.mo
 
 %changelog
+* Wed Dec  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
+  [1.0-7]
+- recompiled against libstdc++.so.2.9.
+
 * Sun Oct 18 1998 Jacek Konieczny <jajcus@zeus.polsl.gliwice.pl>
   [1.0-4]
 - created new spec based on kdebase.spec
