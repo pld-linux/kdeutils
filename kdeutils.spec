@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030602
+%define		_snap		030610
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -18,8 +18,8 @@ Epoch:		8
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	3694483ddb2a54f1461e52ec9b8034a0
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	de51fee2a0de9bc8a7155c09522ec572
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -632,7 +632,7 @@ Monitor de tempo em forma de mini-aplicativo.
 Summary:	User Account
 Summary(pl):	Konto u¿ytkownika
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdm >= %{version}
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
@@ -871,5 +871,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_userinfo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
-%{_datadir}/apps/userinfo
+%{_datadir}/apps/kdm/pics/faces/*
 %{_applnkdir}/KDE-Settings/System/userinfo.desktop
