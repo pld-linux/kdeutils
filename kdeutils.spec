@@ -483,7 +483,7 @@ que usem as bibliotecas do kdeutils
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%{__make} -f Makefile.cvs
+#%{__make} -f Makefile.cvs
 %configure \
 	%{!?debug:--disable-debug} \
 	--with-qt-dir=%{_prefix} \
@@ -493,7 +493,6 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
 install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
