@@ -1,6 +1,6 @@
 #
 # Conditional build:
-%bcond_without  i18n    # dont build i18n subpackage
+%bcond_without	i18n	# dont build i18n subpackage
 #
 %define		_state		stable
 %define		_ver		3.2.2
@@ -23,7 +23,7 @@ Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
 # Source0-md5:	94eee311b04f91aa083d1f8a8620faca
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
-Source1:        kde-i18n-%{name}-%{version}.tar.bz2
+Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	4cb7b5688f1b8267f1d7a19cd8a5acc9
 %endif
 Patch0:		%{name}-3.2branch.diff
@@ -749,7 +749,7 @@ Pliki umiêdzynarodawiaj±ce dla kdelirca.
 Summary:	Internationalization and localization files for userinfo
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla userinfo
 Group:		X11/Applications
-Requires:       %{name}-userinfo = %{epoch}:%{version}-%{release}
+Requires:	%{name}-userinfo = %{epoch}:%{version}-%{release}
 Requires:	kdm-i18n >= 9:%{version}
 
 %description userinfo-i18n
@@ -762,7 +762,7 @@ Pliki umiêdzynarodawiaj±ce dla userinfo.
 Summary:	Internationalization and localization files for kdessh
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdessh
 Group:		X11/Applications
-Requires:       %{name}-kdessh = %{epoch}:%{version}-%{release}
+Requires:	%{name}-kdessh = %{epoch}:%{version}-%{release}
 Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kdessh-i18n
@@ -775,7 +775,7 @@ Pliki umiêdzynarodawiaj±ce dla kdessh.
 Summary:	Internationalization and localization files for kdepasswd
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdepasswd
 Group:		X11/Applications
-Requires:       %{name}-kdepasswd = %{epoch}:%{version}-%{release}
+Requires:	%{name}-kdepasswd = %{epoch}:%{version}-%{release}
 Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kdepasswd-i18n
@@ -841,7 +841,7 @@ cat blockdevices.lang >> kdf.lang
 %find_lang khexedit		--with-kde
 %find_lang kjots		--with-kde
 %if %{with i18n}
-%find_lang klaptopdaemon        --with-kde
+%find_lang klaptopdaemon	--with-kde
 %else
 > klaptopdaemon.lang
 %endif
@@ -855,9 +855,9 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %find_lang kwallet		--with-kde
 
 %if %{with i18n}
-%find_lang kdelirc              --with-kde
-%find_lang irkick	        --with-kde
-%find_lang kcmlirc              --with-kde
+%find_lang kdelirc		--with-kde
+%find_lang irkick		--with-kde
+%find_lang kcmlirc		--with-kde
 cat irkick.lang >> kdelirc.lang
 cat kcmlirc.lang >> kdelirc.lang
 
@@ -879,10 +879,10 @@ cat kcharselectapplet.lang >> kcharselect.lang
 
 %find_lang userinfo		--with-kde
 %find_lang kdessh		--with-kde
-%find_lang kdepasswd            --with-kde
+%find_lang kdepasswd		--with-kde
 # We dont buidl kcardchooser (disabled by default by coolo) 
 # renaableing it would be posssible, but what for?
-# %find_lang kcardchooser            --with-kde
+# %find_lang kcardchooser	--with-kde
 %endif
 
 files="ark \
@@ -902,7 +902,7 @@ kwallet"
 
 for i in $files; do
 	> ${i}_en.lang
-        echo "%defattr(644,root,root,755)" > ${i}_en.lang
+	echo "%defattr(644,root,root,755)" > ${i}_en.lang
 	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
 	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
 	mv ${i}.lang.1 ${i}.lang
