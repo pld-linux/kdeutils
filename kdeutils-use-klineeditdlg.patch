@@ -1,0 +1,21 @@
+--- kdeutils-3.0.3/kregexpeditor/editorwindow.cpp--	2002-03-08 02:19:17.000000000 +0100
++++ kdeutils-3.0.3/kregexpeditor/editorwindow.cpp	2002-08-28 10:02:20.000000000 +0200
+@@ -14,7 +14,8 @@
+ #include <kstandarddirs.h>
+ #include <kiconloader.h>
+ #include "regexp.h"
+-#include <qinputdialog.h>
++#include <klineeditdlg.h>
++#include <qlineedit.h>
+ #include "userdefinedregexps.h"
+ 
+ RegExpEditorWindow::RegExpEditorWindow( QWidget *parent, const char *name)
+@@ -336,7 +337,7 @@ void RegExpEditorWindow::slotSave()
+   QString dir = WidgetWinItem::path();
+ 
+   bool ok = false;
+-  QString name = QInputDialog::getText(i18n("Name for regexp"), i18n("Enter Name"), QLineEdit::Normal, QString::fromLocal8Bit(""),
++  QString name = KLineEditDlg::getText(i18n("Name for regexp"), i18n("Enter Name"), QString::fromLocal8Bit(""),
+                                        &ok, this );
+   if ( !ok ) 
+     return;
