@@ -17,7 +17,7 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	94eee311b04f91aa083d1f8a8620faca
+# Source0-md5:	3a98f8a0a6f4582e03d4503708cb218a
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 Icon:		kde-utils.xpm
 #Patch100:		%{name}-branch.diff
