@@ -1,6 +1,6 @@
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		1
+%define		_rel		2
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -472,6 +472,10 @@ Summary:	Intuitive tool for burning CDs
 Summary(pl):	Intuicyjne narzêdzie do wypalania CD
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
+Requires:	cdrtools
+Requires:	cdrtools-cdda2wav
+Requires:	cdrtools-mkisofs
+Requires:	cdparanoia-III
 
 %description cdbakeoven
 CD Bake Oven was designed with one goal in mind: combine the power and
@@ -747,7 +751,7 @@ rm -rf $RPM_BUILD_ROOT
 %files cdbakeoven
 #-f cdbakeoven.lang
 %defattr(644,root,root,755)
-%{_bindir}/cdbakeoven
+%attr(755,root,root) %{_bindir}/cdbakeoven
 %{_libdir}/kde3/libkcm_cdbo*
 %{_datadir}/apps/cdbakeoven
 %{_datadir}/mimelnk/application/cdbo-file-list.desktop
@@ -759,7 +763,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
-%{_bindir}/ksim
+%attr(755,root,root) %{_bindir}/ksim
 %{_libdir}/ksim.??
 %{_libdir}/libksimcore.la
 %{_libdir}/libksimcore.so.*.*.*
