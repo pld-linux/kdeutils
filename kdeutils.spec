@@ -1,6 +1,6 @@
-%define		_ver		3.0.2
+%define		_ver		3.0.3
 #define		_sub_ver
-%define		_rel		3.8
+%define		_rel		0.1
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -24,10 +24,10 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	kdelibs-devel >= %{version}
-BuildRequires:	libtool
 BuildRequires:	bzip2
 BuildRequires:	grep
+BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
