@@ -2,7 +2,7 @@ Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
 version:	2.2.2
-Release:	0.1
+Release:	1
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
