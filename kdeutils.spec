@@ -367,6 +367,7 @@ Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
+Obsoletes:	kgpg
 
 %description kgpg
 kgpg is a simple, free, open source KDE frontend for gpg.
