@@ -818,7 +818,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 #%find_lang kcardchooser	--with-kde
 
 %clean
-#rm -rf $RPM_BUILD_ROOT
+rm -rf $RPM_BUILD_ROOT
 
 #%post   ark -p /sbin/ldconfig
 #%postun ark -p /sbin/ldconfig
