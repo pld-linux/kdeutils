@@ -819,23 +819,15 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-#%post   ark -p /sbin/ldconfig
-#%postun ark -p /sbin/ldconfig
-
-#%post   ksim -p /sbin/ldconfig
-#%postun ksim -p /sbin/ldconfig
-
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*
-%{_libdir}/libark.so
-%{_libdir}/libksimcore.so
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
-%attr(755,root,root) %{_libdir}/libark.so.*
-%attr(755,root,root) %{_libdir}/libark.la
+%{_libdir}/libarkpart.la
+%attr(755,root,root) %{_libdir}/libarkpart.so
 %{_datadir}/apps/ark
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/ark_part.desktop
@@ -931,8 +923,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ksim
 %attr(755,root,root) %{_libdir}/ksim.*
-%attr(755,root,root) %{_libdir}/libksimcore.la
-%attr(755,root,root) %{_libdir}/libksimcore.so.*
+%{_libdir}/libksimcore.la
+%attr(755,root,root) %{_libdir}/libksimcore.so*
 %attr(755,root,root) %{_libdir}/kde3/ksim*
 %{_datadir}/apps/ksim
 %{_datadir}/config/ksimrc
