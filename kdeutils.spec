@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 # Source0-md5:	3694483ddb2a54f1461e52ec9b8034a0
-Source0:	http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
