@@ -1,6 +1,6 @@
 %define		_ver		3.0.1
 #define		_sub_ver
-%define		_rel		1
+%define		_rel		2
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -26,6 +26,8 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libtool
+BuildRequires:	bzip2
+BuildRequires:	grep
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
@@ -519,9 +521,35 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT%
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang KRegExpEditor --with-kde
+%find_lang kcalc --with-kde
+%find_lang kcharselect --with-kde
+%find_lang kcharselectapplet --with-kde
+cat kcharselectapplet.lang >> kcharselect.lang
+%find_lang kdepasswd --with-kde
+%find_lang kdessh --with-kde
+%find_lang kdf --with-kde
+%find_lang kedit --with-kde
+%find_lang kfloppy --with-kde
+%find_lang khexedit --with-kde
+%find_lang kjots --with-kde
+%find_lang klaptopdaemon --with-kde
+%find_lang kcmlaptop --with-kde
+cat kcmlaptop.lang >> klaptopdaemon.lang
+%find_lang kljettool --with-kde
+%find_lang klpq --with-kde
+%find_lang klprfax --with-kde
+%find_lang ktimer --with-kde
+
+# This sucks. We need either move documentation outside %{_docdir} or correct
+# find_lang.sh
+for f in *.lang; do
+	mv $f $f.tmp
+	grep -v /usr/share/doc/kde/HTML/en < $f.tmp > $f
+	rm $f.tmp
+done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -552,7 +580,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_pixmapsdir}/*/*/apps/kab.*
 #%lang(en) %{_htmldir}/en/kab
 
-%files kcalc
+%files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %attr(755,root,root) %{_libdir}/kcalc.*
@@ -560,7 +588,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kcalc.*
 %lang(en) %{_htmldir}/en/kcalc
 
-%files kcharselect
+%files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.la
@@ -569,16 +597,16 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
 
-%files kdepasswd
+%files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
 
-%files kdessh
+%files kdessh -f kdessh.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
-%files kdf
+%files kdf -f kdf.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
@@ -592,7 +620,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kwikdisk.*
 %lang(en) %{_htmldir}/en/kdf
 
-%files kedit
+%files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %attr(755,root,root) %{_libdir}/kedit.*
@@ -601,14 +629,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kedit.*
 %lang(en) %{_htmldir}/en/kedit
 
-%files kfloppy
+%files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
 %{_pixmapsdir}/*/*/apps/kfloppy.*
 %lang(en) %{_htmldir}/en/kfloppy
 
-%files khexedit
+%files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_applnkdir}/Utilities/khexedit.desktop
@@ -616,7 +644,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/khexedit.*
 %lang(en) %{_htmldir}/en/khexedit
 
-%files kjots
+%files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_applnkdir}/Utilities/Kjots.desktop
@@ -624,7 +652,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kjots.*
 %lang(en) %{_htmldir}/en/kjots
 
-%files klaptopdaemon
+%files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.??
@@ -640,7 +668,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/laptop_pcmcia.*
 %{_pixmapsdir}/*/*/apps/klaptopdaemon.*
 
-%files kljettool
+%files kljettool -f kljettool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kljettool
 %{_applnkdir}/Utilities/KLJetTool.desktop
@@ -648,14 +676,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kljettool.*
 %lang(en) %{_htmldir}/en/kljettool
 
-%files klpq
+%files klpq -f klpq.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klpq
 %{_applnkdir}/Utilities/KLpq.desktop
 %{_pixmapsdir}/*/*/apps/klpq.*
 %lang(en) %{_htmldir}/en/klpq
 
-%files klprfax
+%files klprfax -f klprfax.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klprfax*
 %{_applnkdir}/Utilities/klprfax.desktop
@@ -680,7 +708,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_pixmapsdir}/*/*/apps/kpm.*
 #%lang(en) %{_htmldir}/en/kpm
 
-%files ktimer
+%files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_applnkdir}/Utilities/ktimer.desktop
