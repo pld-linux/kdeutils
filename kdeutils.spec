@@ -8,11 +8,6 @@ Release:	3
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -121,11 +116,6 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description ark
@@ -143,11 +133,6 @@ Summary:	KDE Address Book
 Summary(pl):	Ksi±¿ka adresowa dla KDE
 Summary(pt_BR):	Gerenciador do livro de endereços
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kab
@@ -164,11 +149,6 @@ Summary:	KDE Time Tracker
 Summary(pl):	Time Tracker dla KDE
 Summary(pt_BR):	Gerenciador pessoal de tempo e tarefas
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description karm
@@ -184,11 +164,6 @@ Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kcalc
@@ -205,11 +180,6 @@ Summary:	KDE Character Selector
 Summary(pl):	Wybierajka znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kcharselect
@@ -223,11 +193,6 @@ Summary:	KDE Passwd
 Summary(pl):	passwd dla KDE
 Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kdepasswd
@@ -244,11 +209,6 @@ Summary:	KDE SSH Frontend
 Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kdessh
@@ -265,11 +225,6 @@ Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kedit
@@ -286,11 +241,6 @@ Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kdf
@@ -307,11 +257,6 @@ Summary:	KDE Find
 Summary(pl):	find dla KDE
 Summary(pt_BR):	Ferramenta de procura de arquivos
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kfind
@@ -328,11 +273,6 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 Requires:	dosfstools
 
@@ -351,11 +291,6 @@ Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 Obsoletes:	khexedit
 
@@ -373,11 +308,6 @@ Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kjots
@@ -395,11 +325,6 @@ Summary:	KDE Laptop Daemon
 Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description klaptopdaemon
@@ -416,11 +341,6 @@ Summary:	KDE LaserJet Tool
 Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Summary(pt_BR):	Interface de configuração de impressora HP Laserjet
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kljettool
@@ -446,11 +366,6 @@ Summary:	KDE Print Manager
 Summary(pl):	Zarz±dca wydruku dla KDE
 Summary(pt_BR):	Interface para gerenciamento das filas de impressão
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description klpq
@@ -471,11 +386,6 @@ Summary:	KDE LPD fax frontend using efax
 Summary(pl):	Frontend do faksu via lpd dla KDE
 Summary(pt_BR):	Interface para impressão em saída de Fax
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 Requires:	efax
 
@@ -493,11 +403,6 @@ Summary:	KDE Notes
 Summary(pl):	Notes dla KDE
 Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description knotes
@@ -516,11 +421,6 @@ Summary:	KDE Process Manager
 Summary(pl):	Zarz±dca procesów dla KDE
 Summary(pt_BR):	Monitor gráfico de processos e do sistema
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description kpm
@@ -544,11 +444,6 @@ Summary:	KDE Timer
 Summary(pl):	Zegarek KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
-Group(de):	X11/Applikationen
-Group(es):	X11/Aplicaciones
-Group(pl):	X11/Aplikacje
-Group(pt_BR):	X11/Aplicações
-Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 
 %description ktimer
@@ -565,13 +460,6 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Group(de):	X11/Entwicklung/Libraries
-Group(es):	X11/Desarrollo/Bibliotecas
-Group(fr):	X11/Development/Librairies
-Group(pl):	X11/Programowanie/Biblioteki
-Group(pt_BR):	X11/Desenvolvimento/Bibliotecas
-Group(ru):	X11/òÁÚÒÁÂÏÔËÁ/âÉÂÌÉÏÔÅËÉ
-Group(uk):	X11/òÏÚÒÏÂËÁ/â¦ÂÌ¦ÏÔÅËÉ
 Requires:	kdelibs-devel >= %{version}
 Requires:	kdebase-devel >= %{version}
 
