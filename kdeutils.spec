@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -932,6 +932,17 @@ for i in $files; do
 	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
 	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
 	mv ${i}.lang.1 ${i}.lang
+done
+
+durne=`ls -1 *.lang|grep -v _en`
+
+for i in $durne; 
+do
+	echo $i >> control
+	grep -v en\/ $i|grep -v apidocs >> ${i}.1
+	if [ -f ${i}.1 ] ; then
+		mv ${i}.1 ${i}
+	fi
 done
 
 %clean
