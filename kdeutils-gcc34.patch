@@ -29,3 +29,21 @@
  }
  
  void KSim::MainView::addPlugin(const KDesktopFile &file, bool force)
+--- kdeutils-3.2.0/ksim/library/themeloader.h.orig	2003-09-21 10:42:18.000000000 +0200
++++ kdeutils-3.2.0/ksim/library/themeloader.h	2004-02-20 19:41:56.000000000 +0100
+@@ -364,13 +364,13 @@
+       bool fontColours(const KSim::Base *const base, QFont &font,
+          QColor &textColour, QColor &shadowColour, bool &showShadow) const;
+ 
+-    private:
++    public:
+       Theme();
+       Theme(const KSim::Theme &);
+       Theme(const QString &url, const QString &fileName, int alt,
+          const QValueVector<QString> &vector, const QStringList &list,
+          KConfig *globalReader);
+-
++    private:
+       void create(const QValueVector<QString> &, const QStringList &, KConfig *);
+       void init(const QString &url, const QString &fileName, int alt);
+       void reparse(const QString &url, const QString &fileName, int alt);
