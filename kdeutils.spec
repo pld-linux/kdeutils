@@ -1,27 +1,36 @@
 Summary:     K Desktop Environment - utilities
 Summary(pl): K Desktop Environment - narzêdzia
 Name:        kdeutils
-Version:     1.0
-Release:     7
-Source:      ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/%{name}-%{version}.tar.gz
+Version:     1.1.1
+Release:     2
+#ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
+Source:      %{name}-%{version}.tar.bz2
 Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzêdzia
 Copyright:   GPL
-Requires:    qt >= 1.40, kdelibs = %{version}
+Requires:    qt >= 1.44, kdelibs = %{version}
 Vendor:      The KDE Team
-BuildRoot:	/tmp/%{name}-%{version}-root
+BuildRoot:   /tmp/%{name}-%{version}-root
+
+%define _prefix	/usr/X11R6
 
 %description
 KDE utilities.
 Package includes:
+  KAb - 
   KArm - time tracker
   KCalc - calculator
   KEdit - text editor
   KFloppy - floppy formating tool
   KHexEdit - HEX file editor
   KJots - note taker
+  KLipper
   KLJetTool - tool for LaserJet priter users
+  KLpq - lpq 
   KNotes - notes
-  KZip - compressed archives management program
+  Kpm - 
+  KTop - 
+  KWrite - 
 
 %description -l pl
 Narzêdzia KDE.
@@ -36,88 +45,121 @@ Pakiet zawiera:
   KNotes - inny notatnik
   KZip
 
-%package -n karm
+%package ark
+Summary:     KDE 
+Summary(pl): Time Tracker dla KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description ark
+
+%description -l pl ark
+
+%package kab
+Summary:     KDE 
+Summary(pl): Time Tracker dla KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description kab
+
+%description -l pl kab
+
+%package karm
 Summary:     KDE Time Tracker
 Summary(pl): Time Tracker dla KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n karm
+%description karm
 KArm is a time tracker for busy people who need
 to keep track of the amount of time they spend
 on various tasks.
 
-%description -l pl -n karm
+%description -l pl karm
 Narzêdzie pozwalaj±ce ustaliæ ile czasu siê spêdzi³o robi±c ró¿ne rzeczy.
 
-%package -n kcalc
+%package kcalc
 Summary:     KDE Calculator	
 Summary(pl): Kalkulator KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kcalc
+%description kcalc
 Calculator for KDE.
 
-%description -l pl -n kcalc
+%description -l pl kcalc
 Kalkulator dla KDE.
 
-%package -n kedit
+%package kedit
 Summary:     KDE Text Editor	
 Summary(pl): Edytor tekstu dla KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kedit
+%description kedit
 Simple text editor for KDE.
 
-%description -l pl -n kcalc
+%description -l pl kcalc
 Prosty edytor tekstu dla KDE.
 
-%package -n kfloppy
+%package kfloppy
 Summary:     KDE Floppy Formater	
 Summary(pl): Formatowanie dyskietek z KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kfloppy
+%description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
 
-%description -l pl -n kfloppy
+%description -l pl kfloppy
 KFloppy formatuje dyskietki i zak³ada na nich system pliku DOS lub ext2.
 
-%package -n khexdit
+%package khexdit
 Summary:     KDE Hex Editor	
 Summary(pl): Edytor szesnastkowy KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n khexdit
+%description khexdit
 Hex Editor is a small and simple viewer for binary files.
 
-%description -l pl -n khexdit
+%description -l pl khexdit
 Prosta przegl±darka do plików binarnych.
 
-%package -n kjots
+%package kjots
 Summary:     KDE Note taker
 Summary(pl): Notatnik KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kjots
+%description kjots
 kjots is a small note taker program. Name and idea are taken from
 the jots program included in the tkgoodstuff package.
 
-%description -l pl -n kjots
+%description -l pl kjots
 KJots to ma³y program do zbierania notatek.
 
-%package -n kljettool
+%package klipper
+Summary:     KDE Note taker
+Summary(pl): Notatnik KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description klipper
+
+%description -l pl klipper
+
+%package kljettool
 Summary:     KDE LaserJet Tool	
 Summary(pl): Konfigurator drukarek LaserJet dla KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kljettool
+%description kljettool
 KLJetTool is a program that lets you adjust your Hewlett Packard
 Laserjet operating parameters. Some of Hewlet Packards printers such
 as the 5L or the 6L do no longer have a hardware control panel and the
@@ -128,42 +170,75 @@ any printer that understands Hewlet Packarts PJL ( Printer Job
 Language). However some features may have no effect on your particular
 model.
 			   
-%description -l pl -n kljettool
+%description -l pl kljettool
 KLJetToll to program umo¿liwiaj±cy konfiguracjê drukarek
 Hewlett Packard LaserJet.
 
-%package -n knotes 
+%package klpq 
+Summary:     KDE Notes
+Summary(pl): Notes KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description klpq
+
+%description -l pl klpq
+
+%package knotes 
 Summary:     KDE Notes
 Summary(pl): Notes KDE
 Group:       X11/KDE/Utils
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n knotes
+%description knotes
 KNotes is ment to be a really usable and good looking notes
 application for the KDE project.
 
-%description -l pl -n knotes
+%description -l pl knotes
 KNotes to program umo¿liwiaj±cy spisywanie sobie notatek i trzymanie ich na
 ekranie komputera.
 
-%package -n kzip
+%package kpm
 Summary:     KDE Archive Handling Tool
 Summary(pl): Program obs³ugi archiwów KDE
 Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
-%description -n kzip
-A tool for managing compressed archives.
+%description kpm
 
-%description -l pl -n kzip
-Narzêdzi do obs³ugi skompresowanych plików.
+%description -l pl kpm
+
+%package ktop
+Summary:     KDE Archive Handling Tool
+Summary(pl): Program obs³ugi archiwów KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description ktop
+
+%description -l pl ktop
+
+%package kwrite
+Summary:     KDE Archive Handling Tool
+Summary(pl): Program obs³ugi archiwów KDE
+Group:       X11/KDE/Utils
+Group(pl):   X11/KDE/Narzedzia
+Requires:    qt >= 1.40, kdelibs = %{version}
+
+%description kwrite
+
+%description -l pl kwrite
 
 %prep
 %setup -q
 
 %build
-export KDEDIR=/usr/X11R6
-CXXFLAGS="$RPM_OPT_FLAGS -Wall" CFLAGS="$RPM_OPT_FLAGS -Wall" \
+export KDEDIR=%{_prefix}
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti -fno-exceptions" \
+CFLAGS="$RPM_OPT_FLAGS -Wall" \
 CCOPTS="$RPM_OPT_FLAGS -Wall" \
 ./configure %{_target} \
 	--prefix=$KDEDIR \
@@ -173,286 +248,246 @@ make KDEDIR=$KDEDIR
 
 %install
 rm -rf $RPM_BUILD_ROOT
-export KDEDIR=/usr/X11R6
+export KDEDIR=%{_prefix}
 make RUN_KAPPFINDER=no prefix=$RPM_BUILD_ROOT$KDEDIR install
 
-# create wmconfig files
-install -d $RPM_BUILD_ROOT/etc/X11/wmconfig
-DIR=$PWD
-cd $RPM_BUILD_ROOT/etc/X11/kde/applnk
-for kdelnk in `find . -name "*.kdelnk"` ; do
-  PKG=kde`basename $kdelnk|sed -e "s/\.kdelnk$//"`;
-  SECT=`dirname $kdelnk|sed -e "s/^\.\/*//"`;
-  kdelnk2wmconfig $PKG $kdelnk $RPM_BUILD_ROOT/etc/X11/wmconfig/$PKG KDE/$SECT pl
-done
-cd $DIR
+%find_lang ark ark.lang
+%find_lang kab kab.lang
+%find_lang karm karm.lang
+%find_lang kcalc kcalc.lang
+%find_lang kedit kedit.lang
+%find_lang kfloppy kfloppy.lang
+%find_lang khexdit khexdit.lang
+%find_lang kjots kjots.lang
+%find_lang klipper klipper.lang
+%find_lang kljettool kljettool.lang
+%find_lang klpq klpq.lang
+%find_lang knotes knotes.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
 #################################################
-#             KARM
+#             ARK - checking OK
 #################################################
 
-%files -n karm
-%defattr(644,root,root,755)
+%files ark -f ark.lang
+%defattr(644, root, root, 755)
+
+%config(missingok) /etc/X11/kde/applnk/Utilities/ark.kdelnk
+
+%attr(755, root, root) %{_bindir}/ark
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/ark
+
+%{_datadir}/kde/icons/ark.xpm
+%{_datadir}/kde/icons/mini/ark.xpm
+
+#################################################
+#             KAB - checking OK
+#################################################
+
+%files kab -f kab.lang
+%defattr(644, root, root, 755)
+
+%config(missingok) /etc/X11/kde/applnk/Utilities/kab.kdelnk
+
+%attr(755, root, root) %{_bindir}/kab
+%attr(755, root, root) %{_bindir}/kabapi_test
+
+%{_datadir}/kde/apps/kab
+
+%lang(de) %{_datadir}/kde/doc/HTML/de/kab
+%lang(en) %{_datadir}/kde/doc/HTML/en/kab
+
+%{_datadir}/kde/icons/kab.xpm
+%{_datadir}/kde/icons/mini/kab.xpm
+
+#################################################
+#             KARM - checking OK
+#################################################
+
+%files karm -f karm.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/KArm.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeKArm
-%attr(755,root,root) /usr/X11R6/bin/karm
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/karm
-/usr/X11R6/share/kde/icons/karm.xpm
-/usr/X11R6/share/kde/icons/mini/karm.xpm
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/karm.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/karm.mo
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/karm.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/karm.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/karm.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/karm.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/karm.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/karm.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/karm.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/karm.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/karm.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/karm.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/karm.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/karm.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/karm.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/karm.mo
+
+%attr(755, root, root) %{_bindir}/karm
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/karm
+
+%{_datadir}/kde/icons/karm.xpm
+%{_datadir}/kde/icons/mini/karm.xpm
 
 #################################################
-#             KCALC
+#             KCALC - checking OK
 #################################################
 
-%files -n kcalc
-%defattr(644,root,root,755)
+%files kcalc -f kcalc.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/kcalc.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdekcalc
-%attr(755,root,root) /usr/X11R6/bin/kcalc
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kcalc
-%lang(de) /usr/X11R6/share/kde/doc/HTML/de/kcalc
-/usr/X11R6/share/kde/icons/mini/kcalc.xpm
-/usr/X11R6/share/kde/icons/kcalc.xpm
-/usr/X11R6/share/kde/apps/kcalc
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kcalc.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kcalc.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kcalc.mo
-%lang(el) /usr/X11R6/share/locale/el/LC_MESSAGES/kcalc.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kcalc.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kcalc.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kcalc.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/kcalc.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kcalc.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kcalc.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kcalc.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kcalc.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kcalc.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kcalc.mo
-%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/kcalc.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kcalc.mo
+
+%attr(755, root, root) %{_bindir}/kcalc
+
+%{_datadir}/kde/apps/kcalc
+
+%lang(de) %{_datadir}/kde/doc/HTML/de/kcalc
+%lang(en) %{_datadir}/kde/doc/HTML/en/kcalc
+
+%{_datadir}/kde/icons/mini/kcalc.xpm
+%{_datadir}/kde/icons/kcalc.xpm
 
 #################################################
-#             KEDIT
+#             KEDIT - checking OK
 #################################################
 
-%files -n kedit
-%defattr(644,root,root,755)
+%files kedit -f kedit.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Applications/KEdit.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeKEdit
-%attr(755,root,root) /usr/X11R6/bin/kedit
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kedit
-/usr/X11R6/share/kde/icons/mini/kedit.xpm
-/usr/X11R6/share/kde/icons/kedit.xpm
-/usr/X11R6/share/kde/apps/kedit/
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kedit.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kedit.mo
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/kedit.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kedit.mo
-%lang(el) /usr/X11R6/share/locale/el/LC_MESSAGES/kedit.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kedit.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kedit.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/kedit.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kedit.mo
-%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/kedit.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/kedit.mo
-%lang(mk) /usr/X11R6/share/locale/mk/LC_MESSAGES/kedit.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kedit.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kedit.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kedit.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kedit.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kedit.mo
-%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/kedit.mo
-%lang(zh) /usr/X11R6/share/locale/zh_*/LC_MESSAGES/kedit.mo
+
+%attr(755, root, root) %{_bindir}/kedit
+
+%{_datadir}/kde/apps/kedit/
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/kedit
+
+%{_datadir}/kde/icons/mini/kedit.xpm
+%{_datadir}/kde/icons/kedit.xpm
 
 #################################################
-#             KFLOPPY
+#             KFLOPPY - chscking OK
 #################################################
 
-%files -n kfloppy
-%defattr(644,root,root,755)
+%files kfloppy -f kfloppy.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/KFloppy.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeKFloppy
-%attr(755,root,root) /usr/X11R6/bin/kfloppy
-%attr(755,root,root) /usr/X11R6/bin/kmkdosfs
-%attr(755,root,root) /usr/X11R6/bin/kfdformat
-%attr(755,root,root) /usr/X11R6/bin/kmke2fs
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kfloppy
-/usr/X11R6/share/kde/icons/mini/kfloppy.xpm
-/usr/X11R6/share/kde/icons/kfloppy.xpm
-/usr/X11R6/share/kde/apps/kfloppy
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kfloppy.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kfloppy.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kfloppy.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kfloppy.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kfloppy.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/kfloppy.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kfloppy.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kfloppy.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kfloppy.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kfloppy.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kfloppy.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kfloppy.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kfloppy.mo
-%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/kfloppy.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kfloppy.mo
+
+%attr(755, root, root) %{_bindir}/kfdformat
+%attr(755, root, root) %{_bindir}/kfloppy
+%attr(755, root, root) %{_bindir}/kmkdosfs
+%attr(755, root, root) %{_bindir}/kmke2fs
+
+%{_datadir}/kde/apps/kfloppy
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/kfloppy
+
+%{_datadir}/kde/icons/mini/kfloppy.xpm
+%{_datadir}/kde/icons/kfloppy.xpm
 
 #################################################
-#             KHEXDIT
+#             KHEXDIT - checking OK
 #################################################
 
-%files -n khexdit
-%defattr(644,root,root,755)
+%files khexdit -f khexdit.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/khexdit.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdekhexdit
-%attr(755,root,root) /usr/X11R6/bin/khexdit
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/khexdit
-%lang(it) /usr/X11R6/share/kde/doc/HTML/it/khexdit
-/usr/X11R6/share/kde/icons/mini/khexdit.xpm
-/usr/X11R6/share/kde/icons/khexdit.xpm
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/khexdit.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/khexdit.mo
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/khexdit.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/khexdit.mo
-%lang(el) /usr/X11R6/share/locale/el/LC_MESSAGES/khexdit.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/khexdit.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/khexdit.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/khexdit.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/khexdit.mo
-%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/khexdit.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/khexdit.mo
-%lang(mk) /usr/X11R6/share/locale/mk/LC_MESSAGES/khexdit.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/khexdit.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/khexdit.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/khexdit.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/khexdit.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/khexdit.mo
-%lang(ru) /usr/X11R6/share/locale/ru/LC_MESSAGES/khexdit.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/khexdit.mo
-%lang(sv) /usr/X11R6/share/locale/sv/LC_MESSAGES/khexdit.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/khexdit.mo
+
+%attr(755, root, root) %{_bindir}/khexdit
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/khexdit
+%lang(it) %{_datadir}/kde/doc/HTML/it/khexdit
+
+%{_datadir}/kde/icons/mini/khexdit.xpm
+%{_datadir}/kde/icons/khexdit.xpm
 
 #################################################
-#             KJOTS
+#             KJOTS - checking OK
 #################################################
 
-%files -n kjots
-%defattr(644,root,root,755)
+%files kjots -f kjots.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/Kjots.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeKjots
-%attr(755,root,root) /usr/X11R6/bin/kjots
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kjots
-/usr/X11R6/share/kde/icons/mini/kjots.xpm
-/usr/X11R6/share/kde/icons/kjots.xpm
-/usr/X11R6/share/kde/apps/kjots
+
+%attr(755, root, root) %{_bindir}/kjots
+
+%{_datadir}/kde/apps/kjots
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/kjots
+
+%{_datadir}/kde/icons/mini/kjots.xpm
+%{_datadir}/kde/icons/kjots.xpm
 
 #################################################
-#             KLJETTOOL
+#             KLIPPER - checking OK
 #################################################
 
-%files -n kljettool
-%defattr(644,root,root,755)
+%files klipper -f klipper.lang
+%defattr(644, root, root, 755)
+
+%config(missingok) /etc/X11/kde/applnk/Utilities/klipper.kdelnk
+
+%attr(755, root, root) %{_bindir}/klipper
+
+%{_datadir}/kde/icons/mini/klipper.xpm
+%{_datadir}/kde/icons/klipper.xpm
+
+#################################################
+#             KLJETTOOL - checking OK
+#################################################
+
+%files kljettool -f kljettool.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/KLJetTool.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeKLJetTool
-%attr(755,root,root) /usr/X11R6/bin/kljettool
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kljettool
-/usr/X11R6/share/kde/icons/mini/kljettool.xpm
-/usr/X11R6/share/kde/icons/kljetlogo.xpm
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kljettool.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kljettool.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kljettool.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kljettool.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kljettool.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kljettool.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kljettool.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kljettool.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kljettool.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kljettool.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kljettool.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kljettool.mo
+
+%attr(755, root, root) %{_bindir}/kljettool
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/kljettool
+
+%{_datadir}/kde/icons/mini/kljettool.xpm
+%{_datadir}/kde/icons/kljetlogo.xpm
+
+#################################################
+#             KLPQ - checking OK
+#################################################
+
+%files klpq -f klpq.lang
+%defattr(644, root, root, 755)
+
+%config(missingok) /etc/X11/kde/applnk/Utilities/KLpq.kdelnk
+
+%attr(755, root, root) %{_bindir}/klpq
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/klpq
+
+%{_datadir}/kde/icons/mini/klpq.xpm
+%{_datadir}/kde/icons/klpq.xpm
 
 #################################################
 #             KNOTES
 #################################################
 
-%files -n knotes
-%defattr(644,root,root,755)
+%files knotes -f knotes.lang
+%defattr(644, root, root, 755)
+
 %config(missingok) /etc/X11/kde/applnk/Utilities/knotes.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdeknotes
-%attr(755,root,root) /usr/X11R6/bin/knotes
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/knotes
-/usr/X11R6/share/kde/icons/mini/knotes.xpm
-/usr/X11R6/share/kde/icons/knotes.xpm
-/usr/X11R6/share/kde/apps/knotes/
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/knotes.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/knotes.mo
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/knotes.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/knotes.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/knotes.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/knotes.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/knotes.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/knotes.mo
-%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/knotes.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/knotes.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/knotes.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/knotes.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/knotes.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/knotes.mo
-%lang(ru) /usr/X11R6/share/locale/ru/LC_MESSAGES/knotes.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/knotes.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/knotes.mo
 
-#################################################
-#             KZIP
-#################################################
+%attr(755, root, root) %{_bindir}/knotes
 
-%files -n kzip
-%defattr(644,root,root,755)
-%config(missingok) /etc/X11/kde/applnk/Utilities/kzip.kdelnk
-%config(missingok) /etc/X11/wmconfig/kdekzip
-%attr(755,root,root) /usr/X11R6/bin/kzip
-%lang(en) /usr/X11R6/share/kde/doc/HTML/en/kzip
-/usr/X11R6/share/kde/icons/mini/kzip.xpm
-/usr/X11R6/share/kde/icons/kzip.xpm
-/usr/X11R6/share/kde/toolbar/filedel.xpm
-%lang(ca) /usr/X11R6/share/locale/ca/LC_MESSAGES/kzip.mo
-%lang(cs) /usr/X11R6/share/locale/cs/LC_MESSAGES/kzip.mo
-%lang(da) /usr/X11R6/share/locale/da/LC_MESSAGES/kzip.mo
-%lang(de) /usr/X11R6/share/locale/de/LC_MESSAGES/kzip.mo
-%lang(es) /usr/X11R6/share/locale/es/LC_MESSAGES/kzip.mo
-%lang(fi) /usr/X11R6/share/locale/fi/LC_MESSAGES/kzip.mo
-%lang(fr) /usr/X11R6/share/locale/fr/LC_MESSAGES/kzip.mo
-%lang(hr) /usr/X11R6/share/locale/hr/LC_MESSAGES/kzip.mo
-%lang(hu) /usr/X11R6/share/locale/hu/LC_MESSAGES/kzip.mo
-%lang(it) /usr/X11R6/share/locale/it/LC_MESSAGES/kzip.mo
-%lang(nl) /usr/X11R6/share/locale/nl/LC_MESSAGES/kzip.mo
-%lang(no) /usr/X11R6/share/locale/no/LC_MESSAGES/kzip.mo
-%lang(pl) /usr/X11R6/share/locale/pl/LC_MESSAGES/kzip.mo
-%lang(pt) /usr/X11R6/share/locale/pt*/LC_MESSAGES/kzip.mo
-%lang(ro) /usr/X11R6/share/locale/ro/LC_MESSAGES/kzip.mo
-%lang(ru) /usr/X11R6/share/locale/ru/LC_MESSAGES/kzip.mo
-%lang(sk) /usr/X11R6/share/locale/sk/LC_MESSAGES/kzip.mo
-%lang(zh) /usr/X11R6/share/locale/zh*/LC_MESSAGES/kzip.mo
+%{_datadir}/kde/apps/knotes/
+
+%lang(en) %{_datadir}/kde/doc/HTML/en/knotes
+
+%{_datadir}/kde/icons/mini/knotes.xpm
+%{_datadir}/kde/icons/knotes.xpm
 
 %changelog
+* Mon May 24 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
+  [1.1.1-2]
+- fixes file locations.
+  
+* Thu May 20 1999 Wojciech "Sas" Ciêciwa <cieciwa@alpha.zarz.agh.edu.pl>
+  [1.1.1-1]
+- updated to last version,
+- removed kzip package, it is in other separate package,
+- removed wmconfig part,
+- fixes locale files.
+
 * Wed Dec  8 1998 Tomasz K³oczko <kloczek@rudy.mif.pg.gda.pl>
   [1.0-7]
 - recompiled against libstdc++.so.2.9.
