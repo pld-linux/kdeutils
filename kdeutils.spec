@@ -36,7 +36,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
