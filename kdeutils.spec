@@ -27,7 +27,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	e63a7e83445904676217d3f09243ce90
 %endif
-Patch0:		%{name}-kdf-label.patch
+Patch0:		%{name}-3.2branch.diff
+Patch1:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
 Patch3:		%{name}-vcategories.patch
@@ -813,7 +814,7 @@ Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 %prep
 %setup -q 
 %patch0 -p1
-#%patch1 -p1
+%patch1 -p1
 #%patch2 -p1
 %patch3 -p1
 %patch4 -p1
