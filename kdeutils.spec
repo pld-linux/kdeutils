@@ -1,6 +1,6 @@
 
-%define         _state          snapshots
-%define         _ver		3.1.93
+%define		_state		snapshots
+%define		_ver		3.1.93
 %define		_snap		031105
 
 Summary:	K Desktop Environment - utilities
@@ -28,12 +28,12 @@ Patch4:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
+BuildRequires:	ed
 BuildRequires:	fam-devel
 BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -187,7 +187,7 @@ Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
 Requires:	%{name}-ksim = %{epoch}:%{version}-%{release}
-       
+
 %description devel
 This package includes the header files you will need to compile
 applications that use kdeutils libraries.
@@ -206,7 +206,7 @@ Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
-       
+
 %description ark
 Ark is a program for managing and quickly extracting archives.
 
@@ -224,7 +224,7 @@ Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kcalc
-       
+
 %description kcalc
 Calculator for KDE.
 
@@ -241,7 +241,7 @@ Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kcharselect
-       
+
 %description kcharselect
 Character Selector.
 
@@ -253,7 +253,7 @@ Summary:	TODO
 Summary(pl):	TODO
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
-       
+
 %description kdelirc
 TODO.
 
@@ -267,7 +267,7 @@ Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 Obsoletes:	kdepasswd
-       
+
 %description kdepasswd
 Change your password.
 
@@ -284,7 +284,7 @@ Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 Obsoletes:	kdessh
-       
+
 %description kdessh
 SSH Frontend.
 
@@ -301,7 +301,7 @@ Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= 9:%{version}
 Obsoletes:	kdf
-       
+
 %description kdf
 This program shows the disk usage of the mounted devices.
 
@@ -318,7 +318,7 @@ Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kedit
-       
+
 %description kedit
 Simple text editor for KDE.
 
@@ -336,7 +336,7 @@ Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Requires:	dosfstools
 Obsoletes:	kfloppy
-       
+
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
 
@@ -383,7 +383,7 @@ Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kjots
-       
+
 %description kjots
 kjots is a small note taker program. Name and idea are taken from the
 jots program included in the tkgoodstuff package.
@@ -401,7 +401,7 @@ Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= 9:%{version}
 Obsoletes:	laptop
-       
+
 %description klaptopdaemon
 KDE Laptop Daemon.
 
@@ -437,7 +437,7 @@ Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
-Obsoletes:	%{name}-kmilo < 9:3.1.2.031022 
+Obsoletes:	%{name}-kmilo < 9:3.1.2.031022
 
 %description kmilo-kvaio
 KMilo module for Sony Vaio laptop support.
@@ -451,7 +451,7 @@ Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kregexpeditor
-       
+
 %description kregexpeditor
 Graphical regular expression editor.
 
@@ -463,7 +463,7 @@ Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
 Requires:	kdebase-kicker >= 9:%{version}
-       
+
 %description ksim
 System Monitor.
 
@@ -522,9 +522,8 @@ Ten modu³ zawiera funkcjonalno¶æ programu kdepasswd.
 %patch4 -p1
 
 %build
-
-for f in `find . -name *.desktop` ; do
-	sed -i 's/\[nb\]/\[no\]/g' $f
+for f in `find . -name \*.desktop | xargs grep -l '\[nb\]'` ; do
+	echo -e ',s/\[nb\]=/[no]=/\n,w' | ed $f 2>/dev/null
 done
 
 %{__make} -f admin/Makefile.common cvs
@@ -791,8 +790,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
 
-%files kwalletmanager -f kwallet.lang                                                    
-%defattr(644,root,root,755)    
+%files kwalletmanager -f kwallet.lang
+%defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
 %{_libdir}/kde3/kcm_kwallet.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kwallet.so
