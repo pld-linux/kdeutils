@@ -12,7 +12,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -576,8 +576,12 @@ funkcjonalno¶æ programu kdepasswd.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-
 echo "KDE_OPTIONS=nofinal" >> ksim/monitors/snmp/Makefile.am
+
+for f in `find . -name *.desktop | xargs grep -l '^Terminal=0'`; do
+	%{__sed} -i -e 's/^Terminal=0/Terminal=false/' $f
+done
+%{__sed} -i -e '/\[Desktop Entry\]/aEncoding=UTF-8' ksim/ksim.desktop
 
 %build
 cp %{_datadir}/automake/config.sub admin
