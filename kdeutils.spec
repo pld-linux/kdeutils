@@ -2,6 +2,7 @@ Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
 Summary(es):	KDE - Utilitarios
 Summary(ja):	KDE•«•π•Ø•»•√•◊¥ƒ∂≠ - •Ê°º•∆•£•Í•∆•£
+Summary(ko):	K µ•Ω∫≈©≈æ »Ø∞Ê - ø©∑Ø∞°¡ˆ µµ±∏
 Summary(pt_BR):	KDE - Utilit·rios
 Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
