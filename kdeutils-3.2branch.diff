@@ -1,234 +1,449 @@
+diff -urN -x CVS kdeutils.orig/ark/archiveformatinfo.cpp kdeutils/ark/archiveformatinfo.cpp
+--- kdeutils.orig/ark/archiveformatinfo.cpp	Thu Jun 12 17:18:13 2003
++++ kdeutils/ark/archiveformatinfo.cpp	Sun Apr 18 13:13:18 2004
+@@ -51,6 +51,7 @@
+   addFormatInfo( TAR_FORMAT, "application/x-tzo", ".tar.lzo" );
+   addFormatInfo( TAR_FORMAT, "application/x-tarz", ".tar.z" );
+   addFormatInfo( TAR_FORMAT, "application/x-tbz", ".tar.bz2" );
++  addFormatInfo( TAR_FORMAT, "application/x-webarchive", ".war" );
+   // x-tar as the last one to get its comment for all the others, too
+   addFormatInfo( TAR_FORMAT, "application/x-tar", ".tar" );
+ 
+@@ -58,6 +59,10 @@
+ 
+   addFormatInfo( ZIP_FORMAT, "application/x-jar", ".jar" );
+   addFormatInfo( ZIP_FORMAT, "application/x-zip", ".zip" );
++  addFormatInfo( ZIP_FORMAT, "application/vnd.sun.xml.calc", ".sxc" );
++  addFormatInfo( ZIP_FORMAT, "application/vnd.sun.xml.draw", ".sxd" );
++  addFormatInfo( ZIP_FORMAT, "application/vnd.sun.xml.impress", ".sxi" );
++  addFormatInfo( ZIP_FORMAT, "application/vnd.sun.xml.writer", ".sxw" );
+ 
+ 
+   addFormatInfo( COMPRESSED_FORMAT, "application/x-gzip", ".gz" );
+@@ -178,6 +183,7 @@
+         return archTypeByExtension( url.path() );
+ 
+     QString mimeType = KMimeType::findByURL( url, 0, true, true )->name();
++
+     kdDebug( 1601 ) << "find by url: " << mimeType << endl;
+     if( mimeType == KMimeType::defaultMimeType() )
+     {
 diff -urN -x CVS kdeutils.orig/ark/ark.desktop kdeutils/ark/ark.desktop
---- kdeutils.orig/ark/ark.desktop	Thu Jan 15 09:18:38 2004
-+++ kdeutils/ark/ark.desktop	Fri Jan 30 19:20:57 2004
-@@ -22,6 +22,7 @@
- GenericName[hi]=अभिलेखरण (आर्काइविंग) उपकरण
- GenericName[hr]=Uslužni program za arhiviranje
- GenericName[hu]=Fájltömörítő
-+GenericName[is]=Vinna með safnskrár
- GenericName[it]=Strumento di archiviazione
- GenericName[ja]=アーカイバツール
- GenericName[lt]=Archyvavimo priemonė
+--- kdeutils.orig/ark/ark.desktop	Sun Mar  7 14:26:19 2004
++++ kdeutils/ark/ark.desktop	Sun Apr 25 01:31:43 2004
+@@ -46,6 +46,7 @@
+ GenericName[sr@Latn]=Alat za arhiviranje
+ GenericName[sv]=Arkiveringsverktyg
+ GenericName[ta]= ஆர்ச்சிவிங் கருவி 
++GenericName[tg]=Асбобҳои Бойгонӣ
+ GenericName[th]=เครื่องมือจัดการแฟ้มบีบอัด
+ GenericName[tr]=Arşivleme Aracı
+ GenericName[uk]=Засіб роботи з архівами
 diff -urN -x CVS kdeutils.orig/ark/ark_directory_service.desktop kdeutils/ark/ark_directory_service.desktop
---- kdeutils.orig/ark/ark_directory_service.desktop	Fri Jan 16 08:09:14 2004
-+++ kdeutils/ark/ark_directory_service.desktop	Fri Feb  6 13:13:01 2004
-@@ -6,6 +6,7 @@
- [Desktop Action create_targz]
- Name=Create gzipped tar Archive
- Name[bg]=Създаване на архиви Tar с помощта на gzip
-+Name[bs]=Napravi gzipovanu tar arhivu
- Name[ca]=Crea arxiu tar gzip
- Name[cs]=Vytvořit gzipovaný tar archív
- Name[cy]=Creu Archif tar wedi'i gzipio
-@@ -18,7 +19,9 @@
- Name[fr]=Créer une archive gzip
- Name[hi]=ग-जिप्ड टार अभिलेख बनाता है
- Name[hu]=Gzip tar archívum létrehozása
-+Name[is]=Búa til gzip þjappað tar-safn
- Name[it]=Crea archivio Tar+Gzip
-+Name[ja]=GzipしたTarアーカイブを作成
+--- kdeutils.orig/ark/ark_directory_service.desktop	Sun Mar  7 14:26:21 2004
++++ kdeutils/ark/ark_directory_service.desktop	Sun Apr 25 01:31:45 2004
+@@ -26,6 +26,7 @@
+ Name[ja]=GzipしたTarアーカイブを作成
+ Name[nb]=Lag gzipped tar arkiv
  Name[nl]=Tar.gz-archief maken
++Name[nn]=Lag gzippa tar-arkiv
  Name[pl]=Stwórz archiwum tar skompresowane za pomocą gzip
  Name[pt]=Criar um Pacote tar/gzip
-@@ -31,15 +34,18 @@
+ Name[pt_BR]=Criar arquivo .tar.gz com gzip
+@@ -37,6 +38,7 @@
+ Name[sr@Latn]=Napravi gzip-ovanu tar arhivu
  Name[sv]=Skapa tar-arkiv komprimerat med gzip
  Name[ta]=காப்பகக் கோப்பு 
++Name[tg]=Бойгонии g-Омехтаии фавриро офаред
  Name[tr]=gziplenmiş tar Arşivi Oluştur
-+Name[uk]=Архів tar стиснутий gzip
+ Name[uk]=Архів tar стиснутий gzip
  Name[uz]=Gzip билан қисилган Tar архивини яратиш
- Name[wa]=Fé ene årtchive tar.gz
- Name[xx]=xxCreate gzipped tar Archivexx
-+Name[zh_CN]=创建 gzip tar 压缩的存档
- Icon=ark
- Exec=ark --add --add-to .tar.gz %U
- 
- [Desktop Action create_tarbz2]
- Name=Create bzipped tar Archive
- Name[bg]=Създаване на архиви Tar с помощта на bzip
-+Name[bs]=Napravi bzipovanu tar arhivu
- Name[ca]=Crea arxiu tar bzip
- Name[cs]=Vytvořit bzipovaný tar archív
- Name[cy]=Creu Archif tar wedi'i bzipio
-@@ -52,7 +58,9 @@
- Name[fr]=Créer une archive tar bzipé
- Name[hi]=ब-जिप्ड टार अभिलेख बनाता है
- Name[hu]=Bzip tar archívum létrehozása
-+Name[is]=Búa til bzip þjappað tar-safn
- Name[it]=Crea archivio Tar+Bzip
-+Name[ja]=BzipしたTarアーカイブを作成
+@@ -69,6 +71,7 @@
+ Name[ja]=BzipしたTarアーカイブを作成
+ Name[nb]=Lag bzipped tar arkiv
  Name[nl]=Tar.bz2-archief maken
++Name[nn]=Lag bzippa tar-arkiv
  Name[pl]=Stwórz archiwum tar skompresowane za pomocą bzip2
  Name[pt]=Criar um Pacote tar/bzip
-@@ -65,14 +73,17 @@
+ Name[pt_BR]=Criar pacote .tar com bzip
+@@ -80,6 +83,7 @@
+ Name[sr@Latn]=Napravi bzip-ovanu tar arhivu
  Name[sv]=Skapa tar-arkiv komprimerat med bzip
  Name[ta]= சிப் tar காப்பக உருவாக்கு 
++Name[tg]=Бойгонии b-Омехтаии фавриро офаред
  Name[tr]=bziplenmiş tar Arşivi Oluştur
-+Name[uk]=Архів tar стиснутий bzip
+ Name[uk]=Архів tar стиснутий bzip
  Name[uz]=Bzip билан қисилган Tar архивини яратиш
- Name[xx]=xxCreate bzipped tar Archivexx
-+Name[zh_CN]=创建 bzip tar 压缩的存档
- Icon=ark
- Exec=ark --add --add-to .tar.bz2 %U
- 
- [Desktop Action create_zip]
- Name=Create zip Archive
- Name[bg]=Създаване на архиви Zip
-+Name[bs]=Napravi zip arhivu
- Name[ca]=Crea arxiu zip
- Name[cs]=Vytvořit ZIP archív
- Name[cy]=Creu Archif zip
-@@ -85,7 +96,9 @@
- Name[fr]=Créer une archive zip
- Name[hi]=टार अभिलेख बनाता है
- Name[hu]=Zip archívum létrehozása
-+Name[is]=Búa til zip safn
- Name[it]=Crea archivio Zip
-+Name[ja]=Zipアーカイブを作成
+@@ -111,6 +115,7 @@
+ Name[ja]=Zipアーカイブを作成
+ Name[nb]=Lag zip arkiv
  Name[nl]=Zip-archief maken
++Name[nn]=Lag zip-arkiv
  Name[pl]=Stwórz archiwum zip
  Name[pt]=Criar Arquivo zip
-@@ -98,9 +111,11 @@
+ Name[pt_BR]=Criar arquivo .zip
+@@ -122,6 +127,7 @@
+ Name[sr@Latn]=Napravi zip arhivu
  Name[sv]=Skapa zip-arkiv
  Name[ta]= காப்பகக் கோப்பு 
++Name[tg]=Бойгонии zip-ро офаред
  Name[tr]=zip Arşivi Oluştur
-+Name[uk]=Створити zip архів
+ Name[uk]=Створити zip архів
  Name[uz]=Zip архивини яратиш
- Name[wa]=Fé ene årtchive zip
- Name[xx]=xxCreate zip Archivexx
-+Name[zh_CN]=创建 zip 存档
- Icon=ark
- Exec=ark --add --add-to .zip %U
- 
 diff -urN -x CVS kdeutils.orig/ark/ark_part.desktop kdeutils/ark/ark_part.desktop
---- kdeutils.orig/ark/ark_part.desktop	Thu Jan 15 09:18:42 2004
-+++ kdeutils/ark/ark_part.desktop	Fri Jan 30 19:21:01 2004
-@@ -26,7 +26,7 @@
- Comment[hr]=Uslužni program za arhiviranje
- Comment[hu]=Tömörítóprogram
- Comment[id]=Program bantu menangani archive
--Comment[is]=ark:  Vinna meÃ° safnskrÃ¡r
-+Comment[is]=Vinna með safnskrár
- Comment[it]=Strumento per la gestione degli archivi
- Comment[ja]=アーカイバツール
- Comment[lt]=Archyvo valdymo priemonė
-@@ -81,7 +81,7 @@
- Name[hi]=अभिलेखक
- Name[hr]=Arhiver
- Name[hu]=Ark fájltömörítő
--Name[is]=SkrÃ¡asafnari
-+Name[is]=Skráasafnari
- Name[it]=Utilità di archiviazione
- Name[ja]=アーカイバ
- Name[lt]=Archyvatorius
-@@ -110,6 +110,7 @@
- Name[wa]=Årtchiveu
- Name[xh]=Umenzi woshicilelo lukawonke-wonke noxwebhu lweMbali
- Name[xx]=xxArchiverxx
-+Name[zh_CN]=压缩存档工具
- Name[zu]=Umqulu
- Exec=ark -caption "%c" %i %m %U
- Icon=ark
+--- kdeutils.orig/ark/ark_part.desktop	Wed Mar 24 14:24:51 2004
++++ kdeutils/ark/ark_part.desktop	Sun Apr 25 01:31:47 2004
+@@ -49,6 +49,7 @@
+ Comment[sr@Latn]=Alat za rukovanje arhivama
+ Comment[sv]=Verktyg för att hantera filarkiv
+ Comment[ta]= காப்பக கையாலும் கருவி
++Comment[tg]=Асбобҳои Дасткории Бойгонӣ
+ Comment[th]=เครื่องมือจัดการแฟ้มบีบอัดทั้งหลาย
+ Comment[tr]=Arşiv İşleme Aracı
+ Comment[uk]=Засіб роботи з архівами
+@@ -104,6 +105,7 @@
+ Name[sr@Latn]=Arhiver
+ Name[sv]=Arkiverare
+ Name[ta]= காப்பக
++Name[tg]=Бойгонигар
+ Name[th]=อาร์ไคว์ฟเออร์
+ Name[tr]=Arşivci
+ Name[uk]=Архіватор
 diff -urN -x CVS kdeutils.orig/ark/arkservicemenu.desktop kdeutils/ark/arkservicemenu.desktop
---- kdeutils.orig/ark/arkservicemenu.desktop	Fri Jan 16 08:09:16 2004
-+++ kdeutils/ark/arkservicemenu.desktop	Sat Feb  7 13:47:27 2004
-@@ -6,6 +6,7 @@
- [Desktop Action Extract]
- Name=Extract To...
- Name[bg]=Извличане в...
-+Name[bs]=Raspakuj u...
- Name[ca]=Extreure a...
- Name[cs]=Rozbalit do...
- Name[cy]=Echdynnu I...
-@@ -18,7 +19,9 @@
- Name[fr]=Extraire dans...
- Name[hi]=इस जगह निकालें...
- Name[hu]=Kitömörítés ide...
-+Name[is]=Afþjappa í...
- Name[it]=Estrai in...
-+Name[ja]=以下の場所に展開..
+--- kdeutils.orig/ark/arkservicemenu.desktop	Sun Mar  7 14:26:24 2004
++++ kdeutils/ark/arkservicemenu.desktop	Sun Apr 25 01:31:49 2004
+@@ -26,6 +26,7 @@
+ Name[ja]=以下の場所に展開..
+ Name[nb]=Pakk ut til...
  Name[nl]=Uitpakken naar...
++Name[nn]=Pakk ut til ...
  Name[pl]=Rozpakuj do...
  Name[pt]=Extrair Para...
-@@ -31,12 +34,15 @@
+ Name[pt_BR]=Extrair para ...
+@@ -37,6 +38,7 @@
+ Name[sr@Latn]=Raspakuj u...
  Name[sv]=Packa upp här...
  Name[ta]= சாரம் இங்கு 
++Name[tg]=Бурункунӣ Дар...
  Name[tr]=Oraya Aç...
-+Name[uk]=Вибрати до...
+ Name[uk]=Вибрати до...
  Name[xx]=xxExtract To...xx
-+Name[zh_CN]=解压到此处...
- Exec=ark --extract %U
- 
- [Desktop Action ExtractHere]
- Name=Extract Here
- Name[bg]=Извличане тук
-+Name[bs]=Raspakuj ovdje
- Name[ca]=Extreu aquí
- Name[cs]=Rozbalit sem
- Name[cy]=Echdynnu Yma
-@@ -49,7 +55,9 @@
- Name[fr]=Extraire ici
- Name[hi]=यहाँ निकालें
- Name[hu]=Kitömörítés itt
-+Name[is]=Afþjappa hér
- Name[it]=Estrai qui
-+Name[ja]=ここに展開..
+@@ -66,6 +68,7 @@
+ Name[ja]=ここに展開..
+ Name[nb]=Pakk ut her ...
  Name[nl]=Hier uitpakken...
++Name[nn]=Pakk ut hit
  Name[pl]=Rozpakuj tutaj
  Name[pt]=Extrair Para Aqui
-@@ -62,5 +70,7 @@
+ Name[pt_BR]=Extrair aqui
+@@ -77,6 +80,7 @@
+ Name[sr@Latn]=Raspakuj ovde
  Name[sv]=Packa upp här
  Name[ta]=இங்கு சாரம்த்துடன் 
++Name[tg]=Берункунӣ Дар ин ҷо
  Name[tr]=Buraya Aç
-+Name[uk]=Вибрати сюди
+ Name[uk]=Вибрати сюди
  Name[xx]=xxExtract Herexx
-+Name[zh_CN]=解压到此处
- Exec=ark --extract-to %d %u
-diff -urN -x CVS kdeutils.orig/charselectapplet/kcharselectapplet.desktop kdeutils/charselectapplet/kcharselectapplet.desktop
---- kdeutils.orig/charselectapplet/kcharselectapplet.desktop	Thu Jan 15 09:18:46 2004
-+++ kdeutils/charselectapplet/kcharselectapplet.desktop	Fri Jan 30 19:21:05 2004
-@@ -39,6 +39,7 @@
- Comment[hi]=अक्षर चयनक
- Comment[hr]=Izabirač simbola
- Comment[hu]=Karakterválasztó panel-kisalkalmazás
-+Comment[is]=Stafaveljari
- Comment[it]=Mappa dei caratteri
- Comment[ja]=文字の選択
- Comment[lt]=Simbolių rinkėjas
-diff -urN -x CVS kdeutils.orig/kcalc/ChangeLog kdeutils/kcalc/ChangeLog
---- kdeutils.orig/kcalc/ChangeLog	Tue Dec 16 01:47:25 2003
-+++ kdeutils/kcalc/ChangeLog	Fri Feb  6 21:19:09 2004
-@@ -1,8 +1,15 @@
--2003-21-06 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
-+2004-02-06 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
-+	* Fixed bug 73437. Pasting empty clipboard made kcalc crash.
-+	
-+2004-01-27 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
-+        * Fix paste-function: Pasting e.g. "123  \n" did not work
-+          because of the trailing spaces and returns.
-+
-+2003-12-06 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
- 	* Fix problem with several identical labels in statusbar
- 	  with the help of newly added statusbar->hasItem.
+diff -urN -x CVS kdeutils.orig/ark/arkwidget.cpp kdeutils/ark/arkwidget.cpp
+--- kdeutils.orig/ark/arkwidget.cpp	Tue Nov 25 17:24:59 2003
++++ kdeutils/ark/arkwidget.cpp	Wed Apr 14 13:45:00 2004
+@@ -1276,7 +1276,7 @@
+         }
+         if (bDeletingDir)
+         {
+-            int nRet = KMessageBox::warningContinueCancel(this, i18n("If you delete a folder in a Tar archive, all the files in that\nfolder will also be deleted. Are you sure you wish to proceed?"), i18n("Warning"), i18n("Continue"));
++            int nRet = KMessageBox::warningContinueCancel(this, i18n("If you delete a folder in a Tar archive, all the files in that\nfolder will also be deleted. Are you sure you wish to proceed?"), i18n("Warning"), KStdGuiItem::cont());
+             if (nRet == KMessageBox::Cancel)
+                 return;
+         }
+diff -urN -x CVS kdeutils.orig/ark/deleteDlg.cpp kdeutils/ark/deleteDlg.cpp
+--- kdeutils.orig/ark/deleteDlg.cpp	Fri Mar  7 23:10:32 2003
++++ kdeutils/ark/deleteDlg.cpp	Wed Apr 14 13:45:00 2004
+@@ -1,6 +1,6 @@
+ /*
  
--2003-21-06 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
-+2003-12-06 Klaus Niederkr�ger <kniederk@math.uni-koeln.de>
- 	* Make Percent work the way it did in KDE-3.1 again (documentation
- 	  was not updated to this KDE-version, which confused me on 2003/08/28)
- 	
+- $Id$
++ $Id$
+ 
+  ark -- archiver for the KDE project
+ 
+@@ -44,7 +44,7 @@
+ 	: QDialog( _parent, _name, true )
+ {
+ 	setCaption( i18n("Delete") );
+-	
++
+ 	QVBoxLayout *mainLayout = new QVBoxLayout( this, 10 );
+ 
+ 	QLabel *l1 = new QLabel( i18n("What do you want to delete?"), this );
+@@ -56,39 +56,39 @@
+ 
+ 	QVBoxLayout *vblg1 = new QVBoxLayout( bg1, 10 );
+ 	vblg1->addSpacing( 10 );
+-	
++
+ 	m_rbSelection = new QRadioButton( i18n("Selected files"), bg1 );
+ 	m_rbSelection->setFixedSize( m_rbSelection->sizeHint() );
+ 	vblg1->addWidget( m_rbSelection, 0, AlignLeft );
+ 	m_rbSelection->setEnabled( _selEnabled );
+ 	m_rbSelection->setChecked( _selEnabled );
+-		
++
+ 	QHBoxLayout *hbl1 = new QHBoxLayout();
+ 	vblg1->addLayout( hbl1 );
+-	
++
+ 	m_rbPatterns = new QRadioButton( i18n("Files: "), bg1 );
+ 	m_rbPatterns->setFixedSize( m_rbPatterns->sizeHint() );
+ 	hbl1->addWidget( m_rbPatterns );
+ 	m_rbPatterns->setChecked( !_selEnabled );
+-	
++
+ 	m_lePatterns = new QLineEdit( bg1 );
+ 	m_lePatterns->setFixedHeight( m_lePatterns->sizeHint().height() );
+ 	m_lePatterns->setMinimumWidth( m_lePatterns->sizeHint().width() );
+ 	hbl1->addWidget( m_lePatterns );
+ 	connect( m_lePatterns, SIGNAL(textChanged(const QString &)), SLOT(onChange(const QString&)));
+-	
++
+ 	QHBoxLayout *hbl = new QHBoxLayout();
+ 	mainLayout->addLayout( hbl );
+-	
++
+ 	hbl->addStretch( 1 );
+-	
+-	QPushButton *ok = new QPushButton( i18n("OK"), this );	
++
++	QPushButton *ok = new KPushButton( KStdGuiItem::ok(), this );
+ 	ok->setFixedSize( ok->sizeHint() );
+ 	ok->setDefault(true);
+ 	connect( ok, SIGNAL( clicked() ), SLOT( accept() ) );
+ 	hbl->addWidget( ok );
+ 
+-	QPushButton *cancel = new QPushButton( i18n("Cancel"), this );
++	QPushButton *cancel = new KPushButton( KStdGuiItem::cancel(), this );
+ 	cancel->setFixedSize( cancel->sizeHint() );
+ 	connect( cancel, SIGNAL( clicked() ), SLOT( reject() ) );
+ 	hbl->addWidget( cancel );
+diff -urN -x CVS kdeutils.orig/ark/extractdlg.cpp kdeutils/ark/extractdlg.cpp
+--- kdeutils.orig/ark/extractdlg.cpp	Wed Jan  7 23:02:50 2004
++++ kdeutils/ark/extractdlg.cpp	Wed Apr 14 13:45:00 2004
+@@ -1,6 +1,6 @@
+ /* -*- c++ -*-
+ 
+-$Id$
++$Id$
+ 
+ ark -- archiver for the KDE project
+ 
+@@ -321,14 +321,12 @@
+ 	pBox->setGeometry( 10, 10 + labelHeight + 10, boxWidth, boxHeight );
+ 	pBox->insertStringList( *list );
+ 
+-	QPushButton *pOKButton = new QPushButton( this, "OKButton" );
++	QPushButton *pOKButton = new KPushButton( KStdGuiItem::cont(), this, "OKButton" );
+ 	pOKButton->setGeometry( labelWidth / 2 - 50, boxHeight + labelHeight + 30, 70, buttonHeight );
+-	pOKButton->setText( i18n( "Continue" ) );
+ 	connect( pOKButton, SIGNAL( pressed() ), this, SLOT( accept() ) );
+ 
+-	QPushButton *pCancelButton = new QPushButton( this, "CancelButton" );
++	QPushButton *pCancelButton = new KPushButton( KStdGuiItem::cancel(), this, "CancelButton" );
+ 	pCancelButton->setGeometry( labelWidth / 2 + 20, boxHeight + labelHeight + 30, 70, buttonHeight );
+-	pCancelButton->setText( i18n( "Cancel" ) );
+ 	connect( pCancelButton, SIGNAL( pressed() ), this, SLOT( reject() ) );
+ 	setFixedSize( 20+labelWidth, 40+labelHeight+boxHeight+buttonHeight );
+ 	QApplication::restoreOverrideCursor();
+diff -urN -x CVS kdeutils.orig/ark/selectDlg.cpp kdeutils/ark/selectDlg.cpp
+--- kdeutils.orig/ark/selectDlg.cpp	Fri Mar  7 23:10:32 2003
++++ kdeutils/ark/selectDlg.cpp	Wed Apr 14 13:45:00 2004
+@@ -1,5 +1,5 @@
+ /*
+-$Id$
++$Id$
+ 
+  ark -- archiver for the KDE project
+ 
+@@ -30,10 +30,11 @@
+ #include <qregexp.h>
+ #include <qdialog.h>
+ #include <qlineedit.h>
+-#include <qpushbutton.h>
+ 
+ // KDE includes
+ #include <klocale.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ // ark includes
+ #include "selectDlg.h"
+@@ -58,7 +59,7 @@
+     l1->setFixedSize( l1->sizeHint() );
+     hbl1->addWidget( l1 );
+ 
+-    m_ok = new QPushButton( i18n("OK"), this );
++    m_ok = new KPushButton( KStdGuiItem::ok(), this );
+ 
+     QString pattern = m_settings->getSelectRegExp();
+     m_regExp = new QLineEdit( this );
+@@ -79,7 +80,7 @@
+     connect( m_ok, SIGNAL( clicked() ), SLOT( saveConfig() ) );
+     hbl->addWidget( m_ok );
+ 
+-    QPushButton *cancel = new QPushButton( i18n("Cancel"), this );
++    QPushButton *cancel = new KPushButton( KStdGuiItem::cancel(), this );
+     cancel->setFixedSize( cancel->sizeHint() );
+     connect( cancel, SIGNAL( clicked() ), SLOT( reject() ) );
+     hbl->addWidget( cancel );
+diff -urN -x CVS kdeutils.orig/ark/shellOutputDlg.cpp kdeutils/ark/shellOutputDlg.cpp
+--- kdeutils.orig/ark/shellOutputDlg.cpp	Fri Mar  7 23:10:32 2003
++++ kdeutils/ark/shellOutputDlg.cpp	Wed Apr 14 13:45:00 2004
+@@ -1,6 +1,6 @@
+ /*
+ 
+- $Id$
++ $Id$
+ 
+  ark -- archiver for the KDE project
+ 
+@@ -26,10 +26,11 @@
+ */
+ 
+ // Qt includes
+-#include <qpushbutton.h>
+ #include <qlayout.h>
+ 
+ #include <klocale.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ // ark includes
+ #include "shellOutputDlg.h"
+@@ -41,7 +42,7 @@
+ 	: QDialog( _parent, _name, true )
+ {
+   setCaption( i18n("Shell Output") );
+-  QGridLayout *grid1 = new QGridLayout(this,10,5,15,7);  
++  QGridLayout *grid1 = new QGridLayout(this,10,5,15,7);
+   QMultiLineEdit *l1 = new QMultiLineEdit( this );
+   l1->setReadOnly( true );
+   grid1->addMultiCellWidget(l1,0,8,0,4);
+@@ -49,7 +50,7 @@
+   l1->setText( *(_data->getLastShellOutput()) );
+   l1->setCursorPosition(l1->numLines(), 0);
+ 
+-  QPushButton *close = new QPushButton( i18n("Close"), this );
++  QPushButton *close = new KPushButton( KStdGuiItem::close(), this );
+   grid1->addWidget(close,9,4);
+   connect( close, SIGNAL( clicked() ), SLOT( accept() ) );
+   close->setFocus();
+diff -urN -x CVS kdeutils.orig/ark/tar.cpp kdeutils/ark/tar.cpp
+--- kdeutils.orig/ark/tar.cpp	Tue Mar 30 02:20:33 2004
++++ kdeutils/ark/tar.cpp	Fri Apr 16 22:30:28 2004
+@@ -81,7 +81,7 @@
+ 
+     m_fileMimeType = _openAsMimeType;
+     if ( m_fileMimeType.isNull() )
+-        m_fileMimeType = KMimeType::findByFileContent( _filename )->name();
++        m_fileMimeType = KMimeType::findByPath( _filename )->name();
+ 
+     kdDebug(1601) << "TarArch::TarArch:  mimetype is " << m_fileMimeType << endl;
+ 
+diff -urN -x CVS kdeutils.orig/ark/waitDlg.cpp kdeutils/ark/waitDlg.cpp
+--- kdeutils.orig/ark/waitDlg.cpp	Fri Mar  7 23:10:32 2003
++++ kdeutils/ark/waitDlg.cpp	Wed Apr 14 13:45:00 2004
+@@ -1,6 +1,6 @@
+ /*
+ 
+- $Id$
++ $Id$
+ 
+  ark -- archiver for the KDE project
+ 
+@@ -49,7 +49,7 @@
+ 	l1->setFixedSize( l1->sizeHint() );
+ 	mainLayout->addWidget( l1 );
+ 
+-	QPushButton *cancel = new QPushButton( i18n("Cancel"), this );
++	QPushButton *cancel = new KPushButton( KStdGuiItem::cancel(), this );
+ 	cancel->setFixedSize( cancel->sizeHint() );
+ 	connect( cancel, SIGNAL( clicked() ), SLOT( onCancel() ) );
+ 	mainLayout->addWidget( cancel );
+diff -urN -x CVS kdeutils.orig/charselectapplet/kcharselectapplet.desktop kdeutils/charselectapplet/kcharselectapplet.desktop
+--- kdeutils.orig/charselectapplet/kcharselectapplet.desktop	Sun Mar  7 14:26:27 2004
++++ kdeutils/charselectapplet/kcharselectapplet.desktop	Sun Apr 25 01:31:51 2004
+@@ -12,6 +12,7 @@
+ Name[sr@Latn]=KChartSelect
+ Name[sv]=Kcharselect
+ Name[ta]= KChar தேர்வு 
++Name[tg]=KИнтихобгари Аломатҳо
+ Name[th]=เลือกอักขระ
+ Name[tr]=Karakter Seçici
+ Name[ven]=U nanga muanewa wa K
+@@ -64,6 +65,7 @@
+ Comment[sr@Latn]=Birač znakova
+ Comment[sv]=Teckenväljare
+ Comment[ta]=எழுத்தை எடுப்பது
++Comment[tg]=Асбоби Интихобгари Аломатҳо
+ Comment[th]=เครื่องมือเลือกอักขระ
+ Comment[tr]=Karakter Seçici
+ Comment[uk]=Вибір символу
 diff -urN -x CVS kdeutils.orig/kcalc/kcalc.desktop kdeutils/kcalc/kcalc.desktop
---- kdeutils.orig/kcalc/kcalc.desktop	Thu Jan 15 09:18:48 2004
-+++ kdeutils/kcalc/kcalc.desktop	Fri Jan 30 19:21:07 2004
-@@ -37,6 +37,7 @@
- GenericName[hi]=वैज्ञानिक गणक
- GenericName[hr]=Znanstveni kalkulator
- GenericName[hu]=Zsebszámológép
-+GenericName[is]=Öflug reiknivél
- GenericName[it]=Calcolatrice scientifica
- GenericName[ja]=科学電卓
- GenericName[lt]=Mokslinis skaičiuotuvas
+--- kdeutils.orig/kcalc/kcalc.desktop	Sun Mar  7 14:26:29 2004
++++ kdeutils/kcalc/kcalc.desktop	Sun Apr 25 01:31:53 2004
+@@ -9,6 +9,7 @@
+ Name[pl]=Kalkulator
+ Name[sv]=Kcalc
+ Name[ta]= Kcalc
++Name[tg]=KМошинаи ҳисобкунак
+ Name[th]=เครื่องคิดเลข
+ Name[tr]=Hesap Makinesi
+ Name[uz]=Калкулятор
+@@ -61,6 +62,7 @@
+ GenericName[sr@Latn]=Naučni kalkulator
+ GenericName[sv]=Vetenskaplig miniräknare
+ GenericName[ta]= அறிவியல் சார்ந்த கணிப்பான் 
++GenericName[tg]=Мошинаи ҳисобкунаки Илмӣ
+ GenericName[th]=เครื่องคิดเลขแบบวิทยาศาสตร์
+ GenericName[tr]=Bilimsel Hesap Makinesi
+ GenericName[uk]=Калькулятор для науковців
+diff -urN -x CVS kdeutils.orig/kcalc/kcalc_core.cpp kdeutils/kcalc/kcalc_core.cpp
+--- kdeutils.orig/kcalc/kcalc_core.cpp	Wed Mar 31 22:48:11 2004
++++ kdeutils/kcalc/kcalc_core.cpp	Wed Apr  7 23:29:49 2004
+@@ -858,7 +858,7 @@
+ 
+ void CalcEngine::Tangens(CALCAMNT input)
+ {
+-	CALCAMNT tmp = input;
++	CALCAMNT aux, tmp = input;
+ 
+ 	switch (_angle_mode)
+ 	{
+@@ -873,9 +873,20 @@
+ 		break;
+ 	}
+ 
+-	_last_result = TAN(tmp);
++	aux = tmp;
++        // make aux positive
++	if (aux < 0) aux = -aux;
++	// put aux between 0 and pi
++	while (aux > pi) aux -= pi;
++	// if were are really close to pi/2 throw an error
++	// tan(pi/2) => inf
++	// using the 10 factor because without it 270� tan still gave a result
++	if ( (aux - pi/2 < POS_ZERO * 10) && (aux - pi/2 > NEG_ZERO * 10) )
++		_error = true;
++	else
++		_last_result = TAN(tmp);
+ 
+-	// Now a cheat to help the weird case of COS 90 degrees not being 0!!!
++	// Now a cheat to help the weird case of TAN 0 degrees not being 0!!!
+ 	if (_last_result < POS_ZERO && _last_result > NEG_ZERO)
+ 		_last_result = 0.0;
+ 
 diff -urN -x CVS kdeutils.orig/kcalc/kcalcdisplay.cpp kdeutils/kcalc/kcalcdisplay.cpp
---- kdeutils.orig/kcalc/kcalcdisplay.cpp	Mon Jan 12 15:49:04 2004
-+++ kdeutils/kcalc/kcalcdisplay.cpp	Fri Feb  6 21:19:09 2004
+--- kdeutils.orig/kcalc/kcalcdisplay.cpp	Fri Mar 12 13:15:59 2004
++++ kdeutils/kcalc/kcalcdisplay.cpp	Mon Apr 19 12:34:13 2004
 @@ -1,5 +1,5 @@
  /*
 -    $Id$
@@ -236,1590 +451,2042 @@ diff -urN -x CVS kdeutils.orig/kcalc/kcalcdisplay.cpp kdeutils/kcalc/kcalcdispla
  
      KCalc, a scientific calculator for the X window system using the
      Qt widget libraries, available at no cost at http://www.troll.no
-@@ -24,6 +24,7 @@
- */
- #include <errno.h>
- #include <stdlib.h>
-+#include <ctype.h>
- 
- #include <qclipboard.h>
- 
-@@ -38,6 +39,13 @@
- 	char *ptr = 0;
- 	errno = 0;
- 	CALCAMNT result = (CALCAMNT) STRTOD(s.latin1(),&ptr);
-+
-+	// find first non-space character for check below
-+	while (ptr != 0 && *ptr != '\0' && isspace(*ptr)) {
-+	// *ptr == 0 is also caught by isspace(*ptr), but you never know
-+		ptr++;
-+	}
-+	// input contains more than a number or another error
- 	ok = (errno == 0) && (ptr != 0) && (*ptr == 0);
- 	return result;
- }
-@@ -93,16 +101,16 @@
- 	(QApplication::clipboard())->setText(txt, QClipboard::Selection);
- }
- 
--void KCalcDisplay::slotPaste(void)
-+void KCalcDisplay::slotPaste(bool bClipboard)
- {
--	if(_error  &&  _beep)
-+	QString tmp_str = (QApplication::clipboard())->text(bClipboard ? QClipboard::Clipboard : QClipboard::Selection);
-+
-+	if (_error  ||  tmp_str.isNull())
- 	{
--		KNotifyClient::beep();
-+		if (_beep)  KNotifyClient::beep();
+@@ -111,6 +111,9 @@
  		return;
  	}
  
--	QString tmp_str = (QApplication::clipboard())->text(QClipboard::Clipboard);
--
++	if (_num_base == NB_HEX)
++		tmp_str.prepend( "0x" );
++
  	bool was_ok;
  	CALCAMNT tmp_result = toDouble(tmp_str, was_ok);
  
-@@ -127,7 +135,7 @@
- 
- 		invertColors();
- 	} else {
--		slotPaste();
-+		slotPaste(false); // Selection
- 	}
- }
- 
-diff -urN -x CVS kdeutils.orig/kcalc/kcalcdisplay.h kdeutils/kcalc/kcalcdisplay.h
---- kdeutils.orig/kcalc/kcalcdisplay.h	Thu Sep 11 00:38:36 2003
-+++ kdeutils/kcalc/kcalcdisplay.h	Tue Jan 27 21:57:12 2004
-@@ -111,7 +111,7 @@
- 	bool updateDisplay(void);
- private:
- 	bool _beep;
--	int _button;
-+	int  _button;
- 	bool _lit;
- 	NumBase _num_base;
- 	int _input_limit;
-@@ -142,7 +142,7 @@
- public slots:
- 	void slotCut(void);
- 	void slotCopy(void);
--	void slotPaste(void);
-+	void slotPaste(bool bClipboard=true);
- 
- private slots:
- 	void slotSelectionTimedOut(void);
 diff -urN -x CVS kdeutils.orig/kcardtools/chooser/kcardchooser.desktop kdeutils/kcardtools/chooser/kcardchooser.desktop
---- kdeutils.orig/kcardtools/chooser/kcardchooser.desktop	Thu Jan 15 09:18:50 2004
-+++ kdeutils/kcardtools/chooser/kcardchooser.desktop	Fri Jan 30 19:21:09 2004
-@@ -21,6 +21,7 @@
- Name[hi]=स्मार्टकार्ड चयनक
- Name[hr]=Izabirač Smartcard-a
- Name[hu]=Csipkártya-választó
-+Name[is]=Snjallkortaval
- Name[it]=Selettore smartcard
- Name[ja]=スマートカード選択
- Name[lt]=Gudrios kortelės pasirinkimas
+--- kdeutils.orig/kcardtools/chooser/kcardchooser.desktop	Sun Mar  7 14:26:31 2004
++++ kdeutils/kcardtools/chooser/kcardchooser.desktop	Sun Apr 25 01:31:55 2004
+@@ -43,6 +43,7 @@
+ Name[sr@Latn]=Birač smart-kartica
+ Name[sv]=Smartkortsväljare
+ Name[ta]= சூட்டிகை அட்டை 
++Name[tg]=Интихобгари Смарт-Корт
+ Name[th]=เลือกสมาร์ตการ์ด
+ Name[tr]=Smartcard Seçici
+ Name[uk]=Селектор смарткарток
 diff -urN -x CVS kdeutils.orig/kcharselect/KCharSelect.desktop kdeutils/kcharselect/KCharSelect.desktop
---- kdeutils.orig/kcharselect/KCharSelect.desktop	Thu Jan 15 09:18:52 2004
-+++ kdeutils/kcharselect/KCharSelect.desktop	Fri Jan 30 19:21:11 2004
-@@ -26,7 +26,7 @@
- GenericName[hr]=Izbor znakova
- GenericName[hu]=Karakterválasztó
- GenericName[id]=Pemilih Karakter
--GenericName[is]=kcharselect:  Val stafa
-+GenericName[is]=Stafaval
- GenericName[it]=Selettore di caratteri
- GenericName[ja]=文字の選択
- GenericName[ko]=글자 고르기
+--- kdeutils.orig/kcharselect/KCharSelect.desktop	Sun Mar  7 14:26:33 2004
++++ kdeutils/kcharselect/KCharSelect.desktop	Sun Apr 25 01:31:57 2004
+@@ -49,6 +49,7 @@
+ GenericName[sr@Latn]=Birač znakova
+ GenericName[sv]=Teckenväljare
+ GenericName[ta]= எழுத்து தேர்வி 
++GenericName[tg]=Интихобгари Аломатҳо
+ GenericName[th]=เครื่องมือเลือกอักขระ
+ GenericName[tr]=Karakter Seçici
+ GenericName[uk]=Таблиця символів
+@@ -79,6 +80,7 @@
+ Name[sr@Latn]=KChartSelect
+ Name[sv]=Kcharselect
+ Name[ta]= KChar தேர்வு 
++Name[tg]=KИнтихобгари Аломатҳо
+ Name[th]=เลือกอักขระ
+ Name[tr]=Karakter Seçici
+ Name[ven]=U nanga muanewa wa K
 diff -urN -x CVS kdeutils.orig/kdelirc/irkick/irkick.desktop kdeutils/kdelirc/irkick/irkick.desktop
---- kdeutils.orig/kdelirc/irkick/irkick.desktop	Fri Jan 16 08:09:18 2004
-+++ kdeutils/kdelirc/irkick/irkick.desktop	Sat Feb  7 13:47:34 2004
-@@ -13,7 +13,9 @@
- Name[fr]=Serveur KDE LIRC
- Name[hi]=केडीई एलआईआरसी सर्वर
- Name[hu]=KDE LIRC szolgáltatás
-+Name[is]=KDE LIRC þjónn
- Name[it]=Server LIRC di KDE
-+Name[ja]=KDE LIRC サーバ
+--- kdeutils.orig/kdelirc/irkick/irkick.desktop	Sun Mar  7 14:26:35 2004
++++ kdeutils/kdelirc/irkick/irkick.desktop	Sun Apr 25 01:31:59 2004
+@@ -20,6 +20,7 @@
+ Name[ja]=KDE LIRC サーバ
+ Name[nb]=KDE LIRC-tjener
  Name[nl]=Infrarood-server
++Name[nn]=KDE LIRC-tenar
  Name[pl]=Serwer LIRC dla KDE
  Name[pt]=Servidor de LIRC do KDE
-@@ -28,6 +30,7 @@
+ Name[pt_BR]=servidor LIRC do KDE 
+@@ -30,6 +31,7 @@
+ Name[sr@Latn]=KDE-ov LIRC server
+ Name[sv]=KDE:s LIRC-server
+ Name[ta]= KDE LIRC வழங்கி
++Name[tg]=Хидматрасони LIRC барои KDE
+ Name[tr]=KDE LIRC sunucusu
+ Name[uk]=Сервер LIRC для KDE
  Name[uz]=KDE LIRC сервери
- Name[wa]=Sierveu LIRC KDE
- Name[xx]=xxKDE LIRC serverxx
-+Name[zh_CN]=KDE LIRC 服务器
- 
- X-KDE-Library=irkick
- X-KDE-autostart-after=panel
-@@ -42,6 +45,7 @@
- DocPath=kcontrol/kdelirc.html
- Comment=KDE Linux infrared remote control server.
- Comment[bg]=Сървър за управление на дистанционно устройство с инфрачервени лъчи
-+Comment[bs]=KDEov server za Linux infracrveno daljinsko upravljanje (Linux Infrared Remote Control).
- Comment[ca]=Servidor de control remot per infrarojos de Linux KDE.
- Comment[cy]=Gweinydd rheolydd pell isgoch Linux KDE
- Comment[da]=KDE Linux infrarød fjernbetjeningsserver.
-@@ -53,7 +57,9 @@
- Comment[fr]=Serveur de contrôle distant infra-rouge sous Linux pour KDE.
- Comment[hi]=केडीई लिनक्स इन्फ्रारेड रिमोट नियंत्रक सर्वर.
- Comment[hu]=KDE Linux szolgáltatás infravörös távirányítók kezeléséhez
-+Comment[is]=KDE Linux innrauða fjarstýringarstjórnborðið
- Comment[it]=Server KDE per i telecomandi ad infrarossi
-+Comment[ja]=KDE Linux 赤外線リモートコントロールサーバ
+@@ -69,6 +71,7 @@
+ Comment[ja]=KDE Linux 赤外線リモートコントロールサーバ
+ Comment[nb]=KDE Linux-tjener for infrarød fjernkontroll
  Comment[nl]=KDE-server voor infrarood-afstandsbediening.
++Comment[nn]=KDE-tenar for infraraud fjernkontroll.
  Comment[pl]=Serwer obsługi pilotów dla KDE.
  Comment[pt]=Servidor de comandos à distância por infravermelhos do KDE.
-@@ -68,5 +74,6 @@
+ Comment[pt_BR]=servidor de controle infra-vermelho do Linux no KDE
+@@ -80,6 +83,7 @@
+ Comment[sr@Latn]=KDE-ov Linux server za kontrolu infracrvenih daljinskih upravljača.
+ Comment[sv]=Infraröd fjärrkontrollserver
+ Comment[ta]=kDE லினெக்ஸ்  
++Comment[tg]=Хидматрасони идоракунии дурдасти инфрасурхи KDE Linux.
  Comment[tr]=KDE Linux kızılötesi uzaktan kontrol sunucusu.
+ Comment[uk]=Сервер дистанційного керування інфрачервоними пристроями для Linux та KDE.
  Comment[uz]=Инфрақизил нур билан масофадан бошқариш сервери
- Comment[xx]=xxKDE Linux infrared remote control server.xx
-+Comment[zh_CN]=KDE Linux 红外远程控制服务器。
- Encoding=UTF-8
- 
 diff -urN -x CVS kdeutils.orig/kdelirc/kcmlirc/kcmlirc.desktop kdeutils/kdelirc/kcmlirc/kcmlirc.desktop
---- kdeutils.orig/kdelirc/kcmlirc/kcmlirc.desktop	Fri Jan 16 08:09:20 2004
-+++ kdeutils/kdelirc/kcmlirc/kcmlirc.desktop	Sat Feb  7 13:47:36 2004
-@@ -3,6 +3,7 @@
- Icon=irkick
- Comment=Configure your remote controls for use with applications
- Comment[bg]=Конфигуриране на дистанционното устройство за работа с различни програми
-+Comment[bs]=Podesite vaš daljinski upravljač za upotrebu sa programima
- Comment[ca]=Configura els teus controls remots per usar amb aplicacions
- Comment[cy]=Ffurfweddu eich rheolyddion pell ar gyfer ddefnydd efo cymhwysiadau
- Comment[da]=Indstil dine fjernbetjeninger til brug for programmer
-@@ -14,7 +15,9 @@
+--- kdeutils.orig/kdelirc/kcmlirc/kcmlirc.desktop	Sun Mar  7 14:26:37 2004
++++ kdeutils/kdelirc/kcmlirc/kcmlirc.desktop	Sun Apr 25 01:32:01 2004
+@@ -15,13 +15,14 @@
  Comment[fr]=Configurer vos contrôleurs distants pour l'utiliser avec vos applications
- Comment[hi]=अनुप्रयोगों के साथ उपयोग हेतु अपने रिमोट नियंत्रक को कॉन्फिगर करें
+ Comment[ga]=Cumraigh do chianrialuithe chun iad a úsáid le feidhmchláir
+ Comment[gl]=Configura-los seus controis remotos para usar con aplicacións
+-Comment[hi]=अनुप्रयोगों के साथ उपयोग हेतु अपने रिमोट नियंत्रक को कॉन्फिगर करें
++Comment[hi]=अनुप्रयोगों के साथ उपयोग हेतु अपने रिमोट नियंत्रक को कॉन्फ़िगर करें
  Comment[hu]=Az infravörös távirányítók kezelésének beállításai
-+Comment[is]=Her má stilla fjarstýringar ýmissa forrita
+ Comment[is]=Her má stilla fjarstýringar ýmissa forrita
  Comment[it]=Configura i telecomandi per l'uso con le applicazioni
-+Comment[ja]=アプリケーションで使用するリモートコントロールを設定
+ Comment[ja]=アプリケーションで使用するリモートコントロールを設定
+ Comment[nb]=Konfigurer fjernkontroll for bruk mot programmer
  Comment[nl]=Uw afstandsbedieningen instellen voor gebruik in KDE
++Comment[nn]=Set opp bruken av fjernkontroll i ulike program
  Comment[pl]=Konfiguruje piloty do użycia w aplikacjach
  Comment[pt]=Configure os seus comandos à distância para os usar nas aplicações
-@@ -28,6 +31,7 @@
+ Comment[pt_BR]=Configura seus controles remotos para o uso com as aplicações
+@@ -33,6 +34,7 @@
+ Comment[sr@Latn]=Podesite kontrole vašeg daljinskog upravljača za upotrebu u programima
+ Comment[sv]=Ställ in fjärrkontroller att använda med program
  Comment[ta]=உள்ளமை தொலைநிலைத் 
++Comment[tg]=Ба воситаи замимаҳо танзимкунии идоракунии дурдасти шумо
  Comment[tr]=Uzaktan kontrol ayarlarınızı uygulamalarla kullanmak için ayarla
+ Comment[uk]=Налаштувати елементи дистанційного керування для використання з програмами
  Comment[xx]=xxConfigure your remote controls for use with applicationsxx
-+Comment[zh_CN]=配置您的远程控制以供应用程序使用
- Exec=kcmshell kcmlirc
- Keywords=KCMLirc,kcmlirc
- Keywords[bg]=дистанционно устройство,дистанционно,инфрачервени,лъчи,KCMLirc,kcmlirc
-@@ -39,6 +43,7 @@
- Keywords[xx]=xxKCMLirc,kcmlircxx
- Name=Remote Controls
- Name[bg]=Дистанционно устройство
-+Name[bs]=Daljinsko upravljanje
- Name[ca]=Controls remots
- Name[cs]=Dálková ovládání
- Name[cy]=Rheolyddion Pell
-@@ -51,7 +56,9 @@
- Name[fr]=Contrôleurs distants
- Name[hi]=रिमोट नियंत्रक
- Name[hu]=Távirányítók
-+Name[is]=Fjarstýringar
- Name[it]=Telecomandi
-+Name[ja]=リモートコントロール
+@@ -68,6 +70,7 @@
+ Name[ja]=リモートコントロール
+ Name[nb]=Fjernkontroll
  Name[nl]=Afstandsbediening
++Name[nn]=Fjernkontrollar
  Name[pl]=Piloty
  Name[pt]=Comandos à Distância
-@@ -65,6 +72,7 @@
+ Name[pt_BR]=Controles Remotos
+@@ -79,6 +82,7 @@
+ Name[sr@Latn]=Kontrola daljinskim upravljačem
+ Name[sv]=Fjärrkontroller
  Name[ta]=  கட்டுப்பாடுகளைக் தொலை 
++Name[tg]=Идоракунии Дурдаст
  Name[tr]=Uzaktan Kontroller
+ Name[uk]=Елементи дистанційного керування
  Name[xx]=xxRemote Controlsxx
-+Name[zh_CN]=远程控制
- Terminal=false
- Type=Application
- X-KDE-FactoryName=kcmlirc
 diff -urN -x CVS kdeutils.orig/kdepasswd/kdepasswd.desktop kdeutils/kdepasswd/kdepasswd.desktop
---- kdeutils.orig/kdepasswd/kdepasswd.desktop	Thu Jan 15 09:18:58 2004
-+++ kdeutils/kdepasswd/kdepasswd.desktop	Fri Jan 30 19:21:17 2004
-@@ -21,6 +21,7 @@
- Name[hi]=पासवर्ड बदलें
- Name[hr]=Promjena šifre
- Name[hu]=Jelszóváltoztatás
-+Name[is]=Breyta lykilorði
- Name[it]=Cambia password
- Name[ja]=パスワードを変更
- Name[lt]=Pakeisti slaptažodį
-@@ -45,7 +46,7 @@
- Name[wa]=Candjî l' sicret
- Name[xh]=Tshintsha Igama eliyimfihlo
- Name[xx]=xxChange Passwordxx
--Name[zh_CN]=更改口令
-+Name[zh_CN]=更改密码
- Name[zh_TW]=變更密碼
- Name[zu]=Shintsha Igama-lokudlula
- Exec=kdepasswd
+--- kdeutils.orig/kdepasswd/kdepasswd.desktop	Sun Mar  7 14:26:39 2004
++++ kdeutils/kdepasswd/kdepasswd.desktop	Sun Apr 25 01:32:03 2004
+@@ -43,6 +43,7 @@
+ Name[sr@Latn]=Promeni lozinku
+ Name[sv]=Byt lösenord
+ Name[ta]=நுழைசொல்லை மாத்தவும்
++Name[tg]=Ивази Гузарвожа
+ Name[th]=เปลี่ยนรหัสผ่าน
+ Name[tr]=Parolayı Değiştir
+ Name[uk]=Змінити пароль
 diff -urN -x CVS kdeutils.orig/kdepasswd/userinfo/userinfo.desktop kdeutils/kdepasswd/userinfo/userinfo.desktop
---- kdeutils.orig/kdepasswd/userinfo/userinfo.desktop	Fri Jan 16 08:09:22 2004
-+++ kdeutils/kdepasswd/userinfo/userinfo.desktop	Sat Feb  7 13:47:39 2004
-@@ -13,6 +13,7 @@
- 
- Name=User Account
- Name[bg]=Потребителски акаунт
-+Name[bs]=Korisnički račun
- Name[ca]=Compte d'usuari
- Name[cs]=Uživatelský účet
- Name[cy]=Cyfrif Defnyddiwr
-@@ -25,7 +26,9 @@
- Name[fr]=Compte utilisateur
+--- kdeutils.orig/kdepasswd/userinfo/userinfo.desktop	Wed Mar 10 15:00:45 2004
++++ kdeutils/kdepasswd/userinfo/userinfo.desktop	Sun Apr 25 01:32:05 2004
+@@ -27,12 +27,14 @@
+ Name[ga]=Cuntas Úsáideora
+ Name[gl]=Conta de Usuario
  Name[hi]=उपयोगकर्ता खाता
++Name[hr]=Korisnički račun
  Name[hu]=Felhasználóazonosító
-+Name[is]=Notandanafn
+ Name[is]=Notandanafn
  Name[it]=Account utente
-+Name[ja]=ユーザアカウント
+ Name[ja]=ユーザアカウント
+ Name[nb]=Brukerkonto
  Name[nl]=Gebruikersaccount
++Name[nn]=Brukarkonto
  Name[pl]=Konto użytkownika
  Name[pt]=Conta do Utilizador
-@@ -38,11 +41,14 @@
+ Name[pt_BR]=Conta de Usuário
+@@ -44,6 +46,7 @@
+ Name[sr@Latn]=Korisnički nalog
  Name[sv]=Användarkonto
  Name[ta]=பயனர் கனக்கு 
++Name[tg]=Ҳисоби Корванд
  Name[tr]=Kullanıcı Hesabı
-+Name[uk]=Рахунок користувача
+ Name[uk]=Рахунок користувача
  Name[uz]=Фойдаланувчининг ҳисоби
- Name[wa]=Conte di l' uzeu
- Name[xx]=xxUser Accountxx
-+Name[zh_CN]=用户账户
- Comment=Change your account information
- Comment[bg]=Промяна на потребителската информацията за акаунта
-+Comment[bs]=Promijenite informacije vašeg računa
- Comment[ca]=Canvia la informació del vostre compte d'usuari
- Comment[cs]=Změna uživatelského účtu
- Comment[cy]=Newid eich gwybodaeth cyfrif
-@@ -55,7 +61,9 @@
- Comment[fr]=Changer les informations de votre compte
+@@ -66,6 +69,7 @@
+ Comment[ga]=Athraigh sonruithe do chuntais
+ Comment[gl]=Cambia-la información da súa conta
  Comment[hi]=अपनी खाता जानकारी बदलें
++Comment[hr]=Promijenite podatke vašeg korisničkog računa
  Comment[hu]=A felhasználóazonosító jellemzőinek megváltoztatása
-+Comment[is]=Breyta upplýsingum um notandanafnið
+ Comment[is]=Breyta upplýsingum um notandanafnið
  Comment[it]=Cambia le informazioni dell'account
-+Comment[ja]=アカウント情報を変更
+@@ -73,6 +77,7 @@
  Comment[ms]=Menukar maklumat akaun anda
+ Comment[nb]=Endre kontoinformasjon
  Comment[nl]=Uw gebruikersinformatie wijzigen
++Comment[nn]=Endra kontoinformasjon
  Comment[pl]=Zmiana informacji dla Twojego konta
-@@ -69,11 +77,14 @@
+ Comment[pt]=Alterar a informação da sua conta
+ Comment[pt_BR]=Alterar as informações da sua conta
+@@ -84,6 +89,7 @@
+ Comment[sr@Latn]=Izmenite informacije o vašem nalogu
  Comment[sv]=Ändra din kontoinformation
  Comment[ta]= கனக்கு தகவலை மாற்றவும் 
++Comment[tg]=Маълумоти ҳисоби худро иваз кунед
  Comment[tr]=Hesap bilgilerini değiştir
-+Comment[uk]=Змінити інформацію у вашому рахунку
+ Comment[uk]=Змінити інформацію у вашому рахунку
  Comment[uz]=Ҳисобингиз ҳақида маълумотни ўзгартириш
- Comment[wa]=Candjî l' informåcion di vosse conte
- Comment[xx]=xxChange your account informationxx
-+Comment[zh_CN]=更改您的账户信息
- Keywords=Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account
- Keywords[bg]=парола,пароли,промяна на парола,икона,акаунт,потребител,Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account
-+Keywords[bs]=Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account,šifra,šifre,promijeni šifru,ikona,korisničko ime,račun
- Keywords[ca]=Contrasenyes,Contrasenya,Canvia contrasenya,Icona,cara,kdm,Nom d'usuari,Nom,Compte
- Keywords[cs]=hesla,heslo,změnit heslo,ikona,obličej,kdm,uživatelské jméno,účet
- Keywords[cy]=Cyfrineiriau,Cyfrinair,Newid Cyfrinair,Eicon,wyneb,kdm,Defnydd-enw, Enw,Cyfrif
-@@ -87,6 +98,7 @@
- Keywords[hi]=पासवर्ड,पासवर्ड्स,पासवर्ड बदलें,चिन्ह,चेहरा,केडीएम,उपयोगकर्ता नाम,नाम,खाता
- Keywords[hu]=jelszavak,jelszó,a jelszó megváltoztatása,ikon,arc,kdm,felhasználónév,név,felhasználóazonosító
- Keywords[it]=password,cambio password,icona,faccia,kdm,nome utente,utente,account
-+Keywords[ja]=パスワード,パスワードを変更,アイコン,フェース,kdm,ユーザ名,名前,アカウント
+@@ -112,6 +118,7 @@
  Keywords[ms]=Kata Laluan,Tukar Kata Laluan,ikon,muka,kdn,Nama Pengguna,Nama,Akaun,Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account
+ Keywords[nb]=Passord,Endre passord,Knapp,Ikon,ansikt,kdm,Brukernavn,Navn,Konto
  Keywords[nl]=wachtwoorden,passwords,wachtwoord,password,password wijzigen,wachtwoord wijzigen,pictogram,face,kdm,gebruikersnaam,naam,account
++Keywords[nn]=passord,endra passord,ikon,andlet,ansikt,kdm,brukarnamn,namn,konto
  Keywords[pl]=hasła,hasło,zmiana hasła,ikona,twarz,kdm,nazwa użytkownika,nazwa,konto
-@@ -100,7 +112,9 @@
+ Keywords[pt]=Senhas,Senha,Mudar a Senha,Ícone,Face,kdm,Utilizador,Nome,Conta
+ Keywords[pt_BR]=Senhas,Senha,Alterar Senha,Ícone,face,kdm,Nome de Usuário,Nome,Conta
+@@ -123,6 +130,7 @@
+ Keywords[sr@Latn]=Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account,lozinke,lozinka,promeni lozinku,ikona,korisničko ime,ime,nalog
  Keywords[sv]=Lösenord,Ändra lösenord,Ikon,ansikte,kdm,användarnamn,namn,konto
  Keywords[ta]=நுழைவு சொள், நுழைவு சோல்லை மாற்றவும், சின்னங்கள், பயனர் பெயர், கனக்கு எண்
++Keywords[tg]=Гузарвожаҳо,Гузарвожа,Ивази Гузарвожа,Тасвир,рӯй,kdm,Номи Корванд,Ном,Ҳисоб
  Keywords[tr]=Şifreler,Şifre,Şifre Değiştirme,Simge,yüz,kdm,Kullanıcı Adı,Ad,Hesap
-+Keywords[uk]=паролі,пароль,зміна пароля,піктограма,обличчя,kdm, ім'я користувача,ім'я,рахунок
+ Keywords[uk]=паролі,пароль,зміна пароля,піктограма,обличчя,kdm, ім'я користувача,ім'я,рахунок
  Keywords[wa]=Sicrets,Screts,Sicret,Scret,Mot d' passe,Candjî di scret,Imådjete,vizaedje,kdm, No di l' uzeu,No d' elodjaedje,Conte
- Keywords[xx]=xxPasswords,Password,Change Password,Icon,face,kdm,User Name,Name,Accountxx
-+Keywords[zh_CN]=Passwords,Password,Change Password,Icon,face,kdm,User Name,Name,Account,密码,更改密码,图标,表情,用户名,名称,账户
- 
- Categories=Qt;KDE;X-KDE-settings-system
 diff -urN -x CVS kdeutils.orig/kdf/kcmdf.desktop kdeutils/kdf/kcmdf.desktop
---- kdeutils.orig/kdf/kcmdf.desktop	Thu Jan 15 09:19:02 2004
-+++ kdeutils/kdf/kcmdf.desktop	Fri Jan 30 19:21:21 2004
+--- kdeutils.orig/kdf/kcmdf.desktop	Sun Mar  7 14:26:48 2004
++++ kdeutils/kdf/kcmdf.desktop	Sun Apr 25 01:32:07 2004
 @@ -27,6 +27,7 @@
+ Name[gl]=Dispositivos de Almaceamento
  Name[he]=התקני איחסון
  Name[hi]=भंडारण उपकरण
++Name[hr]=Skladišni uređaji 
  Name[hu]=Tárolóeszközök
-+Name[is]=Minnisbúnaður
+ Name[is]=Minnisbúnaður
  Name[it]=Dispositivi di memorizzazione
- Name[ja]=ストレージデバイス
- Name[lt]=Informacijos saugojimo įrenginiai
-@@ -80,7 +81,7 @@
- Comment[hr]=Prikazuje iskorištenost diskova
- Comment[hu]=Megmutatja a csatlakoztatott (mountolt) eszközök kihasználtságát
- Comment[id]=Perlihatkan penggunanan disk yang sedang dimount
--Comment[is]=kcmdf:  SÃ½nir nÃ½tingu diskanna sem eru tengd skrÃ¡arkerfinu
-+Comment[is]=Sýnir nýtingu diskanna sem eru tengdir skráarkerfinu
- Comment[it]=Mostra l'utilizzo del disco dei dispositivi montati
- Comment[ja]=マウントされているデバイスのディスク使用状況の表示
- Comment[ko]=마운트된 장치의 디스크 사용을 보여줍니다.
+@@ -48,6 +49,7 @@
+ Name[sr@Latn]=Skladišni uređaji
+ Name[sv]=Lagringsenheter
+ Name[ta]= சேமிப்பு சாதனம் 
++Name[tg]=Дастгоҳҳои Захиракунӣ
+ Name[th]=อุปกรณ์เก็บข้อมูล
+ Name[tr]=Depolama Aygıtları
+ Name[uk]=Пристрої накопичення
+@@ -108,6 +110,7 @@
+ Comment[sr@Latn]=Prikazuje se iskorišćenost kapaciteta montiranih diskova
+ Comment[sv]=Visar diskanvändning för monterade enheter
+ Comment[ta]= வட்டு பயன் பாட்டை கான்பிக்கவும் 
++Comment[tg]=Фазоҳои хомро дар дастгоҳи насбшуда нишон диҳед
+ Comment[th]=แสดงการใช้พื้นทีี่ของดิสก์ที่เมานท์ใช้งานอยู่
+ Comment[tr]=Bağlı aygıtların disk kullanımını gösterir
+ Comment[uk]=Показує ступінь використання змонтованих пристроїв
 diff -urN -x CVS kdeutils.orig/kdf/kdf.desktop kdeutils/kdf/kdf.desktop
---- kdeutils.orig/kdf/kdf.desktop	Thu Jan 15 09:19:04 2004
-+++ kdeutils/kdf/kdf.desktop	Fri Jan 30 19:21:23 2004
-@@ -39,6 +39,7 @@
- GenericName[hi]=डिस्क उपयोग देखें
- GenericName[hr]=Prikazuje iskorištenost diska
- GenericName[hu]=Lemezterület-kijelző
-+GenericName[is]=Skoða nýtni á diskum
- GenericName[it]=Mostra lo spazio disco libero
- GenericName[ja]=ディスク使用量の表示
- GenericName[lt]=Žiūrėti disko panaudojimą
+--- kdeutils.orig/kdf/kdf.desktop	Sun Mar  7 14:26:49 2004
++++ kdeutils/kdf/kdf.desktop	Sun Apr 25 01:32:09 2004
+@@ -10,6 +10,7 @@
+ Name[sl]=Prosti disk
+ Name[sv]=Kdiskfree
+ Name[ta]= Kடிஸ்க் இல்வசம் 
++Name[tg]=KДиски Озод
+ Name[th]=การใช้พื้นที่ดิสก์
+ Name[tr]=K Disk Boşluğu
+ Name[ven]=KDisiki ya mahala
+@@ -63,6 +64,7 @@
+ GenericName[sr@Latn]=Pregled iskorišćenosti diskova
+ GenericName[sv]=Visa diskanvändning
+ GenericName[ta]=வட்டு பயன்பாடை பாற்க்கவும்
++GenericName[tg]=Назари Истифодабарии Диск
+ GenericName[th]=แสดงการใช้พื้นที่ดิสก์
+ GenericName[tr]=Disk Kullanımını Görüntüle
+ GenericName[uk]=Перегляд використання диску
 diff -urN -x CVS kdeutils.orig/kdf/kdf.kdelnk kdeutils/kdf/kdf.kdelnk
---- kdeutils.orig/kdf/kdf.kdelnk	Tue Aug 24 22:25:48 1999
-+++ kdeutils/kdf/kdf.kdelnk	Fri Jan 30 19:21:25 2004
-@@ -1,18 +1,82 @@
- # KDE Config File 
- [KDE Desktop Entry]
- Name=KDiskFree
--Name[de]=Kdf: Freier Plattenplatz
-+Name[af]=Kdiskfree
-+Name[eo]=Diskuzo
-+Name[hi]=के-डिस्क-फ्री
-+Name[lv]=KDiskāBrīvs
-+Name[pl]=Wolna przestrzeń na dyskach
- Name[pt_BR]=Disco Livre
--Name[fi]=Levytila
-+Name[sl]=Prosti disk
-+Name[sv]=Kdiskfree
-+Name[ta]= Kடிஸ்க் இல்வசம் 
-+Name[th]=การใช้พื้นที่ดิสก์
-+Name[tr]=K Disk Boşluğu
-+Name[ven]=KDisiki ya mahala
-+Name[xx]=xxKDiskFreexx
-+Name[zh_TW]=磁碟剩餘空間
- Exec=kdf kdf
- Init=kdf -init
- Icon=kdf.xpm
- Type=Application
- DocPath=kcontrol/kdf/index.html
- Comment=Shows the disk usage of the mounted devices
--Comment[de]=Zeigt die Plattenausnutzung von gemounteten Ger�ten
--Comment[fi]=n�ytt�� levytilan k�yt�n liitetyill� laitteilla
--Comment[pt_BR]=Mostra a utiliza��o do disco nos dispositivos montados
-+Comment[af]=Vertoon die disket gebruik van die gekoppelde toestelle
-+Comment[ar]=عرض المساحة المستخدمة من الأقراص المجهزة
-+Comment[az]=Bağlı avadanlıqların disk istifadəsini göstərir
-+Comment[bg]=Показване на използваното пространство на монтираните устройства
-+Comment[br]=Diskouez an egor implijet gant an trobarzhelloÃ¹ marc'het
-+Comment[bs]=Prikazuje iskorištenost diskova na montiranim uređajima
-+Comment[ca]=Mostra l'ús de disc dels dispositius muntats
-+Comment[cs]=Zobrazuje využití připojených diskových zařízení
-+Comment[cy]=Dangos defnydd disg y dyfeisiau mowntiedig
-+Comment[da]=Viser monterede enheders diskforbrug
-+Comment[de]=Zeigt die Plattenbenutzung durch eingebundene Geräte
-+Comment[el]=Εμφανίζει τη χρήση αποθηκευτικού χώρου των προσαρτημένων συσκευών
-+Comment[eo]=Montras la kapacitojn de la kroĉitaj aparatoj
-+Comment[es]=Muestra el uso del disco en los dispositivos montados
-+Comment[et]=Ühendatud seadmete kettakasutuse vaatamine
-+Comment[eu]=Montatutak dauden diskoen erabilera erakusten du
-+Comment[fi]=Näyttää levynkäytön liitetyillä laitteilla
-+Comment[fr]=Affiche l'espace utilisé sur les périphériques montés
-+Comment[gl]=Amosa o uso do disco dos dispositivos montados
-+Comment[he]=מידע על השימוש בנפח האיחסון של ההתקנים המחוברים
-+Comment[hi]=माउन्टेड उपकरणों के डिस्क उपयोग दिखाता है
-+Comment[hr]=Prikazuje iskorištenost diskova
-+Comment[hu]=Megmutatja a csatlakoztatott (mountolt) eszközök kihasználtságát
-+Comment[id]=Perlihatkan penggunanan disk yang sedang dimount
-+Comment[is]=Sýnir nýtingu diskanna sem eru tengdir skráarkerfinu
-+Comment[it]=Mostra l'utilizzo del disco dei dispositivi montati
-+Comment[ja]=マウントされているデバイスのディスク使用状況の表示
-+Comment[ko]=마운트된 장치의 디스크 사용을 보여줍니다.
-+Comment[lt]=Rodo sumontuotų įrenginių disko vietos panaudojimą
-+Comment[lv]=Rāda piemontēto iekārtu diska izlietošanu
-+Comment[mk]=Ја покажува пополнетоста на монтираните уреди
-+Comment[ms]=Memaparkan penggunaan cakera pada peranti yang dilekapkan
-+Comment[mt]=Juri kemm qed jintuża mid-diski mmuntati
-+Comment[nb]=Viser brukt diskplass på de monterte enhetene
-+Comment[nl]=Toont het schijfgebruik van de aangekoppelde bestandssystemen
-+Comment[nn]=Viser diskbruken for monterte einingar
-+Comment[pl]=Pokazuje wykorzystanie przestrzeni dyskowej na zamontowanych urządzeniach
-+Comment[pt]=Mostra o espaço ocupado nos dispositivos montados
-+Comment[pt_BR]=Mostra a utilização do disco nos dispositivos montados
-+Comment[ro]=Afişează utilizarea spaţiului pentru dispozitivele montate
-+Comment[ru]=Показывает свободное место на смонтированных устройствах
-+Comment[sk]=Ukazuje využité miesto na pripojených diskových zariadeniach
-+Comment[sl]=Prikaže porabo diska v priklopljenih napravah
-+Comment[sr]=Приказује се искоришћеност капацитета монтираних дискова
-+Comment[sv]=Visar diskanvändning för monterade enheter
-+Comment[ta]= வட்டு பயன் பாட்டை கான்பிக்கவும் 
-+Comment[th]=แสดงการใช้พื้นทีี่ของดิสก์ที่เมานท์ใช้งานอยู่
-+Comment[tr]=Bağlı aygıtların disk kullanımını gösterir
-+Comment[uk]=Показує ступінь використання змонтованих пристроїв
-+Comment[ven]=I sumbedza mashumisele a maano o gonyiswaho
-+Comment[vi]=Hiển thềEtrạng thái sử dụng đĩa của các thiết bềEđã được mount 
-+Comment[wa]=Mostere l' eployaedje des deurès plakes ki sont montêyes
-+Comment[xx]=xxShows the disk usage of the mounted devicesxx
-+Comment[zh_CN]=显示挂接设备的磁盘使用率
-+Comment[zh_TW]=顯示連接的設備的磁碟使用率
-+Comment[zu]=Ikhombisa ukusebenziswa kwediski yamathuluzi okunyuka
- Terminal=0
- MiniIcon=kdf.xpm
--SwallowTitle=KDiskFree
-\ No newline at end of file
-+SwallowTitle=KDiskFree
+--- kdeutils.orig/kdf/kdf.kdelnk	Sun Mar  7 14:26:52 2004
++++ kdeutils/kdf/kdf.kdelnk	Sun Apr 25 01:32:11 2004
+@@ -10,6 +10,7 @@
+ Name[sl]=Prosti disk
+ Name[sv]=Kdiskfree
+ Name[ta]= Kடிஸ்க் இல்வசம் 
++Name[tg]=KДиски Озод
+ Name[th]=การใช้พื้นที่ดิสก์
+ Name[tr]=K Disk Boşluğu
+ Name[ven]=KDisiki ya mahala
+@@ -69,6 +70,7 @@
+ Comment[sr@Latn]=Prikazuje se iskorišćenost kapaciteta montiranih diskova
+ Comment[sv]=Visar diskanvändning för monterade enheter
+ Comment[ta]= வட்டு பயன் பாட்டை கான்பிக்கவும் 
++Comment[tg]=Фазоҳои хомро дар дастгоҳи насбшуда нишон диҳед
+ Comment[th]=แสดงการใช้พื้นทีี่ของดิสก์ที่เมานท์ใช้งานอยู่
+ Comment[tr]=Bağlı aygıtların disk kullanımını gösterir
+ Comment[uk]=Показує ступінь використання змонтованих пристроїв
+diff -urN -x CVS kdeutils.orig/kdf/kwikdisk.cpp kdeutils/kdf/kwikdisk.cpp
+--- kdeutils.orig/kdf/kwikdisk.cpp	Wed Jan  7 23:28:06 2004
++++ kdeutils/kdf/kwikdisk.cpp	Mon Apr 12 18:33:11 2004
+@@ -425,17 +425,17 @@
+     i18n("&Start KDiskFree"), this, SLOT(startKDF()),0);
+ 
+   mPopupMenu->insertItem(
+-    BarIcon( "configure" ),
++    SmallIcon( "configure" ),
+     i18n("&Configure KwikDisk..."), this, SLOT(settingsBtnClicked()),0);
+ 
+   mPopupMenu->insertItem(
+-    BarIcon( "help" ),
++    SmallIcon( "help" ),
+     KStdGuiItem::help().text(), this, SLOT(invokeHelp()),0);
+ 
+   mPopupMenu->insertSeparator();
+ 
+   mPopupMenu->insertItem(
+-    BarIcon( "exit" ),
++    SmallIcon( "exit" ),
+     KStdGuiItem::quit().text(), this, SLOT(quit()) );
+ 
+   mPopupMenu->move(-1000,-1000);
 diff -urN -x CVS kdeutils.orig/kdf/kwikdisk.desktop kdeutils/kdf/kwikdisk.desktop
---- kdeutils.orig/kdf/kwikdisk.desktop	Thu Jan 15 09:19:06 2004
-+++ kdeutils/kdf/kwikdisk.desktop	Fri Jan 30 19:21:27 2004
-@@ -5,7 +5,6 @@
- Name[eo]=Diskokroĉilo
- Name[et]=Ketaste ühendamine
- Name[hi]=क्विक-डिस्क
--Name[is]=DiskatÃ³l
- Name[ja]=マウントツール
- Name[sv]=Snabbdisk
- Name[ta]=  கிவிக் வட்டு 
-@@ -34,6 +33,7 @@
+--- kdeutils.orig/kdf/kwikdisk.desktop	Sun Mar  7 14:26:54 2004
++++ kdeutils/kdf/kwikdisk.desktop	Sun Apr 25 01:32:13 2004
+@@ -34,6 +34,7 @@
+ GenericName[gl]=Utilidade para Medios Extraíbeis
  GenericName[he]=כלי מדיה נשלפת
  GenericName[hi]=हटाया जा सकने वाला मीडिया यूटिलिटी
++GenericName[hr]=Alat za uklonjive medije
  GenericName[hu]=Lemezcsatlakoztató
-+GenericName[is]=Diskatól
+ GenericName[is]=Diskatól
  GenericName[it]=Accessorio per i supporti rimovibili
- GenericName[ja]=リムーバブルメディアユーティリティ
- GenericName[lt]=Keičiamų diskų ar kitų įrenginių programa
-@@ -44,6 +44,7 @@
- GenericName[pl]=Narzędzie do wyjmowalnych dysków
- GenericName[pt]=Utilitário para Media Removível
- GenericName[pt_BR]=Utilitário de Mídia Removível
-+GenericName[ro]=Utilitar ejectare mediu
- GenericName[ru]=Утилита для сменных накопителей
- GenericName[sk]=Nástroj pre vymeniteľné médiá
- GenericName[sl]=Pripomoček za izmenjevalne medije
+@@ -55,6 +56,7 @@
+ GenericName[sr@Latn]=Alat za uklonjive medije
+ GenericName[sv]=Verktyg för flyttbar media
+ GenericName[ta]= நீக்ககூடிய மீடிய பயன்கூறு  
++GenericName[tg]=Барномаи Пуштибон барои Расонаҳои Ҷойивазшаванда
+ GenericName[th]=เครื่องมือจัดการสื่อที่ถอดได้
+ GenericName[tr]=Çıkartılabilir Aygıt
+ GenericName[uk]=Утиліта змінних носіїв
 diff -urN -x CVS kdeutils.orig/kedit/KEdit.desktop kdeutils/kedit/KEdit.desktop
---- kdeutils.orig/kedit/KEdit.desktop	Fri Jan 16 08:09:24 2004
-+++ kdeutils/kedit/KEdit.desktop	Sat Feb  7 13:47:41 2004
-@@ -4,6 +4,7 @@
- MimeType=text/plain
- GenericName=Simple Text Editor
- GenericName[bg]=Текстов редактор
-+GenericName[bs]=Jednostavni tekst editor
- GenericName[ca]=Editor de text
- GenericName[cs]=Jednoduchý textový editor
- GenericName[cy]=Golygydd Testun Syml
-@@ -16,7 +17,9 @@
- GenericName[fr]=Éditeur de texte élémentaire
- GenericName[hi]=सादा पाठ संपादक
- GenericName[hu]=Egyszerű szövegszerkesztő
-+GenericName[is]=Einfaldur textaritill
+--- kdeutils.orig/kedit/KEdit.desktop	Sun Mar  7 14:26:56 2004
++++ kdeutils/kedit/KEdit.desktop	Sun Apr 25 01:32:15 2004
+@@ -23,8 +23,9 @@
  GenericName[it]=Semplice editor di testi
-+GenericName[ja]=シンプルなテキストエディタ
+ GenericName[ja]=シンプルなテキストエディタ
  GenericName[ms]=Penyunting Teks Ringkas
+-GenericName[nb]=Enkel tekstbehandler
++GenericName[nb]=Enkelt skriveprogram
  GenericName[nl]=Eenvoudige teksteditor
++GenericName[nn]=Enkelt skriveprogram
  GenericName[pl]=Prosty edytor tekstu
-@@ -29,9 +32,11 @@
+ GenericName[pt]=Editor de Texto Simples
+ GenericName[pt_BR]=Editor de Texto Simples
+@@ -35,6 +36,7 @@
  GenericName[sr]=Једноставни едитор текста
+ GenericName[sr@Latn]=Jednostavni editor teksta
  GenericName[sv]=Enkel texteditor
++GenericName[tg]=Муҳаррири Оддии Матн
  GenericName[tr]=Basit Metin Düzenleyici
-+GenericName[uk]=Простий редактор текстів
+ GenericName[uk]=Простий редактор текстів
  GenericName[uz]=Оддий матн таҳрирчи
- GenericName[wa]=Simpe aspougneu di tecse
- GenericName[xx]=xxSimple Text Editorxx
-+GenericName[zh_CN]=简单文本编辑器
- Exec=kedit  -caption "%c" %i %m %u
- Icon=kedit
- TerminalOptions=
+@@ -58,6 +60,7 @@
+ Name[pl]=Edytor
+ Name[sv]=Kedit
+ Name[ta]= Kதொகுப்பு
++Name[tg]=KТаҳрир
+ Name[th]=แก้ไขข้อความ
+ Name[ven]=U sengulusa ha K
+ Name[xh]=Abahleli Be K
+diff -urN -x CVS kdeutils.orig/kedit/kedit.cpp kdeutils/kedit/kedit.cpp
+--- kdeutils.orig/kedit/kedit.cpp	Thu Nov 20 15:09:52 2003
++++ kdeutils/kedit/kedit.cpp	Wed Apr 14 13:45:01 2004
+@@ -1,6 +1,6 @@
+   /*
+ 
+-    $Id$
++    $Id$
+ 
+     Copyright (C) 1997 Bernd Johannes Wuebben
+                        wuebben@math.cornell.edu
+@@ -168,9 +168,9 @@
+ 
+   right_mouse_button->insertItem (i18n("Open..."),
+ 				  this, 	SLOT(file_open()));
+-  right_mouse_button->insertItem (i18n("Save"),
++  right_mouse_button->insertItem (SmallIcon("filesave"),i18n("Save"),
+ 				  this, 	SLOT(file_save()));
+-  right_mouse_button->insertItem (i18n("Save As..."),
++  right_mouse_button->insertItem (SmallIcon("filesaveas"),i18n("Save As..."),
+ 				  this, SLOT(file_save_as()));
+   right_mouse_button->insertSeparator(-1);
+   right_mouse_button->insertItem(i18n("Copy"),
+@@ -828,7 +828,7 @@
+ 
+   initSpellConfig();
+   KConfigDialog* dialog = new SettingsDialog(this, "settings", Prefs::self(), kspellconfigOptions);
+-  
++
+   connect(dialog, SIGNAL(settingsChanged()), this, SLOT(updateSettings()));
+   dialog->show();
+ }
+@@ -1352,10 +1352,10 @@
+   addPage(color, i18n("Color"), "colorize", i18n("Text Color in Editor Area"));
+ 
+   // Spelling
+-  addPage(spellConfig, i18n("Spelling"), 
++  addPage(spellConfig, i18n("Spelling"),
+   	  "spellcheck", i18n("Spelling Checker"));
+   connect(spellConfig, SIGNAL(configChanged()), this, SLOT(slotSpellConfigChanged()));
+- 
++
+   // Miscellaneous
+   Misc *miscOptions = new Misc(0, "MiscSettings");
+   addPage(miscOptions, i18n("Miscellaneous"), "misc");
 diff -urN -x CVS kdeutils.orig/kedit/kedit.kdelnk kdeutils/kedit/kedit.kdelnk
---- kdeutils.orig/kedit/kedit.kdelnk	Fri Oct 30 11:59:04 1998
-+++ kdeutils/kedit/kedit.kdelnk	Sat Feb  7 13:47:43 2004
-@@ -1,15 +1,31 @@
- # KDE Config File 
- [KDE Desktop Entry]
- Name=Editor
--Name[is_IS]=Ritill
--Name[pl]=Edytor
--Name[pt]=Editor
-+Name[et]=Redaktor
-+Name[fr]=Éditeur
-+Name[hu]=Szerkesztő
-+Name[is]=Ritill
-+Name[ja]=エディタ
-+Name[sr]=Уређивач
+--- kdeutils.orig/kedit/kedit.kdelnk	Tue Mar 23 14:00:47 2004
++++ kdeutils/kedit/kedit.kdelnk	Sun Apr 25 01:32:17 2004
+@@ -10,11 +10,14 @@
+ Name[hu]=Szerkesztő
+ Name[is]=Ritill
+ Name[ja]=エディタ
++Name[nb]=Skriveprogram
++Name[nn]=Skriveprogram
+ Name[pl]=Edytor
+ Name[ru]=Редактор
+ Name[sl]=Urejevalnik
+ Name[sr]=Уређивач
+ Name[sr@Latn]=Uređivač
++Name[tg]=Муҳаррир
+ Name[uk]=Редактор
+ Name[zh_CN]=编辑器
  Exec=kedit %u
- Icon=kedit.xpm
- DocPath=kedit/kedit.html
- Comment=A Simple Text Editor
--Comment[de]=Ein einfacher Text-Editor
--Comment[pl]=Prosty edytor tekstu
--Comment[pt]=Um editor de texto simples
-+Comment[ca]=Un editor de text simple
-+Comment[da]=En simpel teksteditor
-+Comment[de]=Einfacher Texteditor
-+Comment[es]=Editor de texto sencillo
-+Comment[et]=Lihtne tekstiredaktor
-+Comment[fr]=Un éditeur de texte simple
-+Comment[hu]=Egyszerű szövegszerkesztő
-+Comment[is]=Einfaldur textaritill
-+Comment[ja]=シンプルなテキストエディタ
-+Comment[nl]=Eenvoudige teksteditor
-+Comment[pt]=Um Editor de Texto Simples
-+Comment[pt_BR]=Editor de Texto Simples
-+Comment[ro]=Un editor simplu de text
-+Comment[sk]=Jednoduchý textový editor
-+Comment[sr]=Једноставни уређивач текста
-+Comment[sv]=En enkel texteditor
+@@ -37,7 +40,9 @@
+ Comment[is]=Einfaldur textaritill
+ Comment[it]=Un semplice editor di testi
+ Comment[ja]=シンプルなテキストエディタ
++Comment[nb]=Et enkelt skriveprogram
+ Comment[nl]=Eenvoudige teksteditor
++Comment[nn]=Eit enkelt skriveprogram
+ Comment[pl]=Prosty edytor tekstu
+ Comment[pt]=Um Editor de Texto Simples
+ Comment[pt_BR]=Editor de Texto Simples
+@@ -48,6 +53,7 @@
+ Comment[sr]=Једноставни уређивач текста
+ Comment[sr@Latn]=Jednostavni uređivač teksta
+ Comment[sv]=En enkel texteditor
++Comment[tg]=Муҳаррири Оддии Матн
+ Comment[uk]=Простий редактор текстів
+ Comment[zh_CN]=简单文本编辑器
  Terminal=0
- Type=Application
+diff -urN -x CVS kdeutils.orig/kedit/ktextfiledlg.cpp kdeutils/kedit/ktextfiledlg.cpp
+--- kdeutils.orig/kedit/ktextfiledlg.cpp	Thu Nov 20 15:09:52 2003
++++ kdeutils/kedit/ktextfiledlg.cpp	Thu Apr 29 18:21:05 2004
+@@ -1,17 +1,17 @@
+ // -*- c++ -*-
+ /* This file is part of the KDE libraries
+     Copyright (C) 2001 Wolfram Diestel <wolfram@steloj.de>
+- 
++
+     This library is free software; you can redistribute it and/or
+     modify it under the terms of the GNU Library General Public
+     License as published by the Free Software Foundation; either
+     version 2 of the License, or (at your option) any later version.
+- 
++
+     This library is distributed in the hope that it will be useful,
+     but WITHOUT ANY WARRANTY; without even the implied warranty of
+     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+     Library General Public License for more details.
+- 
++
+     You should have received a copy of the GNU Library General Public License
+     along with this library; see the file COPYING.LIB.  If not, write to
+     the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+@@ -26,23 +26,23 @@
+ #include <kcharsets.h>
+ #include <kdiroperator.h>
+ #include <krecentdocument.h>
+-#include <ktoolbar.h>   
++#include <ktoolbar.h>
+ 
+ #include "ktextfiledlg.h"
+ 
+-KTextFileDialog::KTextFileDialog(const QString& startDir, 
++KTextFileDialog::KTextFileDialog(const QString& startDir,
+ 				 const QString& filter,
+-				 QWidget *parent, const char* name, 
++				 QWidget *parent, const char* name,
+ 				 bool modal)
+   : KFileDialog(startDir, filter, parent, name, modal)
+ {
+   /*
+   // insert encoding action into toolbar
+-  KSelectAction *mEncoding = new KSelectAction( 
++  KSelectAction *mEncoding = new KSelectAction(
+       i18n( "Set &Encoding" ), 0, this,
+       SLOT( slotSetEncoding() ), this,
+       "encoding" );
+-  
++
+   QStringList encodings = KGlobal::charsets()->descriptiveEncodingNames();
+   encodings.prepend( i18n( "Default encoding" ) );
+   mEncoding->setItems( encodings );
+@@ -61,12 +61,12 @@
+   mEncoding->plug( tb, 7 );
+   */
+ 
+-  KAction* mEncoding = new KAction( 
++  KAction* mEncoding = new KAction(
+       i18n("Select Encoding..."), 0,
+       this, SLOT( slotShowEncCombo() ), this, "encoding");
+ 
+   mEncoding->setIcon( QString::fromLatin1("charset") );
+- 
++
+   KToolBar *tb = toolBar();
+   mEncoding->plug( tb, pathComboIndex() - 1 );
+ }
+@@ -87,7 +87,7 @@
+   QLabel *label;
+   QComboBox *encCombo;
+   QVBox *vbox;
+-  
++
+   // Create widgets, and display using geometry management
+   encDlg = new KDialogBase( this,
+ 			    "Encoding Dialog", true, i18n("Select Encoding"),
+@@ -98,11 +98,11 @@
+   label = new QLabel( vbox );
+   label->setAlignment( AlignLeft | AlignVCenter );
+   label->setText(i18n("Select encoding for text file: "));
+-  
++
+   encCombo = new QComboBox(vbox);
+   encCombo->setInsertionPolicy(QComboBox::NoInsertion);
+   encCombo->insertItem(i18n("Default Encoding"));
+-  
++
+   QStringList encodings = KGlobal::charsets()->descriptiveEncodingNames();
+   encodings.prepend( i18n( "Default encoding" ) );
+   encCombo->insertStringList( encodings );
+@@ -110,21 +110,21 @@
+   QStringList::Iterator it;
+   int i = 1;
+   for( it = encodings.begin(); it != encodings.end(); ++it) {
+-    
++
+     if ( (*it).contains( encoding() ) ) {
+       encCombo->setCurrentItem( i );
+       break;
+     }
+-    
++
+     i++;
+   }
+-  
++
+   connect( encDlg->actionButton( KDialogBase::Ok ), SIGNAL(clicked()),
+ 	   encDlg, SLOT(accept()) );
+   connect( encDlg->actionButton( KDialogBase::Cancel ), SIGNAL(clicked()),
+ 	   encDlg, SLOT(reject()) );
+-  
+-  encDlg->setMinimumSize( 300, 120); 
++
++  encDlg->setMinimumSize( 300, 120);
+ 
+   if ( encDlg->exec() == QDialog::Accepted ) {
+     // set encoding
+@@ -136,25 +136,26 @@
+     }
+   }
+ 
+-  
++
+   delete encDlg;
+ }
+ 
+ 
+ KURL KTextFileDialog::getOpenURLwithEncoding(
+-     const QString& startDir, 
++     const QString& startDir,
+      const QString& filter,
+-     QWidget *parent, 
++     QWidget *parent,
+      const QString& caption,
+      const QString& encoding)
+ {
+   KTextFileDialog dlg(startDir, filter, parent, "filedialog", true);
+   dlg.setEncoding(encoding);
+-  
++  dlg.setOperationMode( Opening );
++
+   dlg.setCaption(caption.isNull() ? i18n("Open") : caption);
+   dlg.ops->clearHistory();
+   dlg.exec();
+-  
++
+   KURL url = dlg.selectedURL();
+   if (url.isValid()) {
+     if ( url.isLocalFile() )
+@@ -165,7 +166,7 @@
+ 
+   // append encoding to the URL params
+   url.setFileEncoding(dlg.encoding());
+-  
++
+   return url;
+ }
+ 
+@@ -177,12 +178,13 @@
+ {
+   KTextFileDialog dlg(dir, filter, parent, "filedialog", true);
+   dlg.setEncoding(encoding);
++  dlg.setOperationMode( Saving );
+ 
+   dlg.setCaption(caption.isNull() ? i18n("Save As") : caption);
+   dlg.setKeepLocation( true );
+-  
++
+   dlg.exec();
+-  
++
+   KURL url = dlg.selectedURL();
+   if (url.isValid()) {
+     if ( url.isLocalFile() )
+@@ -197,7 +199,7 @@
+   return url;
+ }
+ 
+-#include "ktextfiledlg.moc" 
++#include "ktextfiledlg.moc"
+ 
+ 
+ 
 diff -urN -x CVS kdeutils.orig/kfloppy/KFloppy.desktop kdeutils/kfloppy/KFloppy.desktop
---- kdeutils.orig/kfloppy/KFloppy.desktop	Thu Jan 15 09:19:10 2004
-+++ kdeutils/kfloppy/KFloppy.desktop	Fri Feb  6 13:13:15 2004
-@@ -25,9 +25,9 @@
- GenericName[hr]=Formatiranje disketa
- GenericName[hu]=Floppy-formázó
- GenericName[id]=Pemformat disket
--GenericName[is]=kfloppy:  TÃ³l til aÃ° forsnÃ­Ã°a diskettur
-+GenericName[is]=Tól til að forsníða disklinga
- GenericName[it]=Formattatore di dischetti
--GenericName[ja]=フロッピーのフォーマット
-+GenericName[ja]=フロッピーをフォーマット
- GenericName[ko]=플로피 디스크를 포맷해주는 도구
- GenericName[lt]=Diskelio formatavimas
- GenericName[lv]=Diskešu Formatētājs
+--- kdeutils.orig/kfloppy/KFloppy.desktop	Sun Mar  7 14:27:00 2004
++++ kdeutils/kfloppy/KFloppy.desktop	Sun Apr 25 01:32:19 2004
+@@ -49,6 +49,7 @@
+ GenericName[sr@Latn]=Program za formatiranje disketa
+ GenericName[sv]=Formaterar disketter
+ GenericName[ta]=ஆர்ச்சிவிங் நெகிழ் வட்டு 
++GenericName[tg]=Шаклбанднамоии Диски Нарм
+ GenericName[th]=เครื่องมือฟอร์แมตแผ่นฟลอปปี้้
+ GenericName[tr]=Disket Biçimlendirici
+ GenericName[uk]=Відформатувати дискету
+@@ -72,6 +73,7 @@
+ Name[pt_BR]=Disquete
+ Name[sv]=Kfloppy
+ Name[ta]=கெநெகிழ் 
++Name[tg]=KДиски Нарм
+ Name[th]=ฟอร์แมตฟลอปปี้
+ Name[tr]=Disket Biçimlendirici
+ Name[wa]=KPlakete
+diff -urN -x CVS kdeutils.orig/kfloppy/floppy.cpp kdeutils/kfloppy/floppy.cpp
+--- kdeutils.orig/kfloppy/floppy.cpp	Sat Nov  8 13:38:29 2003
++++ kdeutils/kfloppy/floppy.cpp	Wed Apr 14 13:45:01 2004
+@@ -160,7 +160,7 @@
+ 	helpbutton->setPopup(helpMenu->menu());
+ 	v3->addWidget( helpbutton );
+ 
+-	quitbutton = new KPushButton( KGuiItem( i18n( "&Quit" ), "exit" ), this );
++	quitbutton = new KPushButton( KStdGuiItem::quit(), this );
+ 	quitbutton->setAutoRepeat( false );
+ 	connect(quitbutton,SIGNAL(clicked()),this,SLOT(quit()));
+ 	 v3->addWidget( quitbutton );
+@@ -231,9 +231,9 @@
+   {
+     drive=1;
+   }
+-  
++
+   blocks=-1;
+-    
++
+     if( densityComboBox->currentText() == i18n("3.5\" 1.44MB")){
+       blocks = 1440;
+     }
+@@ -249,8 +249,8 @@
+     if( densityComboBox->currentText() == i18n("5.25\" 360KB")){
+       blocks = 360;
+       }
+-  
+-  
++
++
+   return true;
+ }
+ 
+@@ -264,7 +264,7 @@
+ 
+   bool ok = (drive>=0);
+   if (ok)
+-    deviceComboBox->setCurrentItem(drive);  
++    deviceComboBox->setCurrentItem(drive);
+   return ok;
+ }
+ 
+@@ -283,10 +283,10 @@
+ 	fruitful = false;
+ #endif
+ #endif
+-	
++
+   if (!fruitful) {
+     formatbutton->setEnabled(false);
+-    KMessageBox::error(this, 
++    KMessageBox::error(this,
+     	i18n("KFloppy cannot find the support programs needed "
+ 		"for sensible operation."));
+   }
+@@ -328,7 +328,7 @@
+ 
+   formating = false;
+   quickerase = false;
+-  
++
+   if (formatActions)
+   {
+     formatActions->quit();
+@@ -354,10 +354,10 @@
+   }
+ 
+   frame->clear();
+-  
+-  if (KMessageBox::warningContinueCancel(0, 
++
++  if (KMessageBox::warningContinueCancel(0,
+    i18n("Formatting will erase all data on the disk.\n"
+-        "Are you sure you wish to proceed?"), i18n("Proceed?") ) != 
++        "Are you sure you wish to proceed?"), i18n("Proceed?") ) !=
+ 	KMessageBox::Continue)
+         {
+ 	return;
+@@ -374,7 +374,7 @@
+ 
+ 	if (formatActions) delete formatActions;
+ 	formatActions = new KFActionQueue(this);
+-	
++
+ 	connect(formatActions,SIGNAL(status(const QString &,int)),
+ 		this,SLOT(formatStatus(const QString &,int)));
+ 	connect(formatActions,SIGNAL(done(KFAction *,bool)),
+@@ -393,7 +393,7 @@
+ 		f->configure(verifylabel->isChecked());
+ 		formatActions->queue(f);
+ 	}
+-	
++
+ 	if (filesystemComboBox->currentItem() == 0)
+ 	{
+ 		FATFilesystem *f = new FATFilesystem(this);
+@@ -421,7 +421,7 @@
+ 		f = new UFSFilesystem(this);
+ #endif
+ #endif
+-		
++
+ 		if (f)
+ 		{
+ 			connect(f,SIGNAL(status(const QString &,int)),
+@@ -433,8 +433,8 @@
+ 		}
+ 	}
+ 
+-	
+-		
++
++
+ 	formatActions->exec();
+ }
+ 
+@@ -442,7 +442,7 @@
+ {
+ 	if (!s.isEmpty())
+ 		frame->setText(s);
+-	
++
+ 	if ((0<=p) && (p<=100))
+ 		progress->setValue(p);
+ }
+@@ -472,7 +472,7 @@
+   if (increment)
+   {
+     counter ++;
+-    progress->setValue(counter);     
++    progress->setValue(counter);
+   }
+ 
+   kdDebug(2002) << "STDOUT: " << formatstring << endl;
+@@ -513,7 +513,7 @@
+ 		"have selected a valid floppy drive.");
+ 
+     KMessageBox::error(this, str);
+-    
++
+     reset();
+     return;
+ 
+@@ -541,10 +541,10 @@
+   fsstring += mybuffer;
+   if( fsstring.find('\n') == -1)
+     return;
+-  
++
+   QString string ;
+   QString newstring = fsstring;
+-  
++
+ 
+   int i;
+ 
+@@ -580,12 +580,12 @@
+     if(findKeyWord(fsstring,"EXIT"))
+       counter ++;
+ 
+-    
++
+   }
+ 
+   fsstring = newstring;
+ 
+-  progress->setValue(counter);     
++  progress->setValue(counter);
+ 
+   kdDebug(2002) << "STDOUT: " << mybuffer << endl;
+ }
+@@ -642,7 +642,7 @@
+  		"have selected a valid floppy drive.");
+ 
+     KMessageBox::sorry(this, str);
+-    
++
+     reset();
+     return;
+   }
+@@ -669,9 +669,9 @@
+   lcquick = quickerase;
+ 
+   mytimer->stop();
+-  
++
+   reset();
+-  
++
+   if(abort)
+     return;
+ 
+@@ -700,7 +700,7 @@
+ 
+   QString wordstring = word;
+   len = wordstring.length();
+-    
++
+   while( (index = string.find(word)) >= 0)
+   {
+     count++;
 diff -urN -x CVS kdeutils.orig/kgpg/encryptfile.desktop kdeutils/kgpg/encryptfile.desktop
---- kdeutils.orig/kgpg/encryptfile.desktop	Fri Jan 16 08:09:26 2004
-+++ kdeutils/kgpg/encryptfile.desktop	Fri Feb  6 13:13:22 2004
-@@ -5,6 +5,7 @@
- [Desktop Action encrypt]
- Name=Encrypt File
- Name[bg]=Шифроване на файл
-+Name[bs]=Šifriraj datoteku
- Name[ca]=Xifra fitxer
- Name[cs]=Zašifrovat soubor
- Name[cy]=Cêl-ysgrifo Ffeil
-@@ -17,7 +18,9 @@
+--- kdeutils.orig/kgpg/encryptfile.desktop	Sun Mar  7 14:27:02 2004
++++ kdeutils/kgpg/encryptfile.desktop	Sun Apr 25 01:32:21 2004
+@@ -18,13 +18,14 @@
  Name[fr]=Chiffrer le fichier
- Name[hi]=एनक्रिप्ट फाइल
+ Name[ga]=Incriptigh Comhad
+ Name[gl]=Cifrar Ficheiro
+-Name[hi]=एनक्रिप्ट फाइल
++Name[hi]=एनक्रिप्ट फ़ाइल
  Name[hu]=Fájl titkosítása
-+Name[is]=Dulrita skrá
+ Name[is]=Dulrita skrá
  Name[it]=Cifratura file
-+Name[ja]=ファイルを暗号化
+ Name[ja]=ファイルを暗号化
+ Name[nb]=Krypter fil
  Name[nl]=Bestand versleutelen
++Name[nn]=Krypter fil
  Name[pl]=Zaszyfruj plik
  Name[pt]=Cifrar Ficheiro
-@@ -30,8 +33,10 @@
+ Name[pt_BR]=Criptografar Arquivo
+@@ -36,6 +37,7 @@
+ Name[sr@Latn]=Šifruj fajl
  Name[sv]=Kryptera fil
  Name[ta]= மறைவிலக்கம் கோபு
++Name[tg]=Рамзкунонии Файл
  Name[tr]=Dosya Şifrele
-+Name[uk]=Зашифрувати файл
+ Name[uk]=Зашифрувати файл
  Name[wa]=Ecripter fitchî
- Name[xx]=xxEncrypt Filexx
-+Name[zh_CN]=加密文件
- 
- Exec=kgpg -e %F
- 
 diff -urN -x CVS kdeutils.orig/kgpg/encryptfolder.desktop kdeutils/kgpg/encryptfolder.desktop
---- kdeutils.orig/kgpg/encryptfolder.desktop	Fri Jan 16 08:09:28 2004
-+++ kdeutils/kgpg/encryptfolder.desktop	Sat Feb  7 13:47:45 2004
-@@ -5,6 +5,7 @@
- [Desktop Action encrypt]
- Name=Archive && Encrypt Folder
- Name[bg]=Архивиране и шифроване на директория
-+Name[bs]=Arhiviraj i šifriraj direktorij
- Name[ca]=Arxiva i xifra la carpeta
- Name[cs]=Archivovat a zašifrovat adresář
- Name[cy]=Archifio && Cêl-ysgrifo Plygell
-@@ -17,7 +18,9 @@
+--- kdeutils.orig/kgpg/encryptfolder.desktop	Sat Mar 27 14:14:41 2004
++++ kdeutils/kgpg/encryptfolder.desktop	Sun Apr 25 01:32:23 2004
+@@ -18,13 +18,14 @@
  Name[fr]=Archive puis chiffre le dossier
- Name[hi]=अभिलेख && एनक्रिप्ट फोल्डर
+ Name[ga]=Cuir Fillteán i gCartlann && Incriptigh É
+ Name[gl]=Arquivar && Cifrar Carpeta
+-Name[hi]=अभिलेख && एनक्रिप्ट फोल्डर
++Name[hi]=अभिलेख && एनक्रिप्ट फ़ोल्डर
  Name[hu]=Könyvtár titkosítása és archiválása
-+Name[is]=Pakka og dulrita möppu
+ Name[is]=Pakka og dulrita möppu
  Name[it]=Archivia e cifra cartella
-+Name[ja]=アーカイブ && フォルダを暗号化
+ Name[ja]=アーカイブ && フォルダを暗号化
+ Name[nb]=Arkiver && krypter mappe
  Name[nl]=Map inpakken en versleutelen
++Name[nn]=Arkiver og krypter mappe
  Name[pl]=Zarchiwzuj i zaszyfruj katalog
  Name[pt]=Arquivar e Cifrar a Pasta
-@@ -29,7 +32,9 @@
+ Name[pt_BR]=Arquivo && Diretório criptografado
+@@ -35,6 +36,7 @@
  Name[sr]=Архивирај и шифруј директоријум
+ Name[sr@Latn]=Arhiviraj i šifruj direktorijum
  Name[sv]=Arkivera och kryptera katalog
++Name[tg]=Бойгонӣ && Рамзкунонии Феҳрист
  Name[tr]=Arşiv && Klasör Şifrele
-+Name[uk]=Зробити архів теки та зашифрувати
+ Name[uk]=Зробити архів теки та зашифрувати
  Name[wa]=Fé ene ecriptêye årtchive d' on ridant
- Name[xx]=xxArchive && Encrypt Folderxx
-+Name[zh_CN]=存档并加密文件夹
- 
- Exec=kgpg -e %F
-diff -urN -x CVS kdeutils.orig/kgpg/kgpg.cpp kdeutils/kgpg/kgpg.cpp
---- kdeutils.orig/kgpg/kgpg.cpp	Thu Jan  8 11:20:05 2004
-+++ kdeutils/kgpg/kgpg.cpp	Fri Feb  6 14:23:07 2004
-@@ -114,7 +114,7 @@
- void MyView::encryptDroppedFolder()
- {
- 	compressionScheme=0;
--        kgpgfoldertmp=new KTempFile(QString::null,".tar.gz");
-+        kgpgfoldertmp=new KTempFile(QString::null);
-         kgpgfoldertmp->setAutoDelete(true);
-         if (KMessageBox::warningContinueCancel(0,i18n("<qt>KGpg will now create a temporary archive file:<br><b>%1</b> to process the encryption. The file will be deleted after the encryption is finished.</qt>").arg(kgpgfoldertmp->name()),i18n("Temporary File Creation"),KStdGuiItem::cont(),"FolderTmpFile")==KMessageBox::Cancel)
-                 return;
 diff -urN -x CVS kdeutils.orig/kgpg/kgpg.desktop kdeutils/kgpg/kgpg.desktop
---- kdeutils.orig/kgpg/kgpg.desktop	Fri Jan 16 08:09:30 2004
-+++ kdeutils/kgpg/kgpg.desktop	Sat Feb  7 13:47:47 2004
-@@ -8,6 +8,7 @@
- MimeType=application/pgp-encrypted;application/pgp-signature;application/pgp-keys
- GenericName=Encryption Tool
- GenericName[bg]=Програма за криптиране
-+GenericName[bs]=Alat za šifrovanje
- GenericName[ca]=Eina de xifrat
- GenericName[cs]=Šifrovací nástroj
- GenericName[cy]=Erfyn Cêl-ysgrifo
-@@ -19,10 +20,12 @@
- GenericName[fr]=Outil de cryptage
- GenericName[hi]=एनक्रिप्शन उपकरण
- GenericName[hu]=Titkosítóeszköz
-+GenericName[is]=Dulritunartól
- GenericName[it]=Strumento di crittografia
-+GenericName[ja]=暗号化ツール
+--- kdeutils.orig/kgpg/kgpg.desktop	Sun Mar  7 14:27:05 2004
++++ kdeutils/kgpg/kgpg.desktop	Sun Apr 25 01:32:25 2004
+@@ -28,6 +28,7 @@
+ GenericName[ja]=暗号化ツール
+ GenericName[nb]=Krypteringsverktøy
  GenericName[nl]=Cryptografisch programma
++GenericName[nn]=Krypteringsverktøy
  GenericName[pl]=Narzędzie do szyfrowania
--GenericName[pt]=Ferramenta de Cifragem
-+GenericName[pt]=Ferramenta de Cifra
+ GenericName[pt]=Ferramenta de Cifra
  GenericName[pt_BR]=Ferramenta de Criptografia
- GenericName[ro]=Utilitar de criptare
- GenericName[ru]=Шифрование
-@@ -32,8 +35,11 @@
+@@ -39,6 +40,7 @@
+ GenericName[sr@Latn]=Alat za šifrovanje
  GenericName[sv]=Krypteringsverktyg
  GenericName[ta]= மறையாக்கம்  கருவி
++GenericName[tg]=Асбоби Рамзкунонӣ
  GenericName[tr]=Şifreleme Aracı
-+GenericName[uk]=Засіб для шифрування
-+GenericName[zh_CN]=加密工具
- Comment=A GnuPG frontend
- Comment[bg]=Клиент за GnuPG
-+Comment[bs]=Alat za GnuPG
- Comment[ca]=Un entorn gràfic per GnuPG
- Comment[cs]=Rozhraní pro GnuPG
- Comment[cy]=Blaen-wyneb GnuPG
-@@ -45,7 +51,9 @@
- Comment[fr]=Une interface à GnuPG
- Comment[hi]=एक ग्नू-पीजी फ्रन्टएण्ड
- Comment[hu]=Grafikus kezelőprogram a GnuPG-hez
-+Comment[is]=Viðmót á GnuPG
- Comment[it]=Interfaccia grafica per GnuPG
-+Comment[ja]=GnuPGのフロントエンド
+ GenericName[uk]=Засіб для шифрування
+ GenericName[zh_CN]=加密工具
+@@ -63,6 +65,7 @@
+ Comment[ja]=GnuPGのフロントエンド
+ Comment[nb]=En GnuPG grenseflate
  Comment[nl]=Een programma om GnuPG-cryptografie en -ondertekening te gebruiken
++Comment[nn]=Ei GnuPG-grenseflate
  Comment[pl]=Interfejs do GnuPG
  Comment[pt]=Uma interface para o GnuPG
-@@ -58,9 +66,11 @@
+ Comment[pt_BR]=Uma interface para o GnuPG
+@@ -74,6 +77,7 @@
+ Comment[sr@Latn]=Interfejs za GnuPG
  Comment[sv]=Gränssnitt till GnuPG
  Comment[ta]=GnuPG பிரான்டட்
++Comment[tg]=Пешохири GnuPG
  Comment[tr]=Bir GnuPG arayüzü
-+Comment[uk]=Інтерфейс до GnuPG
+ Comment[uk]=Інтерфейс до GnuPG
  Comment[uz]=GnuPG учун график интерфейс
- Comment[wa]=Ene eterface po GnuPG
- Comment[xx]=xxA GnuPG frontendxx
-+Comment[zh_CN]=GnuPG 前端
- Terminal=false
- Name=KGpg
- Name[hi]=के-जीपीजी
+diff -urN -x CVS kdeutils.orig/kgpg/kgpginterface.cpp kdeutils/kgpg/kgpginterface.cpp
+--- kdeutils.orig/kgpg/kgpginterface.cpp	Tue Mar  9 20:03:51 2004
++++ kdeutils/kgpg/kgpginterface.cpp	Mon May  3 18:04:25 2004
+@@ -1534,6 +1534,11 @@
+                         p->writeStdin(photoUrl);
+                         required=QString::null;
+                 }
++		
++		if (required.find("photoid.jpeg.size")!=-1)  {
++		        p->writeStdin("Yes");
++		        required=QString::null;
++                }
+ 
+                 if (required.find("passphrase.enter")!=-1) {
+                         QCString delpass;
 diff -urN -x CVS kdeutils.orig/kgpg/kgpglibrary.cpp kdeutils/kgpg/kgpglibrary.cpp
---- kdeutils.orig/kgpg/kgpglibrary.cpp	Thu Jan  8 11:20:05 2004
-+++ kdeutils/kgpg/kgpglibrary.cpp	Fri Feb  6 14:32:08 2004
-@@ -204,6 +204,7 @@
- void KgpgLibrary::processdecerror(QString mssge)
+--- kdeutils.orig/kgpg/kgpglibrary.cpp	Fri Feb  6 14:32:08 2004
++++ kdeutils/kgpg/kgpglibrary.cpp	Fri Apr  9 11:17:02 2004
+@@ -32,6 +32,7 @@
+                 extension=".pgp";
+         else
+                 extension=".gpg";
++	popIsActive=false;
+ }
+ 
+ KgpgLibrary::~KgpgLibrary()
+@@ -57,7 +58,9 @@
+ 
+ void KgpgLibrary::startencode(QStringList encryptKeys,QStringList encryptOptions,bool shred,bool symetric)
  {
-         ///// test if file is a public key
-+	delete pop;
-         QFile qfile(QFile::encodeName(urlselected.path()));
-         if (qfile.open(IO_ReadOnly)) {
-                 QTextStream t( &qfile );
++	popIsActive=false;
+         KURL::List::iterator it;
++	filesToEncode=urlselecteds.count();
+         for ( it = urlselecteds.begin(); it != urlselecteds.end(); ++it )
+                 fastencode(*it,encryptKeys,encryptOptions,shred,symetric);
+ }
+@@ -91,9 +94,14 @@
+         }
+ 
+         KgpgInterface *cryptFileProcess=new KgpgInterface();
++	
+ 	pop = new KPassivePopup();
+         cryptFileProcess->KgpgEncryptFile(selec,urlselected,dest,encryptOptions,symetric);
+-        connect(cryptFileProcess,SIGNAL(processstarted()),this,SLOT(processpopup2()));
++        if (!popIsActive) 
++	{
++	connect(cryptFileProcess,SIGNAL(processstarted()),this,SLOT(processpopup2()));
++	popIsActive=true;	
++	}
+         if (shred)
+                 connect(cryptFileProcess,SIGNAL(encryptionfinished(KURL)),this,SLOT(shredpreprocessenc(KURL)));
+         else
+@@ -103,7 +111,6 @@
+ 
+ void KgpgLibrary::processpopup2()
+ {
+-        
+ 	pop->setTimeout(0);
+         pop->setView(i18n("Processing encryption"),i18n("Please wait..."),KGlobal::iconLoader()->loadIcon("kgpg",KIcon::Desktop));
+         pop->show();
+@@ -111,14 +118,14 @@
+         int iXpos=qRect.width()/2-pop->width()/2;
+         int iYpos=qRect.height()/2-pop->height()/2;
+         pop->move(iXpos,iYpos);
+-
+ }
+ 
+ void KgpgLibrary::shredpreprocessenc(KURL fileToShred)
+ {
+-	delete pop;
+-	pop=0L;		
+-shredprocessenc(fileToShred);
++	filesToEncode--;
++	if (filesToEncode==0) delete pop;
++	popIsActive=false;
++	shredprocessenc(fileToShred);
+ }
+ 
+ void KgpgLibrary::shredprocessenc(KURL fileToShred)
+@@ -157,15 +164,16 @@
+ 
+ void KgpgLibrary::processenc(KURL)
+ {
+-        delete pop;
+-	pop=0L;
++	filesToEncode--;
++	if (filesToEncode==0) delete pop;
++	popIsActive=false;
+ }
+ 
+ void KgpgLibrary::processencerror(QString mssge)
+ {
+-        delete pop;
+-	pop=0L;
+-        KMessageBox::detailedSorry(0,i18n("Encryption failed."),mssge);
++	filesToEncode--;
++	if (filesToEncode==0) delete pop;
++	popIsActive=false;        KMessageBox::detailedSorry(0,i18n("Encryption failed."),mssge);
+ }
+ 
+ 
+diff -urN -x CVS kdeutils.orig/kgpg/kgpglibrary.h kdeutils/kgpg/kgpglibrary.h
+--- kdeutils.orig/kgpg/kgpglibrary.h	Thu Jan  8 11:20:05 2004
++++ kdeutils/kgpg/kgpglibrary.h	Fri Apr  9 11:17:02 2004
+@@ -72,6 +72,8 @@
+         KURL urlselected;
+         KPassivePopup *pop;
+ 	KProgress *shredProgressBar;
++	bool popIsActive;
++	int filesToEncode;
+ 
+ signals:
+         void decryptionOver();
 diff -urN -x CVS kdeutils.orig/kgpg/listkeys.cpp kdeutils/kgpg/listkeys.cpp
---- kdeutils.orig/kgpg/listkeys.cpp	Thu Jan  8 11:20:05 2004
-+++ kdeutils/kgpg/listkeys.cpp	Fri Feb  6 14:19:40 2004
-@@ -575,10 +575,10 @@
+--- kdeutils.orig/kgpg/listkeys.cpp	Wed Mar 24 14:49:44 2004
++++ kdeutils/kgpg/listkeys.cpp	Thu Apr 29 17:14:51 2004
+@@ -516,7 +516,7 @@
+         installEventFilter(this);
+     setCaption(i18n("Key Management"));
  
-     // Keep the list in kgpg.kcfg in sync with this one!
-     QStringList list;
--    list.append("Disable");
--    list.append("Small");
--    list.append("Medium");
--    list.append("Big");
-+    list.append(i18n("Disable"));
-+    list.append(i18n("Small"));
-+    list.append(i18n("Medium"));
-+    list.append(i18n("Big"));
-     photoProps->setItems(list);
+-    (void) new KAction(i18n("&Open Editor"), "edit",0,this, SLOT(slotOpenEditor()),actionCollection(),"kgpg_editor");    
++    (void) new KAction(i18n("&Open Editor"), "edit",0,this, SLOT(slotOpenEditor()),actionCollection(),"kgpg_editor");
+     KAction *exportPublicKey = new KAction(i18n("E&xport Public Key(s)..."), "kgpg_export", KStdAccel::shortcut(KStdAccel::Copy),this, SLOT(slotexport()),actionCollection(),"key_export");
+     KAction *deleteKey = new KAction(i18n("&Delete Key(s)"),"editdelete", Qt::Key_Delete,this, SLOT(confirmdeletekey()),actionCollection(),"key_delete");
+     signKey = new KAction(i18n("&Sign Key(s)..."), "kgpg_sign", 0,this, SLOT(signkey()),actionCollection(),"key_sign");
+@@ -853,7 +853,7 @@
  
-     int pSize = KGpgSettings::photoProperties();
+ void listKeys::slotDeletePhoto()
+ {
+-    if (KMessageBox::questionYesNo(this,i18n("<qt>Are you sure you want to delete Photo id <b>%1</b><br>from key <b>%2 &lt;%3&gt;</b> ?</qt>").arg(keysList2->currentItem()->text(6)).arg(keysList2->currentItem()->parent()->text(0)).arg(keysList2->currentItem()->parent()->text(1)),i18n("Warning"),i18n("Delete"))!=KMessageBox::Yes)
++    if (KMessageBox::warningContinueCancel(this,i18n("<qt>Are you sure you want to delete Photo id <b>%1</b><br>from key <b>%2 &lt;%3&gt;</b> ?</qt>").arg(keysList2->currentItem()->text(6)).arg(keysList2->currentItem()->parent()->text(0)).arg(keysList2->currentItem()->parent()->text(1)),i18n("Warning"),KGuiItem(i18n("Delete"),"editdelete"))!=KMessageBox::Continue)
+         return;
+ 
+     KgpgInterface *delPhotoProcess=new KgpgInterface();
+@@ -1597,8 +1597,8 @@
+     if (!keysList2->currentItem()->text(6).isEmpty())
+         return;
+ 
+-    int result=KMessageBox::questionYesNo(this,i18n("<qt>Are you sure you want to delete group <b>%1</b> ?</qt>").arg(keysList2->currentItem()->text(0)),i18n("Warning"),i18n("Delete"));
+-    if (result!=KMessageBox::Yes)
++    int result=KMessageBox::warningContinueCancel(this,i18n("<qt>Are you sure you want to delete group <b>%1</b> ?</qt>").arg(keysList2->currentItem()->text(0)),i18n("Warning"),KGuiItem(i18n("Delete"),"editdelete"));
++    if (result!=KMessageBox::Continue)
+         return;
+     KgpgInterface::delGpgGroup(keysList2->currentItem()->text(0), KGpgSettings::gpgConfigPath());
+     QListViewItem *item=keysList2->currentItem()->nextSibling();
+@@ -2252,11 +2252,11 @@
+ {
+     //////////////////////// delete a key
+     QString res=keysList2->currentItem()->text(0)+" ("+keysList2->currentItem()->text(1)+")";
+-    int result=KMessageBox::questionYesNo(this,
++    int result=KMessageBox::warningContinueCancel(this,
+                                           i18n("<p>Delete <b>SECRET KEY</b> pair <b>%1</b> ?</p>Deleting this key pair means you will never be able to decrypt files encrypted with this key anymore!").arg(res),
+                                           i18n("Warning"),
+-                                          i18n("Delete"));
+-    if (result!=KMessageBox::Yes)
++                                          KGuiItem(i18n("Delete"),"editdelete"));
++    if (result!=KMessageBox::Continue)
+         return;
+ 
+     KProcess *conprocess=new KProcess();
+@@ -2312,8 +2312,8 @@
+         }
+         if (keysToDelete.isEmpty())
+             return;
+-        int result=KMessageBox::questionYesNoList(this,i18n("<qt><b>Delete the following public key(s)  ?</b></qt>"),keysToDelete,i18n("Warning"),i18n("Delete"));
+-        if (result!=KMessageBox::Yes)
++        int result=KMessageBox::warningContinueCancelList(this,i18n("<qt><b>Delete the following public key(s)  ?</b></qt>"),keysToDelete,i18n("Warning"),KGuiItem(i18n("Delete"),"editdelete"));
++        if (result!=KMessageBox::Continue)
+             return;
+         else
+             deletekey();
+diff -urN -x CVS kdeutils.orig/khexedit/converterdialog.cc kdeutils/khexedit/converterdialog.cc
+--- kdeutils.orig/khexedit/converterdialog.cc	Fri Mar  7 23:10:34 2003
++++ kdeutils/khexedit/converterdialog.cc	Wed Apr 14 13:45:01 2004
+@@ -66,10 +66,10 @@
+ 
+ 
+ 
+-CConverterDialog::CConverterDialog( QWidget *parent, const char *name, 
++CConverterDialog::CConverterDialog( QWidget *parent, const char *name,
+ 				    bool modal )
+-  :KDialogBase( parent, name, modal, i18n("Converter"), Cancel|User2|User1, 
+-		Cancel, true, i18n("C&lear"), i18n("&On Cursor") )
++  :KDialogBase( parent, name, modal, i18n("Converter"), Cancel|User2|User1,
++		Cancel, true, KStdGuiItem::clear(), i18n("&On Cursor") )
+ {
+   QWidget *page = new QWidget( this );
+   setMainWidget( page );
+@@ -120,7 +120,7 @@
+ }
+ 
+ 
+-void CConverterDialog::showEvent( QShowEvent *e )  
++void CConverterDialog::showEvent( QShowEvent *e )
+ {
+   KDialogBase::showEvent(e);
+   mHexInput->setFocus();
+diff -urN -x CVS kdeutils.orig/khexedit/dialog.cc kdeutils/khexedit/dialog.cc
+--- kdeutils.orig/khexedit/dialog.cc	Fri Nov 14 15:51:31 2003
++++ kdeutils/khexedit/dialog.cc	Sun Apr 11 16:16:30 2004
+@@ -680,7 +680,7 @@
+ 					     bool modal )
+   :KDialogBase( Plain, i18n("Find & Replace"), User3|User2|User1|Close,
+ 		User2, parent, name, modal, true, i18n("&All"),
+-		KStdGuiItem::no().text(), KStdGuiItem::yes().text() )
++		KStdGuiItem::no(), KStdGuiItem::yes() )
+ {
+   QString text;
+   QBoxLayout *topLayout = new QVBoxLayout( plainPage(), 0, spacingHint() );
 diff -urN -x CVS kdeutils.orig/khexedit/khexedit.desktop kdeutils/khexedit/khexedit.desktop
---- kdeutils.orig/khexedit/khexedit.desktop	Thu Jan 15 09:19:18 2004
-+++ kdeutils/khexedit/khexedit.desktop	Fri Jan 30 19:21:41 2004
-@@ -21,6 +21,7 @@
- GenericName[hi]=द्विचर संपादक
- GenericName[hr]=Binarni uređivač
- GenericName[hu]=Hexaszerkesztő
-+GenericName[is]=Tvíunda-ritill
- GenericName[it]=Editor binario
- GenericName[ja]=バイナリエディタ
- GenericName[lt]=Dvejetainio kodo redaktorius
+--- kdeutils.orig/khexedit/khexedit.desktop	Sun Mar  7 14:27:08 2004
++++ kdeutils/khexedit/khexedit.desktop	Sun Apr 25 01:32:27 2004
+@@ -45,6 +45,7 @@
+ GenericName[sr@Latn]=Editor binarnih fajlova
+ GenericName[sv]=Binäreditor
+ GenericName[ta]=குறிமுறை தொகுப்பி 
++GenericName[tg]=Муҳаррири Дуӣ
+ GenericName[th]=เครื่องมือแก้ไขเลขฐาน
+ GenericName[tr]=İkili dosya düzenleyici
+ GenericName[uk]=Двійковий редактор
 diff -urN -x CVS kdeutils.orig/khexedit/parts/kbytesedit/kbyteseditwidget.desktop kdeutils/khexedit/parts/kbytesedit/kbyteseditwidget.desktop
---- kdeutils.orig/khexedit/parts/kbytesedit/kbyteseditwidget.desktop	Fri Jan 16 08:09:32 2004
-+++ kdeutils/khexedit/parts/kbytesedit/kbyteseditwidget.desktop	Sat Feb  7 13:47:49 2004
-@@ -3,6 +3,7 @@
- Type=Service
- Name=BytesEdit Widget
- Name[bg]=Модул двоично редактиране на файлове
-+Name[bs]=BytesEdit grafički element
- Name[cy]=Celfigyn GolyguBeit
- Name[de]=BytesEdit-Bedienelement
- Name[es]=Ventana de edición de bytes
-@@ -11,7 +12,9 @@
- Name[fr]=Composant éditeur binaire
- Name[hi]=बाइट्स-एडिट विजेट
- Name[hu]=BytesEdit grafikus elem
-+Name[is]=Græja til að sýsla með bætaskrár
+--- kdeutils.orig/khexedit/parts/kbytesedit/kbyteseditwidget.desktop	Sun Mar  7 14:27:09 2004
++++ kdeutils/khexedit/parts/kbytesedit/kbyteseditwidget.desktop	Sun Apr 25 01:32:29 2004
+@@ -18,6 +18,7 @@
  Name[it]=Elemento grafico editor di byte
-+Name[ja]=バイトエディットウィジェット
+ Name[ja]=バイトエディットウィジェット
+ Name[nb]=BytesEdit skjermelement
++Name[nn]=BytesEdit-skjermelement
  Name[pl]=Okienko BytesEdit
  Name[pt]=Editor de Bytes
  Name[pt_BR]=Widget do Editor de Bytes
-@@ -23,6 +26,7 @@
+@@ -29,6 +30,7 @@
+ Name[sr@Latn]=Kontrola BytesEdit
  Name[sv]=Grafisk komponent för att redigera binärdata
  Name[ta]= பைட்தோகுப்பு 
++Name[tg]=Элементи Таҳрири Додаҳои Дуӣ
+ Name[uk]=Віджет побайтного редагування
  Name[xx]=xxBytesEdit Widgetxx
-+Name[zh_CN]=字节编辑部件
- X-KDE-Library=libkbyteseditwidget
- InitialPreference=2
- ServiceTypes=KHexEdit/KBytesEdit
+ Name[zh_CN]=字节编辑部件
 diff -urN -x CVS kdeutils.orig/kjots/Kjots.desktop kdeutils/kjots/Kjots.desktop
---- kdeutils.orig/kjots/Kjots.desktop	Thu Jan 15 09:19:22 2004
-+++ kdeutils/kjots/Kjots.desktop	Fri Jan 30 19:21:45 2004
-@@ -7,7 +7,6 @@
- Name[eo]=Notlibro
- Name[hi]=के-जॉट्स
- Name[hr]=Bilješke
--Name[is]=Minnispunktar
- Name[mk]=Белешки
- Name[pt_BR]=Tomador de notas
- Name[sv]=Kjots
-@@ -36,6 +35,7 @@
- GenericName[hi]=नोट टेकर
- GenericName[hr]=Program za pisanje bilježaka
- GenericName[hu]=Jegyzetlapok
-+GenericName[is]=Minnispunktar
- GenericName[it]=Blocco per appunti
- GenericName[ja]=ノートをとる
- GenericName[lt]=Pastabų gavėjas
+--- kdeutils.orig/kjots/Kjots.desktop	Sun Mar  7 14:27:12 2004
++++ kdeutils/kjots/Kjots.desktop	Sun Apr 25 01:32:31 2004
+@@ -59,6 +59,7 @@
+ GenericName[sr@Latn]=Pribeleživač
+ GenericName[sv]=Elektroniska anteckningar
+ GenericName[ta]= குற்ப்பு எடுப்பர் 
++GenericName[tg]=Китобчаи Навиштаҷот
+ GenericName[th]=บันทึกช่วยจำ
+ GenericName[tr]=Not alıcı
+ GenericName[uk]=Записна книжка
 diff -urN -x CVS kdeutils.orig/klaptopdaemon/applnk/.directory kdeutils/klaptopdaemon/applnk/.directory
---- kdeutils.orig/klaptopdaemon/applnk/.directory	Thu Jan 15 09:19:24 2004
-+++ kdeutils/klaptopdaemon/applnk/.directory	Fri Jan 30 19:21:47 2004
-@@ -19,7 +19,7 @@
+--- kdeutils.orig/klaptopdaemon/applnk/.directory	Sun Mar  7 14:27:14 2004
++++ kdeutils/klaptopdaemon/applnk/.directory	Sun Apr 25 01:32:33 2004
+@@ -19,6 +19,7 @@
+ Name[gl]=Portátil
  Name[he]=מחשב נייד
  Name[hi]=लैपटॉप
++Name[hsb]=laptop
  Name[hu]=Noteszgép
--Name[is]=FerÃ°avÃ©l
-+Name[is]=Ferðavél
+ Name[is]=Ferðavél
  Name[it]=Computer portatile
- Name[ja]=ラップトップ
- Name[ko]=랩탑
-@@ -42,7 +42,7 @@
- Name[wa]=Poirtåve
- Name[xh]=Umphezulu osongiweyo
- Name[xx]=xxLaptopxx
--Name[zh_CN]=膝上计算机
-+Name[zh_CN]=便携电脑
- Name[zh_TW]=膝上型的電腦
- Name[zu]=Ikhomputha eyisicaba ephathwayo
- SortOrder=battery.desktop,bwarning.desktop,cwarning.desktop,power.desktop,pcmcia.desktop
+@@ -35,6 +36,7 @@
+ Name[sl]=Prenosnik
+ Name[sv]=Bärbar dator
+ Name[ta]=  மடிக் கணிப்பொறி 
++Name[tg]=Компютери Дастӣ
+ Name[th]=แลปทอป
+ Name[tr]=Dizüstü
+ Name[uk]=Мобільний комп'ютер (лептоп)
 diff -urN -x CVS kdeutils.orig/klaptopdaemon/applnk/klaptopdaemon.desktop kdeutils/klaptopdaemon/applnk/klaptopdaemon.desktop
---- kdeutils.orig/klaptopdaemon/applnk/klaptopdaemon.desktop	Fri Jan 16 08:09:34 2004
-+++ kdeutils/klaptopdaemon/applnk/klaptopdaemon.desktop	Sat Feb  7 13:47:51 2004
-@@ -14,6 +14,7 @@
- DocPath=kcontrol/battery-monitor.html
- Comment=Laptop Battery Monitor
- Comment[bg]=Мониторинг на батериите на лаптоп
-+Comment[bs]=Nadzor baterije laptopa
- Comment[ca]=Monitor de bateria de portàtils
- Comment[cs]=Monitor baterií laptopu
- Comment[cy]=Monitr Batri Gliniadur
-@@ -26,7 +27,9 @@
- Comment[fr]=Indicateur de batterie de portable
- Comment[hi]=लैपटॉप बैटरी मॉनीटर
- Comment[hu]=Akkumulátorfigyelő
-+Comment[is]=Rafhlöðueftirlit fyrir ferðavélar
- Comment[it]=Controllo batteria portatile
-+Comment[ja]=ラップトップバッテリーモニタ
+--- kdeutils.orig/klaptopdaemon/applnk/klaptopdaemon.desktop	Thu Mar 18 14:50:24 2004
++++ kdeutils/klaptopdaemon/applnk/klaptopdaemon.desktop	Sun Apr 25 01:32:35 2004
+@@ -35,6 +35,7 @@
  Comment[ms]=Memerhatikan Bateri Komputer Riba
+ Comment[nb]=Batteriovervåker for bærbar maskin
  Comment[nl]=Programma voor laptop-batterijbewaking
- Comment[pl]=Monitor baterii laptopa
-@@ -40,11 +43,14 @@
++Comment[nn]=Batteriovervaking for bærbar maskin
+ Comment[pl]=Kontrola stanu baterii laptopa
+ Comment[pt]=Monitor de bateria
+ Comment[pt_BR]=Monitor de Bateria de Laptop
+@@ -46,6 +47,7 @@
+ Comment[sr@Latn]=Monitor baterija laptopa
  Comment[sv]=Batterimonitor för bärbar dator
  Comment[ta]=  மடிக் கணிப்பொறி மின்கலன 
++Comment[tg]=Дидабони Батареяи Компютери Дастӣ
  Comment[tr]=Dizüstü Pil İzleyici
-+Comment[uk]=Монітор батарей лептопу
+ Comment[uk]=Монітор батарей лептопу
  Comment[uz]=Лаптопнинг батареясини назорат қилиш
- Comment[wa]=Corwaitoe del batreye do poirtåve
- Comment[xx]=xxLaptop Battery Monitorxx
-+Comment[zh_CN]=便携电脑电池监视器
- Name=Laptop Battery Monitor
- Name[bg]=Мониторинг на батериите
-+Name[bs]=Nadzor baterije laptopa
- Name[ca]=Monitor de bateria de portàtils
- Name[cs]=Monitor baterií laptopu
- Name[cy]=Monitr Batri Gliniadur
-@@ -57,7 +63,9 @@
- Name[fr]=Indicateur de batterie de portable
- Name[hi]=लैपटॉप बैटरी मॉनीटर
- Name[hu]=Feltöltöttségi szintjelző
-+Name[is]=Rafhlöðueftirlit fyrir ferðavélar
- Name[it]=Controllo batteria portatile
-+Name[ja]=ラップトップバッテリーモニタ
+@@ -75,6 +77,7 @@
  Name[ms]=Memerhatikan Bateri Komputer Riba
+ Name[nb]=Batteriovervåker for bærbar maskin
  Name[nl]=Laptop-batterijbewaking
- Name[pl]=Monitor baterii laptopa
-@@ -71,6 +79,8 @@
++Name[nn]=Batteriovervakar for bærbar maskin
+ Name[pl]=Monitor baterii
+ Name[pt]=Monitor de Bateria
+ Name[pt_BR]=Monitor de Bateria de Laptop
+@@ -86,6 +89,7 @@
+ Name[sr@Latn]=Monitor baterija laptopa
  Name[sv]=Batterimonitor för bärbar dator
  Name[ta]= மடிக் கணிப்பொறி மின்கலன திரையகம் 
++Name[tg]=Дидабони Батареяи Компютери Дастӣ
  Name[tr]=Dizüstü Pil Monitörü
-+Name[uk]=Монітор батарей
+ Name[uk]=Монітор батарей
  Name[uz]=Лаптопнинг батареясини назорат қилиш
- Name[wa]=Corwaitoe del batreye do poirtåve
- Name[xx]=xxLaptop Battery Monitorxx
-+Name[zh_CN]=便携电脑电池监视器
 diff -urN -x CVS kdeutils.orig/klaptopdaemon/applnk/laptop.desktop kdeutils/klaptopdaemon/applnk/laptop.desktop
---- kdeutils.orig/klaptopdaemon/applnk/laptop.desktop	Thu Jan 15 09:19:28 2004
-+++ kdeutils/klaptopdaemon/applnk/laptop.desktop	Sat Feb  7 13:47:53 2004
-@@ -27,6 +27,7 @@
+--- kdeutils.orig/klaptopdaemon/applnk/laptop.desktop	Sun Mar  7 14:27:18 2004
++++ kdeutils/klaptopdaemon/applnk/laptop.desktop	Sun Apr 25 01:32:37 2004
+@@ -28,6 +28,7 @@
+ Comment[gl]=Batería do Portátil
  Comment[he]=סוללת מחשב נייד
  Comment[hi]=लैपटॉप बैटरी
++Comment[hr]=Baterija laptopa
  Comment[hu]=Noteszgépek energiakezelése
-+Comment[is]=Rafhlaða ferðavélar
+ Comment[is]=Rafhlaða ferðavélar
  Comment[it]=Batteria computer portatile
- Comment[ja]=ラップトップバッテリー
- Comment[lt]=Laptop baterija
-@@ -52,7 +53,7 @@
- Comment[wa]=Batreye do poirtåve
- Comment[xh]=Ibhetri ye Laptop
- Comment[xx]=xxLaptop Batteryxx
--Comment[zh_CN]=膝上计算机电池
-+Comment[zh_CN]=便携电脑电池
- Comment[zh_TW]=膝上型電腦的電池
- Comment[zu]=Ibhetri Yekhomputha eyisicaba ephathwayo
- Name=Laptop Battery
-@@ -73,6 +74,7 @@
+@@ -50,6 +51,7 @@
+ Comment[sr@Latn]=Baterija laptopa
+ Comment[sv]=Batteri för bärbar dator
+ Comment[ta]=  மடிக் கணிப்பொறி மின்கலன 
++Comment[tg]=Батареяи Компютери Дастӣ
+ Comment[th]=แบตเตอรีของเครื่องแลปทอบ
+ Comment[tr]=Dizüstü Pili
+ Comment[uk]=Батареї лептопу
+@@ -79,6 +81,7 @@
+ Name[gl]=Batería do Portátil
  Name[he]=סוללת מחשב נייד
  Name[hi]=लैपटॉप बैटरी
++Name[hr]=Laptop baterija
  Name[hu]=Akkumulátoros üzemmód
-+Name[is]=Ferðavélarafhlaða
+ Name[is]=Ferðavélarafhlaða
  Name[it]=Batteria computer portatile
- Name[ja]=ラップトップバッテリー
- Name[lt]=Laptop baterija
-@@ -98,7 +100,7 @@
- Name[wa]=Batreye do poirtåve
- Name[xh]=Ibhetri ye Laptop
- Name[xx]=xxLaptop Batteryxx
--Name[zh_CN]=膝上计算机电池
-+Name[zh_CN]=便携电脑电池
- Name[zh_TW]=膝上型電腦的電池
- Name[zu]=Ibhetri Yekhomputha eyisicaba ephathwayo
- Init=klaptop_check
+@@ -101,6 +104,7 @@
+ Name[sr@Latn]=Baterija laptopa
+ Name[sv]=Batteri för bärbar dator
+ Name[ta]=  மடிக் கணிப்பொறி மின்கலன  
++Name[tg]=Батареяи Компютери Дастӣ
+ Name[th]=แบตเตอรีแลปทอบ
+ Name[tr]=Dizüstü Pili
+ Name[uk]=Батареї лептопу
 diff -urN -x CVS kdeutils.orig/klaptopdaemon/applnk/pcmcia.desktop kdeutils/klaptopdaemon/applnk/pcmcia.desktop
---- kdeutils.orig/klaptopdaemon/applnk/pcmcia.desktop	Thu Jan 15 09:19:30 2004
-+++ kdeutils/klaptopdaemon/applnk/pcmcia.desktop	Fri Jan 30 19:21:53 2004
-@@ -32,7 +32,7 @@
- Comment[hr]=Stanje PCMCIA
- Comment[hu]=PCMCIA-állapot
- Comment[id]=Status PCMCIA
--Comment[is]=PCMCIA staÃ°a
-+Comment[is]=PCMCIA staða
- Comment[it]=Stato PCMCIA
- Comment[ja]=PCMCIAの状態
- Comment[ko]=PCMCIA 현재 상태
+--- kdeutils.orig/klaptopdaemon/applnk/pcmcia.desktop	Sun Mar  7 14:27:20 2004
++++ kdeutils/klaptopdaemon/applnk/pcmcia.desktop	Sun Apr 25 01:32:39 2004
+@@ -55,6 +55,7 @@
+ Comment[sr@Latn]=Status PCMCIA uređaja
+ Comment[sv]=PCMCIA-status
+ Comment[ta]=PCMCIA நிலை
++Comment[tg]=Ҳолати PCMCIA
+ Comment[th]=สถานะอุปกรณ์ PCMCIA
+ Comment[tr]=PCMCIA durumu
+ Comment[uk]=Стан PCMCIA
+diff -urN -x CVS kdeutils.orig/klaptopdaemon/kpcmciainfo.cpp kdeutils/klaptopdaemon/kpcmciainfo.cpp
+--- kdeutils.orig/klaptopdaemon/kpcmciainfo.cpp	Fri May  9 08:08:24 2003
++++ kdeutils/klaptopdaemon/kpcmciainfo.cpp	Wed Apr 14 13:45:01 2004
+@@ -17,29 +17,30 @@
+  * along with this library; see the file COPYING.LIB.  If not, write to
+  * the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+  * Boston, MA 02111-1307, USA.
+- */ 
++ */
+ 
+ 
+ 
+ #include <qtabwidget.h>
+ #include <qlayout.h>
+ #include <qtimer.h>
+-#include <qpushbutton.h>
+ #include <kstatusbar.h>
+ #include <klocale.h>
++#include <kpushbutton.h>
++#include <kstdguiitem.h>
+ 
+ #include "kpcmcia.h"
+ 
+ #include "kpcmciainfo.h"
+ 
+ 
+-KPCMCIAInfo::KPCMCIAInfo(KPCMCIA *pcmcia, QWidget *parent, const char *name) 
++KPCMCIAInfo::KPCMCIAInfo(KPCMCIA *pcmcia, QWidget *parent, const char *name)
+   : KDialog(parent, name, false), _pcmcia(pcmcia) {
+ 
+   setMinimumSize(300,400);
+ 
+   _mainGrid = new QGridLayout(this, 9, 5);
+-  
++
+   _mainTab = new QTabWidget(this);
+   _mainGrid->addMultiCellWidget(_mainTab, 0, 6, 0, 4);
+   _mainGrid->setRowStretch(0, 1);
+@@ -68,7 +69,7 @@
+   _updateButton = new QPushButton(i18n("&Update"), this);
+   _mainGrid->addWidget(_updateButton, 7, 3);
+   connect(_updateButton, SIGNAL(pressed()), this, SLOT(update()));
+-  _closeButton = new QPushButton(i18n("&Close"), this);
++  _closeButton = new KPushButton(KStdGuiItem::close(), this);
+   _mainGrid->addWidget(_closeButton, 7, 4);
+   connect(_closeButton, SIGNAL(pressed()), this, SLOT(slotClose()));
+   _mainGrid->setRowStretch(7, 0);
 diff -urN -x CVS kdeutils.orig/kmilo/demo/kmilo_demo.desktop kdeutils/kmilo/demo/kmilo_demo.desktop
---- kdeutils.orig/kmilo/demo/kmilo_demo.desktop	Fri Jan 16 08:09:36 2004
-+++ kdeutils/kmilo/demo/kmilo_demo.desktop	Sat Feb  7 13:47:55 2004
-@@ -15,7 +15,9 @@
- Name[fr]=Module externe de démonstration
- Name[hi]=डेमो प्लगइन
- Name[hu]=Mintapélda bővítőmodulra
-+Name[is]=Sýnishorn af íforriti
- Name[it]=Plugin dimostrativo
-+Name[ja]=デモプラグイン
+--- kdeutils.orig/kmilo/demo/kmilo_demo.desktop	Sun Mar  7 14:27:22 2004
++++ kdeutils/kmilo/demo/kmilo_demo.desktop	Sun Apr 25 01:32:41 2004
+@@ -22,6 +22,7 @@
+ Name[ja]=デモプラグイン
+ Name[nb]=Programtillegg for demo
  Name[nl]=Demo plug-in
++Name[nn]=Demo-programtillegg
  Name[pl]=Wtyczka demonstracyjna
  Name[pt]='Plugin' de Demonstração
-@@ -27,11 +29,14 @@
- Name[sr]=Демонстрациони додатак
+ Name[pt_BR]=Plug-in de Demonstração
+@@ -33,6 +34,7 @@
+ Name[sr@Latn]=Demonstracioni priključak
  Name[sv]=Demoinsticksprogram
  Name[ta]= முண்ணோடம் சோருகுபொறுல் 
-+Name[uk]=Демонстраційний втулок
++Name[tg]=Модули Намоиш
+ Name[uk]=Демонстраційний втулок
  Name[uz]=Демо плагини
  Name[wa]=Tchôke-divins di mostraedje
- Name[xx]=xxDemo Pluginxx
-+Name[zh_CN]=演示插件
- Comment=This plugin does nothing.
- Comment[bg]=Тази приставка не прави нищо
-+Comment[bs]=Ovaj dodatak ne radi ništa.
- Comment[ca]=Aques connector no fa res.
- Comment[cy]=Nid yw'r ategyn yma yn gwneud unrhyw beth.
- Comment[da]=Dette plugin gør ingenting.
-@@ -43,7 +48,9 @@
- Comment[fr]=Ce module ne fait rien.
- Comment[hi]=यह प्लगइन कुछ नहीं करता है.
- Comment[hu]=Ez a bővítőmodul nem csinál semmit
-+Comment[is]=Þetta íforrit gerir ekki neitt.
- Comment[it]=Questo plugin non fa niente
-+Comment[ja]=このプラグインは何もしません
+@@ -60,6 +62,7 @@
  Comment[ms]=Plug masuk ini tidak melakukan apa-apa.
+ Comment[nb]=Dette programtillegget utfører ingen funksjoner
  Comment[nl]=Deze plug-in doet niets.
++Comment[nn]=Dette programtillegget gjer ikkje noko som helst.
  Comment[pl]=Ta wtyczka nic nie robi.
-@@ -57,7 +64,9 @@
+ Comment[pt]=Este 'plugin' não faz nada.
+ Comment[pt_BR]=Este plug-in não faz coisa alguma.
+@@ -71,6 +74,7 @@
+ Comment[sr@Latn]=Ovaj priključak ništa ne radi.
  Comment[sv]=Det här insticksprogrammet gör ingenting.
  Comment[ta]= சோருகுப்பொருள் செயல் பட வில்லை 
++Comment[tg]=Ин модул ҳеҷ чиз намекунад.
  Comment[tr]=Bu plugin birşey yapmaz.
-+Comment[uk]=Цей втулок нічого не робить.
+ Comment[uk]=Цей втулок нічого не робить.
  Comment[uz]=Бу плагин ҳеч нарса бажармайди.
- Comment[wa]=Ci tchôke-divins chal ni fwait rén do tot.
- Comment[xx]=xxThis plugin does nothing.xx
-+Comment[zh_CN]=此插件不完成任何工作。
- X-KDE-Library=kmilo_demo
 diff -urN -x CVS kdeutils.orig/kmilo/generic/kmilo_generic.desktop kdeutils/kmilo/generic/kmilo_generic.desktop
---- kdeutils.orig/kmilo/generic/kmilo_generic.desktop	Fri Jan 16 08:09:38 2004
-+++ kdeutils/kmilo/generic/kmilo_generic.desktop	Sat Feb  7 13:47:57 2004
-@@ -5,6 +5,7 @@
- X-KDE-ModuleType=Plugin
- Name=Generic Keyboard Plugin
- Name[bg]=Приставка за клавиатурата
-+Name[bs]=Opšti dodatak za tastaturu
- Name[ca]=Connector de teclat genèric
- Name[cy]=Ategyn Bysellfwrdd Cyffredinol
- Name[da]=Generisk tastatur-plugin
-@@ -16,7 +17,9 @@
- Name[fr]=Module externe de clavier générique
- Name[hi]=जेनेरिक कुंजीपटल प्लगइन
- Name[hu]=Általános billentyűzet-bővítőmodul
-+Name[is]=Almennt lyklaborðsíforrit
- Name[it]=Plugin tastiera generica
-+Name[ja]=一般キーボードプラグイン
+--- kdeutils.orig/kmilo/generic/kmilo_generic.desktop	Sun Mar  7 14:27:24 2004
++++ kdeutils/kmilo/generic/kmilo_generic.desktop	Sun Apr 25 01:32:43 2004
+@@ -24,6 +24,7 @@
+ Name[ja]=一般キーボードプラグイン
+ Name[nb]=Programtillegg for generisk tastatur
  Name[nl]=Algemene toetsenbord plug-in
++Name[nn]=Programtillegg for generisk tastatur
  Name[pl]=Wtyczka zwykłej klawiatury
  Name[pt]='Plugin' de Teclado Genérico
-@@ -31,8 +34,10 @@
+ Name[pt_BR]=Plug-in de Teclado Genérico
+@@ -35,6 +36,7 @@
+ Name[sr@Latn]=Generički priključak tastature
+ Name[sv]=Allmänt insticksprogram för tangentbord
+ Name[ta]=  பிறப்பு விசைப்பலகை  சோருகுபொருள் 
++Name[tg]=Модули Умумии Забонак
  Name[tr]=Generic Klavye Plugini
- Name[wa]=Tchôke-divins djenerike di taprece
- Name[xx]=xxGeneric Keyboard Pluginxx
-+Name[zh_CN]=常规键盘插件
- Comment=This plugin enables support for special keys on all sorts of keyboards and laptops.
- Comment[bg]=Тази приставка позволява поддръжката на специалните клавиши на различните видове лаптопи и специални клавиатури
-+Comment[bs]=Ovaj dodatak (plugin) omogućuje podršku za posebne tipke na raznim vrstama tastatura i laptopa.
- Comment[ca]=Aquest connector activa el suport per a tecles especials en tot tipus de teclats i portàtils.
- Comment[cy]=Mae'r ategyn yn galluogi cynhaliaeth ar gyfer bysyll arbennig ar bob math o bysellfyrdd a gluniaduron.
- Comment[da]=Dette plugin aktivere støtte for specielle taster på alle slags tastaturer og bærbare.
-@@ -44,7 +49,9 @@
- Comment[fr]=Ce module active la gestion des touches spéciales pour toutes sortes de claviers et de portables.
- Comment[hi]=यह प्लगइन सभी प्रकार के कुंजीपटल तथा लैपटॉप पर विशिष्ट कुंजी समर्थन सक्षम करता है
- Comment[hu]=Ez a bővítőmodul lehetővé teszi az extra billentyűk használatát speciális billentyűzeteknél és noteszgépeken.
-+Comment[is]=Þetta íforrit virkjar sérhnappana sem eru á allskynd gerðum lyklaborða og ferðavéla.
- Comment[it]=Questo plugin abilita il supporto per i tasti speciali su qualsiasi tipo di tastiera e portatile.
-+Comment[ja]=このプラグインは全てのキーボードとラップトップで特別キーのサポートを有効にします
+ Name[uk]=Загальний втулок клавіатури
+ Name[uz]=Умумий тугматаг плагини
+@@ -62,6 +64,7 @@
+ Comment[ja]=このプラグインは全てのキーボードとラップトップで特別キーのサポートを有効にします
+ Comment[nb]=Dette programtillegget muliggjør støtte for spesielle taster på alle tastatur og bærbare maskiner
  Comment[nl]=Deze plug-in biedt ondersteuning voor allerlei speciale toetsen op laptops en gewone toetsenborden.
++Comment[nn]=Dette programtillegget gjer det mogleg å bruka spesialtastar på alle tastatur og bærbare maskiner.
  Comment[pl]=Ta wtyczka umożliwia używanie klawiszy specjalnych na wszystkich rodzajach klawiatur i laptopach.
  Comment[pt]=Este 'plugin' activa o suporte para as teclas especiais em todos os tipos de teclados e portáteis.
-@@ -58,4 +65,5 @@
+ Comment[pt_BR]=Este plug-in habilita suporte para teclas especiais em todos os tipos de laptops e teclados.
+@@ -73,6 +76,7 @@
+ Comment[sr@Latn]=Ovaj priključak omogućava podršku za specijalne tastere na svakakvim tastaturama i laptopovima.
+ Comment[sv]=Det här insticksprogrammet aktiverar stöd för speciella tangenter för alla typer av tangentbord och bärbara datorer.
  Comment[ta]=இந்த சோருகுப்பொறுள் செயல்பட துனை புரிய வில்லை குரிப்பிட்ட விசை
++Comment[tg]=Ин модул пуштибонии калидҳои махсусро дар ҳамаи навъҳои забонакҳо ва компютерҳои дастӣ дармегиронад.
  Comment[tr]=Bu plugin tüm klavye ve dizüstülerdeki özel tuşlar için desteği sağlar.
+ Comment[uk]=Цей втулок додає підтримку спеціальних клавіш для різних типів клавіатур та лептопів.
  Comment[xx]=xxThis plugin enables support for special keys on all sorts of keyboards and laptops.xx
-+Comment[zh_CN]=此插件启用各种键盘和便携电脑的特殊按键。
- X-KDE-Library=kmilo_generic
 diff -urN -x CVS kdeutils.orig/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop kdeutils/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop
---- kdeutils.orig/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop	Fri Jan 16 08:09:40 2004
-+++ kdeutils/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop	Sat Feb  7 13:47:59 2004
-@@ -11,6 +11,7 @@
- X-KDE-ParentApp=kcontrol
- 
- Name=Sony Vaio Laptop Hardware Configuration
-+Name[bs]=Sony Vaio laptop - podešavanje hardvera
- Name[ca]=Configuració del maquinari per a portàtils Sony Vaio
- Name[cy]=Ffurfweddiad Caledwedd Gluniadur Sony Vaio
- Name[da]=Sony Vaio Laptop Hardware-indstilling
-@@ -22,7 +23,9 @@
+--- kdeutils.orig/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop	Sun Mar  7 14:27:26 2004
++++ kdeutils/kmilo/kmilo_kvaio/kcmkvaio/kvaio.desktop	Sun Apr 25 01:32:45 2004
+@@ -23,7 +23,7 @@
  Name[fr]=Configuration du portable Vaio de Sony
- Name[hi]=सोनी वायो लेपटॉप हार्डवेयर कॉन्फिगरेशन
+ Name[ga]=Cumraíocht Chruaearraí Sony Vaio
+ Name[gl]=Configuración de Hardware de Portátiles Sony Vaio
+-Name[hi]=सोनी वायो लेपटॉप हार्डवेयर कॉन्फिगरेशन
++Name[hi]=सोनी वायो लेपटॉप हार्डवेयर कॉन्फ़िगरेशन
  Name[hu]=Sony Vaio noteszgép-beállítások
-+Name[is]=Stillingar Sony Vaio ferðavéla
+ Name[is]=Stillingar Sony Vaio ferðavéla
  Name[it]=Configurazione portatili Sony Vaio
-+Name[ja]=Sony Vaio ラップトップハードウェアの設定
+@@ -31,6 +31,7 @@
  Name[ms]=Penyelarasan Alatan Komputer Riba Sony Vaio
+ Name[nb]=Konfigurasjon av Sony Vaio bærbar maskin
  Name[nl]=Sony Vaio Hardwareconfiguratie
- Name[pl]=Konfiguracja dla laptopów Sony Vaio
-@@ -38,7 +41,9 @@
++Name[nn]=Oppsett av Sony Vaio bærbar maskin
+ Name[pl]=Laptopy Sony Vaio
+ Name[pt]=Configuração do Hardware do Sony Vaio
+ Name[pt_BR]=Configuração do Hardware Sony Vaio
+@@ -42,6 +43,7 @@
+ Name[sr@Latn]=Hardversko podešavanje Sony-jevog Vaio laptopa
+ Name[sv]=Hårdvaruinställning av Sony Vaio bärbar dator
+ Name[ta]= சோனி வையொ வன்பொருள் உள்ளமைபு 
++Name[tg]=Танзими Сахтафзори Компютери Дастии Sony Vaio
  Name[tr]=Sony Vaio Dizüstü Donanım Ayarları
+ Name[uk]=Налаштування обладнання лептопів Sony Vaio
  Name[wa]=Apontiaedje del éndjolreye do poirtåve Sony Vaio
- Name[xx]=xxSony Vaio Laptop Hardware Configurationxx
-+Name[zh_CN]=索尼 Vario 便携电脑硬件配置
- Comment=Configure the KDE Interface to the Sony Programmable Interrupt Controller Driver
-+Comment[bs]=Podesite KDE interfejs za Sony Programmable Interrupt Controler drajver
- Comment[ca]=Configura la interfície entre KDE i el controlador d'interrupcions programables Sony
- Comment[cy]=Ffurfweddu'r Rhyngwyneb KDE i'r Gyrrydd Rheolydd Ymyriadau Rhaglenadwy Sony
- Comment[da]=Indstil KDE's grænseflade til Sony's programmerbare Interrupt Controller Driver
-@@ -50,7 +55,9 @@
+@@ -60,7 +62,7 @@
  Comment[fr]=Configure l'interface KDE pour le pilote du contrôleur d'interruption programmable de Sony
- Comment[hi]=केडीई इंटरफेस को सोनी प्रोग्रामेबल इंटरप्ट कन्ट्रोलर ड्राइवर के लिए कॉन्फिगर करता है
+ Comment[ga]=Cumraigh comhéadan KDE do Tiománaí an Rialtóir Idirbhriste Inríomhchláraithe Sony
+ Comment[gl]=Configura-la interface de KDE para o Controlador Programábel de Interrupcións de Sony
+-Comment[hi]=केडीई इंटरफेस को सोनी प्रोग्रामेबल इंटरप्ट कन्ट्रोलर ड्राइवर के लिए कॉन्फिगर करता है
++Comment[hi]=केडीई इंटरफेस को सोनी प्रोग्रामेबल इंटरप्ट कन्ट्रोलर ड्राइवर के लिए कॉन्फ़िगर करता है
  Comment[hu]=KDE-s beállítómodul a Sony megszakításkezelő meghajtóprogramjához
-+Comment[is]=Stilla viðmót KDE á Sony Programmable Interrupt stýringuna
+ Comment[is]=Stilla viðmót KDE á Sony Programmable Interrupt stýringuna
  Comment[it]=Configura l'interfaccia KDE al driver del controller programmabile interrupt Sony
-+Comment[ja]=Sony Programmable Interrupt Controller DriverのKDEインタフェースを設定
+@@ -68,6 +70,7 @@
  Comment[ms]= Selaraskan Antaramuka KDE untuk Pemacu Pengawal Gangguan Boleh Aturcara Sony
+ Comment[nb]=Konfigurer KDE-grensesnitt til Sony Programmable Interrupt Controller Driver
  Comment[nl]=Voor het instellen van KDE's communicatie met het stuurprogramma van de Sony Programmeerbare Interrupt Controller
- Comment[pl]=Konfiguruje interfejs KDE do używania sterownika programowalnego kontrolora przerwań Sony
-@@ -65,6 +72,7 @@
++Comment[nn]=Set opp KDE-grensesnittet til Sony Programmable Interrupt Controller Driver
+ Comment[pl]=Konfigurujacja sterownika programowalnego kontrolora przerwań Sony w KDE
+ Comment[pt]=Configurar a Interface para o KDE do Controlador do Programmable Interrupt Controller da Sony
+ Comment[pt_BR]=Configura a Interface do KDE  para o Driver Controlador de Interrupção Programável da Sony
+@@ -79,6 +82,7 @@
+ Comment[sr@Latn]=Podesite KDE-ov interfejs za upravljački program Sony-jevog programabilnog kontrolera prekida
+ Comment[sv]=Anpassa KDE:s gränssnitt till Sonys drivrutin för programmerbar avbrottshantering
  Comment[ta]= உள்ளமைபு KDE  சொன்ய் நிரல்படு காட்டுபாட்டாலார் இயக்ககப் 
++Comment[tg]=Танзимкунии Интерфейси KDE барои Гардонандаи Танзимкунандаи кандашавии барномавии Sony
  Comment[tr]=KDE arayüzünü Sony Programlanabilir Kesilme Kontrolör Sürücüsüne ayarla
+ Comment[uk]=Налаштування інтерфейсу KDE до драйвера перепин Sony
  Comment[xx]=xxConfigure the KDE Interface to the Sony Programmable Interrupt Controller Driverxx
-+Comment[zh_CN]=配置 KDE 界面使用索尼可编程中断控制器驱动程序
- Keywords=Sony, Vaio, kvaio, brightness, mute, Jog Dial
- Keywords[cy]=Sony, Vaio, kvaio, gloywder, mud, Jog Dial
- Keywords[da]=Sony, Vaio, kvaio, lyshed, stum, Jog Dial
-@@ -77,6 +85,7 @@
- Keywords[hi]=सोनी,वायो,के-वायो,चमकीलापन,म्यूट,जॉग डायल
- Keywords[hu]=Sony,Vaio,kvaio,fényerő,elnémítás,tárcsagomb
- Keywords[it]=Sony,Vaio,kvaio,luminosità,muto,Jog Dial
-+Keywords[ja]=Sony, Vaio, kvaio, 明るさ, ミュート, ジョグダイアル
+@@ -101,6 +105,7 @@
  Keywords[ms]= kecerahan,bisu,Sony, Vaio, kvaio, brightness, mute, Jog Dial
+ Keywords[nb]=Sony, Vaio, kvaio, lysstyrke, lydsperre, Jog Dial
  Keywords[nl]=Sony,Vaio,kvaio,brightness,helderheid,mute,Jog Dial
++Keywords[nn]=Sony,vaio,kvaio,lysstyrke,lydsperre,hjul
  Keywords[pl]=Sony, Vaio, kvaio, jasność, Jog Dial,jog,jogdial
-@@ -90,5 +99,6 @@
+ Keywords[pt]=Sony, Vaio, kvaio, brilho, sem som, Jog Dial
+ Keywords[pt_BR]=Sony, Vaio, kvaio,brilho, mudo, Jog Dial
+@@ -111,6 +116,7 @@
+ Keywords[sr@Latn]=Sony, Vaio, kvaio, brightness, mute, Jog Dial, svetlina
+ Keywords[sv]=Sony, Vaio, kvaio, ljusstyrka, tyst, rullhjul
  Keywords[ta]=சொன்ய், வையொ, வேளிச்சம், சோக் உரையாடல்  
++Keywords[tg]=Sony, Vaio, kvaio, равшанӣ, хомӯшӣ, Jog Dial
  Keywords[tr]=Sony, Vaio, kvaio, parlaklık, sessiz, gösterme itmesi
+ Keywords[uk]=Sony, Vaio, kvaio, яскравість, вимкнення звуку
  Keywords[xx]=xxSony, Vaio, kvaio, brightness, mute, Jog Dialxx
-+Keywords[zh_CN]=Sony, Vaio, kvaio, brightness, mute, Jog Dial,索尼,亮度,静音
- 
- Categories=Qt;KDE;X-KDE-settings-system
 diff -urN -x CVS kdeutils.orig/kmilo/kmilo_kvaio/kmilo_kvaio.desktop kdeutils/kmilo/kmilo_kvaio/kmilo_kvaio.desktop
---- kdeutils.orig/kmilo/kmilo_kvaio/kmilo_kvaio.desktop	Fri Jan 16 08:09:42 2004
-+++ kdeutils/kmilo/kmilo_kvaio/kmilo_kvaio.desktop	Sat Feb  7 13:48:01 2004
-@@ -4,6 +4,7 @@
- ServiceTypes=KMilo Plugin
- X-KDE-ModuleType=Plugin
- Name=Sony Vaio Plugin
-+Name[bs]=Sony Vaio dodatak
- Name[ca]=Connector Sony Vaio
- Name[cy]=Ategyn Sony Vaio
- Name[da]=Sony Vaio plugin
-@@ -14,7 +15,9 @@
- Name[fr]=Module externe pour les Vaio de Sony
- Name[hi]=सोनी वायो प्लगइन
- Name[hu]=Sony Vaio bővítőmodul
-+Name[is]=Sony Vaio íforrit
- Name[it]=Plugin per Sony Vaio
-+Name[ja]=Sony Vaio プラグイン
+--- kdeutils.orig/kmilo/kmilo_kvaio/kmilo_kvaio.desktop	Sun Mar  7 14:27:28 2004
++++ kdeutils/kmilo/kmilo_kvaio/kmilo_kvaio.desktop	Sun Apr 25 01:32:47 2004
+@@ -22,6 +22,7 @@
+ Name[ja]=Sony Vaio プラグイン
+ Name[nb]=Tilleggsprogram for Sony Vaio
  Name[nl]=Sony Vaio plug-in
++Name[nn]=Tilleggsprogram for Sony Vaio
  Name[pl]=Wtyczka Sony Vaio
  Name[pt]='Plugin' para o Sony Vaio
-@@ -26,10 +29,13 @@
- Name[sr]=Додатак за Sony-јев Vaio
+ Name[pt_BR]=Plugin do Sony Vaio
+@@ -32,6 +33,7 @@
+ Name[sr]=Прикључак за Sony-јев Vaio
+ Name[sr@Latn]=Priključak za Sony-jev Vaio
  Name[sv]=Sony Vaio-insticksprogram
++Name[tg]=Модули Sony Vaio
  Name[tr]=Sony Vaio Eklentisi
-+Name[uk]=Втулок Sony Vaio
+ Name[uk]=Втулок Sony Vaio
  Name[uz]=Sony Vaio плагини
- Name[wa]=Tchôke-divins Sony Vaio
- Name[xx]=xxSony Vaio Pluginxx
-+Name[zh_CN]=索尼 Vaio 插件
- Comment=KMilo Module for Sony Vaio Laptop support
-+Comment[bs]=KMilo modul za podršku za Sony Vaio laptope
- Comment[ca]=Mòdul KMilo per suportar portàtils Sony Vaio
- Comment[cy]=Cynhaliaeth Modiwl KMilo ar gyfer Gluniadur Sony Vaio
- Comment[da]=KMilo Modul for understøttelse af Sony Vaio bærbare
-@@ -41,7 +47,9 @@
- Comment[fr]=Module KMilo pour le support des portables Vaio de Sony
- Comment[hi]=सोनी वायो लेपटॉप समर्थन हेतु के-मिलो मॉड्यूल
- Comment[hu]=KMilo beállítómodul Sony Vaio noteszgépek beállításához
-+Comment[is]=KMilo eining fyrir Sony Vaio kjöltutölvur
- Comment[it]=Modulo di KMilo per il supporto dei portatili Sony Vaio
-+Comment[ja]=Sony VaioラップトップをサポートするKMiloモジュール
+@@ -58,6 +60,7 @@
+ Comment[ja]=Sony VaioラップトップをサポートするKMiloモジュール
+ Comment[nb]=KMilo modul for Sony Vaio bærbar maskin
  Comment[nl]=KMilo-module met ondersteuning voor de Sony Vaio laptop
++Comment[nn]=KMilo-modul for Sony Vaio bærbar maskin
  Comment[pl]=Moduł KMilo do obsługi laptopów Sony Vaio
  Comment[pt]=Módulo do KMilo para o suporte do portátil Vaio da Sony
-@@ -54,4 +62,5 @@
+ Comment[pt_BR]= Módulo para o suporte ao Sony Vaio
+@@ -68,6 +71,7 @@
+ Comment[sr]=KMilo, модул за подршку Sony-јевог Vaio лаптопа
+ Comment[sr@Latn]=KMilo, modul za podršku Sony-jevog Vaio laptopa
  Comment[sv]=Kmilo-modul för stöd av bärbar Sony Vaio-dator
++Comment[tg]=Модули KMilo барои пуштибонии Компютери дастии Sony Vaio
  Comment[tr]=Sony Vaio Dizüstüler için KMilo Modül desteği
+ Comment[uk]=Модуль KMilo, що додає підтримку лептовів Sony Vaio
  Comment[xx]=xxKMilo Module for Sony Vaio Laptop supportxx
-+Comment[zh_CN]=索尼 Vaio 便携电脑支持的 KMilo 模块
- X-KDE-Library=kmilo_kvaio
 diff -urN -x CVS kdeutils.orig/kmilo/kmilod/kmilod.desktop kdeutils/kmilo/kmilod/kmilod.desktop
---- kdeutils.orig/kmilo/kmilod/kmilod.desktop	Fri Jan 16 08:09:44 2004
-+++ kdeutils/kmilo/kmilod/kmilod.desktop	Sat Feb  7 13:48:03 2004
-@@ -13,6 +13,7 @@
- Name[ta]= KMilo 
- Name[xx]=xxKMiloxx
- Comment=KDE Special Key Notifier
-+Comment[bs]=KDE obavještenje o posebnim tipkama
- Comment[ca]=Notificador de tecles especials de KDE
- Comment[cs]=Systémová hlášení speciálních kláves
- Comment[cy]=Hysbysydd Bysell Arbennig KDE
-@@ -25,7 +26,9 @@
- Comment[fr]=Notificateur de touche spéciale pour KDE
- Comment[hi]=केडीई विशिष्ट कुंजी सूचक
- Comment[hu]=Kezelőprogram speciális billentyűkhöz
-+Comment[is]=KDE sérhnappatólið
- Comment[it]=Gestione KDE dei tasti speciali
-+Comment[ja]=KDE の特別キー通知
+--- kdeutils.orig/kmilo/kmilod/kmilod.desktop	Thu Mar 18 14:50:27 2004
++++ kdeutils/kmilo/kmilod/kmilod.desktop	Sun Apr 25 01:32:49 2004
+@@ -33,6 +33,7 @@
+ Comment[ja]=KDE の特別キー通知
+ Comment[nb]=Beskjedgiver KDE spesialtaster
  Comment[nl]=KDE-notificatie van speciale toetsen
- Comment[pl]=Program obsługujący specjalne klawisze dla KDE
++Comment[nn]=KDE-verktøy for spesialtastar
+ Comment[pl]=Obsługa klawiszy specjalnych
  Comment[pt]=Notificação de Teclas Especiais do KDE
-@@ -38,4 +41,6 @@
+ Comment[pt_BR]=Notificador de Tecla Especial do KDE
+@@ -44,6 +45,7 @@
+ Comment[sr@Latn]=KDE-ov obavaštavač o specijalnim tasterima
  Comment[sv]=Underrättelse om KDE specialtangent
  Comment[ta]= KDE சிறப்பு விசை குறிக்கப்பட்டது 
++Comment[tg]=Огоҳкунандаи Калиди Махсуси KDE
  Comment[tr]=KDE Özel Tuş Bildirici
-+Comment[uk]=Сповіщувач про натискання спеціальних клавіш для KDE
+ Comment[uk]=Сповіщувач про натискання спеціальних клавіш для KDE
  Comment[xx]=xxKDE Special Key Notifierxx
-+Comment[zh_CN]=KDE 特殊按键通知程序
 diff -urN -x CVS kdeutils.orig/kmilo/powerbook/kmilo_powerbook.desktop kdeutils/kmilo/powerbook/kmilo_powerbook.desktop
---- kdeutils.orig/kmilo/powerbook/kmilo_powerbook.desktop	Fri Jan 16 08:09:46 2004
-+++ kdeutils/kmilo/powerbook/kmilo_powerbook.desktop	Sat Feb  7 13:48:05 2004
-@@ -4,6 +4,7 @@
- ServiceTypes=KMilo Plugin
- X-KDE-ModuleType=Plugin
- Name=Apple (R) PowerBook (R) Plugin
-+Name[bs]=Apple (R) PowerBook (R) dodatak
- Name[ca]=Connector Apple (R) PowerBook (R)
- Name[cy]=Ategyn Apple (R) PowerBook (R)
- Name[da]=Apple (R) PowerBook (R) plugin
-@@ -14,7 +15,9 @@
- Name[fr]=Module externe Apple (R) PowerBook (R)
- Name[hi]=एप्पल (R) पावरबुक (R) प्लगइन
- Name[hu]=Apple (R) PowerBook (R) bővítőmodul
-+Name[is]=Apple (R) PowerBook (R) íforrit
- Name[it]=Plugin per Apple (R) PowerBook (R)
-+Name[ja]=Apple (R) PowerBook (R) プラグイン
+--- kdeutils.orig/kmilo/powerbook/kmilo_powerbook.desktop	Sun Mar  7 14:27:32 2004
++++ kdeutils/kmilo/powerbook/kmilo_powerbook.desktop	Sun Apr 25 01:32:51 2004
+@@ -22,6 +22,7 @@
+ Name[ja]=Apple (R) PowerBook (R) プラグイン
+ Name[nb]=Tilleggsprogram for Apple (R) PowerBook (R)
  Name[nl]=Apple (R) PowerBook (R)-Plugin
++Name[nn]=Tilleggsprogram for Apple ® PowerBook ®
  Name[pl]=Wtyczka Apple (R) PowerBook (R)
  Name[pt]='Plugin' para Apple (R) PowerBook (R)
-@@ -29,7 +32,9 @@
+ Name[pt_BR]=Plug-in para Apple (R) PowerBook (R)
+@@ -33,6 +34,7 @@
+ Name[sr@Latn]=Priključak za Apple-ov PowerBook
+ Name[sv]=Apple ® PowerBook ®-insticksprogram
+ Name[ta]= அப்பில் (R) புத்தகதிறன் (R) சோருகுப்போறுள் 
++Name[tg]=Модули Apple (R) PowerBook (R)
  Name[tr]=Apple (R) PowerBook (R) Eklentisi
+ Name[uk]=Втулок Apple (R) PowerBook (R)
  Name[uz]=Apple (R) PowerBook (R) плагини
- Name[xx]=xxApple (R) PowerBook (R) Pluginxx
-+Name[zh_CN]=Apple(R) PowerBook(R) 插件
- Comment=This plugin enables support for special keys on Apple (R) PowerBook (R) laptops via pbbuttonsd.
-+Comment[bs]=Ovaj dodatak (plugin) omogućuje podršku za posebne tipke na Apple (R) PowerBook (R) laptopima koristeći pbbuttonsd.
- Comment[ca]=Aquest connector activa el suport per a tecles especials dels Apple (R) PowerBooks (R) via pbbuttonsd.
- Comment[cy]=Galluoga'r ategyn yma gynhaliaeth ar gyfer bysyll arbennig ar luniaduron Apple (R) PowerBook (R) drwy pbbuttonsd.
- Comment[da]=Dette plugin aktivere støtte for specielle taster på Apple (R) PowerBook (R) bærbare via pbbuttonsd.
-@@ -41,7 +46,9 @@
- Comment[fr]=Ce module active la gestion des touches spéciales des Apple (R)PowerBook (R) via pbbuttonsd.
- Comment[hi]=यह प्लगइन एप्पल (R) पावर-बुक (R) लैपटॉप पर pbbuttonsd के द्वारा विशिष्ट कुंजी समर्थन सक्षम करता है
- Comment[hu]=Ez a bővítőmodul lehetővé teszi az extra billentyűk használatát Apple (R) PowerBook (R) noteszgépeken (a pbbuttonsd szolgáltatáson keresztül).
-+Comment[is]=Þetta íforrit gerir þér kleyft að nota sérhnappana á Apple (R) PowerBook (R) með pbbuttonsd þjóninum.
- Comment[it]=Questo plugin abilita il supporto per i tasti speciali sui portatili Apple (R) PowerBook (R) tramite pbbuttonsd.
-+Comment[ja]=このプラグインはpbbuttonsdを通してApple (R) PowerBook (R) laptopsのスペシャルキーをサポートします
+@@ -58,6 +60,7 @@
+ Comment[ja]=このプラグインはpbbuttonsdを通してApple (R) PowerBook (R) laptopsのスペシャルキーをサポートします
+ Comment[nb]=Dette tilleggsprogrammet muliggjør støtte for spesielle taster på Apple (R) PowerBook (R) bærbare maskiner via pbbuttonsd.
  Comment[nl]=Maakt het mogelijk speciale toetsen op Apple (R) PowerBook (R) laptops te gebruiken via pbbuttonsd.
++Comment[nn]=Dette programtillegget gjer at du kan bruka spesialtastane på Apple® PowerBook® gjennom pbbuttonsd.
  Comment[pl]=Ta wtyczka umożliwia obsługę klawiszy specjalnych na laptopach Apple (R) PowerBook (R) za pomocą pbbuttonsd.
  Comment[pt]=Este 'plugin' activa o suporte para as teclas especiais nos portáteis Apple (R) PowerBook (R) através do 'pbbuttonsd'.
-@@ -55,4 +62,5 @@
+ Comment[pt_BR]=Este plug-in habilita suporte para teclas especiais nos Apple (R) PowerBooks (R) via pbbuttonsd.
+@@ -69,6 +72,7 @@
+ Comment[sr@Latn]=Ovaj priključak omogućava podršku za specijalne tastere na Apple-ovom PowerBook laptopu preko pbbuttonsd.
+ Comment[sv]=Det här insticksprogrammet aktiverar stöd för speciella tangenter för Apple ® PowerBook ® via pbbuttonsd.
  Comment[ta]= காப்பக கையாலும் கருவி
++Comment[tg]=Ин модул пуштибонии калидҳои махсусро дар компютери дастии Apple (R) PowerBook (R) ба воситаи pbbuttonsd дармегиронад.
  Comment[tr]=Bu plugin pbbuttonsd aracılığı ile Apple(R) PowerBook(R) dizüstüler için özel tuş desteğini açar.
+ Comment[uk]=Цей втулок дозволяє користуватися спеціальними клавішами на лептопах Apple (R) PowerBook (R) за допомогою pbbuttonsd.
  Comment[xx]=xxThis plugin enables support for special keys on Apple (R) PowerBook (R) laptops via pbbuttonsd.xx
-+Comment[zh_CN]=此插件启用 Apple(R) PowerBook(R) 便携电脑上的特殊按键。
- X-KDE-Library=kmilo_powerbook
 diff -urN -x CVS kdeutils.orig/kmilo/powerbook2/kmilo_powerbook.desktop kdeutils/kmilo/powerbook2/kmilo_powerbook.desktop
---- kdeutils.orig/kmilo/powerbook2/kmilo_powerbook.desktop	Fri Jan 16 08:09:48 2004
-+++ kdeutils/kmilo/powerbook2/kmilo_powerbook.desktop	Sat Feb  7 13:48:07 2004
-@@ -4,6 +4,7 @@
- ServiceTypes=KMilo Plugin
- X-KDE-ModuleType=Plugin
- Name=Apple PowerBook Plugin
-+Name[bs]=Apple PowerBook dodatak
- Name[ca]=Connector Apple PowerBook
- Name[cy]=Ategyn Apple PowerBook
- Name[el]=Πρόσθετο Apple PowerBook
-@@ -13,7 +14,9 @@
- Name[fr]=Module externe Apple PowerBook
- Name[hi]=एप्पल पावर-बुक प्लगइन
- Name[hu]=Apple PowerBook bővítőmodul
-+Name[is]=Apple PowerBook íforrit
- Name[it]=Plugin per Apple PowerBook
-+Name[ja]=Apple PowerBook プラグイン
+--- kdeutils.orig/kmilo/powerbook2/kmilo_powerbook.desktop	Sun Mar  7 14:27:34 2004
++++ kdeutils/kmilo/powerbook2/kmilo_powerbook.desktop	Sun Apr 25 01:32:53 2004
+@@ -22,6 +22,7 @@
  Name[ms]= Plug masuk Apple PowerBook
+ Name[nb]=Programtillegg for Apple PowerBook
  Name[nl]=Apple PowerBook plug-in
++Name[nn]=Programtillegg for Apple PowerBook
  Name[pl]=Wtyczka Apple PowerBook
-@@ -29,7 +32,9 @@
+ Name[pt]='Plugin' para Apple PowerBook
+ Name[pt_BR]=Plug-in para Apple PowerBook
+@@ -33,6 +34,7 @@
+ Name[sr@Latn]=Priključak za Apple-ov PowerBook
+ Name[sv]=Apple PowerBook-insticksprogram
+ Name[ta]= ஆப்பீல் சக்தி புத்தகம் சோருகுப்பொருள்
++Name[tg]=Модули Apple PowerBook
  Name[tr]=Apple PowerBook Eklentisi
+ Name[uk]=Втулок Apple PowerBook
  Name[uz]=Apple PowerBook плагини
- Name[xx]=xxApple PowerBook Pluginxx
-+Name[zh_CN]=Apple PowerBook 插件
- Comment=This plugin enabled support for special keys on Apple PowerBooks via pbbuttonsd.
-+Comment[bs]=Ovaj dodatak (plugin) omogućuje podršku za posebne tipke na Apple PowerBooks laptopima koristeći pbbuttonsd.
- Comment[ca]=Aquest connector activa el suport per a tecles especials dels Apple PowerBooks via pbbuttonsd.
- Comment[cy]=Galluoga'r ategyn yma gynhaliaeth ar gyfer bysyll arbennig ar yr Apple PowerBook drwy pbbuttonsd.
- Comment[da]=Dette plugin aktivere støtte for specielle taster på Apple PowerBooks via pbbuttonsd.
-@@ -41,7 +46,9 @@
- Comment[fr]=Ce module active la gestion des touches spéciales des Apple PowerBook via pbbuttonsd.
- Comment[hi]=यह प्लगइन एप्पल पावर-बुक पर pbbuttonsd के द्वारा विशिष्ट कुंजी समर्थन सक्षम करता है
- Comment[hu]=Ez a bővítőmodul lehetővé teszi az extra billentyűk használatát Apple PowerBook noteszgépeken (a pbbuttonsd szolgáltatáson keresztül).
-+Comment[is]=Þetta íforrit gerir þér kleyft að nota sérhnappana á Apple PowerBook með pbbuttonsd þjóninum.
- Comment[it]=Questo plugin abilita il supporto per i tasti speciali sui portatili Apple PowerBooks tramite pbbuttonsd.
-+Comment[ja]=このプラグインはpbbuttonsdを通してApple PowerBookのスペシャルキーをサポートします
+@@ -59,6 +61,7 @@
  Comment[ms]=Plug masuk membolehkan sokongan untuk kekunci khas Apple PowerBooks menerusi pbbuttonsd.
+ Comment[nb]=Dette programtillegget muliggjør støtte for spesille taster på Apple PowerBooks via pbbuttonsd.
  Comment[nl]=Maakt het mogelijk speciale toetsen op Apple (R) PowerBook (R) laptops te gebruiken via pbbuttonsd.
++Comment[nn]=Dette programtillegget gjer at du kan bruka spesialtastane på Apple PowerBook gjennom pbbuttonsd.
  Comment[pl]=Ta wtyczka umożliwia obsługę klawiszy specjalnych na laptopach Apple PowerBook za pomocą pbbuttonsd.
-@@ -56,4 +63,5 @@
+ Comment[pt]=Este 'plugin' activa o suporte para as teclas especiais nos portáteis Apple PowerBook através do 'pbbuttonsd'.
+ Comment[pt_BR]=Este plug-in habilita suporte para teclas especiais nos Apple PowerBooks via pbbuttonsd.
+@@ -70,6 +73,7 @@
+ Comment[sr@Latn]=Ovaj priključak omogućava podršku za specijalne tastere na Apple-ovim PowerBook-ovima preko pbbuttonsd.
+ Comment[sv]=Det här insticksprogrammet aktiverar stöd för speciella tangenter för Apple PowerBook via pbbuttonsd.
  Comment[ta]= இந்த சோருகுப்பொறுள் அனுமதிக்க வில்லை சிறப்பு விசை via pbbuttonsd.
++Comment[tg]=Ин модул пуштибонии калидҳои махсусро дар компютери дастии Apple PowerBooks ба воситаи pbbuttonsd дармегиронад.
  Comment[tr]=Bu plugin pbbuttonsd aracılığı ile Apple PowerBook dizüstüler için özel tuş desteğini açar.
+ Comment[uk]=Цей втулок дозволив користуватися спеціальними клавішами на лептопах Apple PowerBook за допомогою pbbuttonsd.
  Comment[xx]=xxThis plugin enabled support for special keys on Apple PowerBooks via pbbuttonsd.xx
-+Comment[zh_CN]=此插件启用 Apple PowerBook 电源按钮的特殊按键支持。
- X-KDE-Library=kmilo_powerbook
+diff -urN -x CVS kdeutils.orig/kmilo/powerbook2/pb_monitor.cpp kdeutils/kmilo/powerbook2/pb_monitor.cpp
+--- kdeutils.orig/kmilo/powerbook2/pb_monitor.cpp	Sat Mar 27 18:49:46 2004
++++ kdeutils/kmilo/powerbook2/pb_monitor.cpp	Sun Apr 25 19:32:26 2004
+@@ -36,6 +36,12 @@
+ //among which is "template"...
+ #undef template
+ #include <pbb.h>
++
++// TAG_BRIGHTNESS was renamed to TAG_LCDBRIGHTNESS in pbbuttons
++// 0.6.1-2
++#ifndef TAG_LCDBRIGHTNESS
++#define TAG_LCDBRIGHTNESS TAG_BRIGHTNESS
++#endif
+ }
+ 
+ #define BUFFERLEN	200
+@@ -79,7 +85,7 @@
+ 			rc = Monitor::Mute;
+ 			m_progress = (int)tag->data;
+ 			break;
+-		case TAG_BRIGHTNESS:
++		case TAG_LCDBRIGHTNESS:
+ 			rc = Monitor::Brightness;
+ 			m_progress = ((int)tag->data)*100/15;
+ 			break;
+diff -urN -x CVS kdeutils.orig/kregexpeditor/KMultiFormListBox/kmultiformlistbox-windowed.cpp kdeutils/kregexpeditor/KMultiFormListBox/kmultiformlistbox-windowed.cpp
+--- kdeutils.orig/kregexpeditor/KMultiFormListBox/kmultiformlistbox-windowed.cpp	Thu Jul 10 13:29:36 2003
++++ kdeutils/kregexpeditor/KMultiFormListBox/kmultiformlistbox-windowed.cpp	Wed Apr 14 13:45:01 2004
+@@ -19,6 +19,8 @@
+   #include "compat.h"
+ #else
+   #include <kmessagebox.h>
++  #include <kpushbutton.h>
++  #include <kstdguiitem.h>
+   #include "kmultiformlistbox-windowed.moc"
+ #endif
+ 
+@@ -75,7 +77,7 @@
+ 	}
+ 
+ 	if (showHelpButton) {
+-		but = new QPushButton(i18n("Help"), this, "Help Button");
++		but = new KPushButton(KStdGuiItem::help(), this, "Help Button");
+ 		buttons->addWidget(but, 0);
+ 		connect(but, SIGNAL(clicked()), this, SIGNAL(showHelp()));
+ 	}
+diff -urN -x CVS kdeutils.orig/kregexpeditor/characterswidget.cpp kdeutils/kregexpeditor/characterswidget.cpp
+--- kdeutils.orig/kregexpeditor/characterswidget.cpp	Sun Oct 26 12:04:13 2003
++++ kdeutils/kregexpeditor/characterswidget.cpp	Sat Apr 24 15:21:26 2004
+@@ -413,7 +413,7 @@
+ 
+     layout->addStretch(1);
+ 
+-    label = new QLabel(i18n("To:"), this );
++    label = new QLabel(i18n("end of range","To:"), this );
+     _to = new CharSelector( this );
+     layout->addWidget( label );
+     layout->addWidget( _to );
 diff -urN -x CVS kdeutils.orig/kregexpeditor/kregexpeditor.desktop kdeutils/kregexpeditor/kregexpeditor.desktop
---- kdeutils.orig/kregexpeditor/kregexpeditor.desktop	Fri Jan 16 08:09:50 2004
-+++ kdeutils/kregexpeditor/kregexpeditor.desktop	Sat Feb  7 13:48:09 2004
-@@ -13,6 +13,7 @@
- DocPath=KRegExpEditor/index.html
- GenericName=Regular Expression Editor
- GenericName[bg]=Редактор на регулярни изрази
-+GenericName[bs]=Editor regularnih izraza
- GenericName[ca]=Editor d'expressions regulars
- GenericName[cs]=Editor regulárních výrazů
- GenericName[cy]=Golygydd Mynegiadau Rheolaidd
-@@ -25,7 +26,9 @@
- GenericName[fr]=Éditeur d'expressions régulières
- GenericName[hi]=रेगुलर एक्सप्रेशन संपादक
- GenericName[hu]=Kifejezésszerkesztő
-+GenericName[is]=Ritill fyrir reglulegar segðir
- GenericName[it]=Editor di espressioni regolari
-+GenericName[ja]=正規表現エディタ
+--- kdeutils.orig/kregexpeditor/kregexpeditor.desktop	Sun Mar  7 14:27:36 2004
++++ kdeutils/kregexpeditor/kregexpeditor.desktop	Sun Apr 25 01:32:55 2004
+@@ -7,6 +7,7 @@
+ Name[pl]=Edytor wyrażeń regularnych
+ Name[sv]=Kregexpeditor
+ Name[ta]= KRegExp தோகுப்பி 
++Name[tg]=KМуҳаррири Ифодаҳои Муқаррарӣ
+ Name[wa]=Aspougneu d' erîlêyès ratourneures
+ Name[xx]=xxKRegExpEditorxx
+ Exec=kregexpeditor
+@@ -34,6 +35,7 @@
  GenericName[ms]=Penyunting Ungkapan Nalar (regexp)
+ GenericName[nb]=Tekstbehandler for regulære uttrykk
  GenericName[nl]=Editor voor regular expressions
++GenericName[nn]=Program for skriving av regulære uttrykk
  GenericName[pl]=Edytor wyrażeń regularnych
-@@ -39,9 +42,11 @@
+ GenericName[pt]=Editor de Expressões Regulares
+ GenericName[pt_BR]=Editor de Expressões Regulares
+@@ -45,6 +47,7 @@
+ GenericName[sr@Latn]=Editor regularnih izraza
  GenericName[sv]=Editor för reguljära uttryck
  GenericName[ta]= வழக்கமாக தொடர் தோகுப்பி 
++GenericName[tg]=Муҳаррири Ифодаҳои Муқаррарӣ
  GenericName[tr]=Tam İfade Düzenleyici
-+GenericName[uk]=Редактор формальних виразів
+ GenericName[uk]=Редактор формальних виразів
  GenericName[uz]=Доимий ифода таҳрирчи
- GenericName[wa]=Aspougneu d' erîlêyès ratourneures
- GenericName[xx]=xxRegular Expression Editorxx
-+GenericName[zh_CN]=正规表达式编辑器
- Terminal=0
- Type=Application
- X-KDE-StartupNotify=true
+diff -urN -x CVS kdeutils.orig/kregexpeditor/kregexpeditorgui.desktop kdeutils/kregexpeditor/kregexpeditorgui.desktop
+--- kdeutils.orig/kregexpeditor/kregexpeditorgui.desktop	Sun Mar  7 14:27:38 2004
++++ kdeutils/kregexpeditor/kregexpeditorgui.desktop	Sun Apr 25 01:32:57 2004
+@@ -42,6 +42,7 @@
+ Name[sr@Latn]=Kontrola editora regularnih izraza
+ Name[sv]=Grafisk komponent för att redigera reguljära uttryck
+ Name[ta]= RegExp தோகுப்பி விட்ஞிடு 
++Name[tg]=Ҷузъи Муҳаррири Ифодаҳои Муқаррарӣ
+ Name[th]=คอนโทรลแก้ไข RegExp
+ Name[tr]=RegExp Düzenleyici Aleti
+ Name[uk]=Віджет редактору регулярних виразів
+diff -urN -x CVS kdeutils.orig/kregexpeditor/main.cpp kdeutils/kregexpeditor/main.cpp
+--- kdeutils.orig/kregexpeditor/main.cpp	Sun Sep 28 11:19:36 2003
++++ kdeutils/kregexpeditor/main.cpp	Mon Apr 12 19:04:26 2004
+@@ -55,8 +55,8 @@
+     lay->addWidget( iface );
+ 
+     QHBoxLayout* lay2 = new QHBoxLayout( lay, 6 );
+-    KPushButton* help = new KPushButton( i18n("Help"), top );
+-    KPushButton* quit = new KPushButton( i18n("Quit"), top );
++    KPushButton* help = new KPushButton( KStdGuiItem::help(), top );
++    KPushButton* quit = new KPushButton( KStdGuiItem::quit(), top );
+ 
+     lay2->addWidget( help );
+     lay2->addStretch(1);
 diff -urN -x CVS kdeutils.orig/ksim/ksim.desktop kdeutils/ksim/ksim.desktop
---- kdeutils.orig/ksim/ksim.desktop	Thu Jan 15 09:19:50 2004
-+++ kdeutils/ksim/ksim.desktop	Fri Jan 30 19:22:12 2004
-@@ -78,6 +78,7 @@
- Comment[hi]=के तंत्र जानकारी मॉनीटर (GKrellM शैली)
- Comment[hr]=K Monitor sustava (GKrellM stil)
- Comment[hu]=GKrellM-stílusú rendszermonitor
-+Comment[is]=Kerfisupplýsingavaki
- Comment[it]=Controllo delle informazioni di sistema (simile a GKrellM)
- Comment[ja]= K システム情報モニター (GKrellM スタイル)
- Comment[lt]=K sistemos informacijos stebėtojas (GKrellM stilius)
+--- kdeutils.orig/ksim/ksim.desktop	Sun Mar  7 14:27:40 2004
++++ kdeutils/ksim/ksim.desktop	Sun Apr 25 01:32:59 2004
+@@ -49,6 +49,7 @@
+ GenericName[sr@Latn]=Monitor sistema
+ GenericName[sv]=Systemövervakare
+ GenericName[ta]=முறைமை திரையகம்
++GenericName[tg]=Дидабони Системавӣ
+ GenericName[th]=สอดส่องการทำงานของระบบ
+ GenericName[tr]=Sistem İzleyici
+ GenericName[uk]=Монітор системи
+@@ -104,6 +105,7 @@
+ Comment[sr@Latn]=KDE-ov monitor sistemskih informacija (u stilu GKrellM-a)
+ Comment[sv]=Systeminformationsövervakare (Gkrellm-stil)
+ Comment[ta]=  K முறைமை தகவல் திரை(GKrellM style)
++Comment[tg]=K Дидабони Ахбороти Системавӣ (навъи GKrellM)
+ Comment[th]=เครื่องมือสอดส่องข้อมูลของระบบ (แบบ GKrellM)
+ Comment[tr]=K Sistem Bildirimi İzleyici (GKrellM stili)
+ Comment[uk]=Монітор системної інформації (в стилі GKrellM)
+diff -urN -x CVS kdeutils.orig/ksim/ksimview.cpp kdeutils/ksim/ksimview.cpp
+--- kdeutils.orig/ksim/ksimview.cpp	Wed Oct 22 13:07:50 2003
++++ kdeutils/ksim/ksimview.cpp	Sun Apr 11 20:16:20 2004
+@@ -272,12 +272,12 @@
+   for (it = list.begin(); it != list.end(); ++it) {
+     if ((*it).isDifferent()) {
+       if ((*it).isEnabled()) { // Go through the added/removed plugins and load/unload them
+-        addPlugin(KDesktopFile((*it).filename()));
++        addPlugin((*it).filename());
+         m_prefDialog->createPage((*it).libName());
+       }
+       else {
+         m_prefDialog->removePage((*it).libName());
+-        removePlugin(KDesktopFile((*it).filename()));
++        removePlugin((*it).filename());
+       }
+     }
+   }
+@@ -304,11 +304,13 @@
+   QStringList locatedFiles = KGlobal::dirs()->findAllResources("data", "ksim/monitors/*.desktop");
+   QStringList::ConstIterator it;
+   for (it = locatedFiles.begin(); it != locatedFiles.end(); ++it)
+-    addPlugin(KDesktopFile(*it, true));
++    addPlugin(*it);
+ }
+ 
+-void KSim::MainView::addPlugin(const KDesktopFile &file, bool force)
++void KSim::MainView::addPlugin(const QString& _file, bool force)
+ {
++  KDesktopFile file(_file);
++
+   if (force || m_config->enabledMonitor(file.readEntry("X-KSIM-LIBRARY")))
+     KSim::PluginLoader::self().loadPlugin(file);
+ }
+diff -urN -x CVS kdeutils.orig/ksim/ksimview.h kdeutils/ksim/ksimview.h
+--- kdeutils.orig/ksim/ksimview.h	Sun Jul 27 11:22:13 2003
++++ kdeutils/ksim/ksimview.h	Sun Apr 11 20:16:20 2004
+@@ -67,7 +67,7 @@
+     public slots:
+       void reparseConfig(bool, const KSim::ChangedPluginList &);
+       void addPlugins();
+-      void addPlugin(const KDesktopFile &, bool force = false);
++      void addPlugin(const QString&, bool force = false);
+       void removePlugin(const KDesktopFile &);
+       void addMonitor(const KSim::Plugin &);
+       void runCommand(const QCString &);
 diff -urN -x CVS kdeutils.orig/ksim/monitors/cpu/cpu.desktop kdeutils/ksim/monitors/cpu/cpu.desktop
---- kdeutils.orig/ksim/monitors/cpu/cpu.desktop	Thu Jan 15 09:19:52 2004
-+++ kdeutils/ksim/monitors/cpu/cpu.desktop	Fri Jan 30 19:22:14 2004
-@@ -9,6 +9,7 @@
- Name[he]=מעבד
- Name[hi]=सीपीयू
- Name[hr]=Procesor
-+Name[is]=Örgjörvi
- Name[pl]=procesor
- Name[ru]=Процессор
- Name[sk]=Procesor
-@@ -39,6 +40,7 @@
- Comment[he]=תוסף צג מעבד
- Comment[hi]=सीपीयू मॉनीटर प्लगइन
- Comment[hu]=CPU-figyelő bővítőmodul
-+Comment[is]=Örgjörva eftirlitsíforrit
- Comment[it]=Plugin di controllo CPU
- Comment[ja]=CPU モニター プラグイン
- Comment[lt]=CPU stebėtojo priedas
-diff -urN -x CVS kdeutils.orig/ksim/monitors/disk/disk.desktop kdeutils/ksim/monitors/disk/disk.desktop
---- kdeutils.orig/ksim/monitors/disk/disk.desktop	Thu Jan 15 09:19:54 2004
-+++ kdeutils/ksim/monitors/disk/disk.desktop	Fri Jan 30 19:22:16 2004
+--- kdeutils.orig/ksim/monitors/cpu/cpu.desktop	Sun Mar  7 14:27:42 2004
++++ kdeutils/ksim/monitors/cpu/cpu.desktop	Sun Apr 25 01:33:01 2004
 @@ -17,6 +17,7 @@
- Comment[he]=תוסף צג דיסק
- Comment[hi]=डिस्क मॉनीटर प्लगइन
- Comment[hu]=Lemezfigyelő bővítőmodul
-+Comment[is]=Disk eftirlitsforrit
- Comment[it]=Plugin di controllo disco
- Comment[ja]=ディスクモニター プラグイン
- Comment[lt]=Disko stebėtojo priedas
-@@ -57,6 +58,7 @@
- Name[he]=דיסק
- Name[hi]=डिस्क
- Name[hu]=Lemez
-+Name[is]=Diskur
- Name[it]=Disco
- Name[ja]=ディスク
- Name[lt]=Diskas
+ Name[sl]=CPE
+ Name[sv]=Processor
+ Name[ta]= CPU
++Name[tg]=ВПМ
+ Name[th]=ซีพียู
+ Name[tr]=İşlemci
+ Name[uk]=ЦП
+@@ -63,6 +64,7 @@
+ Comment[sr@Latn]=Priključak za nadgledanje CPU-a
+ Comment[sv]=Insticksprogram för processoraktivitet
+ Comment[ta]= CPU திரை சோருகுப்பொருள் 
++Comment[tg]=Модули Дидабони ВПМ
+ Comment[th]=ปลั๊กอินสอดส่องซีพียู
+ Comment[tr]=İşlemci İzleyici Eklentisi
+ Comment[uk]=Втулок датчика ЦП
+diff -urN -x CVS kdeutils.orig/ksim/monitors/disk/disk.desktop kdeutils/ksim/monitors/disk/disk.desktop
+--- kdeutils.orig/ksim/monitors/disk/disk.desktop	Sun Mar  7 14:27:44 2004
++++ kdeutils/ksim/monitors/disk/disk.desktop	Sun Apr 25 01:33:03 2004
+@@ -39,6 +39,7 @@
+ Comment[sr@Latn]=Priključak za nadgledanje diska
+ Comment[sv]=Insticksprogram för diskövervakning
+ Comment[ta]=  வட்டு திரை சோருகுப்பொருள் 
++Comment[tg]=Модули Дидабони Диск
+ Comment[th]=ปลั๊กอินตรวจการทำงานดิสก์
+ Comment[tr]=Disk İzleyici Eklentisi
+ Comment[uk]=Втулок датчика диску
+@@ -78,6 +79,7 @@
+ Name[ru]=Диск
+ Name[sr]=Диск
+ Name[ta]= டிஸ்க் 
++Name[tg]=Диск
+ Name[th]=ดิสก์
+ Name[uk]=Диск
+ Name[uz]=Диск
 diff -urN -x CVS kdeutils.orig/ksim/monitors/filesystem/DFree.desktop kdeutils/ksim/monitors/filesystem/DFree.desktop
---- kdeutils.orig/ksim/monitors/filesystem/DFree.desktop	Thu Jan 15 09:19:56 2004
-+++ kdeutils/ksim/monitors/filesystem/DFree.desktop	Fri Jan 30 19:22:18 2004
-@@ -37,6 +37,7 @@
- Comment[he]=צג מחיצות מחוברות
- Comment[hi]=माउन्टेड पार्टीशन्स मॉनीटर
- Comment[hu]=Lemezcsatlakoztatás-figyelő
-+Comment[is]=Eftirlit með tengdum disksneiðum
- Comment[it]=Controllo delle partizioni montate
- Comment[ja]=マウントされたパーティションのモニター
- Comment[lt]=Sumontuotų skirsnių stebėtojas
+--- kdeutils.orig/ksim/monitors/filesystem/DFree.desktop	Sun Mar  7 14:27:46 2004
++++ kdeutils/ksim/monitors/filesystem/DFree.desktop	Sun Apr 25 01:33:05 2004
+@@ -16,6 +16,7 @@
+ Name[sk]=Voľný disk
+ Name[sv]=Ledigt diskutrymme
+ Name[ta]= Dபிரீ
++Name[tg]=DОзод
+ Name[th]=พื้นที่ว่างของดิสก์
+ Name[xx]=xxDFreexx
+ Comment=Mounted Partitions Monitor
+@@ -58,6 +59,7 @@
+ Comment[sr@Latn]=Monitor montiranih particija
+ Comment[sv]=Övervakar monterade partitioner
+ Comment[ta]= 
++Comment[tg]=Дидабони Қисмҳои Насбшуда
+ Comment[th]=สอดส่องพาร์ติชันที่เมานท์ไว้แล้ว
+ Comment[tr]=Bağlanmış Disk Bölümü İzleyici
+ Comment[uk]=Монітор змонтованих розділів
 diff -urN -x CVS kdeutils.orig/ksim/monitors/i8k/i8k.desktop kdeutils/ksim/monitors/i8k/i8k.desktop
---- kdeutils.orig/ksim/monitors/i8k/i8k.desktop	Fri Jan 16 08:09:52 2004
-+++ kdeutils/ksim/monitors/i8k/i8k.desktop	Sat Feb  7 13:48:12 2004
-@@ -1,5 +1,6 @@
- [Desktop Entry]
+--- kdeutils.orig/ksim/monitors/i8k/i8k.desktop	Sun Mar  7 14:27:48 2004
++++ kdeutils/ksim/monitors/i8k/i8k.desktop	Sun Apr 25 01:33:07 2004
+@@ -2,6 +2,7 @@
  Comment=Dell I8K Hardware Monitor Plugin
-+Comment[bs]=Dell I8K dodatak za nadzor hardvera
+ Comment[bs]=Dell I8K dodatak za nadzor hardvera
  Comment[ca]=Connector per a monitoritzar el maquinari Dell I8K
++Comment[cs]=Modul pro monitorování Dell I8K hardwaru
  Comment[cy]=Ategyn Arsylwydd Caledwedd Dell I8K
  Comment[de]=Dell I8K Hardware Überwachungs-Plugin
-@@ -10,7 +11,9 @@
- Comment[fr]=Module de surveillance du Dell l8K
- Comment[hi]=डेल I8K हार्डवेयर मॉनीटर प्लगइन
- Comment[hu]=Dell I8K hardvermonitor bővítőmodul
-+Comment[is]=Íforrit til að fylgjast með Dell I8K vélbúnaði
- Comment[it]=Plugin di controllo hardware Dell I8K
-+Comment[ja]=Dell I8K ハードウェアモニタプラグイン
+ Comment[el]=Πρόσθετο εποπτείας υλικού Dell I8K
+@@ -19,6 +20,7 @@
  Comment[ms]=Plug masuk Pemerhati Perkakasan Dell I8K
+ Comment[nb]=Programtillegg for overvåkning av maskinvare Dell I8K
  Comment[nl]=Dell I8K Hardware Monitor plug-in
++Comment[nn]=Programtillegg for overvaking av Dell I8K-maskinvare
  Comment[pl]=Wtyczka monitorowania Dell I8K
-@@ -24,8 +27,10 @@
+ Comment[pt]='Plugin' de monitorização de harwdare para o Dell I8K
+ Comment[pt_BR]=Plug-in de monitoramento do Hardware Dell I8K
+@@ -30,6 +32,7 @@
+ Comment[sr@Latn]=Priključak za nadgledanje Dell-ovog I8K hardvera
  Comment[sv]=Insticksprogram för Dell I8K-övervakning
  Comment[ta]= Dell I8K வன்பொறுள் திரை சோறுகுபொபொறுள் 
++Comment[tg]=Модули Дидабони Сахтафзори Dell I8K
  Comment[tr]=Dell I8K Donanım Monitör Plugini
-+Comment[uk]=Втулок датчика апаратного забезпечення Dell I8K
+ Comment[uk]=Втулок датчика апаратного забезпечення Dell I8K
  Comment[wa]=Tchôke-divins di corwaitaedje di l' éndjolreye pol Dell I8K
- Comment[xx]=xxDell I8K Hardware Monitor Pluginxx
-+Comment[zh_CN]=Dell I8K 硬件邮件监视器插件
- Icon=hdd_mount
- Name=Dell I8K
- Name[fr]=Dell l8K
 diff -urN -x CVS kdeutils.orig/ksim/monitors/lm_sensors/Lm_sensors.desktop kdeutils/ksim/monitors/lm_sensors/Lm_sensors.desktop
---- kdeutils.orig/ksim/monitors/lm_sensors/Lm_sensors.desktop	Thu Jan 15 09:20:00 2004
-+++ kdeutils/ksim/monitors/lm_sensors/Lm_sensors.desktop	Fri Jan 30 19:22:22 2004
-@@ -16,6 +16,7 @@
- Comment[he]=צג מצב Lm_sensors
- Comment[hi]=एलएम_सेंसर्स स्थिति मॉनीटर
- Comment[hu]=Lm_sensors hardvermonitor
-+Comment[is]=Eftirlit með stöðu Lm_sensors
- Comment[it]=Controllo di stato lm_sensors
- Comment[ja]=Lm センサーの状態モニター
- Comment[lt]=Lm_sensors būsenos stebėtojas
+--- kdeutils.orig/ksim/monitors/lm_sensors/Lm_sensors.desktop	Sun Mar  7 14:27:50 2004
++++ kdeutils/ksim/monitors/lm_sensors/Lm_sensors.desktop	Sun Apr 25 01:33:09 2004
+@@ -38,6 +38,7 @@
+ Comment[sr@Latn]=Monitor statusa lm_senzora
+ Comment[sv]=Lm_sensors statusövervakare
+ Comment[ta]=Lm_உணரிகள் நிலைமை திரையகம் 
++Comment[tg]=Дидабони Ҳолати Lm_sensors
+ Comment[th]=Lm_sensors - เครื่องมือสอดส่องสถานะ
+ Comment[tr]=Lm_sensors Durum İzleyici
+ Comment[uk]=Монітор стану Lm_sensors
 diff -urN -x CVS kdeutils.orig/ksim/monitors/mail/mail.desktop kdeutils/ksim/monitors/mail/mail.desktop
---- kdeutils.orig/ksim/monitors/mail/mail.desktop	Thu Jan 15 09:20:02 2004
-+++ kdeutils/ksim/monitors/mail/mail.desktop	Sat Feb  7 13:48:14 2004
-@@ -17,6 +17,7 @@
- Comment[he]=תוסף צג דואר
- Comment[hi]=डाक मॉनीटर प्लगइन
- Comment[hu]=E-mail-figyelő bővítőmodul
-+Comment[is]=Pósteftirlitsforrit
- Comment[it]=Plugin di controllo posta
- Comment[ja]=メールモニタープラグイン
- Comment[lt]=Pašto stebėtojo priedas
-@@ -61,6 +62,7 @@
- Name[he]=דואר
- Name[hi]=डाक
- Name[hr]=Pošta
-+Name[is]=Póstur
- Name[it]=Posta
- Name[ja]=メール
- Name[lt]=Paštas
+--- kdeutils.orig/ksim/monitors/mail/mail.desktop	Sun Mar  7 14:27:51 2004
++++ kdeutils/ksim/monitors/mail/mail.desktop	Sun Apr 25 01:33:11 2004
+@@ -39,6 +39,7 @@
+ Comment[sr@Latn]=Priključak za nadgledanje pošte
+ Comment[sv]=Insticksprogram för e-postövervakning
+ Comment[ta]= அஞ்சல் திரை சோருகுப்பொருள் 
++Comment[tg]=Модули Дидабони Пост
+ Comment[th]=ปลั๊กอินตรวจสอบจดหมาย
+ Comment[tr]=Posta İzleyici Eklentisi
+ Comment[uk]=Втулок датчика пошти
+@@ -87,6 +88,7 @@
+ Name[sr@Latn]=Pošta
+ Name[sv]=E-post
+ Name[ta]= அஞ்சல் 
++Name[tg]=Пост
+ Name[th]=จดหมาย
+ Name[tr]=E-posta
+ Name[uk]=Пошта
 diff -urN -x CVS kdeutils.orig/ksim/monitors/net/Net.desktop kdeutils/ksim/monitors/net/Net.desktop
---- kdeutils.orig/ksim/monitors/net/Net.desktop	Thu Jan 15 09:20:04 2004
-+++ kdeutils/ksim/monitors/net/Net.desktop	Fri Jan 30 19:22:26 2004
-@@ -16,6 +16,7 @@
- Comment[he]=צג מצב רשת
- Comment[hi]=नेट स्थिति मॉनीटर
- Comment[hu]=Hálózati állapotfigyelő
-+Comment[is]=Eftirlit með stöðu netsins
- Comment[it]=Controllo dello stato della rete
- Comment[ja]=ネットワーク状態モニター
- Comment[lt]=Net būsenos stebėtojas
-@@ -54,7 +55,7 @@
- Name[es]=Red
- Name[he]=רשת
- Name[hi]=नेट
--Name[is]=NetiÃ°
-+Name[is]=Netið
- Name[it]=Rete
- Name[ja]=ネット
- Name[lv]=Tīkls
+--- kdeutils.orig/ksim/monitors/net/Net.desktop	Sun Mar  7 14:27:54 2004
++++ kdeutils/ksim/monitors/net/Net.desktop	Sun Apr 25 01:33:13 2004
+@@ -38,6 +38,7 @@
+ Comment[sr@Latn]=Monitor statusa mreže
+ Comment[sv]=Övervakar nätverkets status
+ Comment[ta]=  பிணையம் நிலைமை கண்காணி 
++Comment[tg]=Дидабони Ҳолати Шабака
+ Comment[th]=เครื่องมือสอดส่องสถานะของเน็ต
+ Comment[tr]=Ağ İçin Durum İzleyici
+ Comment[uk]=Монітор стану мережі
+@@ -79,6 +80,7 @@
+ Name[sr@Latn]=Mreža
+ Name[sv]=Nätverk
+ Name[ta]= வலை 
++Name[tg]=Шабака
+ Name[th]=เน็ต
+ Name[tr]=ağ
+ Name[uk]=Мережа
 diff -urN -x CVS kdeutils.orig/ksim/monitors/snmp/Snmp.desktop kdeutils/ksim/monitors/snmp/Snmp.desktop
---- kdeutils.orig/ksim/monitors/snmp/Snmp.desktop	Fri Jan 16 08:09:54 2004
-+++ kdeutils/ksim/monitors/snmp/Snmp.desktop	Sat Feb  7 13:48:16 2004
-@@ -1,6 +1,7 @@
- [Desktop Entry]
- Comment=Snmp Status Monitor
- Comment[bg]=Приставка за мониторинг на Snmp
-+Comment[bs]=Nadzor SNMP statusa
- Comment[ca]=Monitor d'estat snmp
- Comment[cs]=Monitor stavu SNMP
- Comment[cy]=Monitr Cyflwr Snmp
-@@ -13,7 +14,9 @@
- Comment[fr]=Indicateur d'état snmp
- Comment[hi]=एसएनएमपी स्थिति मॉनीटर
- Comment[hu]=Snmp állapotmonitor
-+Comment[is]=Snmp eftirlitstól
- Comment[it]=Controllo di stato SNMP
-+Comment[ja]=Snmp ステータスモニタ
+--- kdeutils.orig/ksim/monitors/snmp/Snmp.desktop	Sun Mar  7 14:27:56 2004
++++ kdeutils/ksim/monitors/snmp/Snmp.desktop	Sun Apr 25 01:33:15 2004
+@@ -21,6 +21,7 @@
+ Comment[ja]=Snmp ステータスモニタ
+ Comment[nb]=Overvåkning av status via SNMP
  Comment[nl]=Snmp Statusbewaking
++Comment[nn]=Overvaking av status via SNMP
  Comment[pl]=Monitor statusu Snmp
  Comment[pt]=Monitorização do estado de SNMP
-@@ -26,8 +29,10 @@
+ Comment[pt_BR]=Monitor de estado do SNMP
+@@ -32,6 +33,7 @@
+ Comment[sr@Latn]=Monitor statusa Snmp-a
  Comment[sv]=Övervakar SNMP-status
  Comment[ta]=Snmp நிலைமை திரை
++Comment[tg]=Дидабони Ҳолати Snmp
  Comment[tr]=Snmp Durum Monitörü
-+Comment[uk]=Монітор стану мережі (snmp протокол)
+ Comment[uk]=Монітор стану мережі (snmp протокол)
  Comment[wa]=Corwaitoe di l' estat snmp
- Comment[xx]=xxSnmp Status Monitorxx
-+Comment[zh_CN]=Snmp 状态监视器
- Icon=network
- Name=Snmp
- Name[cs]=SNMP
 diff -urN -x CVS kdeutils.orig/ktimer/ktimer.desktop kdeutils/ktimer/ktimer.desktop
---- kdeutils.orig/ktimer/ktimer.desktop	Thu Jan 15 09:20:08 2004
-+++ kdeutils/ktimer/ktimer.desktop	Fri Jan 30 19:22:30 2004
-@@ -21,7 +21,7 @@
- GenericName[hi]=टास्क शेड्यूलर
- GenericName[hr]=Zakazivanje zadataka
- GenericName[hu]=Feladatütemező
--GenericName[is]=VerkefnastjÃ³ri
-+GenericName[is]=Verkefnastjóri
- GenericName[it]=Operazioni pianificate
- GenericName[ja]=タスクスケジューラー
- GenericName[lt]=Užduočių planuotojas
+--- kdeutils.orig/ktimer/ktimer.desktop	Sun Mar  7 14:27:58 2004
++++ kdeutils/ktimer/ktimer.desktop	Sun Apr 25 01:33:17 2004
+@@ -45,6 +45,7 @@
+ GenericName[sr@Latn]=Raspoređivač zadataka
+ GenericName[sv]=Jobbschemaläggare
+ GenericName[ta]= பணி 
++GenericName[tg]=Ҷадвали Супоришот
+ GenericName[th]=ตารางงาน
+ GenericName[tr]=Görev Zamanlayıcı
+ GenericName[uk]=Планувальник задач
+@@ -71,6 +72,7 @@
+ Name[pt_BR]=Temporizador
+ Name[sv]=Ktimer
+ Name[ta]= Kநேரம் 
++Name[tg]=KВақтсанҷ
+ Name[th]=ตั้งเวลาทำงาน
+ Name[tr]=Zamanlayıcı
+ Name[ven]=Ratshikhathi wa K
+diff -urN -x CVS kdeutils.orig/kwallet/allyourbase.cpp kdeutils/kwallet/allyourbase.cpp
+--- kdeutils.orig/kwallet/allyourbase.cpp	Mon Dec 29 20:49:35 2003
++++ kdeutils/kwallet/allyourbase.cpp	Wed Apr 14 13:45:01 2004
+@@ -66,7 +66,7 @@
+ 	QString folder;
+ 	ds >> folder;
+ 	if (_wallet->hasFolder(folder)) {
+-		int rc = KMessageBox::warningYesNoCancel(0L, i18n("A folder by the name '%1' already exists.  What would you like to do?").arg(folder), QString::null, i18n("Continue"), i18n("Replace"));
++		int rc = KMessageBox::warningYesNoCancel(0L, i18n("A folder by the name '%1' already exists.  What would you like to do?").arg(folder), QString::null, KStdGuiItem::cont(), i18n("Replace"));
+ 		if (rc == KMessageBox::Cancel) {
+ 			return;
+ 		}
 diff -urN -x CVS kdeutils.orig/kwallet/konfigurator/kwallet_config.desktop kdeutils/kwallet/konfigurator/kwallet_config.desktop
---- kdeutils.orig/kwallet/konfigurator/kwallet_config.desktop	Fri Jan 16 08:09:56 2004
-+++ kdeutils/kwallet/konfigurator/kwallet_config.desktop	Sat Feb  7 13:48:18 2004
-@@ -6,6 +6,7 @@
- DocPath=kwallet/index.html
- Name=KDE Wallet
- Name[bg]=Портфейл
-+Name[bs]=KDE novčanik
- Name[cs]=Úschovna KDE
- Name[cy]=Waled KDE
- Name[da]=KDE tegnebog
-@@ -17,7 +18,9 @@
- Name[fr]=Gestionnaire de comptes de KDE
- Name[hi]=केडीई वैलेट
- Name[hu]=Digitális noteszek
-+Name[is]=KDE veskið
- Name[it]=Portafogli di KDE
-+Name[ja]=KDE ワレット
- Name[pl]=Portfel KDE
- Name[pt]=Carteira KDE
- Name[pt_BR]=Carteira do KDE
-@@ -29,3 +32,4 @@
+--- kdeutils.orig/kwallet/konfigurator/kwallet_config.desktop	Sun Feb 29 16:56:15 2004
++++ kdeutils/kwallet/konfigurator/kwallet_config.desktop	Sun Apr 25 01:33:19 2004
+@@ -30,6 +30,7 @@
+ Name[sl]=Denarnica KDE
+ Name[sv]=KDE-plånbok
+ Name[ta]= KDE வாலேட் 
++Name[tg]=KDE Ҳамён
  Name[tr]=KDE Cüzdan
  Name[uk]=Торбинки KDE
  Name[xx]=xxKDE Walletxx
-+Name[zh_CN]=KDE 钱包
 diff -urN -x CVS kdeutils.orig/kwallet/konfigurator/kwalletconfig.desktop kdeutils/kwallet/konfigurator/kwalletconfig.desktop
---- kdeutils.orig/kwallet/konfigurator/kwalletconfig.desktop	Fri Jan 16 08:09:57 2004
-+++ kdeutils/kwallet/konfigurator/kwalletconfig.desktop	Sat Feb  7 13:48:20 2004
-@@ -10,6 +10,7 @@
- 
- Name=KDE Wallet
- Name[bg]=Портфейл
-+Name[bs]=KDE novčanik
- Name[cs]=Úschovna KDE
- Name[cy]=Waled KDE
- Name[da]=KDE tegnebog
-@@ -21,7 +22,9 @@
- Name[fr]=Gestionnaire de comptes de KDE
- Name[hi]=केडीई वैलेट
- Name[hu]=Digitális noteszek
-+Name[is]=KDE veskið
- Name[it]=Portafogli di KDE
-+Name[ja]=KDE ワレット
- Name[pl]=Portfel KDE
- Name[pt]=Carteira KDE
- Name[pt_BR]=Carteira do KDE
-@@ -33,8 +36,10 @@
+--- kdeutils.orig/kwallet/konfigurator/kwalletconfig.desktop	Sun Mar  7 14:28:00 2004
++++ kdeutils/kwallet/konfigurator/kwalletconfig.desktop	Sun Apr 25 01:33:21 2004
+@@ -34,6 +34,7 @@
+ Name[sl]=Denarnica KDE
+ Name[sv]=KDE-plånbok
+ Name[ta]= KDE வாலேட் 
++Name[tg]=KDE Ҳамён
  Name[tr]=KDE Cüzdan
  Name[uk]=Торбинки KDE
  Name[xx]=xxKDE Walletxx
-+Name[zh_CN]=KDE 钱包
- Comment=KDE Wallet Configuration
- Comment[bg]=Конфигуриране на Портфейла
-+Comment[bs]=Podešavanje KDE novčanika
- Comment[ca]=Configuració de carteres KDE
- Comment[cs]=Nastavení úschovny KDE
- Comment[cy]=Ffurfweddiad Waled KDE
-@@ -47,7 +52,9 @@
+@@ -53,13 +54,14 @@
  Comment[fr]=Configuration du gestionnaire de comptes de KDE
- Comment[hi]=केडीई वैलेट कॉन्फिगरेशन
+ Comment[ga]=Cumraíocht KDE Wallet
+ Comment[gl]=Configuración da Carteira de KDE
+-Comment[hi]=केडीई वैलेट कॉन्फिगरेशन
++Comment[hi]=केडीई वैलेट कॉन्फ़िगरेशन
  Comment[hu]=A KDE digitális noteszeinek beállításai
-+Comment[is]=Stillingar veskisins
+ Comment[is]=Stillingar veskisins
  Comment[it]=Configurazione portafogli di KDE
-+Comment[ja]=KDE ワレットの設定
+ Comment[ja]=KDE ワレットの設定
+ Comment[nb]=Konfigurasjon av KDE Wallet
  Comment[nl]=KDE Wallet-instellingen
++Comment[nn]=Oppsett av KDE Wallet
  Comment[pl]=Konfiguracja Portfela KDE
  Comment[pt]=Configuração da Carteira do KDE
-@@ -62,8 +69,10 @@
+ Comment[pt_BR]=Configuração da Carteira do KDE
+@@ -71,6 +73,7 @@
+ Comment[sr@Latn]=Podešavanje KDE Wallet-a
+ Comment[sv]=Inställning av KDE-plånbok
+ Comment[ta]= KDE சுருக்குபை உள்ளமைபு 
++Comment[tg]=KDE Танзими Ҳамён
  Comment[tr]=KDE Cüzdan Ayarı
  Comment[uk]=Налаштування KWallet
  Comment[xx]=xxKDE Wallet Configurationxx
-+Comment[zh_CN]=KDE 钱包配置
- Keywords=Wallet,Form Fill,Passwords,Form Data
- Keywords[bg]=портфейл,форми,форма,попълване,данни,парола,пароли,Wallet,Form Fill,Passwords,Form Data
-+Keywords[bs]=Wallet,Form Fill,Passwords,Form Data,novčanik,formulari,popunjavanje formulara,šifre
- Keywords[ca]=Cartera,Ompliment de formularis,Contrasentes,Dades de formularis
- Keywords[cs]=úschovna,vyplnění formuláře,hesla,data formuláře
- Keywords[cy]=Waled,Llenwi Ffurflen,Cyfrineiriau,Data Ffurflenni
-@@ -77,6 +86,7 @@
- Keywords[hi]=वैलेट,फॉर्म फिल,पासवर्ड,फॉर्म डाटा
- Keywords[hu]=digitális notesz,űrlapkitöltés,jelszavak,űrlapadatok
- Keywords[it]=portafogli,wallet,riempimento moduli,moduli,form,password,dati moduli
-+Keywords[ja]=ワレット,フォームフィル,パスワード,フォームデータ
+@@ -96,6 +99,7 @@
+ Keywords[ja]=ワレット,フォームフィル,パスワード,フォームデータ
+ Keywords[nb]=Wallet,Skjemautfylling,Passord,Skjema
  Keywords[nl]=Wallet,gegevens,portefeuille,wachtwoorden,veilig bewaren van wachtwoorden,invulgegevens,formulieren
++Keywords[nn]=wallet,skjemautfylling,passord,skjema
  Keywords[pl]=portfel,wypełnianie formularzy,uzupełnianie formularzy, hasła, hasło,dane formularzy, formularze
  Keywords[pt]=Carteira,Preenchimento de Formulários,Senhas,Dados do Formulário
-@@ -91,5 +101,6 @@
+ Keywords[pt_BR]=carteira,preenchimento de formulário,senhas,dados de formulário
+@@ -107,6 +111,7 @@
+ Keywords[sr@Latn]=Wallet,Form Fill,Passwords,Form Data,lozinke,novčanik
+ Keywords[sv]=Plånbok,fyll i formulär,lösenord,formulärdata
+ Keywords[ta]=சுருக்குபை, படிவம் முழு, நுழைவு சொல், படிவம் தரவு
++Keywords[tg]=Ҳамён,Пуркунии Варақа,Гузарвожаҳо,Варақаи Додаҳо
  Keywords[tr]=Cüzdan,Form Doldur,Şifreler,Form Verisi
  Keywords[uk]=Торбинка,Заповнення форм,Паролі,Дані форм
  Keywords[xx]=xxWallet,Form Fill,Passwords,Form Dataxx
-+Keywords[zh_CN]=Wallet,Form Fill,Passwords,Form Data,钱包,填充表单,密码,表单数据
- 
- Categories=Qt;KDE;X-KDE-settings-security
 diff -urN -x CVS kdeutils.orig/kwallet/konfigurator/kwalletmanager_show.desktop kdeutils/kwallet/konfigurator/kwalletmanager_show.desktop
---- kdeutils.orig/kwallet/konfigurator/kwalletmanager_show.desktop	Fri Jan 16 08:10:00 2004
-+++ kdeutils/kwallet/konfigurator/kwalletmanager_show.desktop	Sat Feb  7 13:48:22 2004
-@@ -2,6 +2,7 @@
- Encoding=UTF-8
- Name=Wallet Management Tool
- Name[bg]=Управление на Портфейла
-+Name[bs]=Alat za upravljanje novčanikom
- Name[ca]=Eina de gestió de carteres
- Name[cs]=Nástroj pro správu úschovny
- Name[cy]=Erfyn Rheoli Waled
-@@ -14,7 +15,9 @@
- Name[fr]=Outil de gestion de comptes
- Name[hi]=वैलेट प्रबंधन उपकरण
- Name[hu]=Kezelőprogram a KDE digitális noteszeihez
-+Name[is]=Tól til að stýra eiginleikum veskisins
- Name[it]=Strumento per la gestione dei portafogli
-+Name[ja]=ワレット管理ツール
+--- kdeutils.orig/kwallet/konfigurator/kwalletmanager_show.desktop	Sun Mar  7 14:28:02 2004
++++ kdeutils/kwallet/konfigurator/kwalletmanager_show.desktop	Sun Apr 25 01:33:23 2004
+@@ -22,6 +22,7 @@
+ Name[ja]=ワレット管理ツール
+ Name[nb]=Wallet administrasjonsverktøy
  Name[nl]=Wallet-beheer
++Name[nn]=Wallet-administrasjonsverktøy
  Name[pl]=Narzędzie do zarządzania Portfelem
  Name[pt]=Ferramenta de Gestão da Carteira
-@@ -29,6 +32,7 @@
+ Name[pt_BR]=Ferramenta de Gerenciamento Wallet
+@@ -33,6 +34,7 @@
+ Name[sr@Latn]=Alat za upravljanje novčanikom
+ Name[sv]=Hanteringsverktyg för plånbok
+ Name[ta]=மேலாண்மை கருவி  
++Name[tg]=Асбоби Идоракунии Ҳамён
  Name[tr]=Cüzdan Yönetim Aracı
  Name[uk]=Засіб керування торбинками
  Name[xx]=xxWallet Management Toolxx
-+Name[zh_CN]=钱包管理工具
- Exec=kwalletmanager --show %u
- MimeType=application/x-kde-wallet
- InitialPreference=6
 diff -urN -x CVS kdeutils.orig/kwallet/kwalletmanager.desktop kdeutils/kwallet/kwalletmanager.desktop
---- kdeutils.orig/kwallet/kwalletmanager.desktop	Fri Jan 16 08:10:02 2004
-+++ kdeutils/kwallet/kwalletmanager.desktop	Sat Feb  7 13:48:24 2004
-@@ -2,6 +2,7 @@
- Encoding=UTF-8
- Name=Wallet Management Tool
- Name[bg]=Управление на Портфейла
-+Name[bs]=Alat za upravljanje novčanikom
- Name[ca]=Eina de gestió de carteres
- Name[cs]=Nástroj pro správu úschovny
- Name[cy]=Erfyn Rheoli Waled
-@@ -14,7 +15,9 @@
- Name[fr]=Outil de gestion de comptes
- Name[hi]=वैलेट प्रबंधन उपकरण
- Name[hu]=Kezelőprogram a KDE digitális noteszeihez
-+Name[is]=Tól til að stýra eiginleikum veskisins
- Name[it]=Strumento per la gestione dei portafogli
-+Name[ja]=ワレット管理ツール
+--- kdeutils.orig/kwallet/kwalletmanager.desktop	Sun Mar  7 14:28:04 2004
++++ kdeutils/kwallet/kwalletmanager.desktop	Sun Apr 25 01:33:25 2004
+@@ -22,6 +22,7 @@
+ Name[ja]=ワレット管理ツール
+ Name[nb]=Wallet administrasjonsverktøy
  Name[nl]=Wallet-beheer
++Name[nn]=Wallet-administrasjonsverktøy
  Name[pl]=Narzędzie do zarządzania Portfelem
  Name[pt]=Ferramenta de Gestão da Carteira
-@@ -29,6 +32,7 @@
+ Name[pt_BR]=Ferramenta de Gerenciamento Wallet
+@@ -33,6 +34,7 @@
+ Name[sr@Latn]=Alat za upravljanje novčanikom
+ Name[sv]=Hanteringsverktyg för plånbok
+ Name[ta]=மேலாண்மை கருவி  
++Name[tg]=Асбоби Идоракунии Ҳамён
  Name[tr]=Cüzdan Yönetim Aracı
  Name[uk]=Засіб керування торбинками
  Name[xx]=xxWallet Management Toolxx
-+Name[zh_CN]=钱包管理工具
- Exec=kwalletmanager %u
- MimeType=application/x-kde-wallet
- InitialPreference=6
+diff -urN -x CVS kdeutils.orig/kwallet/kwalletpopup.cpp kdeutils/kwallet/kwalletpopup.cpp
+--- kdeutils.orig/kwallet/kwalletpopup.cpp	Wed Oct 15 23:27:18 2003
++++ kdeutils/kwallet/kwalletpopup.cpp	Wed Apr 14 13:45:01 2004
+@@ -59,7 +59,7 @@
+ 		insertItem(i18n("Disconnec&t"), pm);
+ 	}
+ 
+-	act = new KAction(i18n("&Close"), 0, 0, this,
++	act = KStdAction::close( this,
+ 			SLOT(closeWallet()), ac, "wallet_close");
+ 	// FIXME: let's track this inside the manager so we don't need a dcop
+ 	//        roundtrip here.
