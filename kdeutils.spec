@@ -14,14 +14,15 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	2.1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	fd2fef424ffb3de13e4fc8d55b995b73
-# generated from kde-i18n
-# Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+# generated from kde-i18n:
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	a1327b61aa1f63a1a19dc56204281e02
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -763,13 +764,13 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 # Doesn't build.
 #%%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/{Settings/[!K]*,Settings/KDE}
