@@ -1,0 +1,10 @@
+--- kdeutils-3.0.2/kdf/kwikdisk.desktop.orig	2002-07-10 01:19:17.000000000 +0200
++++ kdeutils-3.0.2/kdf/kwikdisk.desktop	2002-07-10 01:21:02.000000000 +0200
+@@ -28,7 +28,6 @@
+ GenericName[eu]=Montatu/Desmontatu Tresna
+ GenericName[fi]=Leyn irroitus/liittämistyökalu
+ GenericName[fr]=Utilitaire pour monter et démonter les lecteurs
+-GenericName[he]=כלי חיבור\ניתוק
+ GenericName[hu]=lemezcsatlakoztatás
+ GenericName[is]=Tól til að tengja og aftengja skráarkerfi
+ GenericName[it]=Accessorio per montare/smontare
