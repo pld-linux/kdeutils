@@ -37,6 +37,8 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define		_fontdir	/usr/share/fonts
 %define		_htmldir	/usr/share/doc/kde/HTML
 
+%define		no_install_post_chrpath		1
+
 %description
 KDE utilities. Package includes:
  - Ark - archive manager,
