@@ -12,8 +12,8 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	3.0.4
-Release:	3
+Version:	3.0.5a
+Release:	0.1
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
