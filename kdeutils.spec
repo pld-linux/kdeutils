@@ -1,6 +1,6 @@
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		2
+%define		_rel		3
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -598,6 +598,9 @@ rm -rf $RPM_BUILD_ROOT
 
 %post   kcharselect -p /sbin/ldconfig
 %postun kcharselect -p /sbin/ldconfig
+
+%post   ksim -p /sbin/ldconfig
+%postun ksim -p /sbin/ldconfig
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
