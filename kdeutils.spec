@@ -182,7 +182,7 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
-Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
+Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kdeutils
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Requires:	kdebase-devel >= 9:%{version}
@@ -239,7 +239,7 @@ Calculadora do KDE.
 
 %package kcharselect
 Summary:	KDE Character Selector
-Summary(pl):	Wybierajka znaków dla KDE
+Summary(pl):	Program do wybierania znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
@@ -252,16 +252,28 @@ Character Selector.
 Program do wybierania znaków.
 
 %package kdelirc
-Summary:	TODO
-Summary(pl):	TODO
+Summary:	KDE frontend for the Linux Infrared Remote Control system
+Summary(pl):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwieni±)
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kdelirc
-TODO.
+KDELIRC is a KDE frontend for the Linux Infrared Remote Control
+system. It has two aims:
+- provide a control center module for configuration of application
+  bindings to remote control buttons and actual remote controls
+  installed (i.e. lirc configuration).
+- provide a system-tray applet to act as a proxy between the LIRC
+  system and KDE (applications).
 
 %description kdelirc -l pl
-TODO.
+KDELIRC to frontend KDE dla systemu LIRC (Linux Infrared Remote
+Control - zdalnego sterowania podczerwieni±). Ma dwa cele:
+- zapewnienie modu³u dla centrum sterowania do konfiguracji dowi±zañ
+  aplikacji do przycisków pilota oraz konfiguracji samych pilotów
+  (czyli konfiguracji lirc)
+- zapewnienie apletu tacki systemowej s³u¿±cego jako proxy pomiêdzy
+  systemem LIRC oraz KDE (aplikacjami).
 
 %package kdepasswd
 Summary:	KDE Passwd
@@ -445,8 +457,22 @@ Obsoletes:	%{name}-kmilo < 9:3.1.2.031022
 %description kmilo-kvaio
 KMilo module for Sony Vaio laptop support.
 
-%description kmilo -l pl
+%description kmilo-kvaio -l pl
 Modu³ KMilo dla laptopów Sony Vaio.
+
+%package kmilo-powerbook
+Summary:	PowerBook KMilo module
+Summary(pl):	Modu³ KMilo dla PowerBooków
+Group:		X11/Applications
+Requires:	kdebase-core >= 9:%{version}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Obsoletes:	%{name}-kmilo < 9:3.1.2.031022
+
+%description kmilo-powerbook
+KMilo module for PowerBooks support.
+
+%description kmilo-powerbook -l pl
+Modu³ KMilo dla PowerBooków.
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
@@ -482,7 +508,7 @@ Requires:	kdelibs >= 9:%{version}
 Obsoletes:	ktimer
 
 %description ktimer
-Time tracker appplet.
+Time tracker applet.
 
 %description ktimer -l pl
 Zegarek.
@@ -491,16 +517,16 @@ Zegarek.
 Monitor de tempo em forma de mini-aplicativo.
 
 %package kwalletmanager
-Summary:	TODO
-Summary(pl):	TODO
+Summary:	Wallet management tool for KDE
+Summary(pl):	Narzêdzie do zarz±dzania portfelem dla KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kwalletmanager
-TODO.
+Wallet management tool for KDE.
 
 %description kwalletmanager -l pl
-TODO.
+Narzêdzie do zarz±dzania portfelem dla KDE.
 
 %package userinfo
 Summary:	User Account
@@ -509,12 +535,12 @@ Group:		X11/Applications
 Requires:	kdm >= 9:%{version}
 
 %description userinfo
-Changes user account information.
-This module contains kdepasswd program functionality.
+userinfo changes user account information. This module contains
+kdepasswd program functionality.
 
 %description userinfo -l pl
-Zmienia informacje o koncie u¿ytkownika.
-Ten modu³ zawiera funkcjonalno¶æ programu kdepasswd.
+userinfo zmienia informacje o koncie u¿ytkownika. Ten modu³ zawiera
+funkcjonalno¶æ programu kdepasswd.
 
 %prep
 %setup -q -n %{name}-%{_snap}
@@ -745,6 +771,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
 %{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_desktopdir}/kde/kvaio.desktop
+
+%ifarch ppc
+%files kmilo-powerbook
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libdir}/kde3/kmilo_powerbook.so
+%{_libdir}/kde3/kmilo_powerbook.la
+%{_datadir}/services/kmilo/kmilo_powerbook.desktop
+%endif
 
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
