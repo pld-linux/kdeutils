@@ -22,6 +22,7 @@ License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	cb7e5402eedaca816e210d460e22e53a
+Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -33,6 +34,7 @@ BuildRequires:	libtool
 %ifarch ppc
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
+BuildRequires:	net-snmp-devel
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 #BuildRequires:	unsermake >= 040511
@@ -529,7 +531,7 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 
 %prep
 %setup -q
-#%patch0 -p1
+%patch100 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -587,11 +589,20 @@ cp /usr/share/automake/config.sub admin
 
 %{__make}
 
+# configure.in.in checks /proc to find whether compile it
+# lets outsmart the configure script
+%{__make} -C ksim/monitors/i8k
+
 %install
 rm -rf $RPM_BUILD_ROOT
 rm -rf *.lang
 
 %{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir} \
+	kde_libs_htmldir=%{_kdedocdir}
+
+%{__make} -C ksim/monitors/i8k install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir} \
 	kde_libs_htmldir=%{_kdedocdir}
