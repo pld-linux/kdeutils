@@ -9,7 +9,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	3.0.4
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
@@ -730,14 +730,13 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
+install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Utilities,Editors}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 %{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
 # Doesn't build.
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 #mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
@@ -845,7 +844,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %attr(755,root,root) %{_libdir}/kedit.*
-%{_applnkdir}/Development/Editors/KEdit.desktop
+%{_applnkdir}/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
 %{_pixmapsdir}/*/*/apps/kedit.*
 
