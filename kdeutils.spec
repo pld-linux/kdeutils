@@ -1,6 +1,6 @@
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		3.7
+%define		_rel		3.8
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -143,21 +143,21 @@ archiwów.
 %description ark -l pt_BR
 Gerenciador de pacotes TAR/comprimidos do KDE.
 
-#%package kab
-#Summary:	KDE Address Book
-#Summary(pl):	Ksi±¿ka adresowa dla KDE
-#Summary(pt_BR):	Gerenciador do livro de endereços
-#Group:		X11/Applications
-#Requires:	kdelibs >= %{version}
-#
-#%description kab
-#Kab is a simple address book for KDE.
-#
-#%description kab -l pl
-#Kab jest prost± ksi±¿k± adresow± dla KDE.
-#
-#%description kab -l pt_BR
-#Gerenciador do livro de endereços.
+%package kab
+Summary:	KDE Address Book
+Summary(pl):	Ksi±¿ka adresowa dla KDE
+Summary(pt_BR):	Gerenciador do livro de endereços
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+
+%description kab
+Kab is a simple address book for KDE.
+
+%description kab -l pl
+Kab jest prost± ksi±¿k± adresow± dla KDE.
+
+%description kab -l pt_BR
+Gerenciador do livro de endereços.
 
 %package kcalc
 Summary:	KDE Calculator
@@ -546,8 +546,8 @@ fi
 	--with-pam="yes"
 %{__make}
 
+%{__make} -C kab
 # Doesn't build.
-#%{__make} -C kab
 #%{__make} -C kcardtools
 
 %install
@@ -556,8 +556,8 @@ rm -rf $RPM_BUILD_ROOT
 install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
 # Doesn't build.
-#%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
@@ -569,23 +569,30 @@ bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
+%find_lang kregexpeditor	--with-kde
+cat kregexpeditor.lang >> KRegExpEditor.lang
+%find_lang kab			--with-kde
+%find_lang kab3			--with-kde
+cat kab3.lang >> kab.lang
+%find_lang kcardchooser		--with-kde
 %find_lang kcalc		--with-kde
 %find_lang kcharselect		--with-kde
-#%find_lang kcharselectapplet	--with-kde
-#cat kcharselectapplet.lang >> kcharselect.lang
-#%find_lang kdepasswd	--with-kde
-#%find_lang kdessh	--with-kde
+%find_lang kcharselectapplet	--with-kde
+cat kcharselectapplet.lang >> kcharselect.lang
+%find_lang kdepasswd	--with-kde
+%find_lang kdessh	--with-kde
 %find_lang kdf		--with-kde
 %find_lang kedit	--with-kde
 %find_lang kfloppy	--with-kde
 %find_lang khexedit	--with-kde
 %find_lang kjots	--with-kde
-#%find_lang klaptopdaemon	--with-kde
-#%find_lang kcmlaptop	--with-kde
-#cat kcmlaptop.lang >> klaptopdaemon.lang
+%find_lang klaptopdaemon	--with-kde
+%find_lang kcmlaptop	--with-kde
+cat kcmlaptop.lang >> klaptopdaemon.lang
 %find_lang kljettool	--with-kde
 %find_lang klpq		--with-kde
 %find_lang klprfax	--with-kde
+%find_lang kpm		--with-kde
 %find_lang ktimer	--with-kde
 #%find_lang cdbakeoven	--with-kde
 #%find_lang ksim	--with-kde
@@ -613,12 +620,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/arkpart.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
 
-#%files kab
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kab
-#%{_applnkdir}/Utilities/kab.desktop
-#%{_datadir}/apps/kab
-#%{_pixmapsdir}/*/*/apps/kab.*
+%files kab
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kab
+%{_applnkdir}/Utilities/kab.desktop
+%{_datadir}/apps/kab
+%{_pixmapsdir}/*/*/apps/kab.*
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
@@ -636,14 +643,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
 
-%files kdepasswd
-#-f kdepasswd.lang
+%files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
 
-%files kdessh
-#-f kdessh.lang
+%files kdessh -f kdessh.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
@@ -688,8 +693,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kjots
 %{_pixmapsdir}/*/*/apps/kjots.*
 
-%files klaptopdaemon
-#-f klaptopdaemon.lang
+%files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.??
@@ -720,9 +724,11 @@ rm -rf $RPM_BUILD_ROOT
 
 %files klprfax -f klprfax.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/klprfax*
+%attr(755,root,root) %{_bindir}/*fax*
+%attr(755,root,root) %{_bindir}/efix
 %{_applnkdir}/Utilities/klprfax.desktop
 %{_pixmapsdir}/*/*/apps/klprfax.*
+%{_mandir}/man1/{efax,efix,fax}.1
 
 #%files knotes
 #%defattr(644,root,root,755)
@@ -733,7 +739,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_includedir}/KNotesIface.h
 #%{_pixmapsdir}/*/*/apps/knotes.*
 #
-#%files kpm
+#%files kpm -l kpm.lang
 #%defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/kpm
 #%attr(755,root,root) %{_bindir}/kpmdocked
