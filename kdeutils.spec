@@ -592,7 +592,7 @@ cat kcmlaptop.lang >> klaptopdaemon.lang
 %find_lang kljettool	--with-kde
 %find_lang klpq		--with-kde
 %find_lang klprfax	--with-kde
-%find_lang kpm		--with-kde
+#%find_lang kpm		--with-kde
 %find_lang ktimer	--with-kde
 #%find_lang cdbakeoven	--with-kde
 #%find_lang ksim	--with-kde
