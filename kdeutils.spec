@@ -281,23 +281,6 @@ Control - zdalnego sterowania podczerwieni±). Ma dwa cele:
 - zapewnienie apletu tacki systemowej s³u¿±cego jako proxy pomiêdzy
   systemem LIRC oraz KDE (aplikacjami).
 
-%package kdepasswd
-Summary:	KDE Passwd
-Summary(pl):	passwd dla KDE
-Summary(pt_BR):	Ferramenta de mudança de senha
-Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
-Obsoletes:	kdepasswd
-
-%description kdepasswd
-Change your password.
-
-%description kdepasswd -l pl
-Program do zmiany has³a z poziomu KDE.
-
-%description kdepasswd -l pt_BR
-Ferramenta de mudança de senha.
-
 %package kdessh
 Summary:	KDE SSH Frontend
 Summary(pl):	Frontend SSH dla KDE
@@ -547,20 +530,6 @@ Wallet management tool for KDE.
 
 %description kwalletmanager -l pl
 Narzêdzie do zarz±dzania portfelem dla KDE.
-
-%package userinfo
-Summary:	User Account
-Summary(pl):	Konto u¿ytkownika
-Group:		X11/Applications
-Requires:	kdm >= 9:%{version}
-
-%description userinfo
-userinfo changes user account information. This module contains
-kdepasswd program functionality.
-
-%description userinfo -l pl
-userinfo zmienia informacje o koncie u¿ytkownika. Ten modu³ zawiera
-funkcjonalno¶æ programu kdepasswd.
 
 %package i18n
 Summary:	Common internationalization and localization files for kdeutils
@@ -1073,11 +1042,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kcmlirc.desktop
 %{_iconsdir}/hicolor/*/apps/irkick.png
 
-%files kdepasswd
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kdepasswd
-%{_desktopdir}/kde/kdepasswd.desktop
-
 %files kdessh
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
@@ -1241,10 +1205,3 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
-
-#%files userinfo
-#%defattr(644,root,root,755)
-#%{_libdir}/kde3/kcm_userinfo.la
-#%attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
-#%{_datadir}/apps/kdm/pics/users/*
-#%{_desktopdir}/kde/userinfo.desktop
