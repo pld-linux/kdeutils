@@ -28,7 +28,6 @@ BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	ed
 BuildRequires:	fam-devel
-BuildRequires:	grep
 BuildRequires:	kdebase-devel >= 8:%{version}
 BuildRequires:	kdelibs-devel >= 8:%{version}
 BuildRequires:	libxml2-progs
