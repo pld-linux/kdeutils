@@ -8,7 +8,7 @@ Group:       X11/KDE/Utils
 Copyright:   GPL
 Requires:    qt >= 1.40, kdelibs = %{version}
 Vendor:      The KDE Team
-BuildRoot:   /tmp/%{name}-%{version}-root
+BuildRoot:	/tmp/%{name}-%{version}-root
 
 %description
 KDE utilities.
