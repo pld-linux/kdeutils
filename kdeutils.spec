@@ -25,10 +25,6 @@ Icon:		kde-utils.xpm
 Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
 # Source0-md5:	e843f709f18ae44a3207b5413c3c9d77
 Patch0:		%{name}-kdf-label.patch
-#Patch1:		%{name}-kedit-confirmoverwrite.patch
-#Patch2:		%{name}-fix-kdf-mem-leak.patch
-Patch3:		%{name}-vcategories.patch
-#Patch4:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -46,50 +42,32 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %description
 KDE utilities. Package includes:
  - Ark - archive manager,
- - KAb - address book,
- - KArm - time tracker,
  - KCalc - calculator KCharSelect,
  - KCharSelect - character Selector,
- - KDEPasswd,
+ - KDEPasswd, password change application
  - KDESsh - SSH frontend,
  - Kdf - disk space GUI,
  - KEdit - text editor,
- - KFind - find frontend,
  - KFloppy - floppy formating tool,
  - KHexEdit - HEX file editor,
  - KJots - note taker,
  - KLaptopDaemon - laptop daemon,
- - KLipper - clipboard viewer,
- - KLJetTool - tool for LaserJet priter users,
- - KLpq - print manager,
- - KLprFax - LPD fax frontend using efax,
- - KNotes - notes,
- - KPm - process manager,
  - KTimer - timer,
  - KTop - task manager,
- - KTreeBrowser,
  - ksim - system monitor.
 
 %description -l es
 Utilitarios para KDE. Programas disponibles en este paquete:
  - Ark,
- - KAb,
- - KArm - control de tiempo personal,
  - KCalc - calculadora científica,
  - KCharSelect,
  - KDESsh,
  - Kdf -
  - KEdit - editor de textos sencillo,
  - KFloppy - herramienta de formatear disquetes,
- - KFind,
  - KHexEdit - editor hexadecimal,
  - KJots - bloque de notas,
  - KLaptopDaemon,
- - KLjetTool - herramienta de configuración de impresoras HP,
- - KLpq - print manager,
- - KLprFax,
- - KNotes - recados para coger en el ambiente gráfico,
- - KPm,
  - KTimer.
  - ksim
 
@@ -98,95 +76,59 @@ KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î¥æ¡¼¥Æ¥£¥ê¥Æ¥£
 °Ê²¼¤Î¤è¤¦¤Ê¥Ñ¥Ã¥±¡¼¥¸¤¬Æþ¤Ã¤Æ¤¤¤Þ¤¹¡£
 
 - ark - ¥¢¡¼¥«¥¤¥ÖÁàºî¥Ä¡¼¥ë
-- karm - personal time tracker
 - kcalc - ÅÅÂî
 - kedit - ¥Æ¥­¥¹¥È¥¨¥Ç¥£¥¿
 - kfloppy - ¥Õ¥í¥Ã¥Ô¡¼¥Õ¥©¡¼¥Þ¥Ã¥¿
 - khexedit - ¥Ð¥¤¥Ê¥ê¥¨¥Ç¥£¥¿
 - kjots - note taker
-- kljettool - HP¥×¥ê¥ó¥¿ÀßÄê¥Ä¡¼¥ë
-- knotes - ¥Ý¥¹¥È¥¤¥Ã¥È
 
 %description -l pl
 Narzêdzia dla KDE. Pakiet zawiera:
  - Ark - program do zarz±dzania archiwami,
- - KAb - ksi±¿ka adresowa,
- - KArm - czasomierz,
  - KCalc - kalkulator,
  - KCharSelect - narzêdzie do wybierania znaków,
  - KDEPasswd,
  - KDESsh - narzêdzie do zdalnego wykonywania programów,
  - Kdf - graficzny interfejs do sprawdzania miejsca na dysku,
  - KEdit - edytor tekstu,
- - KFind - frontend do wyszukiwania plików,
  - KFloppy - narzêdzie do formatowania dyskietek,
  - KHexedit - szesnastkowy edytor plików,
  - KJots - notatnik,
  - KLaptopDaemon - demon dla laptopów,
- - KLipper - przegl±darka schowka,
- - KLJetTool - narzêdzie dla u¿ytkowników drukarek LaserJet,
- - KLpq - zarz±dca wydruków,
- - KLprFax - frontend faksowy dla LPD u¿ywaj±cy efax,
- - KNotes - inny notatnik,
- - KPm - program do zarz±dzania procesami,
  - KTimer - timer,
  - KTop - zarz±dca zadañ,
- - KTreeBrowser,
  - ksim - monitor systemu.
 
 %description -l pt_BR
 Utilitários para o KDE. Programas disponíveis neste pacote:
  - Ark - controle de tempo pessoal,
- - KAb - gerenciador do livro de endereços,
- - KArm,
  - KCalc - calculadora científica,
  - KCharSelect,
  - KDESsh - ferramenta de execução remota de programas,
  - KEdit - editor de textos simples
  - KFloppy - ferramenta de formatação de disquetes,
- - KFind - ferramenta de procura de arquivos,
  - KHexEdit - editor hexadecimal,
  - KJots - bloco de notas,
  - KLaptopDaemon - miniaplicativo de status de bateria para laptops,
- - KLjetTool - ferramenta de configuração de impressoras HP,
- - KLpq - interface para gerenciamento das filas de impressão,
- - KLprFax - interface para impressão em saída de Fax
- - KNotes - recados para colar no ambiente gráfico,
- - KPm - monitor gráfico de processos e do sistema,
  - KTimer - Monitor de tempo em forma de mini-aplicativo.
 
 %description -l ru
 õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. ÷ËÌÀÞÁÅÔ:
  - ark - ÍÅÎÅÄÖÅÒ ÁÒÈÉ×Ï× tar/gzip,
- - kab - ÁÄÒÅÓÎÁÑ ËÎÉÇÁ,
- - karm - ÐÅÒÓÏÎÁÌØÎÙÊ ÐÌÁÎÉÒÏ×ÝÉË,
  - kcalc - ÎÁÕÞÎÙÊ ËÁÌØËÕÌÑÔÏÒ,
  - kedit - ÐÒÏÓÔÏÊ ÔÅËÓÔÏ×ÙÊ ÒÅÄÁËÔÏÒ,
  - kfloppy - ÕÔÉÌÉÔÁ ÄÌÑ ÆÏÒÍÁÔÉÒÏ×ÁÎÉÑ ÆÌÏÐÐÉ-ÄÉÓËÏ×,
  - khexedit - ÒÅÄÁËÔÏÒ ÂÉÎÁÒÎÙÈ ÆÁÊÌÏ×,
  - kjots - ÂÌÏËÎÏÔ,
- - klipper - ÕÔÉÌÉÔÁ ÄÌÑ ÒÁÂÏÔÙ Ó ÂÕÆÅÒÏÍ ÏÂÍÅÎÁ,
- - kljettool - ÕÔÉÌÉÔÁ ÄÌÑ ÎÁÓÔÒÏÊËÉ ÐÒÉÎÔÅÒÏ×, ÓÏ×ÍÅÓÔÉÍÙÈ Ó HP,
- - klpq - ÍÅÎÅÄÖÅÒ ÏÞÅÒÅÄÉ ÐÅÞÁÔÉ,
- - knotes - post-it notes ÄÌÑ ÄÅÓËÔÏÐÁ,
- - kpm - ÍÅÎÅÄÖÅÒ ÐÒÏÃÅÓÓÏ×, ÐÏÈÏÖÉÊ ÎÁ 'top', ÎÏ ÂÏÌÅÅ ÐÒÏÄ×ÉÎÕÔÙÊ.
 
 %description -l uk
 õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. í¦ÓÔÉÔØ:
  - ark - ÍÅÎÅÄÖÅÒ ÁÒÈ¦×¦× tar/gzip,
- - kab - ÁÄÒÅÓÎÁ ËÎÉÇÁ,
- - karm - ÐÅÒÓÏÎÁÌØÎÙÊ ÐÌÁÎÕ×ÁÌØÎÉË,
  - kcalc - ÎÁÕÞÎÉÊ ËÁÌØËÕÌÑÔÏÒ,
  - kedit - ÐÒÏÓÔÉÊ ÔÅËÓÔÏ×ÉÊ ÒÅÄÁËÔÏÒ,
  - kfloppy - ÕÔÉÌ¦ÔÁ ÄÌÑ ÆÏÒÍÁÔÕ×ÁÎÎÑ ÆÌÏÐ¦-ÄÉÓË¦×,
  - khexedit - ÒÅÄÁËÔÏÒ Â¦ÎÁÒÎÉÈ ÆÁÊÌ¦×,
  - kjots - ÎÏÔÁÔÎÉË,
- - klipper - ÕÔÉÌ¦ÔÁ ÄÌÑ ÒÏÂÏÔÉ Ú ÂÕÆÅÒÏÍ ÏÂÍ¦ÎÕ,
- - kljettool - ÕÔÉÌ¦ÔÁ ÄÌÑ ÎÁÌÁÇÏÄÖÅÎÎÑ ÐÒ¦ÎÔÅÒ¦×, ÓÕÍ¦ÓÎÉÈ Ú HP,
- - klpq - ÍÅÎÅÄÖÅÒ ÞÅÒÇÉ ÄÒÕËÕ,
- - knotes - post-it notes ÄÌÑ ÄÅÓËÔÏÐÕ,
- - kpm - ÍÅÎÅÄÖÅÒ ÐÒÏÃÅÓ¦×, ÓÈÏÖÉÊ ÎÁ 'top', ÁÌÅ Ú Â¦ÌØÛÉÍÉ
-   ÍÏÖÌÉ×ÏÓÔÑÍÉ.
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
@@ -588,10 +530,19 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 %prep
 %setup -q
 %patch0 -p1
-#%patch1 -p1
-#%patch2 -p1
-%patch3 -p1
-#%patch4 -p1
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
+ark/ark.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
+kcalc/kcalc.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;TextEditor;X-HexEditor;/' \
+khexedit/khexedit.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
+ksim/ksim.desktop
+
 
 %build
 cp /usr/share/automake/config.sub admin
@@ -611,6 +562,18 @@ echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 
 %install
 rm -rf $RPM_BUILD_ROOT *.lang
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
+ark/ark.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
+kcalc/kcalc.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;TextEditor;X-HexEditor;/' \
+khexedit/khexedit.desktop
+
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
+ksim/ksim.desktop
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
@@ -725,6 +688,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/remotes/hauppauge.remote.xml
 %{_datadir}/apps/remotes/remote.dtd
 %{_datadir}/apps/remotes/sherwood.remote.xml
+%{_datadir}/apps/remotes/sonytv.remote.xml
 %{_datadir}/autostart/irkick.desktop
 %{_desktopdir}/kde/irkick.desktop
 %{_desktopdir}/kde/kcmlirc.desktop
