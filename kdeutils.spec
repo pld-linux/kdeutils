@@ -30,7 +30,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	fam-devel
 BuildRequires:	grep
-BuildRequires:	kdebase-devel >= %{version}
+BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
