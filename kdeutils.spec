@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.2
-%define		_snap		030613
+%define         _ver		3.1.90
+%define		_snap		030618
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -12,14 +12,14 @@ Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
-Version:	%{_ver}
-Release:	0.%{_snap}.1
-Epoch:		8
+Version:	%{_ver}.%{_snap}
+Release:	1
+Epoch:		9
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	2d6c036770d697fcf20ab6d0713cc6ba
+# Source0-md5:	cf0b1ad02da771166c36752896b64e15
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -31,7 +31,6 @@ BuildRequires:	bzip2
 BuildRequires:	fam-devel
 BuildRequires:	grep
 BuildRequires:	kdebase-devel >= %{version}
-BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
@@ -188,7 +187,6 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Requires:	kdelibs-devel >= %{version}
 Requires:	kdebase-devel >= %{version}
 Requires:	%{name}-klaptopdaemon
 Requires:	%{name}-kmilo
