@@ -3,8 +3,7 @@
 %bcond_without  i18n    # dont build i18n subpackage
 #
 %define		_state		stable
-%define		_ver		3.2.1
-##%define		_snap		040110
+%define		_ver		3.2.2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -21,11 +20,11 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
-# Source0-md5:	152030a2912609997d73d7af0bb96d52
+# Source0-md5:	94eee311b04f91aa083d1f8a8620faca
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
 Source1:        kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	fe0969eccd163e516c99f2292c80498f
+# Source1-md5:	4cb7b5688f1b8267f1d7a19cd8a5acc9
 %endif
 Patch0:		%{name}-3.2branch.diff
 Patch1:		%{name}-kdf-label.patch
