@@ -9,7 +9,7 @@ Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
 BuildRequires:	qt-devel >= 2.2.2
-BuildRequires:	kdelibs-devel = %{version}
+BuildRequires:	kdelibs-devel >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define         _prefix         /usr/X11R6
@@ -39,7 +39,7 @@ procesami KWrite - rozbudowany edytor tekstu
 Summary:	KDE Archive Manager 
 Summary(pl):	Zarz±dca archiwów dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description ark
 Ark is a program for managing and quickly extracting archives.
@@ -52,7 +52,7 @@ archiwów.
 Summary:	KDE Address Book
 Summary(pl):	Ksi±¿ka adresowa dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kab
 Kab is a simple address book for KDE.
@@ -64,7 +64,7 @@ Kab jest prost± ksi±¿k± adresow± dla KDE.
 Summary:	KDE Time Tracker
 Summary(pl):	Time Tracker dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description karm
 KArm is a time tracker for busy people who need to keep track of the
@@ -78,7 +78,7 @@ rzeczy.
 Summary:	KDE Calculator	
 Summary(pl):	Kalkulator dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kcalc
 Calculator for KDE.
@@ -89,7 +89,7 @@ Kalkulator dla KDE.
 %package kcharselect
 Summary:	KDE Character Selector
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kcharselect
 Character Selector
@@ -97,7 +97,7 @@ Character Selector
 %package kdepasswd
 Summary:	KDE Passwd
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kdepasswd
 Change your password
@@ -106,7 +106,7 @@ Change your password
 Summary:	KDE Text Editor	
 Summary(pl):	Edytor tekstu dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kedit
 Simple text editor for KDE.
@@ -117,7 +117,7 @@ Prosty edytor tekstu dla KDE.
 %package kfind
 Summary:	KDE Find
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kfind
 Find Util
@@ -126,7 +126,7 @@ Find Util
 Summary:	KDE Floppy Formater	
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
@@ -139,7 +139,7 @@ ext2.
 Summary:	KDE Hex Editor	
 Summary(pl):	Edytor szesnastkowy dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description khexdit
 Hex Editor is a small and simple viewer for binary files.
@@ -151,7 +151,7 @@ Hex Editor jest ma³ym i prostym edytorem plików binarnych.
 Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kjots
 kjots is a small note taker program. Name and idea are taken from the
@@ -163,7 +163,7 @@ KJots to ma³y program do zapisywania notatek.
 %package klaptopdaemon
 Summary:	KDE Laptop Daemon
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description klaptopdaemon
 KDE Laptop Daemon
@@ -172,7 +172,7 @@ KDE Laptop Daemon
 Summary:	KDE LaserJet Tool	
 Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kljettool
 KLJetTool is a program that lets you adjust your Hewlett Packard
@@ -193,7 +193,7 @@ Packard LaserJet.
 Summary:	KDE Print Manager
 Summary(pl):	Zarz±dca wydruku dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description klpq
 Klpq is a frontend to the print spooler. Klpq does not modify the
@@ -209,7 +209,7 @@ wykorzystuje do tego celu polecenia: lpq, lprm i lpc.
 Summary:	KDE Notes
 Summary(pl):	Notes dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description knotes
 KNotes is ment to be a really usable and good looking notes
@@ -223,7 +223,7 @@ widocznych na ekranie.
 Summary:	KDE Process Manager
 Summary(pl):	Zarz±dca procesów dla KDE
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description kpm
 kpm allows you to view and modify the processes of your Linux
@@ -241,7 +241,7 @@ modyfikowania ich priorytetów.
 %package ktimemon
 Summary:	KDE TimeMon
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 
 %description ktimemon
 
@@ -304,6 +304,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcalc
 %{_applnkdir}/Utilities/karm.desktop
 %{_datadir}/doc/kde/HTML/en/kcalc
+%attr(755,root,root) %{_libdir}/kcalc.*
 %{_datadir}/apps/kcalc
 %{_pixmapsdir}/locolor/*x*/apps/kcalc.png
 %{_pixmapsdir}/hicolor/*x*/apps/kcalc.png
