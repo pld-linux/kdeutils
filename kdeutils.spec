@@ -1,12 +1,12 @@
 #
 # Conditional build:
-%bcond_with i18n    # w/wo i18n subpackage
+%bcond_with	i18n	# w/wo i18n subpackage
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040424
+%define		_snap		040506
 %define		_packager	adgor
-
+#
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
@@ -22,8 +22,9 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	c118ca1e3bc3047cd6c735a6e6b2b868
+#Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	5f180133247bf75097f0de9693e43e78
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	e63a7e83445904676217d3f09243ce90
 Patch0:		%{name}-kdf-label.patch
