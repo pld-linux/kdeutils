@@ -8,7 +8,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	3.0.3
-Release:	5
+Release:	6
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
@@ -960,6 +960,5 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so
 %{_includedir}/*
 #%{_libdir}/libksimcore.so
