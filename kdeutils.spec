@@ -3,7 +3,7 @@
 %bcond_without	i18n	# dont build i18n subpackage
 #
 %define		_state		stable
-%define		_ver		3.2.2
+%define		_ver		3.2.3
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -15,24 +15,18 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	94eee311b04f91aa083d1f8a8620faca
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
-Source1:	kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	4cb7b5688f1b8267f1d7a19cd8a5acc9
-%endif
-Patch0:		%{name}-3.2branch.diff
-Patch1:		%{name}-kdf-label.patch
-#Patch1:		%{name}-kedit-confirmoverwrite.patch
-#Patch2:		%{name}-fix-kdf-mem-leak.patch
-Patch3:		%{name}-vcategories.patch
-Patch4:		%{name}-userinfo.patch
-Patch5:		%{name}-gcc34.patch
+#Patch100:		%{name}-branch.diff
+Patch0:		%{name}-kdf-label.patch
+Patch1:		%{name}-vcategories.patch
+Patch2:		%{name}-userinfo.patch
+Patch3:		%{name}-gcc34.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -218,7 +212,8 @@ Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description ark
-Ark is a program for managing and quickly extracting archives.
+Ark is a program for managing and quickly extracting archives. It
+supports arj,rar,zip,tar,zoo,lha and other formats.
 
 %description ark -l pl
 Ark jest programem s³u¿±cym do zarz±dzania i szybkiego rozpakowywania
@@ -253,7 +248,7 @@ Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kcharselect
 
 %description kcharselect
-Character Selector.
+Application for selecting characters.
 
 %description kcharselect -l pl
 Program do wybierania znaków.
@@ -277,8 +272,8 @@ system. It has two aims:
 KDELIRC to frontend KDE dla systemu LIRC (Linux Infrared Remote
 Control - zdalnego sterowania podczerwieni±). Ma dwa cele:
 - zapewnienie modu³u dla centrum sterowania do konfiguracji dowi±zañ
-  aplikacji do przycisków pilota oraz konfiguracji samych pilotów
-  (czyli konfiguracji lirc)
+  aplikacji do przycisków pilota oraz konfiguracji samych pilotów (czyli
+  konfiguracji lirc)
 - zapewnienie apletu tacki systemowej s³u¿±cego jako proxy pomiêdzy
   systemem LIRC oraz KDE (aplikacjami).
 
@@ -291,7 +286,7 @@ Requires:	kdelibs >= 9:%{version}
 Obsoletes:	kdepasswd
 
 %description kdepasswd
-Change your password.
+Application that allows changing your password.
 
 %description kdepasswd -l pl
 Program do zmiany has³a z poziomu KDE.
@@ -308,7 +303,7 @@ Requires:	kdelibs >= 9:%{version}
 Obsoletes:	kdessh
 
 %description kdessh
-SSH Frontend.
+A KDE SSH frontend.
 
 %description kdessh -l pl
 Frontend SSH dla KDE.
@@ -360,7 +355,8 @@ Requires:	dosfstools
 Obsoletes:	kfloppy
 
 %description kfloppy
-KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
+KFloppy formats floppy disks and puts a DOS or ext2fs filesystem on
+them.
 
 %description kfloppy -l pl
 KFloppy formatuje dyskietki i zak³ada na nich system plików DOS lub
@@ -377,7 +373,17 @@ Requires:	kdebase-core >= 9:%{version}
 Obsoletes:	kgpg
 
 %description kgpg
-kgpg is a simple, free, open source KDE frontend for gpg.
+kgpg is a simple, free, open source KDE frontend for gpg. It features
+- editor mode enables you to type/paste a text and
+  encrypt/decrypt/sign/verify it
+- key manager: import, export, delete, sign, generate and edit keys.
+- integration with konqueror: left click on a file to decrypt/verify
+  it, right click on a file to encrypt/sign it.
+- encryption: support for symetric encryption. Multiple keys & default
+  key encryption. Optional shredding of source files
+- signatures: creation & verification of detached & cleartext
+  signatures
+- drag & drop encryption + clipboard en/decryption
 
 %description kgpg -l pl
 kgpg jest prost± graficzn± nak³adk± na gpg przeznaczon± dla KDE.
@@ -426,7 +432,7 @@ Requires:	kdebase-infocenter >= 9:%{version}
 Obsoletes:	laptop
 
 %description klaptopdaemon
-KDE Laptop Daemon.
+A laptop battery monitoring tool for KDE
 
 %description klaptopdaemon -l pl
 Wska¼nik zu¿ycia baterii w laptopie dla KDE.
@@ -439,11 +445,13 @@ Summary:	KDE support for various types of hardware input devices
 Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
+Obsoletes:	kdeutils-kmilo-kvaio
+Obsoletes:	kdeutils-kmilo-powerbook
 
 %description kmilo
 This is a kded module that can be extended to support various types of
-hardware input devices that exist, such as those on keyboards.
-It presently supports:
+hardware input devices that exist, such as those on keyboards. It
+presently supports:
 - PowerBooks
 - Sony Vaio laptops (tested on Vaio PCG-GRX series)
 
@@ -453,34 +461,6 @@ rodzaje sprzêtowych urz±dzeñ wej¶ciowych, takich jak te na
 klawiaturze. Aktualnie obs³uguje:
 - PowerBooki
 - laptopy Sony Vaio (testowany na Vaio z serii PCG-GRX)
-
-%package kmilo-kvaio
-Summary:	Sony Vaio KMilo module
-Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
-Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
-Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
-Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
-
-%description kmilo-kvaio
-KMilo module for Sony Vaio laptop support.
-
-%description kmilo-kvaio -l pl
-Modu³ KMilo dla laptopów Sony Vaio.
-
-%package kmilo-powerbook
-Summary:	PowerBook KMilo module
-Summary(pl):	Modu³ KMilo dla PowerBooków
-Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
-Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
-Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
-
-%description kmilo-powerbook
-KMilo module for PowerBooks support.
-
-%description kmilo-powerbook -l pl
-Modu³ KMilo dla PowerBooków.
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
@@ -502,299 +482,78 @@ Group:		X11/Applications
 Requires:	kdebase-desktop >= 9:%{version}
 
 %description ksim
-System Monitor.
+A KDE system monitoring tool that features:
+- GKrellm theme support
+- host name display
+- uptime, memory and swap display
+- filesystem usage plugin
+- disk information plugin
+- net plugin being able to monitor eth0, ppp0 and others
+- sensor plugin able to monitor any sensor via lm_sensors
+- APM laptop battery meter
+- CPU plugin that can monitor CPU usage.
+
 
 %description ksim -l pl
 Monitor systemu.
 
 %package ktimer
 Summary:	KDE Timer
-Summary(pl):	Zegarek KDE
+Summary(pl):	<TODO>
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 Obsoletes:	ktimer
 
 %description ktimer
-Time tracker applet.
+This is a timer application for KDE. It allows you to execute commands
+after a certain amount of time. It allows looping commands as well as
+delaying the execution of a command.
 
 %description ktimer -l pl
-Zegarek.
+<TODO: To na pewno nie jest zegarek.>
 
 %description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
 
 %package kwalletmanager
-Summary:	Wallet management tool for KDE
-Summary(pl):	Narzêdzie do zarz±dzania portfelem dla KDE
+Summary:	Password management tool for KDE
+Summary(pl):	Narzêdzie do zarz±dzania has³ami dla KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 
 %description kwalletmanager
-Wallet management tool for KDE.
+Password management tool for KDE.
 
 %description kwalletmanager -l pl
-Narzêdzie do zarz±dzania portfelem dla KDE.
+Narzêdzie do zarz±dzania has³ami w KDE.
 
 %package userinfo
-Summary:	User Account
-Summary(pl):	Konto u¿ytkownika
+Summary:	User account information editor
+Summary(pl):	Edytor informacji o koncie u¿ytkownika
 Group:		X11/Applications
 Requires:	kdm >= 9:%{version}
 
 %description userinfo
-userinfo changes user account information. This module contains
-kdepasswd program functionality.
+A tool for changing information for a system account also supports
+changing the password.
 
 %description userinfo -l pl
 userinfo zmienia informacje o koncie u¿ytkownika. Ten modu³ zawiera
 funkcjonalno¶æ programu kdepasswd.
 
-%package ark-i18n
-Summary:	Internationalization and localization files for ark
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla arka
-Group:		X11/Applications
-Requires:	%{name}-ark = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description ark-i18n
-Internationalization and localization files for ark.
-
-%description ark-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla arka.
-
-%package kcalc-i18n
-Summary:	Internationalization and localization files for kcalc
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcalca
-Group:		X11/Applications
-Requires:	%{name}-kcalc = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kcalc-i18n
-Internationalization and localization files for kcalc.
-
-%description kcalc-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kcalca.
-
-%package kcharselect-i18n
-Summary:	Internationalization and localization files for kcharselect
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcharselecta
-Group:		X11/Applications
-Requires:	%{name}-kcharselect = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kcharselect-i18n
-Internationalization and localization files for kcharselect.
-
-%description kcharselect-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kcharselecta.
-
-%package kdf-i18n
-Summary:	Internationalization and localization files for kdf
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdf
-Group:		X11/Applications
-Requires:	%{name}-kdf = %{epoch}:%{version}-%{release}
-Requires:	kdebase-infocenter-i18n >= 9:%{version}
-
-%description kdf-i18n
-Internationalization and localization files for kdf.
-
-%description kdf-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdf.
-
-%package kedit-i18n
-Summary:	Internationalization and localization files for kedit
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kedita
-Group:		X11/Applications
-Requires:	%{name}-kedit = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kedit-i18n
-Internationalization and localization files for kedit.
-
-%description kedit-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kedita.
-
-%package kfloppy-i18n
-Summary:	Internationalization and localization files for kfloppy
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kfloppy
-Group:		X11/Applications
-Requires:	%{name}-kfloppy = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kfloppy-i18n
-Internationalization and localization files for kfloppy.
-
-%description kfloppy-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kfloppy.
-
-%package kgpg-i18n
-Summary:	Internationalization and localization files for kgpg
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kgpg
-Group:		X11/Applications
-Requires:	%{name}-kgpg = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kgpg-i18n
-Internationalization and localization files for kgpg.
-
-%description kgpg-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kgpg.
-
-%package khexedit-i18n
-Summary:	Internationalization and localization files for khexedit
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla khexedita
-Group:		X11/Applications
-Requires:	%{name}-khexedit = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description khexedit-i18n
-Internationalization and localization files for khexedit.
-
-%description khexedit-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla khexedita.
-
-%package kjots-i18n
-Summary:	Internationalization and localization files for kjots
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kjots
-Group:		X11/Applications
-Requires:	%{name}-kjots = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kjots-i18n
-Internationalization and localization files for kjots.
-
-%description kjots-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kjots.
-
-%package klaptopdaemon-i18n
-Summary:	Internationalization and localization files for klaptopdaemon
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla klaptopdaemona
-Group:		X11/Applications
-Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
-Requires:	kdebase-infocenter-i18n >= 9:%{version}
-
-%description klaptopdaemon-i18n
-Internationalization and localization files for klaptopdaemon.
-
-%description klaptopdaemon-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla klaptopdaemona.
-
-%package kregexpeditor-i18n
-Summary:	Internationalization and localization files for kregexpeditor
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kregexpeditora
-Group:		X11/Applications
-Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kregexpeditor-i18n
-Internationalization and localization files for kregexpeditor.
-
-%description kregexpeditor-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kregexpeditora.
-
-%package ksim-i18n
-Summary:	Internationalization and localization files for ksim
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ksima
-Group:		X11/Applications
-Requires:	%{name}-ksim = %{epoch}:%{version}-%{release}
-Requires:	kdebase-desktop-i18n >= 9:%{version}
-
-%description ksim-i18n
-Internationalization and localization files for ksim.
-
-%description ksim-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla ksima.
-
-%package ktimer-i18n
-Summary:	Internationalization and localization files for ktimer
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ktimera
-Group:		X11/Applications
-Requires:	%{name}-ktimer = %{epoch}:%{version}-%{release}
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description ktimer-i18n
-Internationalization and localization files for ktimer.
-
-%description ktimer-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla ktimera.
-
-%package kwalletmanager-i18n
-Summary:	Internationalization and localization files for kwalletmanager
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kwalletmanagera
-Group:		X11/Applications
-Requires:	%{name}-kwalletmanager = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kwalletmanager-i18n
-Internationalization and localization files for kwalletmanager.
-
-%description kwalletmanager-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kwalletmanagera.
-
-%package kdelirc-i18n
-Summary:	Internationalization and localization files for kdelirc
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdelirca
-Group:		X11/Applications
-Requires:	%{name}-kdelirc = %{epoch}:%{version}-%{release}
-Requires:	kdebase-core-i18n >= 9:%{version}
-
-%description kdelirc-i18n
-Internationalization and localization files for kdelirc.
-
-%description kdelirc-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdelirca.
-
-%package userinfo-i18n
-Summary:	Internationalization and localization files for userinfo
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla userinfo
-Group:		X11/Applications
-Requires:	%{name}-userinfo = %{epoch}:%{version}-%{release}
-Requires:	kdm-i18n >= 9:%{version}
-
-%description userinfo-i18n
-Internationalization and localization files for userinfo.
-
-%description userinfo-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla userinfo.
-
-%package kdessh-i18n
-Summary:	Internationalization and localization files for kdessh
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdessh
-Group:		X11/Applications
-Requires:	%{name}-kdessh = %{epoch}:%{version}-%{release}
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description kdessh-i18n
-Internationalization and localization files for kdessh.
-
-%description kdessh-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdessh.
-
-%package kdepasswd-i18n
-Summary:	Internationalization and localization files for kdepasswd
-Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdepasswd
-Group:		X11/Applications
-Requires:	%{name}-kdepasswd = %{epoch}:%{version}-%{release}
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description kdepasswd-i18n
-Internationalization and localization files for kdepasswd.
-
-%description kdepasswd-i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdepasswd.
-
 %prep
-%setup -q 
-#%patch0 -p1
+%setup -q
+%patch0 -p1
 %patch1 -p1
-#%patch2 -p1
+%patch2 -p1
 %patch3 -p1
-%patch4 -p1
-%patch5 -p1
 
 %build
-cp /usr/share/automake/config.sub admin
+cp %{_datadir}/automake/config.sub admin
+export kde_htmldir=%{_kdedocdir}
+export kde_libs_htmldir=%{_kdedocdir}
+export UNSERMAKE=%{_datadir}/unsermake/unsermake
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
@@ -809,115 +568,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir} \
+	kde_libs_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
-
-%if %{with i18n}
-if [ -f "%{SOURCE1}" ] ; then
-	bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-	for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
-		if [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] ; then
-			rm -f $f
-		fi
-	done
-else
-	echo "No i18n sources found and building --with i18n. FIXIT!"
-	exit 1
-fi
-%endif
-
-%find_lang ark			--with-kde
-%find_lang KRegExpEditor	--with-kde
-%find_lang kcalc		--with-kde
-%find_lang kcharselect		--with-kde
-> kdf.lang
-%find_lang kdf			--with-kde
-%find_lang blockdevices		--with-kde
-cat blockdevices.lang >> kdf.lang
-%find_lang kedit		--with-kde
-%find_lang kfloppy		--with-kde
-%find_lang kgpg			--with-kde
-%find_lang khexedit		--with-kde
-%find_lang kjots		--with-kde
-%if %{with i18n}
-%find_lang klaptopdaemon	--with-kde
-%else
-> klaptopdaemon.lang
-%endif
-%find_lang kcmlowbatcrit	--with-kde
-%find_lang kcmlowbatwarn	--with-kde
-%find_lang laptop		--with-kde
-%find_lang powerctrl		--with-kde
-cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
-%find_lang ksim			--with-kde
-%find_lang ktimer		--with-kde
-%find_lang kwallet		--with-kde
-
-%if %{with i18n}
-%find_lang kdelirc		--with-kde
-%find_lang irkick		--with-kde
-%find_lang kcmlirc		--with-kde
-cat irkick.lang >> kdelirc.lang
-cat kcmlirc.lang >> kdelirc.lang
-
-%find_lang kwalletmanager	--with-kde
-cat kwalletmanager.lang >> kwallet.lang
-%find_lang kcmkwallet		--with-kde
-cat kcmkwallet.lang >> kwallet.lang
-
-%find_lang kcmlaptop		--with-kde
-cat kcmlaptop.lang >> klaptopdaemon.lang
-%find_lang kcmkvaio		--with-kde
-cat kcmkvaio.lang >> klaptopdaemon.lang
-
-%find_lang kregexpeditor	--with-kde
-cat kregexpeditor.lang >> KRegExpEditor.lang
-
-%find_lang kcharselectapplet	--with-kde
-cat kcharselectapplet.lang >> kcharselect.lang
-
-%find_lang userinfo		--with-kde
-%find_lang kdessh		--with-kde
-%find_lang kdepasswd		--with-kde
-# We dont buidl kcardchooser (disabled by default by coolo) 
-# renaableing it would be posssible, but what for?
-# %find_lang kcardchooser	--with-kde
-%endif
-
-files="ark \
-kcalc \
-kcharselect \
-kdf \
-kedit \
-kfloppy \
-kgpg \
-khexedit \
-kjots \
-klaptopdaemon \
-KRegExpEditor \
-ksim \
-ktimer \
-kwallet"
-
-for i in $files; do
-	> ${i}_en.lang
-	echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
-
-durne=`ls -1 *.lang|grep -v _en`
-
-for i in $durne; 
-do
-	echo $i >> control
-	grep -v en\/ $i|grep -v apidocs >> ${i}.1
-	if [ -f ${i}.1 ] ; then
-		mv ${i}.1 ${i}
-	fi
-done
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -933,27 +587,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %post	ksim		-p /sbin/ldconfig
 %postun	ksim		-p /sbin/ldconfig
-
-%if %{with i18n}
-%files ark-i18n -f ark.lang
-%files kcalc-i18n -f kcalc.lang
-%files kcharselect-i18n -f kcharselect.lang
-%files kdf-i18n -f kdf.lang
-%files kedit-i18n -f kedit.lang
-%files kfloppy-i18n -f kfloppy.lang
-%files kgpg-i18n -f kgpg.lang
-%files khexedit-i18n -f khexedit.lang
-%files kjots-i18n -f kjots.lang
-%files klaptopdaemon-i18n -f klaptopdaemon.lang
-%files kregexpeditor-i18n -f KRegExpEditor.lang
-%files ksim-i18n -f ksim.lang
-%files ktimer-i18n -f ktimer.lang
-%files kwalletmanager-i18n -f kwallet.lang
-%files kdelirc-i18n -f kdelirc.lang
-%files userinfo-i18n -f userinfo.lang
-%files kdessh-i18n -f kdessh.lang
-%files kdepasswd-i18n -f kdepasswd.lang
-%endif
 
 %files devel
 %defattr(644,root,root,755)
@@ -1001,7 +634,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
 
-%files kdelirc 
+%files kdelirc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
@@ -1107,19 +740,13 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_datadir}/services/kmilo
 %{_datadir}/services/kmilo/kmilo_generic.desktop
 %{_datadir}/servicetypes/kmilo
-
-%files kmilo-kvaio
-%defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
 %{_libdir}/kde3/kmilo_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
 %{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_desktopdir}/kde/kvaio.desktop
-
 %ifarch ppc
-%files kmilo-powerbook
-%defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde3/kmilo_powerbook.so
 %{_libdir}/kde3/kmilo_powerbook.la
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
