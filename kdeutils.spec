@@ -1,6 +1,6 @@
 
 %define         _state          stable
-%define         _ver		3.1.3
+%define         _ver		3.1.4
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -12,15 +12,15 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1.2
+Release:	0.1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	21f3fa1d110a8cf8cb1a140745f90211
+# Source0-md5:	98da1b32714e38208a3cc21efc77f627
 # generated from kde-i18n
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	b2e16a171c261a63a3898e81f82f9dad
+# Source1-md5:	704ec4eacaaacde2ccd3b278ba1bb0af
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
