@@ -1,7 +1,4 @@
 #
-# Conditional build:
-%bcond_without	i18n	# dont build i18n subpackage
-#
 %define		_state		stable
 %define		_ver		3.2.3
 
@@ -15,11 +12,11 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	94eee311b04f91aa083d1f8a8620faca
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 #Patch100:		%{name}-branch.diff
