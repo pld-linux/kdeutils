@@ -1,7 +1,7 @@
 
-%define		_state		snapshots
-%define		_ver		3.1.94
-%define		_snap		040110
+%define		_state		stable
+%define		_ver		3.2.0
+##%define		_snap		040110
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -12,14 +12,14 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	%{_ver}.%{_snap}
-Release:	3
+Version:	%{_ver}
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	cf6f0f7f9ea6a09c36ea825af318ca8a	
+Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
+# Source0-md5:	988480b534c1fab9003f624edb87e7a7
 Patch0:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -544,7 +544,7 @@ userinfo zmienia informacje o koncie uøytkownika. Ten modu≥ zawiera
 funkcjonalno∂Ê programu kdepasswd.
 
 %prep
-%setup -q -n %{name}-%{_snap}
+%setup -q 
 %patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
