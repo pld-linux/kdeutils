@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	6
+Release:	7
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -519,7 +519,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/arkpart.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
-%lang(en) %{_htmldir}/en/ark
+%{_htmldir}/en/ark
 
 %files kab
 %defattr(644,root,root,755)
@@ -528,7 +528,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kab/htmlexport
 %{_datadir}/apps/kab/pics/*
 %{_pixmapsdir}/*/*/apps/kab.*
-%lang(en) %{_htmldir}/en/kab
+%{_htmldir}/en/kab
 
 %files karm
 %defattr(644,root,root,755)
@@ -536,7 +536,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/karm.desktop
 %{_datadir}/apps/karm
 %{_pixmapsdir}/*/*/apps/karm.*
-%lang(en) %{_htmldir}/en/karm
+%{_htmldir}/en/karm
 
 %files kcalc
 %defattr(644,root,root,755)
@@ -545,7 +545,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/kcalc.desktop
 %{_datadir}/apps/kcalc
 %{_pixmapsdir}/*/*/apps/kcalc.*
-%lang(en) %{_htmldir}/en/kcalc
+%{_htmldir}/en/kcalc
 
 %files kcharselect
 %defattr(644,root,root,755)
@@ -576,7 +576,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kcmdf.*
 %{_pixmapsdir}/*/*/apps/kdf.*
 %{_pixmapsdir}/*/*/apps/kwikdisk.*
-%lang(en) %{_htmldir}/en/kdf
+%{_htmldir}/en/kdf
 
 %files kedit
 %defattr(644,root,root,755)
@@ -585,7 +585,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Development/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
 %{_pixmapsdir}/*/*/apps/kedit.*
-%lang(en) %{_htmldir}/en/kedit
+%{_htmldir}/en/kedit
 
 %files kfind
 %defattr(644,root,root,755)
@@ -593,7 +593,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kfind.*
 %{_applnkdir}/Kfind.desktop
 %{_pixmapsdir}/*/*/apps/kfind.*
-%lang(en) %{_htmldir}/en/kfind
+%{_htmldir}/en/kfind
 
 %files kfloppy
 %defattr(644,root,root,755)
@@ -601,7 +601,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/KFloppy.desktop
 %{_datadir}/apps/kfloppy
 %{_pixmapsdir}/*/*/apps/kfloppy.*
-%lang(en) %{_htmldir}/en/kfloppy
+%{_htmldir}/en/kfloppy
 
 %files khexedit
 %defattr(644,root,root,755)
@@ -609,7 +609,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/khexedit.desktop
 %{_datadir}/apps/khexedit
 %{_pixmapsdir}/*/*/apps/khexedit.*
-%lang(en) %{_htmldir}/en/khexedit
+%{_htmldir}/en/khexedit
 
 %files kjots
 %defattr(644,root,root,755)
@@ -617,7 +617,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/Kjots.desktop
 %{_datadir}/apps/kjots
 %{_pixmapsdir}/*/*/apps/kjots.*
-%lang(en) %{_htmldir}/en/kjots
+%{_htmldir}/en/kjots
 
 %files klaptopdaemon
 %defattr(644,root,root,755)
@@ -639,21 +639,21 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/KLJetTool.desktop
 %{_datadir}/apps/kljettool
 %{_pixmapsdir}/*/*/apps/kljettool.*
-%lang(en) %{_htmldir}/en/kljettool
+%{_htmldir}/en/kljettool
 
 %files klpq
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klpq
 %{_applnkdir}/Utilities/KLpq.desktop
 %{_pixmapsdir}/*/*/apps/klpq.*
-%lang(en) %{_htmldir}/en/klpq
+%{_htmldir}/en/klpq
 
 %files klprfax
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klprfax*
 %{_applnkdir}/Utilities/klprfax.desktop
 %{_pixmapsdir}/*/*/apps/klprfax.*
-%lang(en) %{_htmldir}/en/klprfax
+%{_htmldir}/en/klprfax
 
 %files knotes
 %defattr(644,root,root,755)
@@ -662,7 +662,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/knotes
 %{_datadir}/config/knotesrc
 %{_pixmapsdir}/*/*/apps/knotes.*
-%lang(en) %{_htmldir}/en/knotes
+%{_htmldir}/en/knotes
 
 %files kpm
 %defattr(644,root,root,755)
@@ -670,7 +670,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kpmdocked
 %{_applnkdir}/System/kpm.desktop
 %{_pixmapsdir}/*/*/apps/kpm.*
-%lang(en) %{_htmldir}/en/kpm
+%{_htmldir}/en/kpm
 
 %files ktimer
 %defattr(644,root,root,755)
