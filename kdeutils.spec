@@ -1,14 +1,15 @@
+%define 	REV	20000418
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
-Version:	1.1.2
-Release:	1
+Version:	2.0
+Release:	1.pre_%{REV}
 Copyright:      GPL
 Group:          X11/KDE/Utilities
 Group(pl):      X11/KDE/Narzêdzia
-Source:		ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/%{name}-%{version}.tar.bz2
-BuildRequires:	kdelibs-devel = %{version}
-BuildRequires:	qt-devel >= 1.44
+Source:		ftp://ftp.kde.org/pub/kde/snapshots/current/%{name}-%{REV}.tar.bz2
+BuildRequires:	kdelibs-devel
+BuildRequires:	qt-devel >= 2.1
 BuildRequires:	libstdc++-devel
 BuildRequires:	XFree86-devel
 BuildRequires:	libtiff-devel
@@ -16,7 +17,7 @@ BuildRequires:	libjpeg-devel
 BuildRequires:	libungif-devel
 BuildRequires:	libpng-devel
 BuildRequires:	zlib-devel
-Requires:	qt >= 1.44
+Requires:	qt >= 2.1
 Requires:	kdelibs = %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -26,19 +27,26 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 KDE utilities.
 Package includes:
   Ark - archive manager
+  Iconpackager - 
   KAb - address book
   KArm - time tracker
   KCalc - calculator
+  KCharSelect -
+  KDEPasswd -
+  KDESsh - 
+  Kdf -
   KEdit - text editor
+  KFind -
   KFloppy - floppy formating tool
   KHexEdit - HEX file editor
   KJots - note taker
+  KLaptopDaemon - 
   KLipper - clipboard viewer
   KLJetTool - tool for LaserJet priter users
   KLpq - print manager
   KNotes - notes
-  Kpm - process manager
   KTop - task manager
+  KTreeBrowser -
   KWrite - text editor
 
 %description -l pl
@@ -299,14 +307,15 @@ KWrite is an enhanced text editor for KDE.
 KWrite jest rozbudowanym edytorem tekstu dla KDE.
 
 %prep
-%setup -q
+%setup -q -n %{name}
 
 %build
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
-CFLAGS="$RPM_OPT_FLAGS -Wall" \
-CCOPTS="$RPM_OPT_FLAGS -Wall" \
-./configure %{_target_platform} \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall"
+CFLAGS="$RPM_OPT_FLAGS -Wall"
+CCOPTS="$RPM_OPT_FLAGS -Wall"
+export CXXFLAGS CFLAGS CCOPTS
+%configure \
 	--prefix=$KDEDIR \
 	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
