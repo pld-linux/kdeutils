@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.93
-%define		_snap		031103
+%define		_snap		031105
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	1700509c4d000052e96d5781d0a0ca14
+# Source0-md5:	0a29000de2f40e33399ca674df2fab4a
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -32,6 +32,7 @@ BuildRequires:	fam-devel
 BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
+BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -539,7 +540,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_docdir}/kde/HTML
+	kde_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 
