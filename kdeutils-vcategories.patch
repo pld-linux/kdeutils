@@ -6,11 +6,10 @@
  X-DCOP-ServiceType=Multi
 -Categories=Qt;KDE;Utility;X-KDE-More
 +Categories=Qt;KDE;X-HexEditor
---- kdeutils-030423/kgpg/kgpg.desktop~	2003-04-24 13:37:31.000000000 +0200
-+++ kdeutils-030423/kgpg/kgpg.desktop	2003-04-24 20:00:17.000000000 +0200
-@@ -14,3 +14,5 @@
+--- kdeutils-030726/kgpg/kgpg.desktop~	2003-07-21 00:59:10.000000000 +0200
++++ kdeutils-030726/kgpg/kgpg.desktop	2003-07-27 02:29:24.000000000 +0200
+@@ -14,3 +14,4 @@
  X-KDE-autostart-after=panel
  X-KDE-StartupNotify=false
- X-KDE-autostart-condition=kgpgrc:Applet:AutoStart:false
-+
+ X-KDE-autostart-condition=kgpgrc:User Interface:AutoStart:false
 +Categories=Qt;KDE;Utility
