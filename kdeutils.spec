@@ -1,6 +1,6 @@
 
 %define         _state          stable
-%define         _ver		3.1
+%define         _ver		3.1.1
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -12,7 +12,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	4
+Release:	0.1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -753,13 +753,13 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d \
-    $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 # Doesn't build.
 #%%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
+
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/{Settings/[!K]*,Settings/KDE}
@@ -767,8 +767,6 @@ mv -f $ALD/{Settingsmenu/*.desktop,Settings}
 mv -f $ALD/{System/More/*.desktop,System}  
 mv -f $ALD/{Utilities/More/*.desktop,Utilities}
 mv -f $ALD/{Utilities/khexedit.desktop,Editors}
-
-#mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
 #bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
