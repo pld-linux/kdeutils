@@ -433,7 +433,6 @@ Ferramenta de formatação de disquetes.
 %package kgpg
 Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
-Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Requires:	konqueror
