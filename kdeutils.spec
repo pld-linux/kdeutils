@@ -748,7 +748,6 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 	--enable-final
 %{__make}
 
-#%{__make} -C kab
 # Doesn't build.
 #%{__make} -C kcardtools
 
@@ -758,7 +757,7 @@ install -d \
     $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
-#%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
+
 # Doesn't build.
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
@@ -820,6 +819,7 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*
+%{_libdir}/libksimcore.so
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
@@ -835,14 +835,16 @@ rm -rf $RPM_BUILD_ROOT
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
-%attr(755,root,root) %{_libdir}/kcalc.*
+%{_libdir}/kcalc.la
+%attr(755,root,root) %{_libdir}/kcalc.so
 %{_applnkdir}/Utilities/kcalc.desktop
 %{_pixmapsdir}/*/*/apps/kcalc.*
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.*
+%{_libdir}/kde3/kcharselect_panelapplet.la
+%attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
@@ -863,7 +865,8 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
-%attr(755,root,root) %{_libdir}/kde3/kcm_kdf.*
+%{_libdir}/kde3/kcm_kdf.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_kdf.so
 %{_datadir}/apps/kdf
 %{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
 %{_applnkdir}/System/kdf.desktop
@@ -875,7 +878,8 @@ rm -rf $RPM_BUILD_ROOT
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%attr(755,root,root) %{_libdir}/kedit.*
+%{_libdir}/kedit.la
+%attr(755,root,root) %{_libdir}/kedit.so
 %{_datadir}/apps/kedit
 %{_applnkdir}/Editors/KEdit.desktop
 %{_pixmapsdir}/*/*/apps/kedit.*
@@ -903,8 +907,10 @@ rm -rf $RPM_BUILD_ROOT
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
-%attr(755,root,root) %{_libdir}/klaptopdaemon.*
-%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.*
+%{_libdir}/klaptopdaemon.la
+%attr(755,root,root) %{_libdir}/klaptopdaemon.so
+%{_libdir}/kde3/kcm_laptop.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/klaptopdaemon.desktop
 %{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
@@ -913,22 +919,25 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/kde3/libkregexpeditorgui.*
+%{_libdir}/kde3/libkregexpeditorgui.la
+%attr(755,root,root) %{_libdir}/kde3/libkregexpeditorgui.so
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ksim
-%attr(755,root,root) %{_libdir}/ksim.*
+%{_libdir}/ksim.la
+%attr(755,root,root) %{_libdir}/ksim.so
 %{_libdir}/libksimcore.la
-%attr(755,root,root) %{_libdir}/libksimcore.so*
-%attr(755,root,root) %{_libdir}/kde3/ksim*
+%attr(755,root,root) %{_libdir}/libksimcore.so.*
+%{_libdir}/kde3/ksim*.la
+%attr(755,root,root) %{_libdir}/kde3/ksim*.so
 %{_datadir}/apps/ksim
 %{_datadir}/config/ksimrc
+%{_applnkdir}/System/ksim.desktop
 %{_pixmapsdir}/*/*/apps/ksim*.png
 %{_pixmapsdir}/*/*/devices/ksim*.png
-%{_applnkdir}/System/ksim.desktop
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
