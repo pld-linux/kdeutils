@@ -784,7 +784,16 @@ for i in {ark,kcalc,kcharselect,kdf,kedit,kfloppy,khexedit,ksim}.png \
 	ln -s crystalsvg/48x48/apps/$i $RPM_BUILD_ROOT%{_pixmapsdir}/$i
 done
 
+for i in `find $RPM_BUILD_ROOT%{_applnkdir} -type f`; do
+	if grep '^Icon=.[^.]*$' $i >/dev/null; then
+		echo -e ',s/\(^Icon=.*$\)/\\1.png/\n,w' | ed $i
+	fi
+done
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
+	[ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
+done
 
 %find_lang	ark			--with-kde
 %find_lang	KRegExpEditor		--with-kde
@@ -882,6 +891,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/kcmdf.png
 %{_pixmapsdir}/*/*/apps/kdf.png
 %{_pixmapsdir}/*/*/apps/kwikdisk.png
+%{_pixmapsdir}/kcmdf.png
 %{_pixmapsdir}/kdf.png
 %{_pixmapsdir}/kwikdisk.png
 
