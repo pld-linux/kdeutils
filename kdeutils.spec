@@ -1,24 +1,37 @@
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
+Summary(ja):	KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ - ¥æ¡¼¥Æ¥£¥ê¥Æ¥£
 Summary(pt_BR):	KDE - Utilitários
+Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
+Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
+Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	3.0.3
-Release:	1
+Release:	3
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Patch0:		%{name}-desktop.patch
+Patch1:		%{name}-kdf-label.patch
+Patch2:		%{name}-kedit-confirmoverwrite.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
+BuildRequires:	fam-devel
 BuildRequires:	grep
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+Obsoletes:	kdeutils-karm
+Obsoletes:	kdeutils-kfind
+Obsoletes:	kdeutils-khexdit
+Obsoletes:	kdeutils-knotes
+Obsoletes:	kdeutils-kpm
 
 %define		_prefix		/usr/X11R6
 %define		_fontdir	/usr/share/fonts
@@ -73,6 +86,20 @@ Utilitarios para KDE. Programas disponibles en este paquete:
  - KPm,
  - KTimer.
 
+%description -l ja
+KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î¥æ¡¼¥Æ¥£¥ê¥Æ¥£
+°Ê²¼¤Î¤è¤¦¤Ê¥Ñ¥Ã¥±¡¼¥¸¤¬Æþ¤Ã¤Æ¤¤¤Þ¤¹¡£
+
+- ark - ¥¢¡¼¥«¥¤¥ÖÁàºî¥Ä¡¼¥ë
+- karm - personal time tracker
+- kcalc - ÅÅÂî
+- kedit - ¥Æ¥­¥¹¥È¥¨¥Ç¥£¥¿
+- kfloppy - ¥Õ¥í¥Ã¥Ô¡¼¥Õ¥©¡¼¥Þ¥Ã¥¿
+- khexedit - ¥Ð¥¤¥Ê¥ê¥¨¥Ç¥£¥¿
+- kjots - note taker
+- kljettool - HP¥×¥ê¥ó¥¿ÀßÄê¥Ä¡¼¥ë
+- knotes - ¥Ý¥¹¥È¥¤¥Ã¥È
+
 %description -l pl
 Narzêdzia dla KDE. Pakiet zawiera:
  - Ark - program do zarz±dzania archiwami,
@@ -116,6 +143,39 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
  - KPm - monitor gráfico de processos e do sistema,
  - KTimer - Monitor de tempo em forma de mini-aplicativo.
 
+%description -l ru
+õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. ÷ËÌÀÞÁÅÔ:
+ - ark - ÍÅÎÅÄÖÅÒ ÁÒÈÉ×Ï× tar/gzip,
+ - kab - ÁÄÒÅÓÎÁÑ ËÎÉÇÁ,
+ - karm - ÐÅÒÓÏÎÁÌØÎÙÊ ÐÌÁÎÉÒÏ×ÝÉË,
+ - kcalc - ÎÁÕÞÎÙÊ ËÁÌØËÕÌÑÔÏÒ,
+ - kedit - ÐÒÏÓÔÏÊ ÔÅËÓÔÏ×ÙÊ ÒÅÄÁËÔÏÒ,
+ - kfloppy - ÕÔÉÌÉÔÁ ÄÌÑ ÆÏÒÍÁÔÉÒÏ×ÁÎÉÑ ÆÌÏÐÐÉ-ÄÉÓËÏ×,
+ - khexedit - ÒÅÄÁËÔÏÒ ÂÉÎÁÒÎÙÈ ÆÁÊÌÏ×,
+ - kjots - ÂÌÏËÎÏÔ,
+ - klipper - ÕÔÉÌÉÔÁ ÄÌÑ ÒÁÂÏÔÙ Ó ÂÕÆÅÒÏÍ ÏÂÍÅÎÁ,
+ - kljettool - ÕÔÉÌÉÔÁ ÄÌÑ ÎÁÓÔÒÏÊËÉ ÐÒÉÎÔÅÒÏ×, ÓÏ×ÍÅÓÔÉÍÙÈ Ó HP,
+ - klpq - ÍÅÎÅÄÖÅÒ ÏÞÅÒÅÄÉ ÐÅÞÁÔÉ,
+ - knotes - post-it notes ÄÌÑ ÄÅÓËÔÏÐÁ,
+ - kpm - ÍÅÎÅÄÖÅÒ ÐÒÏÃÅÓÓÏ×, ÐÏÈÏÖÉÊ ÎÁ 'top', ÎÏ ÂÏÌÅÅ ÐÒÏÄ×ÉÎÕÔÙÊ.
+
+%description -l uk
+õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. í¦ÓÔÉÔØ:
+ - ark - ÍÅÎÅÄÖÅÒ ÁÒÈ¦×¦× tar/gzip,
+ - kab - ÁÄÒÅÓÎÁ ËÎÉÇÁ,
+ - karm - ÐÅÒÓÏÎÁÌØÎÙÊ ÐÌÁÎÕ×ÁÌØÎÉË,
+ - kcalc - ÎÁÕÞÎÉÊ ËÁÌØËÕÌÑÔÏÒ,
+ - kedit - ÐÒÏÓÔÉÊ ÔÅËÓÔÏ×ÉÊ ÒÅÄÁËÔÏÒ,
+ - kfloppy - ÕÔÉÌ¦ÔÁ ÄÌÑ ÆÏÒÍÁÔÕ×ÁÎÎÑ ÆÌÏÐ¦-ÄÉÓË¦×,
+ - khexedit - ÒÅÄÁËÔÏÒ Â¦ÎÁÒÎÉÈ ÆÁÊÌ¦×,
+ - kjots - ÎÏÔÁÔÎÉË,
+ - klipper - ÕÔÉÌ¦ÔÁ ÄÌÑ ÒÏÂÏÔÉ Ú ÂÕÆÅÒÏÍ ÏÂÍ¦ÎÕ,
+ - kljettool - ÕÔÉÌ¦ÔÁ ÄÌÑ ÎÁÌÁÇÏÄÖÅÎÎÑ ÐÒ¦ÎÔÅÒ¦×, ÓÕÍ¦ÓÎÉÈ Ú HP,
+ - klpq - ÍÅÎÅÄÖÅÒ ÞÅÒÇÉ ÄÒÕËÕ,
+ - knotes - post-it notes ÄÌÑ ÄÅÓËÔÏÐÕ,
+ - kpm - ÍÅÎÅÄÖÅÒ ÐÒÏÃÅÓ¦×, ÓÈÏÖÉÊ ÎÁ 'top', ÁÌÅ Ú Â¦ÌØÛÉÍÉ
+   ÍÏÖÌÉ×ÏÓÔÑÍÉ.
+
 %package ark
 Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
@@ -155,6 +215,7 @@ Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kcalc
 
 %description kcalc
 Calculator for KDE.
@@ -171,6 +232,7 @@ Summary(pl):	Wybierajka znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kcharselect
 
 %description kcharselect
 Character Selector.
@@ -184,6 +246,7 @@ Summary(pl):	passwd dla KDE
 Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kdepasswd
 
 %description kdepasswd
 Change your password.
@@ -200,6 +263,7 @@ Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kdessh
 
 %description kdessh
 SSH Frontend.
@@ -216,6 +280,7 @@ Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kedit
 
 %description kedit
 Simple text editor for KDE.
@@ -232,6 +297,7 @@ Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kdf
 
 %description kdf
 This program shows the disk usage of the mounted devices.
@@ -265,6 +331,7 @@ Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Requires:	dosfstools
+Obsoletes:	kfloppy
 
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
@@ -299,6 +366,7 @@ Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kjots
 
 %description kjots
 kjots is a small note taker program. Name and idea are taken from the
@@ -316,6 +384,7 @@ Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	laptop
 
 %description klaptopdaemon
 KDE Laptop Daemon.
@@ -332,6 +401,7 @@ Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Summary(pt_BR):	Interface de configuração de impressora HP Laserjet
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	kljettool
 
 %description kljettool
 KLJetTool is a program that lets you adjust your Hewlett Packard
@@ -357,6 +427,7 @@ Summary(pl):	Zarz±dca wydruku dla KDE
 Summary(pt_BR):	Interface para gerenciamento das filas de impressão
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	klpq
 
 %description klpq
 Klpq is a frontend to the print spooler. Klpq does not modify the
@@ -378,6 +449,7 @@ Summary(pt_BR):	Interface para impressão em saída de Fax
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Requires:	efax
+Obsoletes:	klprfax
 
 %description klprfax
 With this program you can fax by printing to an lpd device.
@@ -435,6 +507,7 @@ Summary(pl):	Zegarek KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Obsoletes:	ktimer
 
 %description ktimer
 Time tracker appplet.
@@ -450,6 +523,7 @@ Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
 Requires:	kdelibs = %{version}
+Obsoletes:	kregexpeditor
 
 %description kregexpeditor
 Graphical regular expression editor.
@@ -469,23 +543,23 @@ Requires:	cdparanoia-III
 
 %description cdbakeoven
 CD Bake Oven was designed with one goal in mind: combine the power and
-stability of great command line utilities with contemporary easy to use
-user interface. CDBO enables you to create data or music CDs in the most
-intuitive matter, allowing you to control every aspect of the process.
-It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
-and 'cdparanoia' encapsulating most of the options those utilities
-provide. This makes creating professional quality media as easy as
-making a few mouse clicks.
+stability of great command line utilities with contemporary easy to
+use user interface. CDBO enables you to create data or music CDs in
+the most intuitive matter, allowing you to control every aspect of the
+process. It is built on top of very well known 'cdrecord', 'mkisofs',
+'cdda2wav' and 'cdparanoia' encapsulating most of the options those
+utilities provide. This makes creating professional quality media as
+easy as making a few mouse clicks.
 
 %description cdbakeoven -l pl
-CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
-i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
-interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
-intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
-Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
-,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
-ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
-klikanie myszk±.
+CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ
+uniwersalno¶æ i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym
+w u¿yciu interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w
+najbardziej intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie
+aspekty procesu. Zosta³ zbudowany na bazie doskonale znanych programów
+,,cdrecord'', ,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c
+dostêp do wiêkszo¶ci ich opcji. Czyni to no¶ników o profesjonalnej
+jako¶ci równie ³atwym jak klikanie myszk±.
 
 %package ksim
 Summary:	K System Information Monitor
@@ -506,6 +580,7 @@ Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Requires:	kdelibs-devel >= %{version}
 Requires:	kdebase-devel >= %{version}
+Obsoletes:	kregexpeditor-devel
 
 %description devel
 This package includes the header files you will need to compile
@@ -521,6 +596,10 @@ que usem as bibliotecas do kdeutils
 
 %prep
 %setup -q
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
