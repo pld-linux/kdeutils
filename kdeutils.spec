@@ -805,6 +805,7 @@ mv -f $ALD/{Utilities/khexedit.desktop,Development/Editors}
 #cat kcharselectapplet.lang >> kcharselect.lang
 #%find_lang kdepasswd		--with-kde
 #%find_lang kdessh		--with-kde
+> kdf.lang
 %find_lang kdf			--with-kde
 %find_lang blockdevices		--with-kde
 cat blockdevices.lang >> kdf.lang
@@ -812,6 +813,7 @@ cat blockdevices.lang >> kdf.lang
 %find_lang kfloppy		--with-kde
 %find_lang khexedit		--with-kde
 %find_lang kjots		--with-kde
+> klaptopdaemon.lang
 #%find_lang klaptopdaemon	--with-kde
 %find_lang kcmlowbatcrit	--with-kde
 %find_lang kcmlowbatwarn	--with-kde
@@ -831,7 +833,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 #%find_lang kcardchooser	--with-kde
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
 
 #%post   ark -p /sbin/ldconfig
 #%postun ark -p /sbin/ldconfig
