@@ -248,21 +248,21 @@ Ten program pokazuje zajêto¶æ dysku dla zamontowanych urz±dzeñ.
 %description kdf -l pt_BR
 Mostra o status de espaço em disco.
 
-%package kfind
-Summary:	KDE Find
-Summary(pl):	find dla KDE
-Summary(pt_BR):	Ferramenta de procura de arquivos
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description kfind
-Find Util.
-
-%description kfind -l pl
-Wyszukiwarka plików dla KDE.
-
-%description kfind -l pt_BR
-Ferramenta de procura de arquivos.
+#%package kfind
+#Summary:	KDE Find
+#Summary(pl):	find dla KDE
+#Summary(pt_BR):	Ferramenta de procura de arquivos
+#Group:		X11/Applications
+#Requires:	kdelibs >= %{version}
+#
+#%description kfind
+#Find Util.
+#
+#%description kfind -l pl
+#Wyszukiwarka plików dla KDE.
+#
+#%description kfind -l pt_BR
+#Ferramenta de procura de arquivos.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
@@ -394,46 +394,46 @@ Program ten umo¿liwia wysy³anie faksów przez drukowanie ich do lpd.
 %description klprfax -l pt_BR
 Interface para impressão em saída de fax.
 
-%package knotes
-Summary:	KDE Notes
-Summary(pl):	Notes dla KDE
-Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description knotes
-KNotes is ment to be a really usable and good looking notes
-application for the KDE project.
-
-%description knotes -l pl
-KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich
-widocznych na ekranie.
-
-%description knotes -l pt_BR
-Pequeno editor de texto para guardar notas rápidas.
-
-%package kpm
-Summary:	KDE Process Manager
-Summary(pl):	Zarz±dca procesów dla KDE
-Summary(pt_BR):	Monitor gráfico de processos e do sistema
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description kpm
-kpm allows you to view and modify the processes of your Linux
-computer. It shows detailed information of running processes, computer
-resources like RAM, swap space, CPU utilization and so on. You can
-kill processes and modify their priority.
-
-%description kpm -l pl
-kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
-szczegó³owe informacje na temat uruchomionych procesów, zasobów
-systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
-wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
-modyfikowania ich priorytetów.
-
-%description kpm -l pt_BR
-Monitor gráfico de processos e do sistema.
+#%package knotes
+#Summary:	KDE Notes
+#Summary(pl):	Notes dla KDE
+#Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
+#Group:		X11/Applications
+#Requires:	kdelibs >= %{version}
+#
+#%description knotes
+#KNotes is ment to be a really usable and good looking notes
+#application for the KDE project.
+#
+#%description knotes -l pl
+#KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich
+#widocznych na ekranie.
+#
+#%description knotes -l pt_BR
+#Pequeno editor de texto para guardar notas rápidas.
+#
+#%package kpm
+#Summary:	KDE Process Manager
+#Summary(pl):	Zarz±dca procesów dla KDE
+#Summary(pt_BR):	Monitor gráfico de processos e do sistema
+#Group:		X11/Applications
+#Requires:	kdelibs >= %{version}
+#
+#%description kpm
+#kpm allows you to view and modify the processes of your Linux
+#computer. It shows detailed information of running processes, computer
+#resources like RAM, swap space, CPU utilization and so on. You can
+#kill processes and modify their priority.
+#
+#%description kpm -l pl
+#kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
+#szczegó³owe informacje na temat uruchomionych procesów, zasobów
+#systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
+#wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
+#modyfikowania ich priorytetów.
+#
+#%description kpm -l pt_BR
+#Monitor gráfico de processos e do sistema.
 
 %package ktimer
 Summary:	KDE Timer
@@ -658,8 +658,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/*/*/apps/klprfax.*
 %lang(en) %{_htmldir}/en/klprfax
 
-%files knotes
-%defattr(644,root,root,755)
+#%files knotes
+#%defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/knotes
 #%{_applnkdir}/Utilities/knotes.desktop
 #%{_datadir}/apps/knotes
@@ -667,7 +667,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_includedir}/KNotesIface.h
 #%{_pixmapsdir}/*/*/apps/knotes.*
 #%lang(en) %{_htmldir}/en/knotes
-
+#
 #%files kpm
 #%defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/kpm
