@@ -1,8 +1,8 @@
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
-Version:	1.1.1
-Release:	3
+Version:	1.1.2
+Release:	1
 Copyright:      GPL
 Group:          X11/KDE/Utilities
 Group(pl):      X11/KDE/Narzêdzia
@@ -303,11 +303,12 @@ KWrite jest rozbudowanym edytorem tekstu dla KDE.
 
 %build
 export KDEDIR=%{_prefix}
-CXXFLAGS="$RPM_OPT_FLAGS -Wall" \
+CXXFLAGS="$RPM_OPT_FLAGS -Wall -fno-rtti" \
 CFLAGS="$RPM_OPT_FLAGS -Wall" \
 CCOPTS="$RPM_OPT_FLAGS -Wall" \
 ./configure %{_target_platform} \
 	--prefix=$KDEDIR \
+	--with-qt-dir=%{_prefix} \
  	--with-install-root=$RPM_BUILD_ROOT \
  	--with-pam="yes"
 make KDEDIR=$KDEDIR
