@@ -12,7 +12,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	0.3
+Release:	0.4
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -21,6 +21,8 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # generated from kde-i18n
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
 # Source1-md5:	704ec4eacaaacde2ccd3b278ba1bb0af
+Source2:	%{name}-extra_icons.tar.bz2
+# Source2-md5:	284fdb30bb25fa1f125310f15f6d5698
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 BuildRequires:	autoconf
@@ -533,6 +535,7 @@ Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdelibs >= 8:%{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	laptop
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -775,6 +778,12 @@ mv -f $ALD/{System/More/*.desktop,System}
 mv -f $ALD/{Utilities/More/*.desktop,Utilities}
 mv -f $ALD/{Utilities/khexedit.desktop,Editors}
 
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
+for i in {ark,kcalc,kcharselect,kdf,kedit,kfloppy,khexedit,ksim}.png \
+	 {laptop_battery,laptop_pcmcia}.png; do
+	ln -s crystalsvg/48x48/apps/$i $RPM_BUILD_ROOT%{_pixmapsdir}/$i
+done
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang	ark			--with-kde
@@ -809,7 +818,6 @@ cat {kcm{lowbatcrit,lowbatwarn,laptop},laptop,powerctrl}.lang >> klaptopdaemon.l
 # probably from other packages
 #%find_lang	kab3			--with-kde
 #%find_lang	klpq			--with-kde
-#%find_lang	klprfax			--with-kde
 #%find_lang	kpm			--with-kde
 
 %clean
@@ -829,7 +837,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/ark_part.desktop
 %{_applnkdir}/Utilities/ark.desktop
-%{_pixmapsdir}/*/*/apps/ark.*
+%{_pixmapsdir}/*/*/apps/ark.png
+%{_pixmapsdir}/ark.png
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
@@ -837,7 +846,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kcalc.la
 %attr(755,root,root) %{_libdir}/kcalc.so
 %{_applnkdir}/Utilities/kcalc.desktop
-%{_pixmapsdir}/*/*/apps/kcalc.*
+%{_pixmapsdir}/*/*/apps/kcalc.png
+%{_pixmapsdir}/kcalc.png
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
@@ -846,7 +856,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_applnkdir}/Utilities/KCharSelect.desktop
-%{_pixmapsdir}/*/*/apps/kcharselect.*
+%{_pixmapsdir}/*/*/apps/kcharselect.png
+%{_pixmapsdir}/kcharselect.png
 
 %files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
@@ -868,9 +879,11 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
 %{_applnkdir}/System/kdf.desktop
 %{_applnkdir}/System/kwikdisk.desktop
-%{_pixmapsdir}/*/*/apps/kcmdf.*
-%{_pixmapsdir}/*/*/apps/kdf.*
-%{_pixmapsdir}/*/*/apps/kwikdisk.*
+%{_pixmapsdir}/*/*/apps/kcmdf.png
+%{_pixmapsdir}/*/*/apps/kdf.png
+%{_pixmapsdir}/*/*/apps/kwikdisk.png
+%{_pixmapsdir}/kdf.png
+%{_pixmapsdir}/kwikdisk.png
 
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
@@ -879,27 +892,31 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kedit.so
 %{_datadir}/apps/kedit
 %{_applnkdir}/Editors/KEdit.desktop
-%{_pixmapsdir}/*/*/apps/kedit.*
+%{_pixmapsdir}/*/*/apps/kedit.png
+%{_pixmapsdir}/kedit.png
 
 %files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
-%{_pixmapsdir}/*/*/apps/kfloppy.*
+%{_pixmapsdir}/*/*/apps/kfloppy.png
+%{_pixmapsdir}/kfloppy.png
 
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_datadir}/apps/khexedit
 %{_applnkdir}/Editors/khexedit.desktop
-%{_pixmapsdir}/*/*/apps/khexedit.*
+%{_pixmapsdir}/*/*/apps/khexedit.png
+%{_pixmapsdir}/khexedit.png
 
 %files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
 %{_applnkdir}/Utilities/Kjots.desktop
-%{_pixmapsdir}/*/*/apps/kjots.*
+%{_pixmapsdir}/*/*/apps/kjots.png
+%{_pixmapsdir}/kjots.png
 
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
@@ -912,7 +929,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/klaptopdaemon.desktop
 %{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
 %{_applnkdir}/Settings/KDE/PowerControl/*.desktop
-%{_pixmapsdir}/*/*/*/*laptop*
+%{_pixmapsdir}/*/*/*/*laptop*.png
+%{_pixmapsdir}/laptop_battery.png
+%{_pixmapsdir}/laptop_pcmcia.png
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
@@ -933,8 +952,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ksim
 %{_datadir}/config/ksimrc
 %{_applnkdir}/System/ksim.desktop
-%{_pixmapsdir}/*/*/apps/ksim*.png
-%{_pixmapsdir}/*/*/devices/ksim*.png
+%{_pixmapsdir}/*/*/apps/ksim.png
+%{_pixmapsdir}/*/*/devices/ksim_cpu.png
+%{_pixmapsdir}/ksim.png
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
