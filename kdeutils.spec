@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_with  i18n    # don't build i18n subpackage
+%bcond_with i18n    # w/wo i18n subpackage
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040206
+%define		_snap		040216
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -20,8 +20,9 @@ Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
+Source0:	%{name}.tar.bz2
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
 ##%% Source0-md5:	988480b534c1fab9003f624edb87e7a7
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	e63a7e83445904676217d3f09243ce90
@@ -823,7 +824,7 @@ Internationalization and localization files for kdepasswd.
 Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 
 %prep
-%setup -q -n %{name}-%{_snap}
+%setup -q -n %{name}
 %patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
@@ -835,10 +836,13 @@ cp /usr/share/automake/config.sub admin
 
 export UNSERMAKE=/usr/share/unsermake/unsermake
 
+echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--disable-rpath \
+	--enable-final \
 	--with-qt-libraries=%{_libdir}
 
 %{__make}
@@ -871,7 +875,6 @@ fi
 %find_lang KRegExpEditor	--with-kde
 %find_lang kcalc		--with-kde
 %find_lang kcharselect		--with-kde
-> kdf.lang
 %find_lang kdf			--with-kde
 %find_lang blockdevices		--with-kde
 cat blockdevices.lang >> kdf.lang
@@ -888,6 +891,7 @@ cat kcmlirc.lang >> irkick.lang
 %else
 > klaptopdaemon.lang
 %endif
+
 %find_lang kcmlowbatcrit	--with-kde
 %find_lang kcmlowbatwarn	--with-kde
 %find_lang laptop		--with-kde
@@ -926,21 +930,22 @@ cat kcharselectapplet.lang >> kcharselect.lang
 # %find_lang kcardchooser            --with-kde
 %endif
 
-files="ark \
-irkick \
-kcalc \
-kcharselect \
-kdf \
-kedit \
-kfloppy \
-kgpg \
-khexedit \
-kjots \
-klaptopdaemon \
-KRegExpEditor \
-ksim \
-ktimer \
-kwallet"
+files="\
+	ark \
+	irkick \
+	kcalc \
+	kcharselect \
+	kdf \
+	kedit \
+	kfloppy \
+	kgpg \
+	khexedit \
+	kjots \
+	klaptopdaemon \
+	KRegExpEditor \
+	ksim \
+	ktimer \
+	kwallet"
 
 for i in $files; do
 	> ${i}_en.lang
@@ -952,8 +957,7 @@ done
 
 durne=`ls -1 *.lang|grep -v _en`
 
-for i in $durne; 
-do
+for i in $durne; do
 	echo $i >> control
 	grep -v en\/ $i|grep -v apidocs >> ${i}.1
 	if [ -f ${i}.1 ] ; then
