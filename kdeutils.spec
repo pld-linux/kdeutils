@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030317
+%define		_snap		030329
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -13,15 +13,17 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	0.%{_snap}.0.1
+Release:	0.%{_snap}.1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+Source0:	http://team.pld.org.pl/~djurban/kde/%{name}-%{_snap}.tar.bz2
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
 Patch3:		%{name}-khexedit_vcategory.patch
+Patch4:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -185,6 +187,9 @@ Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Requires:	kdelibs-devel >= %{version}
 Requires:	kdebase-devel >= %{version}
+Requires:	%{name}-klaptopdaemon
+Requires:	%{name}-kmilo
+Requires:	%{name}-ksim
 Obsoletes:	kregexpeditor-devel
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -599,12 +604,35 @@ Zegarek.
 %description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
 
+%package userinfo
+Summary:	User Account
+Summary(pl):	Konto u¿ytkownika
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+Obsoletes:	kdeutils-cdbakeoven
+Obsoletes:	kdeutils-kab
+Obsoletes:	kdeutils-karm
+Obsoletes:	kdeutils-kfind
+Obsoletes:	kdeutils-kljettool
+Obsoletes:	kdeutils-klpq
+Obsoletes:	kdeutils-klprfax
+Obsoletes:	kdeutils-knotes
+Obsoletes:	kdeutils-kpm
+Obsoletes:	kregexpeditor-devel 
+
+%description userinfo
+Changes user account information.
+
+%description userinfo -l pl
+Zmienia informacje o koncie u¿ytkownika.
+
 %prep
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -618,14 +646,8 @@ for plik in `find ./ -name *.desktop` ; do
 	fi
 done
 
-export DO_NOT_COMPILE=klaptopdaemon
+%configure --with-pam="yes"
 
-%configure \
-	%{!?debug:--disable-debug} \
-	--with-qt-dir=%{_prefix} \
-	--with-install-root=$RPM_BUILD_ROOT \
-	--with-pam="yes" \
-	--enable-final
 %{__make}
 
 %install
@@ -664,11 +686,15 @@ rm -rf $RPM_BUILD_ROOT
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*
+%{_libdir}/libkcmlaptop.so
+%{_libdir}/libkmilo.so
 %{_libdir}/libksimcore.so
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
+%{_libdir}/ark.la
+%attr(755,root,root) %{_libdir}/ark.so
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
 %{_datadir}/apps/ark
@@ -748,22 +774,27 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kmilo
 %defattr(644,root,root,755)
+%{_libdir}/libkmilo.la
+%attr(755,root,root) %{_libdir}/libkmilo.so.*
 %{_libdir}/kde3/kded_kmilod.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
 %{_datadir}/services/kded/kmilod.desktop
+%{_datadir}/servicetypes/kmilo
 
-#%files klaptopdaemon -f klaptopdaemon.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/klaptopdaemon
-#%{_libdir}/klaptopdaemon.la
-#%attr(755,root,root) %{_libdir}/klaptopdaemon.so
-#%{_libdir}/kde3/kcm_laptop.la
-#%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
-#%{_datadir}/apps/klaptopdaemon
-#%{_datadir}/services/klaptopdaemon.desktop
-#%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
-#%{_applnkdir}/Settings/KDE/PowerControl/*.desktop
-#%{_pixmapsdir}/*/*/*/*laptop*
+%files klaptopdaemon -f klaptopdaemon.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/klaptop*
+%{_libdir}/libkcmlaptop.la
+%attr(755,root,root) %{_libdir}/libkcmlaptop.so.*
+%{_libdir}/kde3/kded_klaptopdaemon.la
+%attr(755,root,root) %{_libdir}/kde3/kded_klaptopdaemon.so
+%{_libdir}/kde3/kcm_laptop.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
+%{_datadir}/apps/klaptopdaemon
+%{_datadir}/services/kded/klaptopdaemon.desktop
+%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/*.desktop
+%{_pixmapsdir}/*/*/*/*laptop*
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
@@ -793,3 +824,10 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/ktimer.desktop
+
+%files userinfo
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kcm_userinfo.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
+%{_datadir}/apps/userinfo
+%{_applnkdir}/Settings/KDE/Components/userinfo.desktop
