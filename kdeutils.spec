@@ -1,11 +1,11 @@
 
 %define		_state		snapshots
-%define		_ver		3.2.90
-%define		_snap		040525
+%define		_ver		3.2.91
+%define		_snap		040630
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040524
-%define		_minbaseevr	9:3.2.90.040524
+%define		_minlibsevr	9:3.2.91.040629
+%define		_minbaseevr	9:3.2.91.040629
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -613,16 +613,17 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_ark.so
 %{_libdir}/kde3/ark.la
 %attr(755,root,root) %{_libdir}/kde3/ark.so
-%{_libdir}/kde3/libarkplugin.la
-%attr(755,root,root) %{_libdir}/kde3/libarkplugin.so
+#%{_libdir}/kde3/libarkplugin.la
+#%attr(755,root,root) %{_libdir}/kde3/libarkplugin.so
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
-%{_datadir}/applnk/.hidden/arkplugin.desktop
+#%{_datadir}/applnk/.hidden/arkplugin.desktop
 %{_datadir}/apps/ark
 #%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
 #%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
+%{_datadir}/config.kcfg/ark.kcfg
 %{_datadir}/services/ark_part.desktop
-%{_datadir}/services/ark_plugin.desktop
+#%{_datadir}/services/ark_plugin.desktop
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
 
@@ -802,6 +803,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 %{_desktopdir}/kde/kregexpeditor.desktop
+%{_iconsdir}/*/*/*/kregexpeditor.png
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
