@@ -2,6 +2,7 @@
 # Conditional build:
 # _with_pixmapsubdirs - leave different depth/resolution icons
 #
+%define		_with_pixmapsubdirs	1
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
 Summary(es):	KDE - Utilitarios
@@ -12,8 +13,8 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	3.0.4
-Release:	3
+Version:	3.0.5a
+Release:	0.2
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
