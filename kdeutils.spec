@@ -14,7 +14,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}%{_rcver}
-Release:	1
+Release:	2
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
@@ -24,7 +24,6 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
-#Patch3:	%{name}-charselectapplet-no-version.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -35,9 +34,11 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_prefix		/usr/X11R6
 %define		_fontdir	/usr/share/fonts
 %define		_htmldir	/usr/share/doc/kde/HTML
+%define		_applnkdir	/usr/share/applnk
+%define		_pixmapsdir	/usr/share/pixmaps
+
 
 %define		no_install_post_chrpath		1
 
@@ -739,7 +740,6 @@ Monitor de tempo em forma de mini-aplicativo.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-#%patch3 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
