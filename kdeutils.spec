@@ -33,6 +33,9 @@ BuildRequires:	fam-devel
 BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
+%ifarch ppc
+BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
+%endif
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
