@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030504
+%define		_snap		030509
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -705,6 +705,15 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	kmilo		-p /sbin/ldconfig
+%postun	kmilo		-p /sbin/ldconfig
+
+%post	klaptopdaemon	-p /sbin/ldconfig
+%postun	klaptopdaemon	-p /sbin/ldconfig
+
+%post	ksim		-p /sbin/ldconfig
+%postun	ksim		-p /sbin/ldconfig
+
 %files devel
 %defattr(644,root,root,755)
 %{_includedir}/*
@@ -806,7 +815,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kmilo
 %defattr(644,root,root,755)
 %{_libdir}/libkmilo.la
-%attr(755,root,root) %{_libdir}/libkmilo.so.*
+%attr(755,root,root) %{_libdir}/libkmilo.so.*.*.*
 %{_libdir}/kde3/kded_kmilod.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
 %{_datadir}/services/kded/kmilod.desktop
@@ -816,7 +825,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %{_libdir}/libkcmlaptop.la
-%attr(755,root,root) %{_libdir}/libkcmlaptop.so.*
+%attr(755,root,root) %{_libdir}/libkcmlaptop.so.*.*.*
 %{_libdir}/kde3/kded_klaptopdaemon.la
 %attr(755,root,root) %{_libdir}/kde3/kded_klaptopdaemon.so
 %{_libdir}/kde3/kcm_laptop.la
@@ -842,7 +851,7 @@ rm -rf $RPM_BUILD_ROOT
 #%{_libdir}/ksim.la
 #%attr(755,root,root) %{_libdir}/ksim.so
 %{_libdir}/libksimcore.la
-%attr(755,root,root) %{_libdir}/libksimcore.so.*
+%attr(755,root,root) %{_libdir}/libksimcore.so.*.*.*
 %{_libdir}/kde3/ksim*.la
 %attr(755,root,root) %{_libdir}/kde3/ksim*.so
 %{_datadir}/apps/kicker/extensions/ksim.desktop
