@@ -3,7 +3,7 @@ Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
 Version:	2.0
-Release:	1.pre_%{REV}
+Release: 2
 Copyright:      GPL
 Group:          X11/KDE/Utilities
 Group(pl):      X11/KDE/Narzêdzia
@@ -15,7 +15,7 @@ BuildRequires:	XFree86-devel
 BuildRequires:	libtiff-devel
 BuildRequires:	libjpeg-devel
 BuildRequires:	libungif-devel
-BuildRequires:	libpng-devel
+BuildRequires:	libpng >= 1.0.8
 BuildRequires:	zlib-devel
 Requires:	qt >= 2.1
 Requires:	kdelibs = %{version}
