@@ -23,7 +23,6 @@ Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{n
 # Source1-md5:	704ec4eacaaacde2ccd3b278ba1bb0af
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
-Patch2:		%{name}-fix-kdf-mem-leak.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -737,7 +736,6 @@ Monitor de tempo em forma de mini-aplicativo.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
