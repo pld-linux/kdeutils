@@ -1,6 +1,6 @@
 %define		_ver		3.0.2
 #define		_sub_ver
-%define		_rel		3.6
+%define		_rel		3.7
 
 %{?_sub_ver:	%define	_version	%{_ver}%{_sub_ver}}
 %{!?_sub_ver:	%define	_version	%{_ver}}
@@ -467,47 +467,47 @@ Graphical regular expression editor.
 %description kregexpeditor -l pl
 Graficzny edytor wyra¿eñ regularnych.
 
-%package cdbakeoven
-Summary:	Intuitive tool for burning CDs
-Summary(pl):	Intuicyjne narzêdzie do wypalania CD
-Group:		X11/Applications
-Requires:	kdelibs = %{version}
-Requires:	cdrtools
-Requires:	cdrtools-cdda2wav
-Requires:	cdrtools-mkisofs
-Requires:	cdparanoia-III
+#%package cdbakeoven
+#Summary:	Intuitive tool for burning CDs
+#Summary(pl):	Intuicyjne narzêdzie do wypalania CD
+#Group:		X11/Applications
+#Requires:	kdelibs = %{version}
+#Requires:	cdrtools
+#Requires:	cdrtools-cdda2wav
+#Requires:	cdrtools-mkisofs
+#Requires:	cdparanoia-III
+#
+#%description cdbakeoven
+#CD Bake Oven was designed with one goal in mind: combine the power and
+#stability of great command line utilities with contemporary easy to use
+#user interface. CDBO enables you to create data or music CDs in the most
+#intuitive matter, allowing you to control every aspect of the process.
+#It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
+#and 'cdparanoia' encapsulating most of the options those utilities
+#provide. This makes creating professional quality media as easy as
+#making a few mouse clicks.
+#
+#%description cdbakeoven -l pl
+#CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
+#i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
+#interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
+#intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
+#Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
+#,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
+#ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
+#klikanie myszk±.
 
-%description cdbakeoven
-CD Bake Oven was designed with one goal in mind: combine the power and
-stability of great command line utilities with contemporary easy to use
-user interface. CDBO enables you to create data or music CDs in the most
-intuitive matter, allowing you to control every aspect of the process.
-It is built on top of very well known 'cdrecord', 'mkisofs', 'cdda2wav'
-and 'cdparanoia' encapsulating most of the options those utilities
-provide. This makes creating professional quality media as easy as
-making a few mouse clicks.
-
-%description cdbakeoven -l pl
-CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ uniwersalno¶æ
-i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym w u¿yciu
-interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w najbardziej
-intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie aspekty procesu.
-Zosta³ zbudowany na bazie doskonale znanych programów ,,cdrecord'',
-,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c dostêp do wiêkszo¶ci
-ich opcji. Czyni to no¶ników o profesjonalnej jako¶ci równie ³atwym jak
-klikanie myszk±.
-
-%package ksim
-Summary:	K System Information Monitor
-Summary(pl):	K System Information Monitor
-Group:		X11/Applications
-Requires:	kdelibs = %{version}
-
-%description ksim
-K System Information Monitor.
-
-%description ksim -l pl
-K System Information Monitor.
+#%package ksim
+#Summary:	K System Information Monitor
+#Summary(pl):	K System Information Monitor
+#Group:		X11/Applications
+#Requires:	kdelibs = %{version}
+#
+#%description ksim
+#K System Information Monitor.
+#
+#%description ksim -l pl
+#K System Information Monitor.
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
@@ -567,28 +567,28 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_R
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang ark --with-kde
-%find_lang KRegExpEditor --with-kde
-%find_lang kcalc --with-kde
-%find_lang kcharselect --with-kde
-#%find_lang kcharselectapplet --with-kde
+%find_lang ark			--with-kde
+%find_lang KRegExpEditor	--with-kde
+%find_lang kcalc		--with-kde
+%find_lang kcharselect		--with-kde
+#%find_lang kcharselectapplet	--with-kde
 #cat kcharselectapplet.lang >> kcharselect.lang
-#%find_lang kdepasswd --with-kde
-#%find_lang kdessh --with-kde
-%find_lang kdf --with-kde
-%find_lang kedit --with-kde
-%find_lang kfloppy --with-kde
-%find_lang khexedit --with-kde
-%find_lang kjots --with-kde
-#%find_lang klaptopdaemon --with-kde
-#%find_lang kcmlaptop --with-kde
+#%find_lang kdepasswd	--with-kde
+#%find_lang kdessh	--with-kde
+%find_lang kdf		--with-kde
+%find_lang kedit	--with-kde
+%find_lang kfloppy	--with-kde
+%find_lang khexedit	--with-kde
+%find_lang kjots	--with-kde
+#%find_lang klaptopdaemon	--with-kde
+#%find_lang kcmlaptop	--with-kde
 #cat kcmlaptop.lang >> klaptopdaemon.lang
-%find_lang kljettool --with-kde
-%find_lang klpq --with-kde
-%find_lang klprfax --with-kde
-%find_lang ktimer --with-kde
-#%find_lang cdbakeoven --with-kde
-%find_lang ksim --with-kde
+%find_lang kljettool	--with-kde
+%find_lang klpq		--with-kde
+%find_lang klprfax	--with-kde
+%find_lang ktimer	--with-kde
+#%find_lang cdbakeoven	--with-kde
+#%find_lang ksim	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -599,8 +599,8 @@ rm -rf $RPM_BUILD_ROOT
 %post   kcharselect -p /sbin/ldconfig
 %postun kcharselect -p /sbin/ldconfig
 
-%post   ksim -p /sbin/ldconfig
-%postun ksim -p /sbin/ldconfig
+#%post   ksim -p /sbin/ldconfig
+#%postun ksim -p /sbin/ldconfig
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
@@ -751,34 +751,35 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
 
-%files cdbakeoven
+#%files cdbakeoven
 #-f cdbakeoven.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/cdbakeoven
-%{_libdir}/kde3/libkcm_cdbo*
-%{_datadir}/apps/cdbakeoven
-%{_datadir}/mimelnk/application/cdbo-file-list.desktop
-%{_datadir}/mimelnk/inode/ISO-image.desktop
-%{_pixmapsdir}/*/*/mimetypes/cd*.png
-%{_pixmapsdir}/*/*/apps/cd*.png
-%{_applnkdir}/Utilities/cdbakeoven.desktop
-%{_applnkdir}/Settings/KDE/CDBakeOven
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/cdbakeoven
+#%{_libdir}/kde3/libkcm_cdbo*
+#%{_datadir}/apps/cdbakeoven
+#%{_datadir}/mimelnk/application/cdbo-file-list.desktop
+#%{_datadir}/mimelnk/inode/ISO-image.desktop
+#%{_pixmapsdir}/*/*/mimetypes/cd*.png
+#%{_pixmapsdir}/*/*/apps/cd*.png
+#%{_applnkdir}/Utilities/cdbakeoven.desktop
+#%{_applnkdir}/Settings/KDE/CDBakeOven
 
-%files ksim -f ksim.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ksim
-%{_libdir}/ksim.??
-%{_libdir}/libksimcore.la
-%{_libdir}/libksimcore.so.*.*.*
-%{_libdir}/kde3/ksim*
-%{_datadir}/apps/ksim
-%{_datadir}/config/ksimrc
-%{_pixmapsdir}/*/*/apps/ksim*.png
-%{_pixmapsdir}/*/*/devices/ksim*.png
-%{_applnkdir}/System/ksim.desktop
+#%files ksim -f ksim.lang
+#%files ksim
+#%defattr(644,root,root,755)
+#%attr(755,root,root) %{_bindir}/ksim
+#%{_libdir}/ksim.??
+#%{_libdir}/libksimcore.la
+#%{_libdir}/libksimcore.so.*.*.*
+#%{_libdir}/kde3/ksim*
+#%{_datadir}/apps/ksim
+#%{_datadir}/config/ksimrc
+#%{_pixmapsdir}/*/*/apps/ksim*.png
+#%{_pixmapsdir}/*/*/devices/ksim*.png
+#%{_applnkdir}/System/ksim.desktop
 
 %files devel
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so
 %{_includedir}/*
-%{_libdir}/libksimcore.so
+#%{_libdir}/libksimcore.so
