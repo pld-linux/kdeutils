@@ -1,4 +1,4 @@
-%define		_ver		3.0
+%define		_ver		3.0.1
 #define		_sub_ver
 %define		_rel		1
 
@@ -16,7 +16,7 @@ Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 Version:	%{_version}
 Release:	%{_release}
-Epoch:		6
+Epoch:		7
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_ftpdir}/%{version}/src/%{name}-%{version}.tar.bz2
@@ -591,7 +591,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kedit
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%attr(755,root,root) %{_libdir}/kde3/kedit.*
+%attr(755,root,root) %{_libdir}/kedit.*
 %{_applnkdir}/Development/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
 %{_pixmapsdir}/*/*/apps/kedit.*
