@@ -1,9 +1,9 @@
 
 %define		_state		stable
-%define		_ver		3.3.1
+%define		_ver		3.3.2
 
-%define		_minlibsevr	9:3.3.1
-%define		_minbaseevr	9:3.3.1
+%define		_minlibsevr	9:3.3.2
+%define		_minbaseevr	9:3.3.2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -15,15 +15,13 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	3
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Icon:		kde-utils.xpm
-Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	07e45ca924cc52ce5565bb0bf3f6fa6a
-# Source0-size:	2208385
-Patch100:	%{name}-branch.diff
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	bf50db108408da11e2f2fcacd6b46b51
 Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -481,7 +479,6 @@ A KDE system monitoring tool that features:
 - APM laptop battery meter
 - CPU plugin that can monitor CPU usage.
 
-
 %description ksim -l pl
 NarzÍdzie do monitorowania systemu dla KDE o nastÍpuj±cych
 moøliwo∂ciach:
@@ -531,7 +528,6 @@ NarzÍdzie do zarz±dzania has≥ami w KDE.
 
 %prep
 %setup -q
-%patch100 -p1
 %patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
