@@ -1,0 +1,10 @@
+--- kdeutils-3.0.3/klaptopdaemon/battery.cpp--	2002-08-26 16:07:19.000000000 +0200
++++ kdeutils-3.0.3/klaptopdaemon/battery.cpp	2002-08-26 16:07:26.000000000 +0200
+@@ -114,6 +114,7 @@ BatteryConfig::BatteryConfig (QWidget * 
+ 
+ BatteryConfig::~BatteryConfig()
+ {
++  delete config;
+ }
+ 
+ 
