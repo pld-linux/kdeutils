@@ -29,7 +29,6 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	fam-devel
-BuildRequires:	grep
 BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
@@ -46,7 +45,7 @@ KDE utilities. Package includes:
  - KCalc - calculator KCharSelect,
  - KCharSelect - character Selector,
  - KDEPasswd,
- - KDESsh - SSH rontend,
+ - KDESsh - SSH frontend,
  - Kdf - disk space GUI,
  - KEdit - text editor,
  - KFind - find frontend,
@@ -109,7 +108,7 @@ Narzêdzia dla KDE. Pakiet zawiera:
  - KArm - czasomierz,
  - KCalc - kalkulator,
  - KCharSelect,
- - KDESsh - ferramenta de execução remota de programas,
+ - KDESsh - narzêdzie do zdalnego wykonywania programów,
  - Kdf,
  - KEdit - edytor tekstu,
  - KFloppy - narzêdzie do formatowania dyskietek,
@@ -132,7 +131,7 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
  - KArm,
  - KCalc - calculadora científica,
  - KCharSelect,
- - KDESsh,
+ - KDESsh - ferramenta de execução remota de programas,
  - KEdit - editor de textos simples
  - KFloppy - ferramenta de formatação de disquetes,
  - KFind - ferramenta de procura de arquivos,
@@ -415,7 +414,7 @@ Miniaplicativo de status de bateria para laptops
 
 %package kmilo
 Summary:	KDE support for various types of hardware input devices
-Summary(pl):	TODO
+Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 
@@ -424,24 +423,28 @@ This is a kded module that can be extended to support various types of
 hardware input devices that exist, such as those on keyboards.
 It presently supports:
 - PowerBooks
-- Sony Vaio Laptops (tested on Vaio PCG-GRX series)
+- Sony Vaio laptops (tested on Vaio PCG-GRX series)
 
 %description kmilo -l pl
-TODO
+To jest modu³ kded, który mo¿e byæ rozszerzany, by obs³ugiwaæ ró¿ne
+rodzaje sprzêtowych urz±dzeñ wej¶ciowych, takich jak te na
+klawiaturze. Aktualnie obs³uguje:
+- PowerBooki
+- laptopy Sony Vaio (testowany na Vaio z serii PCG-GRX)
 
 %package kmilo-kvaio
 Summary:	Sony Vaio KMilo module
-Summary(pl):	TODO
+Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
 Group:		X11/Applications
 Requires:	kdebase-core >= 9:%{version}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Obsoletes:	%{name}-kmilo < 9:3.1.2.031022 
 
 %description kmilo-kvaio
-KMilo Module for Sony Vaio Laptop support.
+KMilo module for Sony Vaio laptop support.
 
 %description kmilo -l pl
-TODO
+Modu³ KMilo dla laptopów Sony Vaio.
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
@@ -458,7 +461,7 @@ Graficzny edytor wyra¿eñ regularnych.
 
 %package ksim
 Summary:	K System Information Monitor
-Summary(pl):	K System Information Monitor
+Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
 Requires:	kdebase-kicker >= 9:%{version}
        
@@ -509,7 +512,7 @@ This module contains kdepasswd program functionality.
 
 %description userinfo -l pl
 Zmienia informacje o koncie u¿ytkownika.
-Ten modu³ zawiera funkcjonaslno¶æ programu kdepasswd.
+Ten modu³ zawiera funkcjonalno¶æ programu kdepasswd.
 
 %prep
 %setup -q -n %{name}-%{_snap}
