@@ -19,7 +19,6 @@ Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Icon:		kde-utils.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	89ad0a4e21011b76b8d5b0181bfa1386
 #Patch0:		%{name}-kdf-label.patch
