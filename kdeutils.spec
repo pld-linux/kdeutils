@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.1.91
-%define		_snap		030918
+%define         _ver		3.1.92
+%define		_snap		030930
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	f21a91c3e8cfbc7a3698031dae5a5c29
+# Source0-md5:	77ffc0ab2e7952ca1cf6f2fd259a9d40
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -771,5 +771,5 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/kde3/kcm_userinfo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
-%{_datadir}/apps/kdm/pics/faces/*
+%{_datadir}/apps/kdm/pics/users/*
 %{_desktopdir}/kde/userinfo.desktop
