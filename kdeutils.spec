@@ -1669,7 +1669,6 @@ Internationalization and localization files for kdelirc.
 %description -l pl kdelirc-i18n
 Pliki umiêdzynarodawiaj±ce dla kdelirc.
 
-
 %prep
 %setup -q 
 %patch0 -p1
@@ -1697,6 +1696,14 @@ rm -rf $RPM_BUILD_ROOT
 	kde_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
+
+%if %{with i18n}
+bzip2 -dc %{SOURCE14} | tar xf - -C $RPM_BUILD_ROOT
+for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
+        [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] && rm -f $f
+done
+%endif
+	
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -1778,7 +1785,7 @@ rm -rf $RPM_BUILD_ROOT
 %files ksim-i18n -f ksim.lang
 %files ktimer-i18n -f ktimer.lang
 %files kwalletmanager-i18n -f kwallet.lang
-%files kdelirc -f kdelirc.lang
+%files kdelirc-i18n -f kdelirc.lang
 
 
 %files devel
