@@ -1,6 +1,6 @@
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-beta2
+%define         _kdever         kde-3.1-rc1
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -11,7 +11,7 @@ Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
-Version:	3.0.8
+Version:	3.0.9
 Release:	1
 Epoch:		7
 License:	GPL
@@ -22,7 +22,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
-Patch3:		%{name}-charselectapplet-no-version.patch
+#Patch3:	%{name}-charselectapplet-no-version.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -753,7 +753,7 @@ Monitor de tempo em forma de mini-aplicativo.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+#%patch3 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -835,7 +835,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 #%find_lang kcardchooser	--with-kde
 
 %clean
-rm -rf $RPM_BUILD_ROOT
+#rm -rf $RPM_BUILD_ROOT
 
 #%post   ark -p /sbin/ldconfig
 #%postun ark -p /sbin/ldconfig
@@ -892,7 +892,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.*
+%attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.*
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
