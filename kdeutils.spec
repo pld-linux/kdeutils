@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.90
-%define		_snap		030623
+%define		_snap		030726
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	88926f9e3a6faf9037a109ddce3f2e51
+# Source0-md5:	761c0f446b066b771706bfc20b2c8ae2
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -221,16 +221,6 @@ Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
 Requires:	konqueror >= %{version}
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description ark
 Ark is a program for managing and quickly extracting archives.
@@ -249,16 +239,6 @@ Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Obsoletes:	kcalc
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kcalc
 Calculator for KDE.
@@ -276,16 +256,6 @@ Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdebase-kicker >= %{version}
 Obsoletes:	kcharselect
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kcharselect
 Character Selector.
@@ -300,16 +270,6 @@ Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kdepasswd
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kdepasswd
 Change your password.
@@ -327,16 +287,6 @@ Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kdessh
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kdessh
 SSH Frontend.
@@ -354,16 +304,6 @@ Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{version}
 Obsoletes:	kdf
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kdf
 This program shows the disk usage of the mounted devices.
@@ -381,16 +321,6 @@ Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{version}
 Obsoletes:	kedit
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kedit
 Simple text editor for KDE.
@@ -409,16 +339,6 @@ Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Requires:	dosfstools
 Obsoletes:	kfloppy
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
@@ -435,16 +355,6 @@ Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
 Requires:	konqueror >= %{version}
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
 
 %description kgpg
 kgpg is a simple, free, open source KDE frontend for gpg.
@@ -459,16 +369,6 @@ Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{version}
 Obsoletes:	khexedit
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
 
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
@@ -486,16 +386,6 @@ Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Obsoletes:	kjots
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kjots
 kjots is a small note taker program. Name and idea are taken from the
@@ -514,16 +404,6 @@ Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{version}
 Obsoletes:	laptop
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description klaptopdaemon
 KDE Laptop Daemon.
@@ -539,16 +419,6 @@ Summary:	KDE Special Key Notifier
 Summary(pl):	TODO
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:	kregexpeditor-devel 
 
 %description kmilo
 KDE Special Key Notifier
@@ -562,16 +432,6 @@ Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
 Requires:	kdebase-core >= %{version}
 Obsoletes:	kregexpeditor
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description kregexpeditor
 Graphical regular expression editor.
@@ -584,16 +444,6 @@ Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor
 Group:		X11/Applications
 Requires:	kdebase-kicker >= %{version}
-Obsoletes:      kdeutils-cdbakeoven                                             
-Obsoletes:      kdeutils-kab                                                    
-Obsoletes:      kdeutils-karm                                                   
-Obsoletes:      kdeutils-kfind                                                  
-Obsoletes:      kdeutils-kljettool                                              
-Obsoletes:      kdeutils-klpq                                                   
-Obsoletes:      kdeutils-klprfax                                                
-Obsoletes:      kdeutils-knotes                                                 
-Obsoletes:      kdeutils-kpm                                                    
-Obsoletes:      kregexpeditor-devel                                             
        
 %description ksim
 System Monitor.
@@ -608,16 +458,6 @@ Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	ktimer
-Obsoletes:	kdeutils-cdbakeoven
-Obsoletes:	kdeutils-kab
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-kljettool
-Obsoletes:	kdeutils-klpq
-Obsoletes:	kdeutils-klprfax
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-Obsoletes:	kregexpeditor-devel 
 
 %description ktimer
 Time tracker appplet.
@@ -633,16 +473,6 @@ Summary:	User Account
 Summary(pl):	Konto u¿ytkownika
 Group:		X11/Applications
 Requires:	kdm >= %{version}
-Obsoletes:	kdeutils-cdbakeoven
-Obsoletes:	kdeutils-kab
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-kljettool
-Obsoletes:	kdeutils-klpq
-Obsoletes:	kdeutils-klprfax
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-Obsoletes:	kregexpeditor-devel 
 
 %description userinfo
 Changes user account information.
@@ -692,6 +522,7 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Utilities/kgpg.desktop \
 cat blockdevices.lang >> kdf.lang
 %find_lang kedit		--with-kde
 %find_lang kfloppy		--with-kde
+%find_lang kgpg			--with-kde
 %find_lang khexedit		--with-kde
 %find_lang kjots		--with-kde
 > klaptopdaemon.lang
@@ -706,14 +537,23 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post	kmilo		-p /sbin/ldconfig
-%postun	kmilo		-p /sbin/ldconfig
+%post	kmilo
+/sbin/ldconfig
 
-%post	klaptopdaemon	-p /sbin/ldconfig
-%postun	klaptopdaemon	-p /sbin/ldconfig
+%postun	kmilo
+/sbin/ldconfig
 
-%post	ksim		-p /sbin/ldconfig
-%postun	ksim		-p /sbin/ldconfig
+%post	klaptopdaemon
+/sbin/ldconfig
+
+%postun	klaptopdaemon
+/sbin/ldconfig
+
+%post	ksim
+/sbin/ldconfig
+
+%postun	ksim
+/sbin/ldconfig
 
 %files devel
 %defattr(644,root,root,755)
@@ -730,6 +570,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
 %{_datadir}/apps/ark
+%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/ark_part.desktop
 %{_desktopdir}/ark.desktop
@@ -790,7 +631,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/KFloppy.desktop
 %{_icondir}/*/*/apps/kfloppy.*
 
-%files kgpg
+%files kgpg -f kgpg.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgpg
 %{_datadir}/apps/kgpg
