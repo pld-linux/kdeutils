@@ -4,8 +4,8 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040225
-
+%define		_snap		040414
+#
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
@@ -20,17 +20,17 @@ Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	%{name}.tar.bz2
+Source0:	%{name}-%{_snap}.tar.bz2
+# Source0-md5:	c118ca1e3bc3047cd6c735a6e6b2b868
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
 #Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
-##%% Source0-md5:	988480b534c1fab9003f624edb87e7a7
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	e63a7e83445904676217d3f09243ce90
 Patch0:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
 Patch3:		%{name}-vcategories.patch
-Patch4:		%{name}-userinfo.patch
+#Patch4:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -798,7 +798,7 @@ Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 #%patch1 -p1
 #%patch2 -p1
 %patch3 -p1
-%patch4 -p1
+#%patch4 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
