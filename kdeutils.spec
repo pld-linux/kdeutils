@@ -12,7 +12,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	0.4
+Release:	1
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
