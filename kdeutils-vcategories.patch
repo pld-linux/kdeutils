@@ -1,3 +1,14 @@
+--- kdeutils-040508/kdelirc/irkick/irkick.desktop.orig	2004-04-27 20:41:14.000000000 +0200
++++ kdeutils-040508/kdelirc/irkick/irkick.desktop	2004-05-13 22:29:48.745215912 +0200
+@@ -17,7 +17,7 @@
+ X-KDE-autostart-after=panel
+ X-KDE-StartupNotify=false
+ X-DCOP-ServiceType=Unique
+-Categories=Qt;KDE;Utility;X-KDE-More
++Categories=Qt;KDE;X-Docklet;
+ X-KDE-autostart-condition=irkickrc:General:AutoStart:false
+ 
+ Exec=irkick
 --- kdeutils-040506/kdf/kwikdisk.desktop.orig	2004-05-09 02:51:59.960435304 +0200
 +++ kdeutils-040506/kdf/kwikdisk.desktop	2004-05-09 02:52:26.638379640 +0200
 @@ -63,4 +63,4 @@
