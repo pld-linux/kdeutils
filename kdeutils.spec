@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030418
+%define		_snap		030423
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -29,6 +29,7 @@ BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	fam-devel
 BuildRequires:	grep
+BuildRequires:	kdebase-devel >= %{version}
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
@@ -429,6 +430,29 @@ ext2.
 %description kfloppy -l pt_BR
 Ferramenta de formatação de disquetes.
 
+%package kgpg
+Summary:	A frontend for gpg
+Summary(pl):	Nak³adka graficzna na gpg
+Summary(pt_BR):	Editor hexadecimal para arquivos binários
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+Obsoletes:      kdeutils-cdbakeoven                                             
+Obsoletes:      kdeutils-kab                                                    
+Obsoletes:      kdeutils-karm                                                   
+Obsoletes:      kdeutils-kfind                                                  
+Obsoletes:      kdeutils-kljettool                                              
+Obsoletes:      kdeutils-klpq                                                   
+Obsoletes:      kdeutils-klprfax                                                
+Obsoletes:      kdeutils-knotes                                                 
+Obsoletes:      kdeutils-kpm                                                    
+Obsoletes:      kregexpeditor-devel                                             
+
+%description kgpg
+kgpg is a simple, free, open source KDE frontend for gpg.
+
+%description kgpg -l pl
+kgpg jest prost± graficzn± nak³adk± na gpg przeznaczon± dla KDE.
+
 %package khexedit
 Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
@@ -446,7 +470,7 @@ Obsoletes:      kdeutils-klprfax
 Obsoletes:      kdeutils-knotes                                                 
 Obsoletes:      kdeutils-kpm                                                    
 Obsoletes:      kregexpeditor-devel                                             
-       
+
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
 
@@ -644,7 +668,7 @@ for plik in `find ./ -name *.desktop` ; do
 	sed -i -e 's/\[nb\]/\[no\]/g' $plik
 done
 
-%configure --with-pam="yes"
+%configure
 
 %{__make}
 
@@ -653,7 +677,10 @@ rm -rf $RPM_BUILD_ROOT
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-mv -f $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
+mv $RPM_BUILD_ROOT%{_applnkdir}/{Settings,KDE-Settings}
+
+mv $RPM_BUILD_ROOT%{_applnkdir}/Utilities/kgpg.desktop \
+	$RPM_BUILD_ROOT%{_desktopdir}
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -754,6 +781,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/KFloppy.desktop
 %{_pixmapsdir}/*/*/apps/kfloppy.*
 
+%files kgpg
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kgpg
+%{_datadir}/apps/kgpg
+%{_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
+%{_datadir}/autostart/kgpg.desktop
+%{_desktopdir}/kgpg.desktop
+%{_pixmapsdir}/*/*/apps/kgpg.png
+
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
@@ -803,15 +839,16 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/ksim
-%{_libdir}/ksim.la
-%attr(755,root,root) %{_libdir}/ksim.so
+#%attr(755,root,root) %{_bindir}/ksim
+#%{_libdir}/ksim.la
+#%attr(755,root,root) %{_libdir}/ksim.so
 %{_libdir}/libksimcore.la
 %attr(755,root,root) %{_libdir}/libksimcore.so.*
 %{_libdir}/kde3/ksim*.la
 %attr(755,root,root) %{_libdir}/kde3/ksim*.so
+%{_datadir}/apps/kicker/extensions/ksim.desktop
 %{_datadir}/apps/ksim
-%{_datadir}/config/ksimrc
+%{_datadir}/config/ksim_panelextensionrc
 %{_desktopdir}/ksim.desktop
 %{_pixmapsdir}/*/*/apps/ksim*.png
 %{_pixmapsdir}/*/*/devices/ksim*.png
@@ -826,4 +863,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kcm_userinfo.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
 %{_datadir}/apps/userinfo
-%{_applnkdir}/KDE-Settings/Components/userinfo.desktop
+%{_applnkdir}/KDE-Settings/System/userinfo.desktop
