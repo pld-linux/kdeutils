@@ -1,3 +1,9 @@
+# TODO:
+# - Languages.
+
+%define         _state          stable
+%define         _ver		3.1.1
+
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
@@ -7,23 +13,19 @@ Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
-Version:	3.0.3
-Release:	5
-Epoch:		7
+Version:	%{_ver}
+Release:	3
+Epoch:		8
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
-# generated from kde-i18n
-Source1:	kde-i18n-%{name}-%{version}.tar.bz2
-Patch0:		%{name}-desktop.patch
-Patch1:		%{name}-kdf-label.patch
-Patch2:		%{name}-kedit-confirmoverwrite.patch
-Patch3:		%{name}-fix-klaptopdaemon-mem-leak.patch
-Patch4:		%{name}-fix-klaptodeamon-mem-leak2.patch
-Patch5:		%{name}-fix-klaptodeamon-mem-leak3.patch
-Patch6:		%{name}-use-klineeditdlg.patch
-Patch7:		%{name}-fix-kdf-mem-leak.patch
-Patch8:		%{name}-fix-kedit-enable-disable-cut-copy-action.patch
+Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+# Source0-md5:	fd2fef424ffb3de13e4fc8d55b995b73
+# generated from kde-i18n:
+Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/kde-i18n-%{name}-%{version}.tar.bz2
+# Source1-md5:	a1327b61aa1f63a1a19dc56204281e02
+Patch0:		%{name}-kdf-label.patch
+Patch1:		%{name}-kedit-confirmoverwrite.patch
+Patch2:		%{name}-fix-kdf-mem-leak.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -32,11 +34,13 @@ BuildRequires:	grep
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
+BuildRequires:	perl
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		_prefix		/usr/X11R6
-%define		_fontdir	/usr/share/fonts
 %define		_htmldir	/usr/share/doc/kde/HTML
+
+%define		no_install_post_chrpath		1
 
 %description
 KDE utilities. Package includes:
@@ -63,7 +67,7 @@ KDE utilities. Package includes:
  - KTimer - timer,
  - KTop - task manager,
  - KTreeBrowser,
- - KWrite - text editor.
+ - ksim - system monitor.
 
 %description -l es
 Utilitarios para KDE. Programas disponibles en este paquete:
@@ -86,6 +90,7 @@ Utilitarios para KDE. Programas disponibles en este paquete:
  - KNotes - recados para coger en el ambiente gráfico,
  - KPm,
  - KTimer.
+ - ksim
 
 %description -l ja
 KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î¥æ¡¼¥Æ¥£¥ê¥Æ¥£
@@ -122,6 +127,7 @@ Narzêdzia dla KDE. Pakiet zawiera:
  - KNotes - inny notatnik,
  - KPm - program do zarz±dzania procesami,
  - KTimer.
+ - ksim - monitor systemu
 
 %description -l pt_BR
 Utilitários para o KDE. Programas disponíveis neste pacote:
@@ -177,17 +183,53 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
  - kpm - ÍÅÎÅÄÖÅÒ ÐÒÏÃÅÓ¦×, ÓÈÏÖÉÊ ÎÁ 'top', ÁÌÅ Ú Â¦ÌØÛÉÍÉ
    ÍÏÖÌÉ×ÏÓÔÑÍÉ.
 
+%package devel
+Summary:	Header files for compiling applications that use kdeutils libraries
+Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
+Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
+Group:		X11/Development/Libraries
+Requires:	kdelibs-devel >= %{version}
+Requires:	kdebase-devel >= %{version}
+Obsoletes:	kregexpeditor-devel
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
+
+%description devel
+This package includes the header files you will need to compile
+applications that use kdeutils libraries.
+
+%description devel -l pl
+Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji aplikacji
+u¿ywaj±cych bibliotek kdeutils.
+
+%description devel -l pt_BR
+Arquivos de inclusão para desenvolvimento e compilação de programas
+que usem as bibliotecas do kdeutils
+
 %package ark
 Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description ark
 Ark is a program for managing and quickly extracting archives.
@@ -199,17 +241,42 @@ archiwów.
 %description ark -l pt_BR
 Gerenciador de pacotes TAR/comprimidos do KDE.
 
+%package cdbakeoven
+Summary:	Intuitive tool for burning CDs
+Summary(pl):	Intuicyjne narzêdzie do wypalania CD
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+Requires:	cdrtools
+Requires:	cdrtools-cdda2wav
+Requires:	cdrtools-mkisofs
+Requires:	cdparanoia-III
+
+%description cdbakeoven
+CD Bake Oven was designed with one goal in mind: combine the power and
+stability of great command line utilities with contemporary easy to
+use user interface. CDBO enables you to create data or music CDs in
+the most intuitive matter, allowing you to control every aspect of the
+process. It is built on top of very well known 'cdrecord', 'mkisofs',
+'cdda2wav' and 'cdparanoia' encapsulating most of the options those
+utilities provide. This makes creating professional quality media as
+easy as making a few mouse clicks.
+
+%description cdbakeoven -l pl
+CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ
+uniwersalno¶æ i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym
+w u¿yciu interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w
+najbardziej intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie
+aspekty procesu. Zosta³ zbudowany na bazie doskonale znanych programów
+,,cdrecord'', ,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c
+dostêp do wiêkszo¶ci ich opcji. Czyni to no¶ników o profesjonalnej
+jako¶ci równie ³atwym jak klikanie myszk±.
+
 %package kab
 Summary:	KDE Address Book
 Summary(pl):	Ksi±¿ka adresowa dla KDE
 Summary(pt_BR):	Gerenciador do livro de endereços
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
 
 %description kab
 Kab is a simple address book for KDE.
@@ -227,11 +294,16 @@ Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kcalc
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kcalc
 Calculator for KDE.
@@ -249,11 +321,16 @@ Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kcharselect
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kcharselect
 Character Selector.
@@ -268,6 +345,16 @@ Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kdepasswd
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kdepasswd
 Change your password.
@@ -285,11 +372,16 @@ Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kdessh
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kdessh
 SSH Frontend.
@@ -300,28 +392,6 @@ Frontend SSH dla KDE.
 %description kdessh -l pt_BR
 Ferramenta de execução remota de programas.
 
-%package kedit
-Summary:	KDE Text Editor
-Summary(pl):	Edytor tekstu dla KDE
-Summary(pt_BR):	Editor de texto melhorado do KDE
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-Obsoletes:	kedit
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-
-%description kedit
-Simple text editor for KDE.
-
-%description kedit -l pl
-Prosty edytor tekstu dla KDE.
-
-%description kedit -l pt_BR
-Editor de texto melhorado do KDE.
-
 %package kdf
 Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
@@ -329,11 +399,16 @@ Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kdf
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kdf
 This program shows the disk usage of the mounted devices.
@@ -344,26 +419,32 @@ Ten program pokazuje zajêto¶æ dysku dla zamontowanych urz±dzeñ.
 %description kdf -l pt_BR
 Mostra o status de espaço em disco.
 
-%package kfind
-Summary:	KDE Find
-Summary(pl):	find dla KDE
-Summary(pt_BR):	Ferramenta de procura de arquivos
-Group:		X11/Applications
+%package kedit
+Summary:	KDE Text Editor
+Summary(pl):	Edytor tekstu dla KDE
+Summary(pt_BR):	Editor de texto melhorado do KDE
+Group:		X11/Applications/Editors
 Requires:	kdelibs >= %{version}
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:	kedit
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
-%description kfind
-Find Util.
+%description kedit
+Simple text editor for KDE.
 
-%description kfind -l pl
-Wyszukiwarka plików dla KDE.
+%description kedit -l pl
+Prosty edytor tekstu dla KDE.
 
-%description kfind -l pt_BR
-Ferramenta de procura de arquivos.
+%description kedit -l pt_BR
+Editor de texto melhorado do KDE.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
@@ -373,11 +454,16 @@ Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Requires:	dosfstools
 Obsoletes:	kfloppy
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
@@ -393,14 +479,19 @@ Ferramenta de formatação de disquetes.
 Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	kdelibs >= %{version}
 Obsoletes:	khexedit
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
@@ -418,11 +509,16 @@ Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kjots
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description kjots
 kjots is a small note taker program. Name and idea are taken from the
@@ -441,11 +537,16 @@ Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	laptop
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
 
 %description klaptopdaemon
 KDE Laptop Daemon.
@@ -463,11 +564,6 @@ Summary(pt_BR):	Interface de configuração de impressora HP Laserjet
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	kljettool
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
 
 %description kljettool
 KLJetTool is a program that lets you adjust your Hewlett Packard
@@ -494,11 +590,6 @@ Summary(pt_BR):	Interface para gerenciamento das filas de impressão
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	klpq
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
 
 %description klpq
 Klpq is a frontend to the print spooler. Klpq does not modify the
@@ -521,11 +612,6 @@ Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Requires:	efax
 Obsoletes:	klprfax
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
 
 %description klprfax
 With this program you can fax by printing to an lpd device.
@@ -542,11 +628,6 @@ Summary(pl):	Notes dla KDE
 Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
 
 %description knotes
 KNotes is ment to be a really usable and good looking notes
@@ -582,6 +663,51 @@ modyfikowania ich priorytetów.
 %description kpm -l pt_BR
 Monitor gráfico de processos e do sistema.
 
+%package kregexpeditor
+Summary:	Graphical regular expression editor
+Summary(pl):	Graficzny edytor wyra¿eñ regularnych
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+Obsoletes:	kregexpeditor
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
+
+%description kregexpeditor
+Graphical regular expression editor.
+
+%description kregexpeditor -l pl
+Graficzny edytor wyra¿eñ regularnych.
+
+%package ksim
+Summary:	K System Information Monitor
+Summary(pl):	K System Information Monitor
+Group:		X11/Applications
+Requires:	kdelibs >= %{version}
+Obsoletes:      kdeutils-cdbakeoven
+Obsoletes:      kdeutils-kab
+Obsoletes:      kdeutils-karm
+Obsoletes:      kdeutils-kfind
+Obsoletes:      kdeutils-kljettool
+Obsoletes:      kdeutils-klpq
+Obsoletes:      kdeutils-klprfax
+Obsoletes:      kdeutils-knotes
+Obsoletes:      kdeutils-kpm
+Obsoletes:      kregexpeditor-devel
+
+%description ksim
+System Monitor.
+
+%description ksim -l pl
+Monitor systemu.
+
 %package ktimer
 Summary:	KDE Timer
 Summary(pl):	Zegarek KDE
@@ -589,11 +715,16 @@ Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
 Obsoletes:	ktimer
+Obsoletes:	kdeutils-cdbakeoven
+Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
 Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
+Obsoletes:	kdeutils-kljettool
+Obsoletes:	kdeutils-klpq
+Obsoletes:	kdeutils-klprfax
 Obsoletes:	kdeutils-knotes
 Obsoletes:	kdeutils-kpm
+Obsoletes:	kregexpeditor-devel
 
 %description ktimer
 Time tracker appplet.
@@ -604,112 +735,21 @@ Zegarek.
 %description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
 
-%package kregexpeditor
-Summary:	Graphical regular expression editor
-Summary(pl):	Graficzny edytor wyra¿eñ regularnych
-Group:		X11/Applications
-Requires:	kdelibs = %{version}
-Obsoletes:	kregexpeditor
-
-%description kregexpeditor
-Graphical regular expression editor.
-
-%description kregexpeditor -l pl
-Graficzny edytor wyra¿eñ regularnych.
-
-%package cdbakeoven
-Summary:	Intuitive tool for burning CDs
-Summary(pl):	Intuicyjne narzêdzie do wypalania CD
-Group:		X11/Applications
-Requires:	kdelibs = %{version}
-Requires:	cdrtools
-Requires:	cdrtools-cdda2wav
-Requires:	cdrtools-mkisofs
-Requires:	cdparanoia-III
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-
-%description cdbakeoven
-CD Bake Oven was designed with one goal in mind: combine the power and
-stability of great command line utilities with contemporary easy to
-use user interface. CDBO enables you to create data or music CDs in
-the most intuitive matter, allowing you to control every aspect of the
-process. It is built on top of very well known 'cdrecord', 'mkisofs',
-'cdda2wav' and 'cdparanoia' encapsulating most of the options those
-utilities provide. This makes creating professional quality media as
-easy as making a few mouse clicks.
-
-%description cdbakeoven -l pl
-CD Bake Oven zosta³ zaprojektowany w jednym celu: po³±czyæ
-uniwersalno¶æ i stabilno¶æ doskona³ych narzêdzi linii poleceñ z ³atwym
-w u¿yciu interfejsem. CDBO pozwala tworzyæ CD z danymi lub muzyk± w
-najbardziej intuicyjny sposób, pozwalaj±c kontrolowaæ wszystkie
-aspekty procesu. Zosta³ zbudowany na bazie doskonale znanych programów
-,,cdrecord'', ,,mkisofs'', ,,cdda2wav'' oraz ,,cdparanoia'' daj±c
-dostêp do wiêkszo¶ci ich opcji. Czyni to no¶ników o profesjonalnej
-jako¶ci równie ³atwym jak klikanie myszk±.
-
-%package ksim
-Summary:	K System Information Monitor
-Summary(pl):	K System Information Monitor
-Group:		X11/Applications
-Requires:	kdelibs = %{version}
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-
-%description ksim
-K System Information Monitor.
-
-%description ksim -l pl
-K System Information Monitor.
-
-%package devel
-Summary:	Header files for compiling applications that use kdeutils libraries
-Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
-Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
-Group:		X11/Development/Libraries
-Requires:	kdelibs-devel >= %{version}
-Requires:	kdebase-devel >= %{version}
-Obsoletes:	kregexpeditor-devel
-Obsoletes:	kdeutils-karm
-Obsoletes:	kdeutils-kfind
-Obsoletes:	kdeutils-khexdit
-Obsoletes:	kdeutils-knotes
-Obsoletes:	kdeutils-kpm
-
-%description devel
-This package includes the header files you will need to compile
-applications that use kdeutils libraries.
-
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji aplikacji
-u¿ywaj±cych bibliotek kdeutils.
-
-%description devel -l pt_BR
-Arquivos de inclusão para desenvolvimento e compilação de programas
-que usem as bibliotecas do kdeutils
-
 %prep
 %setup -q
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-%patch6 -p1
-%patch7 -p1
-%patch8 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
+kde_appsdir="%{_applnkdir}"; export kde_appsdir
+
+for plik in `find ./ -name \*.desktop` ; do
+		echo $plik
+		perl -pi -e "s/\[nb\]/\[no\]/g" $plik
+done
 
 %configure \
 	%{!?debug:--disable-debug} \
@@ -719,110 +759,104 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 	--enable-final
 %{__make}
 
-%{__make} -C kab
 # Doesn't build.
-#%{__make} -C kcardtools
+#%%{__make} -C kcardtools
 
 %install
 rm -rf $RPM_BUILD_ROOT
-install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
-%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
+
 # Doesn't build.
-#%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
+#%%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
-mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
-mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-
-#mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
+ALD=$RPM_BUILD_ROOT%{_applnkdir}
+mv -f $ALD/{Settings/[!K]*,Settings/KDE}
+mv -f $ALD/{Settingsmenu/*.desktop,Settings}
+mv -f $ALD/{System/More/*.desktop,System}
+mv -f $ALD/{Utilities/More/*.desktop,Utilities}
+mv -f $ALD/{Utilities/khexedit.desktop,Editors}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang ark			--with-kde
-%find_lang KRegExpEditor	--with-kde
-%find_lang kregexpeditor	--with-kde
-cat kregexpeditor.lang >> KRegExpEditor.lang
-%find_lang kab			--with-kde
-%find_lang kab3			--with-kde
-cat kab3.lang >> kab.lang
-%find_lang kcardchooser		--with-kde
-%find_lang kcalc		--with-kde
+%find_lang klaptopdaemon	--with-kde
+%find_lang kcmlaptop		--with-kde
+%find_lang kcmlowbatcrit	--with-kde
+%find_lang kcmlowbatwarn	--with-kde
+%find_lang laptop		--with-kde
+%find_lang powerctrl		--with-kde
+cat {kcmlaptop,kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
+
+%find_lang kdf			--with-kde
+%find_lang blockdevices		--with-kde
+cat blockdevices.lang >> kdf.lang
+
 %find_lang kcharselect		--with-kde
 %find_lang kcharselectapplet	--with-kde
 cat kcharselectapplet.lang >> kcharselect.lang
-%find_lang kdepasswd	--with-kde
-%find_lang kdessh	--with-kde
-%find_lang kdf		--with-kde
-%find_lang kedit	--with-kde
-%find_lang kfloppy	--with-kde
-%find_lang khexedit	--with-kde
-%find_lang kjots	--with-kde
-%find_lang klaptopdaemon	--with-kde
-%find_lang kcmlaptop	--with-kde
-cat kcmlaptop.lang >> klaptopdaemon.lang
-%find_lang kljettool	--with-kde
-%find_lang klpq		--with-kde
-%find_lang klprfax	--with-kde
-#%find_lang kpm		--with-kde
-%find_lang ktimer	--with-kde
-#%find_lang cdbakeoven	--with-kde
-#%find_lang ksim	--with-kde
-# Does not build:
-%find_lang kcardchooser	--with-kde
 
-cd $RPM_BUILD_ROOT%{_libdir}/kde3
-ln -sf kcharselectapplet.so.1.0.0 kcharselectapplet.so.1
-cd -
+%find_lang KRegExpEditor	--with-kde
+%find_lang kregexpeditor	--with-kde
+cat kregexpeditor.lang >> KRegExpEditor.lang
+
+%find_lang ark			--with-kde
+%find_lang kcardchooser		--with-kde
+%find_lang kcalc		--with-kde
+%find_lang kdepasswd		--with-kde
+%find_lang kdessh		--with-kde
+%find_lang kedit		--with-kde
+%find_lang kfloppy		--with-kde
+%find_lang khexedit		--with-kde
+%find_lang kjots		--with-kde
+%find_lang ktimer		--with-kde
+%find_lang ksim			--with-kde
+
+# Does not build:
+#%find_lang kcardchooser	--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post   ark -p /sbin/ldconfig
-%postun ark -p /sbin/ldconfig
-
-%post   ksim -p /sbin/ldconfig
-%postun ksim -p /sbin/ldconfig
+%files devel
+%defattr(644,root,root,755)
+%{_includedir}/*
+%{_libdir}/libksimcore.so
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
-%attr(755,root,root) %{_libdir}/libark.so.*.*.*
-%{_applnkdir}/Utilities/ark.desktop
+%{_libdir}/libarkpart.la
+%attr(755,root,root) %{_libdir}/libarkpart.so
 %{_datadir}/apps/ark
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
-%{_datadir}/services/arkpart.desktop
+%{_datadir}/services/ark_part.desktop
+%{_applnkdir}/Utilities/ark.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
-
-%files kab -f kab.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kab3
-%attr(755,root,root) %{_libdir}/kde3/libkab3part*
-%{_applnkdir}/Utilities/kab3.desktop
-%{_datadir}/apps/kab3
-%{_pixmapsdir}/*/*/apps/kab3.*
-%{_datadir}/services/kab3_part.desktop
 
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
-%attr(755,root,root) %{_libdir}/kcalc.*
+%{_libdir}/kcalc.la
+%attr(755,root,root) %{_libdir}/kcalc.so
 %{_applnkdir}/Utilities/kcalc.desktop
 %{_pixmapsdir}/*/*/apps/kcalc.*
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.la
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so.*
-%{_applnkdir}/Utilities/KCharSelect.desktop
+%{_libdir}/kde3/kcharselect_panelapplet.la
+%attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
+%{_applnkdir}/Utilities/KCharSelect.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
 
 %files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
+%{_applnkdir}/Settings/kdepasswd.desktop
 
 %files kdessh -f kdessh.lang
 %defattr(644,root,root,755)
@@ -832,11 +866,12 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
-%attr(755,root,root) %{_libdir}/kde3/kcm_kdf.??
+%{_libdir}/kde3/kcm_kdf.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_kdf.so
 %{_datadir}/apps/kdf
+%{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
 %{_applnkdir}/System/kdf.desktop
 %{_applnkdir}/System/kwikdisk.desktop
-%{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
 %{_pixmapsdir}/*/*/apps/kcmdf.*
 %{_pixmapsdir}/*/*/apps/kdf.*
 %{_pixmapsdir}/*/*/apps/kwikdisk.*
@@ -844,9 +879,10 @@ rm -rf $RPM_BUILD_ROOT
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%attr(755,root,root) %{_libdir}/kedit.*
-%{_applnkdir}/Development/Editors/KEdit.desktop
+%{_libdir}/kedit.la
+%attr(755,root,root) %{_libdir}/kedit.so
 %{_datadir}/apps/kedit
+%{_applnkdir}/Editors/KEdit.desktop
 %{_pixmapsdir}/*/*/apps/kedit.*
 
 %files kfloppy -f kfloppy.lang
@@ -858,111 +894,53 @@ rm -rf $RPM_BUILD_ROOT
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
-%{_applnkdir}/Utilities/khexedit.desktop
 %{_datadir}/apps/khexedit
+%{_applnkdir}/Editors/khexedit.desktop
 %{_pixmapsdir}/*/*/apps/khexedit.*
 
 %files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
-%{_applnkdir}/Utilities/Kjots.desktop
 %{_datadir}/apps/kjots
+%{_applnkdir}/Utilities/Kjots.desktop
 %{_pixmapsdir}/*/*/apps/kjots.*
 
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
-%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.??
-%attr(755,root,root) %{_libdir}/klaptopdaemon.??
-%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/battery.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/bwarning.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/cwarning.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/power.desktop
+%{_libdir}/klaptopdaemon.la
+%attr(755,root,root) %{_libdir}/klaptopdaemon.so
+%{_libdir}/kde3/kcm_laptop.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/klaptopdaemon.desktop
-%{_pixmapsdir}/*/*/apps/laptop_battery.*
-%{_pixmapsdir}/*/*/apps/laptop_pcmcia.*
-%{_pixmapsdir}/*/*/apps/klaptopdaemon.*
+%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/*.desktop
+%{_pixmapsdir}/*/*/*/*laptop*
 
-%files kljettool -f kljettool.lang
+%files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kljettool
-%{_applnkdir}/Utilities/KLJetTool.desktop
-%{_datadir}/apps/kljettool
-%{_pixmapsdir}/*/*/apps/kljettool.*
+%{_libdir}/kde3/libkregexpeditorgui.la
+%attr(755,root,root) %{_libdir}/kde3/libkregexpeditorgui.so
+%{_datadir}/apps/kregexpeditor
+%{_datadir}/services/kregexpeditorgui.desktop
 
-%files klpq -f klpq.lang
+%files ksim -f ksim.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/klpq
-%{_applnkdir}/Utilities/KLpq.desktop
-%{_pixmapsdir}/*/*/apps/klpq.*
-
-%files klprfax -f klprfax.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/*fax*
-%attr(755,root,root) %{_bindir}/efix
-%{_applnkdir}/Utilities/klprfax.desktop
-%{_pixmapsdir}/*/*/apps/klprfax.*
-%{_mandir}/man1/*fax.1
-%{_mandir}/man1/efix.1
-
-#%files knotes
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/knotes
-#%{_applnkdir}/Utilities/knotes.desktop
-#%{_datadir}/apps/knotes
-#%{_datadir}/config/knotesrc
-#%{_includedir}/KNotesIface.h
-#%{_pixmapsdir}/*/*/apps/knotes.*
-#
-#%files kpm -l kpm.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/kpm
-#%attr(755,root,root) %{_bindir}/kpmdocked
-#%{_applnkdir}/System/kpm.desktop
-#%{_pixmapsdir}/*/*/apps/kpm.*
+%attr(755,root,root) %{_bindir}/ksim
+%{_libdir}/ksim.la
+%attr(755,root,root) %{_libdir}/ksim.so
+%{_libdir}/libksimcore.la
+%attr(755,root,root) %{_libdir}/libksimcore.so.*
+%{_libdir}/kde3/ksim*.la
+%attr(755,root,root) %{_libdir}/kde3/ksim*.so
+%{_datadir}/apps/ksim
+%{_datadir}/config/ksimrc
+%{_applnkdir}/System/ksim.desktop
+%{_pixmapsdir}/*/*/apps/ksim*.png
+%{_pixmapsdir}/*/*/devices/ksim*.png
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_applnkdir}/Utilities/ktimer.desktop
-
-%files kregexpeditor -f KRegExpEditor.lang
-%defattr(644,root,root,755)
-%{_libdir}/kde3/libkregexpeditorgui.??
-%{_datadir}/apps/kregexpeditor
-%{_datadir}/services/kregexpeditorgui.desktop
-
-#%files cdbakeoven
-#-f cdbakeoven.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/cdbakeoven
-#%{_libdir}/kde3/libkcm_cdbo*
-#%{_datadir}/apps/cdbakeoven
-#%{_datadir}/mimelnk/application/cdbo-file-list.desktop
-#%{_datadir}/mimelnk/inode/ISO-image.desktop
-#%{_pixmapsdir}/*/*/mimetypes/cd*.png
-#%{_pixmapsdir}/*/*/apps/cd*.png
-#%{_applnkdir}/Utilities/cdbakeoven.desktop
-#%{_applnkdir}/Settings/KDE/CDBakeOven
-
-#%files ksim -f ksim.lang
-#%files ksim
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/ksim
-#%{_libdir}/ksim.??
-#%{_libdir}/libksimcore.la
-#%{_libdir}/libksimcore.so.*.*.*
-#%{_libdir}/kde3/ksim*
-#%{_datadir}/apps/ksim
-#%{_datadir}/config/ksimrc
-#%{_pixmapsdir}/*/*/apps/ksim*.png
-#%{_pixmapsdir}/*/*/devices/ksim*.png
-#%{_applnkdir}/System/ksim.desktop
-
-%files devel
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so
-%{_includedir}/*
-#%{_libdir}/libksimcore.so
