@@ -6,7 +6,10 @@
 %define		_ver		3.2.90
 %define		_snap		040506
 %define		_packager	adgor
-#
+
+%define		_minlibsevr	9:3.2.90.040503
+%define		_minbaseevr	9:3.2.90.040503
+
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
@@ -36,7 +39,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	ed
-BuildRequires:	kdebase-devel >= 9:%{version}
+BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 %ifarch ppc
@@ -192,7 +195,7 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kdeutils
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Requires:	kdebase-devel >= 9:%{version}
+Requires:	kdebase-devel >= %{_minbaseevr}
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
@@ -215,7 +218,7 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description ark
 Ark is a program for managing and quickly extracting archives.
@@ -232,7 +235,7 @@ Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcalc
 
 %description kcalc
@@ -249,7 +252,7 @@ Summary:	KDE Character Selector
 Summary(pl):	Program do wybierania znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcharselect
 
 %description kcharselect
@@ -262,7 +265,7 @@ Program do wybierania znaków.
 Summary:	KDE frontend for the Linux Infrared Remote Control system
 Summary(pl):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwieni±)
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kdelirc
 KDELIRC is a KDE frontend for the Linux Infrared Remote Control
@@ -287,7 +290,7 @@ Summary:	KDE SSH Frontend
 Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdessh
 
 %description kdessh
@@ -304,7 +307,7 @@ Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
-Requires:	kdebase-infocenter >= 9:%{version}
+Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	kdf
 
 %description kdf
@@ -321,7 +324,7 @@ Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kedit
 
 %description kedit
@@ -338,7 +341,7 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	dosfstools
 Obsoletes:	kfloppy
 
@@ -356,7 +359,7 @@ Ferramenta de formatação de disquetes.
 Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kgpg
 
 %description kgpg
@@ -370,7 +373,7 @@ Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	khexedit
 
 %description khexedit
@@ -387,7 +390,7 @@ Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kjots
 
 %description kjots
@@ -405,7 +408,7 @@ Summary:	KDE Laptop Daemon
 Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
-Requires:	kdebase-infocenter >= 9:%{version}
+Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	laptop
 
 %description klaptopdaemon
@@ -421,7 +424,7 @@ Miniaplicativo de status de bateria para laptops
 Summary:	KDE support for various types of hardware input devices
 Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 
 %description kmilo
 This is a kded module that can be extended to support various types of
@@ -441,7 +444,7 @@ klawiaturze. Aktualnie obs³uguje:
 Summary:	Sony Vaio KMilo module
 Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 
@@ -455,7 +458,7 @@ Modu³ KMilo dla laptopów Sony Vaio.
 Summary:	PowerBook KMilo module
 Summary(pl):	Modu³ KMilo dla PowerBooków
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 
@@ -469,7 +472,7 @@ Modu³ KMilo dla PowerBooków.
 Summary:	ThinkPad KMilo module
 Summary(pl):	Modu³ KMilo dla ThinkPadów
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 
 %description kmilo-thinkpad
@@ -482,7 +485,7 @@ Modu³ KMilo dla ThinkPadów.
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kregexpeditor
 
 %description kregexpeditor
@@ -495,7 +498,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
-Requires:	kdebase-desktop >= 9:%{version}
+Requires:	kdebase-desktop >= %{_minbaseevr}
 
 %description ksim
 System Monitor.
@@ -508,7 +511,7 @@ Summary:	KDE Timer
 Summary(pl):	Zegarek KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
-Requires:	kdelibs >= 9:%{version}
+Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	ktimer
 
 %description ktimer
@@ -524,13 +527,15 @@ Monitor de tempo em forma de mini-aplicativo.
 Summary:	Wallet management tool for KDE
 Summary(pl):	Narzêdzie do zarz±dzania portfelem dla KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= 9:%{version}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kwalletmanager
 Wallet management tool for KDE.
 
 %description kwalletmanager -l pl
 Narzêdzie do zarz±dzania portfelem dla KDE.
+
+# <i18n stuff>
 
 %package i18n
 Summary:	Common internationalization and localization files for kdeutils
