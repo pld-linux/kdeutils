@@ -13,7 +13,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -560,6 +560,7 @@ done
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
+	--with-qt-libraries=%{_libdir} \
 	--disable-rpath \
 	--enable-final
 
