@@ -1,7 +1,7 @@
 
 %define		_state		snapshots
-%define		_ver		3.1.93
-%define		_snap		031114
+%define		_ver		3.1.94
+%define		_snap		031204
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,9 +19,9 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	011bfa01a0d6616e1f2552cf14b0d995
+# Source0-md5:	4f99e67313a9fb3fce978ee8b48804cf
 Patch0:		%{name}-kdf-label.patch
-Patch1:		%{name}-kedit-confirmoverwrite.patch
+#Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
 Patch3:		%{name}-vcategories.patch
 Patch4:		%{name}-userinfo.patch
@@ -516,7 +516,7 @@ Ten modu³ zawiera funkcjonalno¶æ programu kdepasswd.
 %prep
 %setup -q -n %{name}-%{_snap}
 %patch0 -p1
-%patch1 -p1
+#%patch1 -p1
 #%patch2 -p1
 %patch3 -p1
 %patch4 -p1
@@ -682,6 +682,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kedit.la
 %attr(755,root,root) %{_libdir}/kde3/kedit.so
 %{_datadir}/apps/kedit
+%{_datadir}/config.kcfg/kedit.kcfg
 %{_desktopdir}/kde/KEdit.desktop
 %{_iconsdir}/*/*/apps/kedit.*
 
