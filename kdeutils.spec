@@ -15,7 +15,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -392,6 +392,8 @@ Summary:	KDE support for various types of hardware input devices
 Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
+Obsoletes:	kdeutils-kmilo-kvaio
+Obsoletes:	kdeutils-kmilo-powerbook
 
 %description kmilo
 This is a kded module that can be extended to support various types of
