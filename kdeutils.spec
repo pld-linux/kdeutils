@@ -110,22 +110,26 @@ Narzêdzia dla KDE. Pakiet zawiera:
  - KAb - ksi±¿ka adresowa,
  - KArm - czasomierz,
  - KCalc - kalkulator,
- - KCharSelect,
+ - KCharSelect - narzêdzie do wybierania znaków,
+ - KDEPasswd,
  - KDESsh - narzêdzie do zdalnego wykonywania programów,
- - Kdf,
+ - Kdf - graficzny interfejs do sprawdzania miejsca na dysku,
  - KEdit - edytor tekstu,
+ - KFind - frontend do wyszukiwania plików,
  - KFloppy - narzêdzie do formatowania dyskietek,
- - KFind,
- - KHexedit - edytor plików binarnych,
+ - KHexedit - szesnastkowy edytor plików,
  - KJots - notatnik,
- - KLaptopDaemon,
+ - KLaptopDaemon - demon dla laptopów,
+ - KLipper - przegl±darka schowka,
  - KLJetTool - narzêdzie dla u¿ytkowników drukarek LaserJet,
  - KLpq - zarz±dca wydruków,
- - KLprFax,
+ - KLprFax - frontend faksowy dla LPD u¿ywaj±cy efax,
  - KNotes - inny notatnik,
  - KPm - program do zarz±dzania procesami,
- - KTimer.
- - ksim - monitor systemu
+ - KTimer - timer,
+ - KTop - zarz±dca zadañ,
+ - KTreeBrowser,
+ - ksim - monitor systemu.
 
 %description -l pt_BR
 Utilitários para o KDE. Programas disponíveis neste pacote:
@@ -213,11 +217,12 @@ Requires:	kdebase-core >= 9:%{version}
 
 %description ark
 Ark is a program for managing and quickly extracting archives. It
-supports arj,rar,zip,tar,zoo,lha and other formats.
+supports arj, rar, zip, tar, zoo, lha and other formats.
 
 %description ark -l pl
 Ark jest programem s³u¿±cym do zarz±dzania i szybkiego rozpakowywania
-archiwów.
+archiwów. Obs³uguje archiwa arj, rar, zip, tar, zoo, lha oraz inne
+formaty.
 
 %description ark -l pt_BR
 Gerenciador de pacotes TAR/comprimidos do KDE.
@@ -386,7 +391,21 @@ kgpg is a simple, free, open source KDE frontend for gpg. It features
 - drag & drop encryption + clipboard en/decryption
 
 %description kgpg -l pl
-kgpg jest prost± graficzn± nak³adk± na gpg przeznaczon± dla KDE.
+kgpg jest prost±, darmow±, z otwartymi ¼ród³ami, graficzn± nak³adk± na
+gpg przeznaczon± dla KDE. Ma nastêpuj±ce mo¿liwo¶ci:
+- tryb edytora umo¿liwiaj±cy napisanie/wklejenie tekstu oraz
+  zaszyfrowanie/odszyfrowanie/podpisanie/sprawdzenie go,
+- zarz±dzanie kluczami: import, eksport, usuwanie, podpisywanie,
+  generowanie oraz edycjê,
+- integracjê z Konquerorem: klikniêcie lewym przyciskiem na pliku w
+  celu odszyfrowania/sprawdzenia go, klikniêcie prawym przyciskiem na
+  pliku w celu zaszyfrowania/podpisania go,
+- szyfrowanie: obs³uga szyfrów symetrycznych; wiele kluczy i domy¶lne
+  szyfrowanie kluczem; opcjonalnie niszczenie plików ¼ród³owych,
+- sygnatury: tworzenie i sprawdzanie oddzielonych i czysto tekstowych
+  sygnatur,
+- szyfrowanie metod± przeci±gnij-i-upu¶æ oraz szyfrowanie i
+  odszyfrowywanie schowka.
 
 %package khexedit
 Summary:	KDE Hex Editor
@@ -495,11 +514,22 @@ A KDE system monitoring tool that features:
 
 
 %description ksim -l pl
-Monitor systemu.
+Narzêdzie do monitorowania systemu dla KDE o nastêpuj±cych
+mo¿liwo¶ciach:
+- obs³uga motywów GKrellma
+- wy¶wietlanie nazwy komputera
+- wy¶wietlanie uptime'u, stanu pamiêci i swapa
+- wtyczka wykorzystania systemu plików
+- wtyczka informacji o dysku
+- wtyczka sieciowa potrafi±ca monitorowaæ eth0, ppp0 i inne
+- wtyczka czujników potrafi±ca monitorowaæ dowolne czujniki przez
+  lm_sensors
+- miernik baterii laptopów korzystaj±cy z APM
+- wtyczka procesora monitoruj±ca obci±¿enie procesora.
 
 %package ktimer
 Summary:	KDE Timer
-Summary(pl):	<TODO>
+Summary(pl):	Timer dla KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
@@ -511,7 +541,9 @@ after a certain amount of time. It allows looping commands as well as
 delaying the execution of a command.
 
 %description ktimer -l pl
-<TODO: To na pewno nie jest zegarek.>
+To jest aplikacja timera dla KDE. Umo¿liwia wykonywanie poleceñ po
+okre¶lonym czasie, zapêtlanie poleceñ, a tak¿e opó¼nienie wykonywania
+poleceñ.
 
 %description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
