@@ -3,7 +3,7 @@
 %bcond_without  i18n    # dont build i18n subpackage
 #
 %define		_state		stable
-%define		_ver		3.2.0
+%define		_ver		3.2.1
 ##%define		_snap		040110
 
 Summary:	K Desktop Environment - utilities
@@ -16,12 +16,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	3
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-# Source0-md5:	988480b534c1fab9003f624edb87e7a7
+Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{_ver}.tar.bz2
+# Source0-md5:	152030a2912609997d73d7af0bb96d52
 #Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 %if %{with i18n}
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
@@ -814,7 +814,7 @@ Pliki umiÍdzynarodawiaj±ce dla kdepasswd.
 
 %prep
 %setup -q 
-%patch0 -p1
+#%patch0 -p1
 %patch1 -p1
 #%patch2 -p1
 %patch3 -p1
