@@ -20,9 +20,9 @@ BuildRequires:	kdelibs-devel >= %{version}
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define         _prefix         /usr/X11R6
-%define         _fontdir        /usr/share/fonts
-%define         _htmldir        /usr/share/doc/kde/HTML
+%define		_prefix		/usr/X11R6
+%define		_fontdir	/usr/share/fonts
+%define		_htmldir	/usr/share/doc/kde/HTML
 
 %description
 KDE utilities. Package includes:
@@ -117,7 +117,7 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
  - KTimer - Monitor de tempo em forma de mini-aplicativo.
 
 %package ark
-Summary:	KDE Archive Manager 
+Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
@@ -131,11 +131,11 @@ Requires:	kdelibs >= %{version}
 %description ark
 Ark is a program for managing and quickly extracting archives.
 
-%description -l pl ark
+%description ark -l pl
 Ark jest programem s³u¿±cym do zarz±dzania i szybkiego rozpakowywania
 archiwów.
 
-%description -l pt_BR ark
+%description ark -l pt_BR
 Gerenciador de pacotes TAR/comprimidos do KDE.
 
 %package kab
@@ -153,10 +153,10 @@ Requires:	kdelibs >= %{version}
 %description kab
 Kab is a simple address book for KDE.
 
-%description -l pl kab
+%description kab -l pl
 Kab jest prost± ksi±¿k± adresow± dla KDE.
 
-%description -l pt_BR kab
+%description kab -l pt_BR
 Gerenciador do livro de endereços.
 
 %package karm
@@ -175,12 +175,12 @@ Requires:	kdelibs >= %{version}
 KArm is a time tracker for busy people who need to keep track of the
 amount of time they spend on various tasks.
 
-%description -l pl karm
+%description karm -l pl
 Narzêdzie pozwalaj±ce ustaliæ ile czasu siê spêdzi³o robi±c ró¿ne
 rzeczy.
 
 %package kcalc
-Summary:	KDE Calculator	
+Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
@@ -194,14 +194,15 @@ Requires:	kdelibs >= %{version}
 %description kcalc
 Calculator for KDE.
 
-%description -l pl kcalc
+%description kcalc -l pl
 Kalkulator dla KDE.
 
-%description -l pt_BR kcalc
+%description kcalc -l pt_BR
 Calculadora do KDE.
 
 %package kcharselect
 Summary:	KDE Character Selector
+Summary(pl):	Wybierajka znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -214,8 +215,12 @@ Requires:	kdelibs >= %{version}
 %description kcharselect
 Character Selector.
 
+%description kcharselect -l pl
+Program do wybierania znaków.
+
 %package kdepasswd
 Summary:	KDE Passwd
+Summary(pl):	passwd dla KDE
 Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -228,11 +233,15 @@ Requires:	kdelibs >= %{version}
 %description kdepasswd
 Change your password.
 
-%description -l pt_BR kdepasswd
+%description kdepasswd -l pl
+Program do zmiany has³a z poziomu KDE.
+
+%description kdepasswd -l pt_BR
 Ferramenta de mudança de senha.
 
 %package kdessh
 Summary:	KDE SSH Frontend
+Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -245,11 +254,14 @@ Requires:	kdelibs >= %{version}
 %description kdessh
 SSH Frontend.
 
-%description -l pt_BR kdessh
+%description kdessh -l pl
+Frontend SSH dla KDE.
+
+%description kdessh -l pt_BR
 Ferramenta de execução remota de programas.
 
 %package kedit
-Summary:	KDE Text Editor	
+Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications
@@ -263,14 +275,15 @@ Requires:	kdelibs >= %{version}
 %description kedit
 Simple text editor for KDE.
 
-%description -l pl kedit
+%description kedit -l pl
 Prosty edytor tekstu dla KDE.
 
-%description -l pt_BR kedit
+%description kedit -l pt_BR
 Editor de texto melhorado do KDE.
 
 %package kdf
 Summary:	KDE Disk space GUI
+Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -283,11 +296,15 @@ Requires:	kdelibs >= %{version}
 %description kdf
 This program shows the disk usage of the mounted devices.
 
-%description -l pt_BR kdf
+%description kdf -l pl
+Ten program pokazuje zajêto¶æ dysku dla zamontowanych urz±dzeñ.
+
+%description kdf -l pt_BR
 Mostra o status de espaço em disco.
 
 %package kfind
 Summary:	KDE Find
+Summary(pl):	find dla KDE
 Summary(pt_BR):	Ferramenta de procura de arquivos
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -300,11 +317,14 @@ Requires:	kdelibs >= %{version}
 %description kfind
 Find Util.
 
-%description -l pt_BR kfind
+%description kfind -l pl
+Wyszukiwarka plików dla KDE.
+
+%description kfind -l pt_BR
 Ferramenta de procura de arquivos.
 
 %package kfloppy
-Summary:	KDE Floppy Formater	
+Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
@@ -315,19 +335,19 @@ Group(pt_BR):	X11/Aplicações
 Group(pt):	X11/Aplicações
 Requires:	kdelibs >= %{version}
 Requires:	dosfstools
-	
+
 %description kfloppy
 KFloppy formats disks and puts a DOS or ext2fs filesystem on them.
 
-%description -l pl kfloppy
+%description kfloppy -l pl
 KFloppy formatuje dyskietki i zak³ada na nich system pliku DOS lub
 ext2.
 
-%description -l pt_BR kfloppy
+%description kfloppy -l pt_BR
 Ferramenta de formatação de disquetes.
 
 %package khexedit
-Summary:	KDE Hex Editor	
+Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications
@@ -342,10 +362,10 @@ Obsoletes:	khexedit
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
 
-%description -l pl khexedit
+%description khexedit -l pl
 Hex Editor jest ma³ym i prostym edytorem plików binarnych.
 
-%description -l pt_BR khexedit
+%description khexedit -l pt_BR
 Editor hexadecimal para arquivos binários.
 
 %package kjots
@@ -364,14 +384,15 @@ Requires:	kdelibs >= %{version}
 kjots is a small note taker program. Name and idea are taken from the
 jots program included in the tkgoodstuff package.
 
-%description -l pl kjots
+%description kjots -l pl
 KJots to ma³y program do zapisywania notatek.
 
-%description -l pt_BR kjots
+%description kjots -l pt_BR
 Ferramenta de armazenamento de livros.
 
 %package klaptopdaemon
 Summary:	KDE Laptop Daemon
+Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -384,11 +405,14 @@ Requires:	kdelibs >= %{version}
 %description klaptopdaemon
 KDE Laptop Daemon.
 
-%description -l pt_BR klaptopdaemon
+%description klaptopdaemon -l pl
+Wska¼nik zu¿ycia baterii w laptopie dla KDE.
+
+%description klaptopdaemon -l pt_BR
 Miniaplicativo de status de bateria para laptops
 
 %package kljettool
-Summary:	KDE LaserJet Tool	
+Summary:	KDE LaserJet Tool
 Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Summary(pt_BR):	Interface de configuração de impressora HP Laserjet
 Group:		X11/Applications
@@ -410,14 +434,14 @@ any printer that understands Hewlet Packarts PJL ( Printer Job
 Language). However some features may have no effect on your particular
 model.
 
-%description -l pl kljettool
+%description kljettool -l pl
 KLJetToll to program umo¿liwiaj±cy konfiguracjê drukarek Hewlett
 Packard LaserJet.
 
-%description -l pt_BR kljettool
+%description kljettool -l pt_BR
 Interface de configuração de impressora HP Laserjet.
 
-%package klpq 
+%package klpq
 Summary:	KDE Print Manager
 Summary(pl):	Zarz±dca wydruku dla KDE
 Summary(pt_BR):	Interface para gerenciamento das filas de impressão
@@ -434,16 +458,17 @@ Klpq is a frontend to the print spooler. Klpq does not modify the
 printqueue by itself, but uses the underlying commands: lpq, lprm and
 lpc.
 
-%description -l pl klpq
+%description klpq -l pl
 Klpq jest nak³adk± graficzn± dla KDE, umo¿liwiaj±c± zarz±dzanie
 wydrukami. Nie modyfikuje kolejki wydruków sammodzielnie, lecz
 wykorzystuje do tego celu polecenia: lpq, lprm i lpc.
 
-%description -l pt_BR klpq
+%description klpq -l pt_BR
 Interface para gerenciamento das filas de impressão.
 
 %package klprfax
 Summary:	KDE LPD fax frontend using efax
+Summary(pl):	Frontend do faksu via lpd dla KDE
 Summary(pt_BR):	Interface para impressão em saída de Fax
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -457,10 +482,13 @@ Requires:	efax
 %description klprfax
 With this program you can fax by printing to an lpd device.
 
-%description -l pt_BR klprfax
+%description klprfax -l pl
+Program ten umo¿liwia wysy³anie faksów przez drukowanie ich do lpd.
+
+%description klprfax -l pt_BR
 Interface para impressão em saída de fax.
 
-%package knotes 
+%package knotes
 Summary:	KDE Notes
 Summary(pl):	Notes dla KDE
 Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
@@ -476,11 +504,11 @@ Requires:	kdelibs >= %{version}
 KNotes is ment to be a really usable and good looking notes
 application for the KDE project.
 
-%description -l pl knotes
+%description knotes -l pl
 KNotes to program umo¿liwiaj±cy spisywanie notatek i trzymanie ich
 widocznych na ekranie.
 
-%description -l pt_BR knotes
+%description knotes -l pt_BR
 Pequeno editor de texto para guardar notas rápidas.
 
 %package kpm
@@ -501,18 +529,19 @@ computer. It shows detailed information of running processes, computer
 resources like RAM, swap space, CPU utilization and so on. You can
 kill processes and modify their priority.
 
-%description -l pl kpm
+%description kpm -l pl
 kpm umo¿liwia Ci zarz±dzanie procesami w Twoim systemie. Wy¶wietla
 szczegó³owe informacje na temat uruchomionych procesów, zasobów
 systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
 wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
 modyfikowania ich priorytetów.
 
-%description -l pt_BR kpm
+%description kpm -l pt_BR
 Monitor gráfico de processos e do sistema.
 
 %package ktimer
 Summary:	KDE Timer
+Summary(pl):	Zegarek KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -525,11 +554,15 @@ Requires:	kdelibs >= %{version}
 %description ktimer
 Time tracker appplet.
 
-%description -l pt_BR ktimer
+%description ktimer -l pl
+Zegarek.
+
+%description ktimer -l pt_BR
 Monitor de tempo em forma de mini-aplicativo.
 
 %package devel
-Summary:	Header files for compiling applications that use kdeutils libraries.
+Summary:	Header files for compiling applications that use kdeutils libraries
+Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Group(de):	X11/Entwicklung/Libraries
@@ -546,7 +579,11 @@ Requires:	kdebase-devel >= %{version}
 This package includes the header files you will need to compile
 applications that use kdeutils libraries.
 
-%description -l pt_BR devel
+%description devel -l pl
+Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji aplikacji
+u¿ywaj±cych bibliotek kdeutils.
+
+%description devel -l pt_BR
 Arquivos de inclusão para desenvolvimento e compilação de programas
 que usem as bibliotecas do kdeutils
 
@@ -559,9 +596,9 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %{__make} -f Makefile.cvs
 %configure \
 	%{!?debug:--disable-debug} \
-        --with-qt-dir=%{_prefix} \
-        --with-install-root=$RPM_BUILD_ROOT \
-        --with-pam="yes"
+	--with-qt-dir=%{_prefix} \
+	--with-install-root=$RPM_BUILD_ROOT \
+	--with-pam="yes"
 %{__make}
 
 %install
