@@ -436,6 +436,7 @@ Summary(pl):	Nak³adka graficzna na gpg
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Requires:	konqueror
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
@@ -584,6 +585,7 @@ Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Requires:	kdebase-kicker
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
