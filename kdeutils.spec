@@ -508,7 +508,7 @@ done
 
 %{__make} -f admin/Makefile.common cvs
 
-%configure
+%configure --enable-final
 
 %{__make}
 
