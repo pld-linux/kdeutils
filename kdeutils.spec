@@ -1,9 +1,10 @@
 
 %define		_state		unstable
 %define		_ver		3.3.92
+%define         _snap           050217
 
-%define		_minlibsevr	9:3.3.92
-%define		_minbaseevr	9:3.3.92
+%define		_minlibsevr	9:3.3.92.020517
+%define		_minbaseevr	9:3.3.92.020517
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -14,13 +15,15 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	%{_ver}
+Version:        %{_ver}.%{_snap}
+#Version:	%{_ver}
 Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	4638a8f5bac946148b636540dc3199b3
+Source0:        http://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
+#%% Source0-md5:	4638a8f5bac946148b636540dc3199b3
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -526,7 +529,8 @@ Password management tool for KDE.
 NarzÍdzie do zarz±dzania has≥ami w KDE.
 
 %prep
-%setup -q
+%setup -q -n %{name}-%{_snap}
+#%setup -q
 #%patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
