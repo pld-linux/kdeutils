@@ -34,6 +34,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	sed >= 4.0
 BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -563,9 +564,9 @@ for f in `find . -name \*.desktop`; do
 done
 
 %build
-cp %{_datadir}/automake/config.sub admin
+cp /usr/share/automake/config.sub admin
 
-export UNSERMAKE=%{_datadir}/unsermake/unsermake
+export UNSERMAKE=/usr/share/unsermake/unsermake
 
 echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 
