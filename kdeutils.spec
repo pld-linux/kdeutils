@@ -5,7 +5,7 @@ Version:     1.1.1
 Release:     2
 #ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/source/bz2/
 Source:      %{name}-%{version}.tar.bz2
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Group(pl):   X11/KDE/Narzêdzia
 Copyright:   GPL
 Requires:    qt >= 1.44, kdelibs = %{version}
@@ -48,8 +48,8 @@ Pakiet zawiera:
 %package ark
 Summary:     KDE 
 Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description ark
@@ -59,8 +59,8 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package kab
 Summary:     KDE 
 Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kab
@@ -70,7 +70,7 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package karm
 Summary:     KDE Time Tracker
 Summary(pl): Time Tracker dla KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description karm
@@ -84,7 +84,7 @@ Narzêdzie pozwalaj±ce ustaliæ ile czasu siê spêdzi³o robi±c ró¿ne rzeczy.
 %package kcalc
 Summary:     KDE Calculator	
 Summary(pl): Kalkulator KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kcalc
@@ -96,7 +96,7 @@ Kalkulator dla KDE.
 %package kedit
 Summary:     KDE Text Editor	
 Summary(pl): Edytor tekstu dla KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kedit
@@ -108,7 +108,7 @@ Prosty edytor tekstu dla KDE.
 %package kfloppy
 Summary:     KDE Floppy Formater	
 Summary(pl): Formatowanie dyskietek z KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kfloppy
@@ -120,7 +120,7 @@ KFloppy formatuje dyskietki i zak³ada na nich system pliku DOS lub ext2.
 %package khexdit
 Summary:     KDE Hex Editor	
 Summary(pl): Edytor szesnastkowy KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description khexdit
@@ -132,7 +132,7 @@ Prosta przegl±darka do plików binarnych.
 %package kjots
 Summary:     KDE Note taker
 Summary(pl): Notatnik KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kjots
@@ -145,8 +145,8 @@ KJots to ma³y program do zbierania notatek.
 %package klipper
 Summary:     KDE Note taker
 Summary(pl): Notatnik KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description klipper
@@ -156,7 +156,7 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package kljettool
 Summary:     KDE LaserJet Tool	
 Summary(pl): Konfigurator drukarek LaserJet dla KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kljettool
@@ -177,8 +177,8 @@ Hewlett Packard LaserJet.
 %package klpq 
 Summary:     KDE Notes
 Summary(pl): Notes KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description klpq
@@ -188,7 +188,7 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package knotes 
 Summary:     KDE Notes
 Summary(pl): Notes KDE
-Group:       X11/KDE/Utils
+Group:       X11/KDE/Utilities
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description knotes
@@ -202,8 +202,8 @@ ekranie komputera.
 %package kpm
 Summary:     KDE Archive Handling Tool
 Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kpm
@@ -213,8 +213,8 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package ktop
 Summary:     KDE Archive Handling Tool
 Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description ktop
@@ -224,8 +224,8 @@ Requires:    qt >= 1.40, kdelibs = %{version}
 %package kwrite
 Summary:     KDE Archive Handling Tool
 Summary(pl): Program obs³ugi archiwów KDE
-Group:       X11/KDE/Utils
-Group(pl):   X11/KDE/Narzedzia
+Group:       X11/KDE/Utilities
+Group(pl):   X11/KDE/Narzêdzia
 Requires:    qt >= 1.40, kdelibs = %{version}
 
 %description kwrite
