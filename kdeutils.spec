@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030423
+%define		_snap		030428
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -220,7 +220,7 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	konqueror >= %{version}
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
@@ -247,7 +247,7 @@ Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	kcalc
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -274,7 +274,7 @@ Summary:	KDE Character Selector
 Summary(pl):	Wybierajka znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-kicker >= %{version}
 Obsoletes:	kcharselect
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -352,7 +352,7 @@ Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-infocenter >= %{version}
 Obsoletes:	kdf
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -379,7 +379,7 @@ Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	kedit
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -406,7 +406,7 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Requires:	dosfstools
 Obsoletes:	kfloppy
 Obsoletes:      kdeutils-cdbakeoven                                             
@@ -434,8 +434,7 @@ Ferramenta de formatação de disquetes.
 Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-Requires:	konqueror
+Requires:	konqueror >= %{version}
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
@@ -458,7 +457,7 @@ Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	khexedit
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -485,7 +484,7 @@ Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	kjots
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -513,7 +512,7 @@ Summary:	KDE Laptop Daemon
 Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-infocenter >= %{version}
 Obsoletes:	laptop
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -560,7 +559,7 @@ KDE Special Key Notifier
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	kregexpeditor
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -583,8 +582,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-Requires:	kdebase-kicker
+Requires:	kdebase-kicker >= %{version}
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
@@ -633,7 +631,7 @@ Monitor de tempo em forma de mini-aplicativo.
 Summary:	User Account
 Summary(pl):	Konto u¿ytkownika
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdebase-core >= %{version}
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
