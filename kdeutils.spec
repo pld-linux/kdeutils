@@ -4,8 +4,9 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040414
-#
+%define		_snap		040424
+%define		_packager	adgor
+
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
@@ -20,10 +21,9 @@ Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	%{name}-%{_snap}.tar.bz2
-# Source0-md5:	c118ca1e3bc3047cd6c735a6e6b2b868
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-#Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~%{_packager}/kde/%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	c118ca1e3bc3047cd6c735a6e6b2b868
 #Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
 ##%% Source1-md5:	e63a7e83445904676217d3f09243ce90
 Patch0:		%{name}-kdf-label.patch
@@ -494,7 +494,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
-Requires:	kdebase-kicker >= 9:%{version}
+Requires:	kdebase-desktop >= 9:%{version}
 
 %description ksim
 System Monitor.
@@ -793,7 +793,7 @@ Internationalization and localization files for kdepasswd.
 Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 
 %prep
-%setup -q -n %{name}
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
