@@ -32,6 +32,7 @@ Patch6:		%{name}-use-klineeditdlg.patch
 Patch7:		%{name}-fix-kdf-mem-leak.patch
 Patch8:		%{name}-fix-kedit-enable-disable-cut-copy-action.patch
 Patch9:		%{name}-charselectapplet-no-version.patch
+Patch10:	%{name}-Makefile.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	awk
@@ -718,6 +719,7 @@ que usem as bibliotecas do kdeutils
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
