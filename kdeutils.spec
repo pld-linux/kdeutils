@@ -741,6 +741,14 @@ kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 kde_appsdir="%{_applnkdir}"; export kde_appsdir
 
+for plik in `find ./ -name \*.desktop` ; do
+	if [ -d $plik ]; then
+		echo $plik
+		sed -e "s/[nb]/[no]/g" > $plik.1
+		mv -f $plik.1 $plik
+	fi
+done
+
 %configure \
 	%{!?debug:--disable-debug} \
 	--with-qt-dir=%{_prefix} \
