@@ -1,7 +1,7 @@
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
-Version:	2.0.1
+version:	2.1.1
 Release:	1
 License:	GPL
 Group:		X11/Applications
@@ -267,6 +267,7 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Utilities
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+cp kpm/kpm.desktop $RPM_BUILD_ROOT%{_applnkdir}/Utilities/kpm.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
