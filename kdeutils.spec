@@ -2,7 +2,8 @@ Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
 version:	2.1.1
-Release:	1
+Release:	2
+Epoch:		6
 License:	GPL
 Group:		X11/Applications
 Group(de):	X11/Applikationen
@@ -252,6 +253,7 @@ kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
 %configure \
+	%{!?debug:--disable-debug} \
         --with-qt-dir=%{_prefix} \
         --with-install-root=$RPM_BUILD_ROOT \
         --with-pam="yes"
