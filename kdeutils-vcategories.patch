@@ -5,7 +5,7 @@
  X-KDE-StartupNotify=true
  X-DCOP-ServiceType=Multi
 -Categories=Qt;KDE;Utility;X-KDE-More
-+Categories=Qt;KDE;HexEditor
++Categories=Qt;KDE;X-HexEditor
 --- kdeutils-030423/kgpg/kgpg.desktop~	2003-04-24 13:37:31.000000000 +0200
 +++ kdeutils-030423/kgpg/kgpg.desktop	2003-04-24 20:00:17.000000000 +0200
 @@ -14,3 +14,5 @@
