@@ -532,6 +532,8 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	ark/ark.desktop
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
+	kdelirc/irkick/irkick.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	kcalc/kcalc.desktop
@@ -541,6 +543,8 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
 	-e '/\[Desktop Entry\]/aEncoding=UTF-8' \
 	ksim/ksim.desktop
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
+	kdf/kwikdisk.desktop
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kcharselect/KCharSelect.desktop \
 	kdf/kdf.desktop \
