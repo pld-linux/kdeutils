@@ -22,7 +22,7 @@ License:	GPL
 Group:		X11/Applications
 Icon:		kde-utils.xpm
 # Source0:        ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{_ver}-%{_snap}.tar.bz2
+Source0:	ftp://ftp.pld-linux.org/software/kde/%{name}-%{version}-%{_snap}.tar.bz2
 # Source0-md5:	e843f709f18ae44a3207b5413c3c9d77
 Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
@@ -545,9 +545,9 @@ ksim/ksim.desktop
 
 
 %build
-cp /usr/share/automake/config.sub admin
+cp %{_datadir}/automake/config.sub admin
 
-export UNSERMAKE=/usr/share/unsermake/unsermake
+export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
 echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 
@@ -561,19 +561,8 @@ echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 %{__make}
 
 %install
-rm -rf $RPM_BUILD_ROOT *.lang
-
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-ark/ark.desktop
-
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
-kcalc/kcalc.desktop
-
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;TextEditor;X-HexEditor;/' \
-khexedit/khexedit.desktop
-
-%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
-ksim/ksim.desktop
+rm -rf $RPM_BUILD_ROOT
+rm -rf *.lang
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
