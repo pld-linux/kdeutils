@@ -17,7 +17,7 @@ Epoch:		8
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5: 9005b6f6178fdba078313c71ad0d058f
+# Source0-md5: 	49611a79b2d77cf6e9913ffb445fa209
 # generated from kde-i18n
 #Source1:	kde-i18n-%{name}-%{version}.tar.bz2
 Patch0:		%{name}-kdf-label.patch
