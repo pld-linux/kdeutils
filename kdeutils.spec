@@ -20,7 +20,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}.%{_snap}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -828,6 +828,18 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
+
+# Workaround for doc caches (unsermake bug?)
+cd doc
+for i in `find . -name index.cache.bz2 | grep -v kdelirc`; do
+	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
+done
+cd -
+cd doc/kdelirc
+for i in `find . -name index.cache.bz2 | grep -v kdelirc`; do
+	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
+done
+cd -
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 
