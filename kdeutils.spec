@@ -759,7 +759,7 @@ done
 
 bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
 %if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
-rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,khexedit,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
 # resized
 rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{kcmdf,kdf,klprfax,kwikdisk}.png
 %endif
