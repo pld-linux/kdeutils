@@ -1,0 +1,6 @@
+- Release 1.
+- Commented out packages: kab, knotes, kfind, kpm. kab is disabled in
+  configure.in, remaining packages are not present, but they are
+  mentioned in README, so they may return in 3.0.1.
+- New subpackage kregexpeditor.
+- Updated files list.
