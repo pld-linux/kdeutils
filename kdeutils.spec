@@ -14,7 +14,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2.1
+Release:	3
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -781,44 +781,38 @@ mv -f $ALD/{Utilities/khexedit.desktop,Editors}
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
-%find_lang ark			--with-kde
-%find_lang KRegExpEditor	--with-kde
-#%find_lang kregexpeditor	--with-kde
-#cat kregexpeditor.lang >> KRegExpEditor.lang
-#%find_lang kab			--with-kde
-#%find_lang kab3		--with-kde
-#cat kab3.lang >> kab.lang
-#%find_lang kcardchooser	--with-kde
-%find_lang kcalc		--with-kde
-%find_lang kcharselect		--with-kde
-#%find_lang kcharselectapplet	--with-kde
-#cat kcharselectapplet.lang >> kcharselect.lang
-#%find_lang kdepasswd		--with-kde
-#%find_lang kdessh		--with-kde
-> kdf.lang
-%find_lang kdf			--with-kde
-%find_lang blockdevices		--with-kde
-cat blockdevices.lang >> kdf.lang
-%find_lang kedit		--with-kde
-%find_lang kfloppy		--with-kde
-%find_lang khexedit		--with-kde
-%find_lang kjots		--with-kde
-> klaptopdaemon.lang
-#%find_lang klaptopdaemon	--with-kde
+%find_lang klaptopdaemon	--with-kde
+%find_lang kcmlaptop		--with-kde
 %find_lang kcmlowbatcrit	--with-kde
 %find_lang kcmlowbatwarn	--with-kde
 %find_lang laptop		--with-kde
 %find_lang powerctrl		--with-kde
-cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
-#%find_lang kcmlaptop		--with-kde
-#cat kcmlaptop.lang >> klaptopdaemon.lang
-#%find_lang kljettool		--with-kde
-#%find_lang klpq		--with-kde
-#%find_lang klprfax		--with-kde
-#%find_lang kpm			--with-kde
+cat {kcmlaptop,kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
+
+%find_lang kdf			--with-kde
+%find_lang blockdevices		--with-kde
+cat blockdevices.lang >> kdf.lang
+
+%find_lang kcharselect		--with-kde
+%find_lang kcharselectapplet	--with-kde
+cat kcharselectapplet.lang >> kcharselect.lang
+
+%find_lang KRegExpEditor	--with-kde
+%find_lang kregexpeditor	--with-kde
+cat kregexpeditor.lang >> KRegExpEditor.lang
+
+%find_lang ark			--with-kde
+%find_lang kcardchooser		--with-kde
+%find_lang kcalc		--with-kde
+%find_lang kdepasswd		--with-kde
+%find_lang kdessh		--with-kde
+%find_lang kedit		--with-kde
+%find_lang kfloppy		--with-kde
+%find_lang khexedit		--with-kde
+%find_lang kjots		--with-kde
 %find_lang ktimer		--with-kde
-#%find_lang cdbakeoven		--with-kde
 %find_lang ksim			--with-kde
+
 # Does not build:
 #%find_lang kcardchooser	--with-kde
 
@@ -858,15 +852,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
 
-#%files kdepasswd -f kdepasswd.lang
-%files kdepasswd
+%files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
 %{_applnkdir}/Settings/kdepasswd.desktop
 
-#%files kdessh -f kdessh.lang
-%files kdessh
+%files kdessh -f kdessh.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
