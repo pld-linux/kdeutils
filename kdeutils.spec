@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	1
+Release:	2
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
