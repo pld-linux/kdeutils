@@ -15,7 +15,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -575,7 +575,11 @@ echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 %configure \
 	--disable-rpath \
 	--enable-final \
-	--with-qt-libraries=%{_libdir}
+	--with-qt-libraries=%{_libdir} \
+%if "%{_lib}" == "lib64"
+	--enable-libsuffix=64 \
+%endif
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
 %{__make}
 
