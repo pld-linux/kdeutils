@@ -1,4 +1,6 @@
 
+%bcond_without  i18n    # dont build i18n subpackage
+
 %define		_state		stable
 %define		_ver		3.2.0
 ##%define		_snap		040110
