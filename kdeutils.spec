@@ -26,7 +26,7 @@ Source0:	http://download.kde.org/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-vcategories.patch
 Patch2:		%{name}-userinfo.patch
-Patch3:         %{name}-gcc34.patch
+Patch3:		%{name}-gcc34.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
