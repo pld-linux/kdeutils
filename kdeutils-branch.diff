@@ -1,0 +1,132 @@
+diff -urN -x CVS kdeutils.orig/kfloppy/debug.h kdeutils/kfloppy/debug.h
+--- kdeutils.orig/kfloppy/debug.h	Wed Jan  7 19:13:51 2004
++++ kdeutils/kfloppy/debug.h	Fri Aug 20 09:34:36 2004
+@@ -33,7 +33,7 @@
+ #ifndef DEBUG_H
+ #define DEBUG_H
+ 
+-#ifdef DEBUG
++#ifndef NDEBUG
+ #define KFAREA		(2002)
+ 
+ #define DEBUGSETUP	kdDebug(KFAREA) << (__PRETTY_FUNCTION__) << endl
+diff -urN -x CVS kdeutils.orig/kfloppy/format.cpp kdeutils/kfloppy/format.cpp
+--- kdeutils.orig/kfloppy/format.cpp	Fri Nov  7 22:30:19 2003
++++ kdeutils/kfloppy/format.cpp	Fri Aug 20 12:51:04 2004
+@@ -25,6 +25,7 @@
+ #include <stdlib.h>
+ 
+ #include <qtimer.h>
++#include <qregexp.h>
+ 
+ #include <klocale.h>
+ #include <kprocess.h>
+@@ -201,8 +202,8 @@
+ 	{ fd1D720,  1,  720, 80, 0 },
+ 	{ fd0h1200, 0, 1200, 80, 0 },
+ 	{ fd1h1200, 1, 1200, 80, 0 },
+-	{ fd0h360,  0,  360, 80, 0 },
+-	{ fd1h360,  1,  360, 80, 0 },
++	{ fd0h360,  0,  360, 40, 0 },
++	{ fd1h360,  1,  360, 40, 0 },
+ #endif
+ 
+ #ifdef ANY_BSD
+@@ -229,11 +230,6 @@
+ 	theProcess(0L)
+ {
+ 	DEBUGSETUP;
+-
+-	QObject::connect(this,SIGNAL(status(const QString &,int)),
+-		p,SLOT(formatStatus(const QString &,int)));
+-	QObject::connect(this,SIGNAL(done(KFAction *,bool)),
+-		p,SLOT(reset()));
+ }
+ 
+ void FloppyAction::quit()
+@@ -352,7 +348,7 @@
+ 	connect(theProcess,SIGNAL(receivedStderr(KProcess *,char *,int)),
+ 		this,SLOT(processStdErr(KProcess *,char *,int)));
+ 
+-
++        theProcess->setEnvironment( "LC_ALL", "C" ); // We need the untranslated output of the tool
+ 	return theProcess->start(KProcess::NotifyOnExit,
+ 		KProcess::AllOutput);
+ }
+@@ -401,7 +397,6 @@
+ 	if (theProcess) delete theProcess;
+ 	theProcess = new KProcess;
+ 
+-
+ 	formatTrackCount=0;
+ 
+ 	*theProcess << fdformatName ;
+@@ -471,21 +466,16 @@
+ 	}
+ #elif defined(ANY_LINUX)
+ 	s = QString::fromLatin1(b,l);
+-	int p;
+-	if ((p=s.find("track")) != -1)
+-	{
+-		p+=5;
+-		while ((0<=p) && (p<l) && (s[p].isSpace())) p++;
+-		if (s[p].isDigit())
+-		{
+-			p=s.mid(p,8).toInt();
+-			if ((p>0) && (p<deviceInfo->tracks))
+-			{
+-				emit status(QString::null,
+-					p * 100 / deviceInfo->tracks);
+-			}
+-		}
+-	}
++        QRegExp regexp( "([0-9]+)" );
++        if ( regexp.search(s) > -1 )
++        {
++            const int p = regexp.cap(1).toInt();
++            if ((p>0) && (p<deviceInfo->tracks))
++            {
++                    emit status(QString::null,
++                            p * 100 / deviceInfo->tracks);
++            }
++        }
+ 	else if (s.contains("ioctl(FDFMTBEG)"))
+ 	{
+ 		goto ioError;
+@@ -715,6 +705,7 @@
+ 	*p << "-q";
+ 	if (doVerify) *p << "-c" ;
+ 	if (doLabel) *p << "-L" << label ;
++	*p << deviceName ;
+ 
+ 	if (!startProcess())
+ 	{
+diff -urN -x CVS kdeutils.orig/kfloppy/main.cpp kdeutils/kfloppy/main.cpp
+--- kdeutils.orig/kfloppy/main.cpp	Sun Jul  4 15:19:05 2004
++++ kdeutils/kfloppy/main.cpp	Fri Aug 20 12:49:24 2004
+@@ -24,6 +24,7 @@
+ 
+     */
+ 
++#include <kdeversion.h>
+ #include <kapplication.h>
+ #include <kcmdlineargs.h>
+ #include <kaboutdata.h>
+@@ -34,8 +35,6 @@
+ static const char description[] =
+ 	I18N_NOOP("KDE Floppy Disk Utility");
+ 
+-static const char version[] = "2.2";
+-
+ static const KCmdLineOptions options[] =
+ {
+ 	{ "+[device]", I18N_NOOP("Default device"), 0 },
+@@ -46,7 +45,7 @@
+ {
+   KAboutData aboutData("kfloppy",
+ 	I18N_NOOP("KFloppy"),
+-    version, description, KAboutData::License_GPL,
++    KDE_VERSION_STRING, description, KAboutData::License_GPL,
+     "(c) 1997, Bernd Johannes Wuebben\n"
+     "(c) 2001, Chris Howells\n"
+     "(c) 2002, Adriaan de Groot",
