@@ -1,68 +1,11 @@
---- kdeutils-030930/kdepasswd/userinfo/pics/Makefile.am~	2003-03-24 21:19:25.000000000 +0100
-+++ kdeutils-030930/kdepasswd/userinfo/pics/Makefile.am	2003-10-01 11:06:27.000000000 +0200
-@@ -1,5 +1,5 @@
- 
--picsdir = $(kde_datadir)/kdm/pics/faces
-+picsdir = $(kde_datadir)/kdm/pics/users
- pics_DATA = Star.png Star2.png Star3.png Star4.png Stars.png Stars2.png Night.png BlueMarble1.png Butterfly.png Konqui.png Flower.png BeachBall.png
- 
- EXTRA_DIST = $(pics_DATA)
---- kdeutils-030930/kdepasswd/userinfo/userinfo.cpp~	2003-09-04 11:18:20.000000000 +0200
-+++ kdeutils-030930/kdepasswd/userinfo/userinfo.cpp	2003-10-01 00:15:20.000000000 +0200
-@@ -280,11 +280,11 @@
- void KUserInfoConfig::load()
- {
+--- kdeutils-040110/kdepasswd/userinfo/userinfo.cpp.orig	2003-12-09 23:54:37.000000000 +0100
++++ kdeutils-040110/kdepasswd/userinfo/userinfo.cpp	2004-01-12 17:45:11.489475456 +0100
+@@ -284,7 +284,7 @@
    // Get face dirs
--  QString m_kdmDir = KGlobal::dirs()->resourceDirs("data").last() + "kdm/";
-+  QString m_kdmDir = "/etc/X11/kdm";
-   m_userPicsDir = m_kdmDir + KDM_USER_FACES_DIR;
--  m_facesDir = m_kdmDir + KDM_FACES_DIR;
-+  m_facesDir = KGlobal::dirs()->resourceDirs("data").last() + "kdm" + KDM_FACES_DIR;
+   m_facesDir =  KGlobal::dirs()->resourceDirs("data").last() + "kdm/" + KDM_FACES_DIR;
  
 -  KConfig *kdmconfig = new KConfig("kdm/kdmrc", true);
 +  KConfig *kdmconfig = new KConfig("/etc/X11/kdm/kdmrc", true);
    kdmconfig->setGroup("X-*-Greeter");
+   m_userPicsDir = kdmconfig->readEntry( "FaceDir", KGlobal::dirs()->resourceDirs("data").last() + "kdm/faces" ) + '/';
    QString fs = kdmconfig->readEntry( "FaceSource" );
-   if (fs == QString::fromLatin1("UserOnly"))
-@@ -324,7 +324,7 @@
-   if ( m_FaceSource == FACE_SRC_ADMINFIRST )
-   {
-     // If the administrator's choice takes preference
--    m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".png" );
-+    m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".face.icon" );
-     if ( m_FacePixmap.isNull() )
-       m_FaceSource = FACE_SRC_USERONLY;
-     else
-@@ -335,7 +335,7 @@
-     // If the user's choice takes preference
-     m_FacePixmap = QPixmap( m_HomeDir + USER_FACE_FILE );
-     if ( m_FacePixmap.isNull() && m_FaceSource == FACE_SRC_USERFIRST ) // The user has no face, should we check for the admin's setting?
--       m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".png" );
-+       m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".face.icon" );
-     if ( m_FacePixmap.isNull() )
-       m_FacePixmap = QPixmap( m_userPicsDir + SYS_DEFAULT_FILE );
- 
-@@ -344,7 +344,7 @@
-   else if ( m_FaceSource <= FACE_SRC_ADMINONLY )
-   {
-     // Admin only
--    m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".png" );
-+    m_FacePixmap = QPixmap( m_userPicsDir + m_UserName + ".face.icon" );
-     if ( m_FacePixmap.isNull() )
-       m_FacePixmap = QPixmap( m_userPicsDir + SYS_DEFAULT_FILE );
-     m_pFaceButton->setPixmap( m_FacePixmap );
---- kdeutils-031113/kdepasswd/userinfo/userinfo_constants.h.orig	2003-11-11 03:05:29.000000000 +0100
-+++ kdeutils-031113/kdepasswd/userinfo/userinfo_constants.h	2003-11-13 19:09:15.000000000 +0100
-@@ -19,9 +19,9 @@
- #define USER_CUSTOM_FILE   "/Custom.png"   // An image set by this program, UserFacesDir+this
- #define USER_CUSTOM_KEY    "Zz_custom"     // Do not change
- 
--#define SYS_DEFAULT_FILE   "/default1.png"  // The system-wide default image
--#define KDM_FACES_DIR      "/pics/faces/"  // Directory where system-wide faces are stored (KDMDIR+this)
--#define KDM_USER_FACES_DIR   "/pics/users/"// Directory where kdm stores user pics (KDMDIR+this)
-+#define SYS_DEFAULT_FILE   "/.default.face.icon"  // The system-wide default image
-+#define KDM_FACES_DIR      "/pics/users/"  // Directory where system-wide faces are stored (KDMDIR+this)
-+#define KDM_USER_FACES_DIR   "/faces/"// Directory where kdm stores user pics (KDMDIR+this)
- 
- #define FACE_PIX_SIZE      64              // Default Size for faces is 60x60
- #define FACE_BTN_SIZE      FACE_PIX_SIZE+10// Size for the Face button in the main dialog
