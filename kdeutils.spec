@@ -33,6 +33,7 @@ Patch1:		%{name}-kdf-label.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
 Patch3:		%{name}-vcategories.patch
 Patch4:		%{name}-userinfo.patch
+Patch5:		%{name}-gcc34.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -818,6 +819,7 @@ Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 #%patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 cp /usr/share/automake/config.sub admin
