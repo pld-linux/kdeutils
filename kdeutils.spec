@@ -905,7 +905,6 @@ cat kregexpeditor.lang >> KRegExpEditor.lang
 cat kcharselectapplet.lang >> kcharselect.lang
 
 %find_lang userinfo		--with-kde
-%find_lang desktop_kdeutils	--with-kde
 %find_lang kdessh		--with-kde
 %find_lang kdepasswd            --with-kde
 # We dont buidl kcardchooser (disabled by default by coolo) 
@@ -963,7 +962,6 @@ rm -rf $RPM_BUILD_ROOT
 %postun	ksim		-p /sbin/ldconfig
 
 %if %{with i18n}
-%files i18n -f desktop_kdeutils.lang
 %files ark-i18n -f ark.lang
 %files kcalc-i18n -f kcalc.lang
 %files kcharselect-i18n -f kcharselect.lang
