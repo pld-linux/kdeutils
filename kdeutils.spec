@@ -749,7 +749,7 @@ kde_appsdir="%{_applnkdir}"; export kde_appsdir
 %{__make}
 
 # Doesn't build.
-#%{__make} -C kcardtools
+#%%{__make} -C kcardtools
 
 %install
 rm -rf $RPM_BUILD_ROOT
@@ -759,7 +759,7 @@ install -d \
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
 # Doesn't build.
-#%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
+#%%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/{Settings/[!K]*,Settings/KDE}
