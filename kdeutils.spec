@@ -252,7 +252,7 @@ Requires:	kdelibs >= %{version}
 kde_htmldir="%{_htmldir}"; export kde_htmldir
 kde_icondir="%{_pixmapsdir}"; export kde_icondir
 
-%configure \
+%configure2_13 \
 	%{!?debug:--disable-debug} \
         --with-qt-dir=%{_prefix} \
         --with-install-root=$RPM_BUILD_ROOT \
