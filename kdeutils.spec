@@ -24,7 +24,7 @@ Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
 # Source0-md5:	988480b534c1fab9003f624edb87e7a7
 %if %{with i18n}
 Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:  f7aeb11765cd23f1719c1d18762fbc47
+# Source1-md5:	e63a7e83445904676217d3f09243ce90
 %endif
 Patch0:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
