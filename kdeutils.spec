@@ -550,18 +550,6 @@ kdepasswd program functionality.
 userinfo zmienia informacje o koncie u¿ytkownika. Ten modu³ zawiera
 funkcjonalno¶æ programu kdepasswd.
 
-%package i18n
-Summary:	Common internationalization and localization files for kdeutils
-Summary(pl):	Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeutils
-Group:		X11/Applications
-Requires:	kdelibs-i18n >= 9:%{version}
-
-%description i18n
-Internationalization and localization files for kdeutils.
-
-%description i18n -l pl
-Pliki umiêdzynarodawiaj±ce dla kdeutils.
-
 %package ark-i18n
 Summary:	Internationalization and localization files for ark
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla arka
@@ -723,6 +711,7 @@ Summary:	Internationalization and localization files for ktimer
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ktimera
 Group:		X11/Applications
 Requires:	%{name}-ktimer = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description ktimer-i18n
 Internationalization and localization files for ktimer.
@@ -774,6 +763,7 @@ Summary:	Internationalization and localization files for kdessh
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdessh
 Group:		X11/Applications
 Requires:       %{name}-kdessh = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kdessh-i18n
 Internationalization and localization files for kdessh.
@@ -786,6 +776,7 @@ Summary:	Internationalization and localization files for kdepasswd
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdepasswd
 Group:		X11/Applications
 Requires:       %{name}-kdepasswd = %{epoch}:%{version}-%{release}
+Requires:	kdelibs-i18n >= 9:%{version}
 
 %description kdepasswd-i18n
 Internationalization and localization files for kdepasswd.
