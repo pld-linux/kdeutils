@@ -1743,10 +1743,10 @@ kgpg \
 khexedit \
 kjots \
 klaptopdaemon \
-kregexpeditor \
+KRegExpEditor \
 ksim \
 ktimer \
-kwalletmanager"
+kwallet"
 
 for i in $files; do
         echo "%defattr(644,root,root,755)" > ${i}_en.lang
