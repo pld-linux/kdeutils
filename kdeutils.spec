@@ -4,7 +4,7 @@
 #
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040216
+%define		_snap		040225
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -1242,9 +1242,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
 
-%files userinfo
-%defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_userinfo.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
-%{_datadir}/apps/kdm/pics/users/*
-%{_desktopdir}/kde/userinfo.desktop
+#%files userinfo
+#%defattr(644,root,root,755)
+#%{_libdir}/kde3/kcm_userinfo.la
+#%attr(755,root,root) %{_libdir}/kde3/kcm_userinfo.so
+#%{_datadir}/apps/kdm/pics/users/*
+#%{_desktopdir}/kde/userinfo.desktop
