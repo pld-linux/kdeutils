@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	4
+Release:	5
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -259,6 +259,7 @@ Summary(pl):	find dla KDE
 Summary(pt_BR):	Ferramenta de procura de arquivos
 Group:		X11/Applications
 Requires:	kdelibs >= %{version}
+Requires:	kdebase = %{version}
 
 %description kfind
 Find Util.
@@ -590,7 +591,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kfind
 %attr(755,root,root) %{_libdir}/kfind.*
 %{_applnkdir}/Kfind.desktop
-%{_datadir}/apps/kfind
 %{_pixmapsdir}/*/*/apps/kfind.*
 %lang(en) %{_htmldir}/en/kfind
 
