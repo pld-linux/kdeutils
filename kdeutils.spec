@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.92
-%define		_snap		030930
+%define		_snap		031006
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	77ffc0ab2e7952ca1cf6f2fd259a9d40
+# Source0-md5:	23d98502b9afe75c46f10d5a8ee59564
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -591,6 +591,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcalc.so
 %{_datadir}/apps/kcalc
 %{_datadir}/apps/kconf_update/kcalcrc.upd
+%{_datadir}/config.kcfg/kcalc.kcfg
 %{_desktopdir}/kde/kcalc.desktop
 %{_iconsdir}/*/*/apps/kcalc.*
 
@@ -674,13 +675,17 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/konqueror/servicemenus/encryptfile.desktop
 %{_datadir}/apps/konqueror/servicemenus/encryptfolder.desktop
 %{_datadir}/autostart/kgpg.desktop
+%{_datadir}/config.kcfg/kgpg.kcfg
 %{_desktopdir}/kde/kgpg.desktop
 %{_iconsdir}/*/*/apps/kgpg.png
 
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
+%{_libdir}/kde3/libkbyteseditwidget.la
+%attr(755,root,root) %{_libdir}/kde3/libkbyteseditwidget.so
 %{_datadir}/apps/khexedit
+%{_datadir}/services/kbyteseditwidget.desktop
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
 
@@ -688,6 +693,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
+%{_datadir}/config.kcfg/kjots.kcfg
 %{_desktopdir}/kde/Kjots.desktop
 %{_iconsdir}/*/*/apps/kjots.*
 
