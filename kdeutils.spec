@@ -1,14 +1,14 @@
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
 Name:		kdeutils
-version:	2.1.1
+version:	2.2
 Release:	2
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
 Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
-Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/distribution/tar/generic/src/%{name}-%{version}.tar.bz2
+Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 BuildRequires:	qt-devel >= 2.2.2
 BuildRequires:	kdelibs-devel >= %{version}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -18,14 +18,13 @@ BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 %define         _htmldir        %{_datadir}/doc/kde/HTML
 
 %description
-KDE utilities. Package includes:
-Ark - archive manager Iconpackager -
+KDE utilities. Package includes: Ark - archive manager Iconpackager -
 KAb - address book KArm - time tracker KCalc - calculator KCharSelect
 - KDEPasswd - KDESsh - Kdf - KEdit - text editor KFind - KFloppy -
-floppy formating tool KHexEdit - HEX file editor KJots - note taker
-KLaptopDaemon - KLipper - clipboard viewer KLJetTool - tool for
-LaserJet priter users KLpq - print manager KNotes - notes KTop - task
-manager KTreeBrowser - KWrite - text editor
+  floppy formating tool KHexEdit - HEX file editor KJots - note taker
+  KLaptopDaemon - KLipper - clipboard viewer KLJetTool - tool for
+  LaserJet priter users KLpq - print manager KNotes - notes KTop - task
+  manager KTreeBrowser - KWrite - text editor
 
 %description -l pl
 Narzêdzia dla KDE. Pakiet zawiera: Ark - program do zarz±dzania
@@ -40,6 +39,8 @@ procesami KWrite - rozbudowany edytor tekstu
 Summary:	KDE Archive Manager 
 Summary(pl):	Zarz±dca archiwów dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description ark
@@ -53,6 +54,8 @@ archiwów.
 Summary:	KDE Address Book
 Summary(pl):	Ksi±¿ka adresowa dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kab
@@ -65,6 +68,8 @@ Kab jest prost± ksi±¿k± adresow± dla KDE.
 Summary:	KDE Time Tracker
 Summary(pl):	Time Tracker dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description karm
@@ -79,6 +84,8 @@ rzeczy.
 Summary:	KDE Calculator	
 Summary(pl):	Kalkulator dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kcalc
@@ -90,6 +97,8 @@ Kalkulator dla KDE.
 %package kcharselect
 Summary:	KDE Character Selector
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kcharselect
@@ -98,15 +107,29 @@ Character Selector
 %package kdepasswd
 Summary:	KDE Passwd
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kdepasswd
 Change your password
 
+%package kdessh
+Summary:	KDE SSH Frontend
+Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
+Requires:	kdelibs >= %{version}
+
+%description kdessh
+SSH Frontend
+
 %package kedit
 Summary:	KDE Text Editor	
 Summary(pl):	Edytor tekstu dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kedit
@@ -115,9 +138,21 @@ Simple text editor for KDE.
 %description -l pl kedit
 Prosty edytor tekstu dla KDE.
 
+%package kdf
+Summary:	KDE Disk space GUI
+Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
+Requires:	kdelibs >= %{version}
+
+%description kdf
+This program shows the disk usage of the mounted devices.
+
 %package kfind
 Summary:	KDE Find
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kfind
@@ -127,6 +162,8 @@ Find Util
 Summary:	KDE Floppy Formater	
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kfloppy
@@ -140,6 +177,8 @@ ext2.
 Summary:	KDE Hex Editor	
 Summary(pl):	Edytor szesnastkowy dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description khexdit
@@ -152,6 +191,8 @@ Hex Editor jest ma³ym i prostym edytorem plików binarnych.
 Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kjots
@@ -164,6 +205,8 @@ KJots to ma³y program do zapisywania notatek.
 %package klaptopdaemon
 Summary:	KDE Laptop Daemon
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description klaptopdaemon
@@ -173,6 +216,8 @@ KDE Laptop Daemon
 Summary:	KDE LaserJet Tool	
 Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kljettool
@@ -194,6 +239,8 @@ Packard LaserJet.
 Summary:	KDE Print Manager
 Summary(pl):	Zarz±dca wydruku dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description klpq
@@ -206,10 +253,23 @@ Klpq jest nak³adk± graficzn± dla KDE, umo¿liwiaj±c± zarz±dzanie
 wydrukami. Nie modyfikuje kolejki wydruków sammodzielnie, lecz
 wykorzystuje do tego celu polecenia: lpq, lprm i lpc.
 
+%package klprfax
+Summary:	KDE LPD fax frontend using efax
+Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
+Requires:	kdelibs >= %{version}
+Requires:	efax
+
+%description klprfax
+With this program you can fax by printing to an lpd device.
+
 %package knotes 
 Summary:	KDE Notes
 Summary(pl):	Notes dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description knotes
@@ -224,6 +284,8 @@ widocznych na ekranie.
 Summary:	KDE Process Manager
 Summary(pl):	Zarz±dca procesów dla KDE
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
 %description kpm
@@ -239,12 +301,14 @@ systemu jak np. wielko¶æ u¿ywanej pamiêci czy partycji wymiany,
 wykorzystanie procesora, itp. Masz mo¿liwo¶æ zabijania procesów i
 modyfikowania ich priorytetów.
 
-%package ktimemon
-Summary:	KDE TimeMon
+%package ktimer
+Summary:	KDE Timer
 Group:		X11/Applications
+Group(de):	X11/Applikationen
+Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
 
-%description ktimemon
+%description ktimer
 
 %prep
 %setup -q
@@ -262,14 +326,12 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 
-
-mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Utilities
+mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
 mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
-cp kpm/kpm.desktop $RPM_BUILD_ROOT%{_applnkdir}/Utilities/kpm.desktop
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -277,147 +339,168 @@ rm -rf $RPM_BUILD_ROOT
 %files ark
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
+%attr(755,root,root) %{_libdir}/libark.??
+%attr(755,root,root) %{_libdir}/libark.so.*.*.*
 %{_applnkdir}/Utilities/ark.desktop
-%{_datadir}/doc/kde/HTML/en/ark
 %{_datadir}/apps/ark
-%{_pixmapsdir}/locolor/*x*/apps/ark.png
-%{_pixmapsdir}/hicolor/*x*/apps/ark.png
+%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
+%{_datadir}/services/arkpart.desktop
+%{_pixmapsdir}/*/*/apps/ark.*
+%lang(en) %{_htmldir}/en/ark
 
 %files kab
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab
 %{_applnkdir}/Utilities/kab.desktop
-%{_datadir}/doc/kde/HTML/en/ark
-%{_datadir}/apps/ark
-%{_pixmapsdir}/locolor/*x*/apps/ark.png
-%{_pixmapsdir}/hicolor/*x*/apps/ark.png
+%{_datadir}/apps/kab
+%{_pixmapsdir}/*/*/apps/kab.*
+%lang(en) %{_htmldir}/en/kab
 
 %files karm
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/karm
 %{_applnkdir}/Utilities/karm.desktop
-%{_datadir}/doc/kde/HTML/en/karm
 %{_datadir}/apps/karm
-%{_pixmapsdir}/locolor/*x*/apps/karm.png
-%{_pixmapsdir}/hicolor/*x*/apps/karm.png
+%{_pixmapsdir}/*/*/apps/karm.*
+%lang(en) %{_htmldir}/en/karm
 
 %files kcalc
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
-%{_applnkdir}/Utilities/karm.desktop
-%{_datadir}/doc/kde/HTML/en/kcalc
 %attr(755,root,root) %{_libdir}/kcalc.*
+%{_applnkdir}/Utilities/karm.desktop
 %{_datadir}/apps/kcalc
-%{_pixmapsdir}/locolor/*x*/apps/kcalc.png
-%{_pixmapsdir}/hicolor/*x*/apps/kcalc.png
+%{_pixmapsdir}/*/*/apps/kcalc.*
+%lang(en) %{_htmldir}/en/kcalc
 
 %files kcharselect
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
+%attr(755,root,root) %{_libdir}/libkcharselectapplet.??
+%attr(755,root,root) %{_libdir}/libkcharselectapplet.so.*.*.*
 %{_applnkdir}/Utilities/KCharSelect.desktop
-%{_pixmapsdir}/locolor/*x*/apps/kcharselect.png
-%{_pixmapsdir}/hicolor/*x*/apps/kcharselect.png
+%{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
+%{_pixmapsdir}/*/*/apps/kcharselect.*
 
 %files kdepasswd
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdepasswd
 %{_applnkdir}/Utilities/kdepasswd.desktop
 
+%files kdessh
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kdessh
+
+%files kdf
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/kdf
+%attr(755,root,root) %{_bindir}/kwikdisk
+%attr(755,root,root) %{_libdir}/libkcm_kdf.*
+%{_datadir}/apps/kdf
+%{_applnkdir}/System/kdf.desktop
+%{_applnkdir}/System/kwikdisk.desktop
+%{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
+%{_pixmapsdir}/*/*/apps/kcmdf.*
+%{_pixmapsdir}/*/*/apps/kdf.*
+%{_pixmapsdir}/*/*/apps/kwikdisk.*
+%lang(en) %{_htmldir}/en/kdf
+
 %files kedit
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%{_applnkdir}/Utilities/KEdit.desktop
-%{_datadir}/doc/kde/HTML/en/kedit
+%attr(755,root,root) %{_libdir}/kde2/kedit.*
+%{_applnkdir}/Development/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
-%attr(755,root,root) %{_libdir}/kedit.*
-%{_pixmapsdir}/locolor/*x*/apps/kedit.png
-%{_pixmapsdir}/hicolor/*x*/apps/kedit.png
+%{_pixmapsdir}/*/*/apps/kedit.*
+%lang(en) %{_htmldir}/en/kedit
 
 %files kfind
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfind
-%{_applnkdir}/Kfind.desktop
-%{_datadir}/doc/kde/HTML/en/kfind
-%{_datadir}/apps/kedit
 %attr(755,root,root) %{_libdir}/kfind.*
-%{_pixmapsdir}/locolor/*x*/apps/kfind.png
-%{_pixmapsdir}/hicolor/*x*/apps/kfind.png
+%{_applnkdir}/Kfind.desktop
+%{_datadir}/apps/kfind
+%{_pixmapsdir}/*/*/apps/kfind.*
+%lang(en) %{_htmldir}/en/kfind
 
 %files kfloppy
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
-%{_datadir}/doc/kde/HTML/en/kfloppy
 %{_datadir}/apps/kfloppy
-%{_pixmapsdir}/locolor/*x*/apps/kfloppy.png
-%{_pixmapsdir}/hicolor/*x*/apps/kfloppy.png
+%{_pixmapsdir}/*/*/apps/kfloppy.*
+%lang(en) %{_htmldir}/en/kfloppy
 
 %files khexdit
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_applnkdir}/Utilities/khexedit.desktop
-%{_datadir}/doc/kde/HTML/en/khexedit
 %{_datadir}/apps/khexedit
-%{_pixmapsdir}/locolor/*x*/apps/khexedit.png
-%{_pixmapsdir}/hicolor/*x*/apps/khexedit.png
+%{_pixmapsdir}/*/*/apps/khexedit.*
+%lang(en) %{_htmldir}/en/khexedit
 
 %files kjots
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_applnkdir}/Utilities/Kjots.desktop
-%{_datadir}/doc/kde/HTML/en/kjots
 %{_datadir}/apps/kjots
-%{_pixmapsdir}/locolor/*x*/apps/kjots.png
-%{_pixmapsdir}/hicolor/*x*/apps/kjots.png
+%{_pixmapsdir}/*/*/apps/kjots.*
+%lang(en) %{_htmldir}/en/kjots
 
 %files klaptopdaemon
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptopdaemon
-%{_applnkdir}/Settings/KDE/Information/*.desktop
-%{_applnkdir}/Settings/KDE/PowerControl/*.desktop
+%attr(755,root,root) %{_libdir}/libkcm_laptop.*
+%{_applnkdir}/Settings/KDE/Information/pcmcia.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/battery.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/bwarning.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/cwarning.desktop
+%{_applnkdir}/Settings/KDE/PowerControl/power.desktop
 %{_datadir}/apps/klaptopdaemon
-%attr(755,root,root) %{_libdir}/libkcm_laptop.??
-%{_pixmapsdir}/locolor/*x*/apps/laptop*.png
-%{_pixmapsdir}/hicolor/*x*/apps/laptop*.png
+%{_pixmapsdir}/*/*/apps/laptop_battery.*
+%{_pixmapsdir}/*/*/apps/laptop_pcmcia.*
+%{_pixmapsdir}/*/*/apps/klaptopdaemon.*
 
 %files kljettool
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kljettool
 %{_applnkdir}/Utilities/KLJetTool.desktop
-%{_datadir}/doc/kde/HTML/en/kljettool
 %{_datadir}/apps/kljettool
-%{_pixmapsdir}/locolor/*x*/apps/kljettool.png
-%{_pixmapsdir}/hicolor/*x*/apps/kljettool.png
+%{_pixmapsdir}/*/*/apps/kljettool.*
+%lang(en) %{_htmldir}/en/kljettool
 
 %files klpq
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klpq
 %{_applnkdir}/Utilities/KLpq.desktop
-%{_datadir}/doc/kde/HTML/en/klpq
-%{_pixmapsdir}/locolor/*x*/apps/klpq.png
-%{_pixmapsdir}/hicolor/*x*/apps/klpq.png
+%{_pixmapsdir}/*/*/apps/klpq.*
+%lang(en) %{_htmldir}/en/klpq
+
+%files klprfax
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/klprfax*
+%{_applnkdir}/Utilities/knotes.desktop
+%lang(en) %{_htmldir}/en/klprfax
 
 %files knotes
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/knotes
 %{_applnkdir}/Utilities/knotes.desktop
-%{_datadir}/doc/kde/HTML/en/knotes
 %{_datadir}/apps/knotes
 %{_datadir}/config/knotesrc
-%{_pixmapsdir}/locolor/*x*/apps/knotes.png
-%{_pixmapsdir}/hicolor/*x*/apps/knotes.png
+%{_includedir}/KNotesIface.h
+%{_pixmapsdir}/*/*/apps/knotes.*
+%lang(en) %{_htmldir}/en/knotes
 
 %files kpm
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/kpm*
-%{_applnkdir}/Utilities/kpm.desktop
-%{_datadir}/doc/kde/HTML/en/kpm
-%{_pixmapsdir}/locolor/*x*/apps/kpm.png
-%{_pixmapsdir}/hicolor/*x*/apps/kpm.png
+%attr(755,root,root) %{_bindir}/kpm
+%attr(755,root,root) %{_bindir}/kpmdocked
+%{_applnkdir}/System/kpm.desktop
+%{_pixmapsdir}/*/*/apps/kpm.*
+%lang(en) %{_htmldir}/en/kpm
 
-%files ktimemon
+%files ktimer
 %defattr(644,root,root,755)
-%{_datadir}/doc/kde/HTML/en/
-%{_datadir}/apps/kicker/applets/ktimemon.desktop
-%attr(755,root,root) %{_libdir}/libktimemon.??
-%{_pixmapsdir}/locolor/*x*/apps/ktimemon.png
+%attr(755,root,root) %{_bindir}/ktimer
+%{_applnkdir}/Utilities/ktimer.desktop
