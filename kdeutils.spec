@@ -620,7 +620,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/arkpart.desktop
 %{_pixmapsdir}/*/*/apps/ark.*
 
-%files kab
+%files kab -f kab.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kab3
 %attr(755,root,root) %{_libdir}/kde3/libkab3part*
