@@ -2080,7 +2080,6 @@ cat kcharselectapplet.lang >> kcharselect.lang
 files="ark \
 kcalc \
 kcharselect \
-kdelirc \
 kdf \
 kedit \
 kfloppy \
