@@ -499,7 +499,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
-Requires:	kdebase-kicker >= 9:%{version}
+Requires:	kdebase-desktop >= 9:%{version}
 
 %description ksim
 System Monitor.
@@ -698,7 +698,7 @@ Summary:	Internationalization and localization files for ksim
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ksima
 Group:		X11/Applications
 Requires:	%{name}-ksim = %{epoch}:%{version}-%{release}
-Requires:	kdebase-kicker-i18n >= 9:%{version}
+Requires:	kdebase-desktop-i18n >= 9:%{version}
 
 %description ksim-i18n
 Internationalization and localization files for ksim.
