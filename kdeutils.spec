@@ -1,6 +1,6 @@
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc1
+%define         _kdever         kde-3.1-rc2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -11,7 +11,7 @@ Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
-Version:	3.0.9
+Version:	3.0.98
 Release:	1
 Epoch:		7
 License:	GPL
@@ -242,7 +242,7 @@ Gerenciador de pacotes TAR/comprimidos do KDE.
 Summary:	Intuitive tool for burning CDs
 Summary(pl):	Intuicyjne narzêdzie do wypalania CD
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Requires:	cdrtools
 Requires:	cdrtools-cdda2wav
 Requires:	cdrtools-mkisofs
@@ -420,7 +420,7 @@ Mostra o status de espaço em disco.
 Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	kdelibs >= %{version}
 Obsoletes:	kedit
 Obsoletes:      kdeutils-cdbakeoven                                             
@@ -442,22 +442,6 @@ Prosty edytor tekstu dla KDE.
 
 %description kedit -l pt_BR
 Editor de texto melhorado do KDE.
-
-%package kfind
-Summary:	KDE Find
-Summary(pl):	find dla KDE
-Summary(pt_BR):	Ferramenta de procura de arquivos
-Group:		X11/Applications
-Requires:	kdelibs >= %{version}
-
-%description kfind
-Find Util.
-
-%description kfind -l pl
-Wyszukiwarka plików dla KDE.
-
-%description kfind -l pt_BR
-Ferramenta de procura de arquivos.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
@@ -492,7 +476,7 @@ Ferramenta de formatação de disquetes.
 Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
-Group:		X11/Applications
+Group:		X11/Applications/Editors
 Requires:	kdelibs >= %{version}
 Obsoletes:	khexedit
 Obsoletes:      kdeutils-cdbakeoven                                             
@@ -680,7 +664,7 @@ Monitor gráfico de processos e do sistema.
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Obsoletes:	kregexpeditor
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
@@ -703,7 +687,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor
 Group:		X11/Applications
-Requires:	kdelibs = %{version}
+Requires:	kdelibs >= %{version}
 Obsoletes:      kdeutils-cdbakeoven                                             
 Obsoletes:      kdeutils-kab                                                    
 Obsoletes:      kdeutils-karm                                                   
@@ -774,7 +758,7 @@ kde_icondir="%{_pixmapsdir}"; export kde_icondir
 %install
 rm -rf $RPM_BUILD_ROOT
 install -d \
-    $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,{Development,Office}/Editors}
+    $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 %{__make} install DESTDIR=$RPM_BUILD_ROOT
 #%{__make} -C kab install DESTDIR=$RPM_BUILD_ROOT
@@ -782,12 +766,11 @@ install -d \
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
-mv -f $ALD/{Editors,Office/Editors}/KEdit.desktop
 mv -f $ALD/{Settings/[!K]*,Settings/KDE}
 mv -f $ALD/{Settingsmenu/*.desktop,Settings}
 mv -f $ALD/{System/More/*.desktop,System}  
 mv -f $ALD/{Utilities/More/*.desktop,Utilities}
-mv -f $ALD/{Utilities/khexedit.desktop,Development/Editors}
+mv -f $ALD/{Utilities/khexedit.desktop,Editors}
 
 #mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
@@ -927,7 +910,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %attr(755,root,root) %{_bindir}/kedit
 %attr(755,root,root) %{_libdir}/kedit.*
 %{_datadir}/apps/kedit
-%{_applnkdir}/Office/Editors/KEdit.desktop
+%{_applnkdir}/Editors/KEdit.desktop
 %{_pixmapsdir}/*/*/apps/kedit.*
 
 %files kfloppy -f kfloppy.lang
@@ -940,7 +923,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_datadir}/apps/khexedit
-%{_applnkdir}/Development/Editors/khexedit.desktop
+%{_applnkdir}/Editors/khexedit.desktop
 %{_pixmapsdir}/*/*/apps/khexedit.*
 
 %files kjots -f kjots.lang
