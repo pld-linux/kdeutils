@@ -195,10 +195,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n karm
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/KArm.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeKArm
-%attr(755, root, root) /usr/X11R6/bin/karm
+%attr(755,root,root) /usr/X11R6/bin/karm
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/karm
 /usr/X11R6/share/kde/icons/karm.xpm
 /usr/X11R6/share/kde/icons/mini/karm.xpm
@@ -224,10 +224,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kcalc
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/kcalc.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdekcalc
-%attr(755, root, root) /usr/X11R6/bin/kcalc
+%attr(755,root,root) /usr/X11R6/bin/kcalc
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kcalc
 %lang(de) /usr/X11R6/share/kde/doc/HTML/de/kcalc
 /usr/X11R6/share/kde/icons/mini/kcalc.xpm
@@ -255,10 +255,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kedit
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Applications/KEdit.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeKEdit
-%attr(755, root, root) /usr/X11R6/bin/kedit
+%attr(755,root,root) /usr/X11R6/bin/kedit
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kedit
 /usr/X11R6/share/kde/icons/mini/kedit.xpm
 /usr/X11R6/share/kde/icons/kedit.xpm
@@ -288,13 +288,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kfloppy
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/KFloppy.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeKFloppy
-%attr(755, root, root) /usr/X11R6/bin/kfloppy
-%attr(755, root, root) /usr/X11R6/bin/kmkdosfs
-%attr(755, root, root) /usr/X11R6/bin/kfdformat
-%attr(755, root, root) /usr/X11R6/bin/kmke2fs
+%attr(755,root,root) /usr/X11R6/bin/kfloppy
+%attr(755,root,root) /usr/X11R6/bin/kmkdosfs
+%attr(755,root,root) /usr/X11R6/bin/kfdformat
+%attr(755,root,root) /usr/X11R6/bin/kmke2fs
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kfloppy
 /usr/X11R6/share/kde/icons/mini/kfloppy.xpm
 /usr/X11R6/share/kde/icons/kfloppy.xpm
@@ -320,10 +320,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n khexdit
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/khexdit.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdekhexdit
-%attr(755, root, root) /usr/X11R6/bin/khexdit
+%attr(755,root,root) /usr/X11R6/bin/khexdit
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/khexdit
 %lang(it) /usr/X11R6/share/kde/doc/HTML/it/khexdit
 /usr/X11R6/share/kde/icons/mini/khexdit.xpm
@@ -355,10 +355,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kjots
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/Kjots.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeKjots
-%attr(755, root, root) /usr/X11R6/bin/kjots
+%attr(755,root,root) /usr/X11R6/bin/kjots
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kjots
 /usr/X11R6/share/kde/icons/mini/kjots.xpm
 /usr/X11R6/share/kde/icons/kjots.xpm
@@ -369,10 +369,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kljettool
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/KLJetTool.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeKLJetTool
-%attr(755, root, root) /usr/X11R6/bin/kljettool
+%attr(755,root,root) /usr/X11R6/bin/kljettool
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kljettool
 /usr/X11R6/share/kde/icons/mini/kljettool.xpm
 /usr/X11R6/share/kde/icons/kljetlogo.xpm
@@ -394,10 +394,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n knotes
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/knotes.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdeknotes
-%attr(755, root, root) /usr/X11R6/bin/knotes
+%attr(755,root,root) /usr/X11R6/bin/knotes
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/knotes
 /usr/X11R6/share/kde/icons/mini/knotes.xpm
 /usr/X11R6/share/kde/icons/knotes.xpm
@@ -425,10 +425,10 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files -n kzip
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 %config(missingok) /etc/X11/kde/applnk/Utilities/kzip.kdelnk
 %config(missingok) /etc/X11/wmconfig/kdekzip
-%attr(755, root, root) /usr/X11R6/bin/kzip
+%attr(755,root,root) /usr/X11R6/bin/kzip
 %lang(en) /usr/X11R6/share/kde/doc/HTML/en/kzip
 /usr/X11R6/share/kde/icons/mini/kzip.xpm
 /usr/X11R6/share/kde/icons/kzip.xpm
