@@ -1,3 +1,7 @@
+#
+# Conditional build:
+# _with_pixmapsubdirs - leave different depth/resolution icons
+#
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
 Summary(es):	KDE - Utilitarios
@@ -9,13 +13,14 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	3.0.4
-Release:	2
+Release:	3
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.bz2
 # generated from kde-i18n
 Source1:	kde-i18n-%{name}-%{version}.tar.bz2
+Source2:	%{name}-extra_icons.tar.bz2
 Patch0:		%{name}-desktop.patch
 Patch1:		%{name}-kdf-label.patch
 Patch2:		%{name}-kedit-confirmoverwrite.patch
@@ -28,6 +33,7 @@ Patch8:		%{name}-fix-kedit-enable-disable-cut-copy-action.patch
 Patch9:		%{name}-charselectapplet-no-version.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
+BuildRequires:	awk
 BuildRequires:	bzip2
 BuildRequires:	fam-devel
 BuildRequires:	grep
@@ -741,7 +747,29 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_R
 
 #mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
+# create in toplevel %%{_pixmapsdir} links to icons
+for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
+do
+%if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
+	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}	
+%else
+	cp -af $i $RPM_BUILD_ROOT%{_pixmapsdir}
+%endif
+done
+
+bzip2 -dc %{SOURCE2} | tar xf - -C $RPM_BUILD_ROOT%{_pixmapsdir}
+%if %{!?_with_pixmapsubdirs:1}%{?_with_pixmapsubdirs:0}
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
+# resized
+rm -f $RPM_BUILD_ROOT%{_pixmapsdir}/*color/??x??/*/{kcmdf,kdf,klprfax,kwikdisk}.png
+%endif
+
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+
+for f in `find $RPM_BUILD_ROOT%{_applnkdir} -name '.directory' -o -name '*.desktop'` ; do
+	awk -v F=$f '/^Icon=/ && !/\.xpm$/ && !/\.png$/ { $0 = $0 ".png";} { print $0; } END { if(F == ".directory") print "Type=Directory"; }' < $f > $f.tmp
+	mv -f $f{.tmp,}
+done
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -792,7 +820,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/ark
 %{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/arkpart.desktop
-%{_pixmapsdir}/*/*/apps/ark.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/ark.png}
+%{_pixmapsdir}/ark.png
 
 %files kab -f kab.lang
 %defattr(644,root,root,755)
@@ -800,7 +829,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkab3part*
 %{_applnkdir}/Utilities/kab3.desktop
 %{_datadir}/apps/kab3
-%{_pixmapsdir}/*/*/apps/kab3.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kab3.png}
+%{_pixmapsdir}/kab3.png
 %{_datadir}/services/kab3_part.desktop
 
 %files kcalc -f kcalc.lang
@@ -808,7 +838,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcalc
 %attr(755,root,root) %{_libdir}/kcalc.*
 %{_applnkdir}/Utilities/kcalc.desktop
-%{_pixmapsdir}/*/*/apps/kcalc.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kcalc.png}
+%{_pixmapsdir}/kcalc.png
 
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
@@ -816,7 +847,8 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.??
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
-%{_pixmapsdir}/*/*/apps/kcharselect.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kcharselect.png}
+%{_pixmapsdir}/kcharselect.png
 
 %files kdepasswd -f kdepasswd.lang
 %defattr(644,root,root,755)
@@ -836,9 +868,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/System/kdf.desktop
 %{_applnkdir}/System/kwikdisk.desktop
 %{_applnkdir}/Settings/KDE/Information/kcmdf.desktop
-%{_pixmapsdir}/*/*/apps/kcmdf.*
-%{_pixmapsdir}/*/*/apps/kdf.*
-%{_pixmapsdir}/*/*/apps/kwikdisk.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kcmdf.png}
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kdf.png}
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kwikdisk.png}
+%{_pixmapsdir}/kcmdf.png
+%{_pixmapsdir}/kdf.png
+%{_pixmapsdir}/kwikdisk.png
 
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
@@ -846,27 +881,31 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kedit.*
 %{_applnkdir}/Editors/KEdit.desktop
 %{_datadir}/apps/kedit
-%{_pixmapsdir}/*/*/apps/kedit.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kedit.png}
+%{_pixmapsdir}/kedit.png
 
 %files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_applnkdir}/Utilities/KFloppy.desktop
-%{_pixmapsdir}/*/*/apps/kfloppy.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kfloppy.png}
+%{_pixmapsdir}/kfloppy.png
 
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_applnkdir}/Utilities/khexedit.desktop
 %{_datadir}/apps/khexedit
-%{_pixmapsdir}/*/*/apps/khexedit.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/khexedit.png}
+%{_pixmapsdir}/khexedit.png
 
 %files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_applnkdir}/Utilities/Kjots.desktop
 %{_datadir}/apps/kjots
-%{_pixmapsdir}/*/*/apps/kjots.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kjots.png}
+%{_pixmapsdir}/kjots.png
 
 %files klaptopdaemon -f klaptopdaemon.lang
 %defattr(644,root,root,755)
@@ -880,29 +919,33 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Settings/KDE/PowerControl/power.desktop
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/klaptopdaemon.desktop
-%{_pixmapsdir}/*/*/apps/laptop_battery.*
-%{_pixmapsdir}/*/*/apps/laptop_pcmcia.*
-%{_pixmapsdir}/*/*/apps/klaptopdaemon.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/laptop_*.png}
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/klaptopdaemon.png}
+%{_pixmapsdir}/laptop_*.png
+%{_pixmapsdir}/klaptopdaemon.png
 
 %files kljettool -f kljettool.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kljettool
 %{_applnkdir}/Utilities/KLJetTool.desktop
 %{_datadir}/apps/kljettool
-%{_pixmapsdir}/*/*/apps/kljettool.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/kljettool.png}
+%{_pixmapsdir}/kljettool.png
 
 %files klpq -f klpq.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klpq
 %{_applnkdir}/Utilities/KLpq.desktop
-%{_pixmapsdir}/*/*/apps/klpq.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/klpq.png}
+%{_pixmapsdir}/klpq.png
 
 %files klprfax -f klprfax.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/*fax*
 %attr(755,root,root) %{_bindir}/efix
 %{_applnkdir}/Utilities/klprfax.desktop
-%{_pixmapsdir}/*/*/apps/klprfax.*
+%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/klprfax.png}
+%{_pixmapsdir}/klprfax.png
 %{_mandir}/man1/*fax.1
 %{_mandir}/man1/efix.1
 
@@ -913,14 +956,14 @@ rm -rf $RPM_BUILD_ROOT
 #%{_datadir}/apps/knotes
 #%{_datadir}/config/knotesrc
 #%{_includedir}/KNotesIface.h
-#%{_pixmapsdir}/*/*/apps/knotes.*
+#%{_pixmapsdir}/*/*/apps/knotes.png
 #
 #%files kpm -l kpm.lang
 #%defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/kpm
 #%attr(755,root,root) %{_bindir}/kpmdocked
 #%{_applnkdir}/System/kpm.desktop
-#%{_pixmapsdir}/*/*/apps/kpm.*
+#%{_pixmapsdir}/*/*/apps/kpm.png
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
