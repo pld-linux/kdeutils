@@ -24,6 +24,7 @@ Patch5:		%{name}-fix-klaptodeamon-mem-leak3.patch
 Patch6:		%{name}-use-klineeditdlg.patch
 Patch7:		%{name}-fix-kdf-mem-leak.patch
 Patch8:		%{name}-fix-kedit-enable-disable-cut-copy-action.patch
+Patch9:		%{name}-charselectapplet-no-version.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -706,6 +707,7 @@ que usem as bibliotecas do kdeutils
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 kde_htmldir="%{_htmldir}"; export kde_htmldir
@@ -771,10 +773,6 @@ cat kcmlaptop.lang >> klaptopdaemon.lang
 # Does not build:
 %find_lang kcardchooser	--with-kde
 
-cd $RPM_BUILD_ROOT%{_libdir}/kde3
-ln -sf kcharselectapplet.so.1.0.0 kcharselectapplet.so.1
-cd -
-
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -813,8 +811,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.la
-%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.so.*
+%attr(755,root,root) %{_libdir}/kde3/kcharselectapplet.??
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_pixmapsdir}/*/*/apps/kcharselect.*
