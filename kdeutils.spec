@@ -1,10 +1,10 @@
 #
 # Conditional build:
-%bcond_without  i18n    # dont build i18n subpackage
+%bcond_with  i18n    # don't build i18n subpackage
 #
-%define		_state		stable
-%define		_ver		3.2.0
-##%define		_snap		040110
+%define		_state		snapshots
+%define		_ver		3.2.90
+%define		_snap		040206
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -15,18 +15,16 @@ Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
-Version:	%{_ver}
-Release:	3
+Version:	%{_ver}.%{_snap}
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
-# Source0-md5:	988480b534c1fab9003f624edb87e7a7
-#Source0:	http://ep09.pld-linux.org/~djurban/kde/%{name}-%{version}.tar.bz2
-%if %{with i18n}
-Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	e63a7e83445904676217d3f09243ce90
-%endif
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{version}.tar.bz2
+Source0:	http://ep09.pld-linux.org/~adgor/kde/%{name}-%{_snap}.tar.bz2
+##%% Source0-md5:	988480b534c1fab9003f624edb87e7a7
+#Source1:        http://ep09.pld-linux.org/~djurban/kde/i18n/kde-i18n-%{name}-%{version}.tar.bz2
+##%% Source1-md5:	e63a7e83445904676217d3f09243ce90
 Patch0:		%{name}-kdf-label.patch
 #Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -43,6 +41,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -481,6 +480,19 @@ KMilo module for PowerBooks support.
 %description kmilo-powerbook -l pl
 Modu³ KMilo dla PowerBooków.
 
+%package kmilo-thinkpad
+Summary:	ThinkPad KMilo module
+Summary(pl):	Modu³ KMilo dla ThinkPadów
+Group:		X11/Applications
+Requires:	kdebase-core >= 9:%{version}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+
+%description kmilo-thinkpad
+KMilo module for ThinkPads support.
+
+%description kmilo-thinkpad -l pl
+Modu³ KMilo dla ThinkPadów.
+
 %package kregexpeditor
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
@@ -811,7 +823,7 @@ Internationalization and localization files for kdepasswd.
 Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 
 %prep
-%setup -q 
+%setup -q -n %{name}-%{_snap}
 %patch0 -p1
 #%patch1 -p1
 #%patch2 -p1
@@ -820,12 +832,14 @@ Pliki umiêdzynarodawiaj±ce dla kdepasswd.
 
 %build
 cp /usr/share/automake/config.sub admin
+
+export UNSERMAKE=/usr/share/unsermake/unsermake
+
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
-	--with-qt-libraries=%{_libdir} \
 	--disable-rpath \
-	--enable-final
+	--with-qt-libraries=%{_libdir}
 
 %{__make}
 
@@ -853,6 +867,7 @@ fi
 %endif
 
 %find_lang ark			--with-kde
+%find_lang irkick		--with-kde
 %find_lang KRegExpEditor	--with-kde
 %find_lang kcalc		--with-kde
 %find_lang kcharselect		--with-kde
@@ -860,11 +875,14 @@ fi
 %find_lang kdf			--with-kde
 %find_lang blockdevices		--with-kde
 cat blockdevices.lang >> kdf.lang
+%find_lang kcmlirc		--with-kde
+cat kcmlirc.lang >> irkick.lang
 %find_lang kedit		--with-kde
 %find_lang kfloppy		--with-kde
 %find_lang kgpg			--with-kde
 %find_lang khexedit		--with-kde
 %find_lang kjots		--with-kde
+
 %if %{with i18n}
 %find_lang klaptopdaemon        --with-kde
 %else
@@ -881,10 +899,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 
 %if %{with i18n}
 %find_lang kdelirc              --with-kde
-%find_lang irkick	        --with-kde
-%find_lang kcmlirc              --with-kde
-cat irkick.lang >> kdelirc.lang
-cat kcmlirc.lang >> kdelirc.lang
+cat kdelirc.lang >> irkick.lang
 
 %find_lang kwalletmanager	--with-kde
 cat kwalletmanager.lang >> kwallet.lang
@@ -912,6 +927,7 @@ cat kcharselectapplet.lang >> kcharselect.lang
 %endif
 
 files="ark \
+irkick \
 kcalc \
 kcharselect \
 kdf \
@@ -976,7 +992,7 @@ rm -rf $RPM_BUILD_ROOT
 %files ksim-i18n -f ksim.lang
 %files ktimer-i18n -f ktimer.lang
 %files kwalletmanager-i18n -f kwallet.lang
-%files kdelirc-i18n -f kdelirc.lang
+%files kdelirc-i18n -f irkick.lang
 %files userinfo-i18n -f userinfo.lang
 %files kdessh-i18n -f kdessh.lang
 %files kdepasswd-i18n -f kdepasswd.lang
@@ -1024,11 +1040,12 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
+%{_datadir}/apps/kconf_update/kcharselect.upd
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
 
-%files kdelirc 
+%files kdelirc -f irkick_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
@@ -1151,6 +1168,15 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kmilo_powerbook.la
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
+
+%files kmilo-thinkpad
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kcm_thinkpad.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_thinkpad.so
+%{_libdir}/kde3/kmilo_thinkpad.la
+%attr(755,root,root) %{_libdir}/kde3/kmilo_thinkpad.so
+%{_datadir}/services/kmilo/kmilo_thinkpad.desktop
+%{_desktopdir}/kde/thinkpad.desktop
 
 %files klaptopdaemon -f klaptopdaemon_en.lang
 %defattr(644,root,root,755)
