@@ -12,7 +12,7 @@ Requires:	qt >= 1.44, kdelibs = %{version}
 Vendor:		The KDE Team
 BuildRoot:	/tmp/%{name}-%{version}-root
 
-%define _prefix	/usr/X11R6
+%define 	_prefix		/usr/X11R6
 
 %description
 KDE utilities.
@@ -272,13 +272,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files ark -f ark.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/ark.kdelnk
 
-%attr(755, root, root) %{_bindir}/ark
+%attr(755,root,root) %{_bindir}/ark
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/ark
+%{_datadir}/kde/doc/HTML/en/ark
 
 %{_datadir}/kde/icons/ark.xpm
 %{_datadir}/kde/icons/mini/ark.xpm
@@ -288,17 +288,17 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kab -f kab.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/kab.kdelnk
 
-%attr(755, root, root) %{_bindir}/kab
-%attr(755, root, root) %{_bindir}/kabapi_test
+%attr(755,root,root) %{_bindir}/kab
+%attr(755,root,root) %{_bindir}/kabapi_test
 
 %{_datadir}/kde/apps/kab
 
 %lang(de) %{_datadir}/kde/doc/HTML/de/kab
-%lang(en) %{_datadir}/kde/doc/HTML/en/kab
+%{_datadir}/kde/doc/HTML/en/kab
 
 %{_datadir}/kde/icons/kab.xpm
 %{_datadir}/kde/icons/mini/kab.xpm
@@ -308,13 +308,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files karm -f karm.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/KArm.kdelnk
 
-%attr(755, root, root) %{_bindir}/karm
+%attr(755,root,root) %{_bindir}/karm
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/karm
+%{_datadir}/kde/doc/HTML/en/karm
 
 %{_datadir}/kde/icons/karm.xpm
 %{_datadir}/kde/icons/mini/karm.xpm
@@ -324,16 +324,16 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kcalc -f kcalc.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/kcalc.kdelnk
 
-%attr(755, root, root) %{_bindir}/kcalc
+%attr(755,root,root) %{_bindir}/kcalc
 
 %{_datadir}/kde/apps/kcalc
 
 %lang(de) %{_datadir}/kde/doc/HTML/de/kcalc
-%lang(en) %{_datadir}/kde/doc/HTML/en/kcalc
+%{_datadir}/kde/doc/HTML/en/kcalc
 
 %{_datadir}/kde/icons/mini/kcalc.xpm
 %{_datadir}/kde/icons/kcalc.xpm
@@ -343,15 +343,15 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kedit -f kedit.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Applications/KEdit.kdelnk
 
-%attr(755, root, root) %{_bindir}/kedit
+%attr(755,root,root) %{_bindir}/kedit
 
 %{_datadir}/kde/apps/kedit/
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/kedit
+%{_datadir}/kde/doc/HTML/en/kedit
 
 %{_datadir}/kde/icons/mini/kedit.xpm
 %{_datadir}/kde/icons/kedit.xpm
@@ -361,18 +361,18 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kfloppy -f kfloppy.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/KFloppy.kdelnk
 
-%attr(755, root, root) %{_bindir}/kfdformat
-%attr(755, root, root) %{_bindir}/kfloppy
-%attr(755, root, root) %{_bindir}/kmkdosfs
-%attr(755, root, root) %{_bindir}/kmke2fs
+%attr(755,root,root) %{_bindir}/kfdformat
+%attr(755,root,root) %{_bindir}/kfloppy
+%attr(755,root,root) %{_bindir}/kmkdosfs
+%attr(755,root,root) %{_bindir}/kmke2fs
 
 %{_datadir}/kde/apps/kfloppy
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/kfloppy
+%{_datadir}/kde/doc/HTML/en/kfloppy
 
 %{_datadir}/kde/icons/mini/kfloppy.xpm
 %{_datadir}/kde/icons/kfloppy.xpm
@@ -382,13 +382,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files khexdit -f khexdit.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/khexdit.kdelnk
 
-%attr(755, root, root) %{_bindir}/khexdit
+%attr(755,root,root) %{_bindir}/khexdit
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/khexdit
+%{_datadir}/kde/doc/HTML/en/khexdit
 %lang(it) %{_datadir}/kde/doc/HTML/it/khexdit
 
 %{_datadir}/kde/icons/mini/khexdit.xpm
@@ -399,15 +399,15 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kjots -f kjots.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/Kjots.kdelnk
 
-%attr(755, root, root) %{_bindir}/kjots
+%attr(755,root,root) %{_bindir}/kjots
 
 %{_datadir}/kde/apps/kjots
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/kjots
+%{_datadir}/kde/doc/HTML/en/kjots
 
 %{_datadir}/kde/icons/mini/kjots.xpm
 %{_datadir}/kde/icons/kjots.xpm
@@ -417,11 +417,11 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files klipper -f klipper.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/klipper.kdelnk
 
-%attr(755, root, root) %{_bindir}/klipper
+%attr(755,root,root) %{_bindir}/klipper
 
 %{_datadir}/kde/icons/mini/klipper.xpm
 %{_datadir}/kde/icons/klipper.xpm
@@ -431,13 +431,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files kljettool -f kljettool.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/KLJetTool.kdelnk
 
-%attr(755, root, root) %{_bindir}/kljettool
+%attr(755,root,root) %{_bindir}/kljettool
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/kljettool
+%{_datadir}/kde/doc/HTML/en/kljettool
 
 %{_datadir}/kde/icons/mini/kljettool.xpm
 %{_datadir}/kde/icons/kljetlogo.xpm
@@ -447,13 +447,13 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files klpq -f klpq.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/KLpq.kdelnk
 
-%attr(755, root, root) %{_bindir}/klpq
+%attr(755,root,root) %{_bindir}/klpq
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/klpq
+%{_datadir}/kde/doc/HTML/en/klpq
 
 %{_datadir}/kde/icons/mini/klpq.xpm
 %{_datadir}/kde/icons/klpq.xpm
@@ -463,15 +463,15 @@ rm -rf $RPM_BUILD_ROOT
 #################################################
 
 %files knotes -f knotes.lang
-%defattr(644, root, root, 755)
+%defattr(644,root,root,755)
 
 %config(missingok) /etc/X11/kde/applnk/Utilities/knotes.kdelnk
 
-%attr(755, root, root) %{_bindir}/knotes
+%attr(755,root,root) %{_bindir}/knotes
 
 %{_datadir}/kde/apps/knotes/
 
-%lang(en) %{_datadir}/kde/doc/HTML/en/knotes
+%{_datadir}/kde/doc/HTML/en/knotes
 
 %{_datadir}/kde/icons/mini/knotes.xpm
 %{_datadir}/kde/icons/knotes.xpm
