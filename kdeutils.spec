@@ -12,7 +12,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1.1
+Release:	1.2
 Epoch:		8
 License:	GPL
 Group:		X11/Applications
@@ -20,7 +20,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.
 # Source0-md5:	21f3fa1d110a8cf8cb1a140745f90211
 # generated from kde-i18n
 Source1:	ftp://blysk.ds.pg.gda.pl/linux/kde-i18n-package/%{version}/kde-i18n-%{name}-%{version}.tar.bz2
-# Source1-md5:	9b250194151a1b42cb08452f18e9b7d3
+# Source1-md5:	b2e16a171c261a63a3898e81f82f9dad
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -29,8 +29,8 @@ BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	fam-devel
 BuildRequires:	grep
-BuildRequires:	kdebase-devel >= %{version}
-BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	kdebase-devel >= 8:%{version}
+BuildRequires:	kdelibs-devel >= 8:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
@@ -186,8 +186,8 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kde
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Requires:	kdelibs-devel >= %{version}
-Requires:	kdebase-devel >= %{version}
+Requires:	kdelibs-devel >= 8:%{version}
+Requires:	kdebase-devel >= 8:%{version}
 Obsoletes:	kregexpeditor-devel
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -217,7 +217,7 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Requires:	konqueror >= %{version}
+Requires:	konqueror >= 8:%{version}
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
@@ -243,7 +243,7 @@ Gerenciador de pacotes TAR/comprimidos do KDE.
 Summary:	Intuitive tool for burning CDs
 Summary(pl):	Intuicyjne narzêdzie do wypalania CD
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Requires:	cdrtools
 Requires:	cdrtools-cdda2wav
 Requires:	cdrtools-mkisofs
@@ -274,7 +274,7 @@ Summary:	KDE Address Book
 Summary(pl):	Ksi±¿ka adresowa dla KDE
 Summary(pt_BR):	Gerenciador do livro de endereços
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 
 %description kab
 Kab is a simple address book for KDE.
@@ -290,7 +290,7 @@ Summary:	KDE Calculator
 Summary(pl):	Kalkulator dla KDE
 Summary(pt_BR):	Calculadora do KDE
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kcalc
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -317,7 +317,7 @@ Summary:	KDE Character Selector
 Summary(pl):	Wybierajka znaków dla KDE
 Summary(pt_BR):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
-Requires:	kdebase-kicker >= %{version}
+Requires:	kdebase-kicker >= 8:%{version}
 Obsoletes:	kcharselect
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -341,7 +341,7 @@ Summary:	KDE Passwd
 Summary(pl):	passwd dla KDE
 Summary(pt_BR):	Ferramenta de mudança de senha
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Obsoletes:	kdepasswd
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -368,7 +368,7 @@ Summary:	KDE SSH Frontend
 Summary(pl):	Frontend SSH dla KDE
 Summary(pt_BR):	Ferramenta de execução remota de programas
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Obsoletes:	kdessh
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -395,7 +395,7 @@ Summary:	KDE Disk space GUI
 Summary(pl):	df dla KDE
 Summary(pt_BR):	Mostra o status de espaço em disco
 Group:		X11/Applications
-Requires:	kdebase-infocenter >= %{version}
+Requires:	kdebase-infocenter >= 8:%{version}
 Obsoletes:	kdf
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -422,7 +422,7 @@ Summary:	KDE Text Editor
 Summary(pl):	Edytor tekstu dla KDE
 Summary(pt_BR):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kedit
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -449,7 +449,7 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Requires:	dosfstools
 Obsoletes:	kfloppy
 Obsoletes:	kdeutils-cdbakeoven
@@ -478,7 +478,7 @@ Summary:	KDE Hex Editor
 Summary(pl):	Edytor szesnastkowy dla KDE
 Summary(pt_BR):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
-Requires:	konqueror >= %{version}
+Requires:	konqueror >= 8:%{version}
 Obsoletes:	khexedit
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -505,7 +505,7 @@ Summary:	KDE Note taker
 Summary(pl):	Notatnik dla KDE
 Summary(pt_BR):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kjots
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -533,7 +533,7 @@ Summary:	KDE Laptop Daemon
 Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Obsoletes:	laptop
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -560,7 +560,7 @@ Summary:	KDE LaserJet Tool
 Summary(pl):	Konfigurator drukarek LaserJet dla KDE
 Summary(pt_BR):	Interface de configuração de impressora HP Laserjet
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kljettool
 
 %description kljettool
@@ -586,7 +586,7 @@ Summary:	KDE Print Manager
 Summary(pl):	Zarz±dca wydruku dla KDE
 Summary(pt_BR):	Interface para gerenciamento das filas de impressão
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	klpq
 
 %description klpq
@@ -607,7 +607,7 @@ Summary:	KDE LPD fax frontend using efax
 Summary(pl):	Frontend do faksu via lpd dla KDE
 Summary(pt_BR):	Interface para impressão em saída de Fax
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 Requires:	efax
 Obsoletes:	klprfax
 
@@ -625,7 +625,7 @@ Summary:	KDE Notes
 Summary(pl):	Notes dla KDE
 Summary(pt_BR):	Pequeno editor de texto para guardar notas rápidas
 Group:		X11/Applications
-Requires:	kdelibs >= %{version}
+Requires:	kdelibs >= 8:%{version}
 
 %description knotes
 KNotes is ment to be a really usable and good looking notes
@@ -643,7 +643,7 @@ Summary:	KDE Process Manager
 Summary(pl):	Zarz±dca procesów dla KDE
 Summary(pt_BR):	Monitor gráfico de processos e do sistema
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 
 %description kpm
 kpm allows you to view and modify the processes of your Linux
@@ -665,7 +665,7 @@ Monitor gráfico de processos e do sistema.
 Summary:	Graphical regular expression editor
 Summary(pl):	Graficzny edytor wyra¿eñ regularnych
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kregexpeditor
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -688,7 +688,7 @@ Graficzny edytor wyra¿eñ regularnych.
 Summary:	K System Information Monitor
 Summary(pl):	K System Information Monitor
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
 Obsoletes:	kdeutils-karm
@@ -711,7 +711,7 @@ Summary:	KDE Timer
 Summary(pl):	Zegarek KDE
 Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
-Requires:	kdebase-core >= %{version}
+Requires:	kdebase-core >= 8:%{version}
 Obsoletes:	ktimer
 Obsoletes:	kdeutils-cdbakeoven
 Obsoletes:	kdeutils-kab
@@ -762,13 +762,13 @@ done
 
 %install
 rm -rf $RPM_BUILD_ROOT
+install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-%{__make} install DESTDIR=$RPM_BUILD_ROOT
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT
 
 # Doesn't build.
 #%%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
-
-install -d $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
 ALD=$RPM_BUILD_ROOT%{_applnkdir}
 mv -f $ALD/{Settings/[!K]*,Settings/KDE}
@@ -777,7 +777,7 @@ mv -f $ALD/{System/More/*.desktop,System}
 mv -f $ALD/{Utilities/More/*.desktop,Utilities}
 mv -f $ALD/{Utilities/khexedit.desktop,Editors}
 
-#bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
 %find_lang ark			--with-kde
 %find_lang KRegExpEditor	--with-kde
