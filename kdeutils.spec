@@ -1,11 +1,11 @@
 
 %define		_state		snapshots
 %define		_ver		3.2.90
-%define		_snap		040508
+%define		_snap		040525
 %define		_packager	adgor
 
-%define		_minlibsevr	9:3.2.90.040503
-%define		_minbaseevr	9:3.2.90.040503
+%define		_minlibsevr	9:3.2.90.040524
+%define		_minbaseevr	9:3.2.90.040524
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -17,7 +17,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}.%{_snap}
-Release:	2
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -41,7 +41,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
-BuildRequires:	unsermake
+BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -561,18 +561,6 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
-# Workaround for doc caches (unsermake bug?)
-cd doc
-for i in `find . -name index.cache.bz2 | grep -v kdelirc`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -
-cd doc/kdelirc
-for i in `find . -name index.cache.bz2 | grep -v kdelirc`; do
-	install -c -p -m 644 $i $RPM_BUILD_ROOT%{_kdedocdir}/en/$i
-done
-cd -
-
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 
 %find_lang ark			--with-kde
@@ -580,6 +568,7 @@ mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 %find_lang KRegExpEditor	--with-kde
 %find_lang kcalc		--with-kde
 %find_lang kcharselect		--with-kde
+%find_lang kcontrol		--with-kde
 %find_lang kdf			--with-kde
 %find_lang blockdevices		--with-kde
 cat blockdevices.lang >> kdf.lang
@@ -590,41 +579,9 @@ cat kcmlirc.lang >> irkick.lang
 %find_lang kgpg			--with-kde
 %find_lang khexedit		--with-kde
 %find_lang kjots		--with-kde
-
-files="\
-	ark \
-	irkick \
-	kcalc \
-	kcharselect \
-	kdf \
-	kedit \
-	kfloppy \
-	kgpg \
-	khexedit \
-	kjots \
-	klaptopdaemon \
-	KRegExpEditor \
-	ksim \
-	ktimer \
-	kwallet"
-
-for i in $files; do
-	> ${i}_en.lang
-        echo "%defattr(644,root,root,755)" > ${i}_en.lang
-	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
-	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
-	mv ${i}.lang.1 ${i}.lang
-done
-
-durne=`ls -1 *.lang|grep -v _en`
-
-for i in $durne; do
-	echo $i >> control
-	grep -v en\/ $i|grep -v apidocs >> ${i}.1
-	if [ -f ${i}.1 ] ; then
-		mv ${i}.1 ${i}
-	fi
-done
+%find_lang ksim			--with-kde
+%find_lang ktimer		--with-kde
+%find_lang kwallet		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -649,23 +606,27 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libksimcore.so
 %{_includedir}/*
 
-%files ark -f ark_en.lang
+%files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %{_libdir}/libkdeinit_ark.la
 %attr(755,root,root) %{_libdir}/libkdeinit_ark.so
 %{_libdir}/kde3/ark.la
 %attr(755,root,root) %{_libdir}/kde3/ark.so
+%{_libdir}/kde3/libarkplugin.la
+%attr(755,root,root) %{_libdir}/kde3/libarkplugin.so
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
+%{_datadir}/applnk/.hidden/arkplugin.desktop
 %{_datadir}/apps/ark
-%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
-%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
+#%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
+#%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/services/ark_part.desktop
+%{_datadir}/services/ark_plugin.desktop
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
 
-%files kcalc -f kcalc_en.lang
+%files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %{_libdir}/libkdeinit_kcalc.la
@@ -678,7 +639,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kcalc.desktop
 %{_iconsdir}/*/*/apps/kcalc.*
 
-%files kcharselect -f kcharselect_en.lang
+%files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
@@ -688,7 +649,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
 
-%files kdelirc -f irkick_en.lang
+%files kdelirc -f irkick.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
@@ -716,7 +677,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
-%files kdf -f kdf_en.lang
+%files kdf -f kdf.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
@@ -730,7 +691,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/kdf.*
 %{_iconsdir}/*/*/apps/kwikdisk.*
 
-%files kedit -f kedit_en.lang
+%files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %{_libdir}/libkdeinit_kedit.la
@@ -742,13 +703,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KEdit.desktop
 %{_iconsdir}/*/*/apps/kedit.*
 
-%files kfloppy -f kfloppy_en.lang
+%files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_desktopdir}/kde/KFloppy.desktop
 %{_iconsdir}/*/*/apps/kfloppy.*
 
-%files kgpg -f kgpg_en.lang
+%files kgpg -f kgpg.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgpg
 %{_datadir}/apps/kgpg
@@ -759,7 +720,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kgpg.desktop
 %{_iconsdir}/*/*/apps/kgpg.png
 
-%files khexedit -f khexedit_en.lang
+%files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_libdir}/kde3/libkbyteseditwidget.la
@@ -769,7 +730,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
 
-%files kjots -f kjots_en.lang
+%files kjots -f kjots.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
@@ -816,7 +777,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmilo/kmilo_thinkpad.desktop
 %{_desktopdir}/kde/thinkpad.desktop
 
-%files klaptopdaemon -f klaptopdaemon_en.lang
+%files klaptopdaemon -f kcontrol.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %{_libdir}/libkcmlaptop.la
@@ -831,7 +792,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/pcmcia.desktop
 %{_iconsdir}/*/*/*/*laptop*
 
-%files kregexpeditor -f KRegExpEditor_en.lang
+%files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
 %{_libdir}/libkregexpeditorcommon.la
@@ -842,7 +803,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kregexpeditorgui.desktop
 %{_desktopdir}/kde/kregexpeditor.desktop
 
-%files ksim -f ksim_en.lang
+%files ksim -f ksim.lang
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/ksim
 #%{_libdir}/ksim.la
@@ -858,13 +819,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/ksim*.png
 %{_iconsdir}/*/*/devices/ksim*.png
 
-%files ktimer -f ktimer_en.lang
+%files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
 
-%files kwalletmanager -f kwallet_en.lang
+%files kwalletmanager -f kwallet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
 %{_libdir}/kde3/kcm_kwallet.la
