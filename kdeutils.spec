@@ -4,7 +4,7 @@ Summary(es):	KDE - Utilitarios
 Summary(pt_BR):	KDE - Utilitários
 Name:		kdeutils
 version:	2.2.2
-Release:	3
+Release:	4
 Epoch:		6
 License:	GPL
 Group:		X11/Applications
@@ -12,6 +12,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/stable/%{version}/src/%{name}-%{version}.tar.
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	kdelibs-devel >= %{version}
+BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -511,7 +512,6 @@ rm -rf $RPM_BUILD_ROOT
 %files ark
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
-%attr(755,root,root) %{_libdir}/libark.??
 %attr(755,root,root) %{_libdir}/libark.so.*.*.*
 %{_applnkdir}/Utilities/ark.desktop
 %{_datadir}/apps/ark
@@ -548,7 +548,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kcharselect
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%attr(755,root,root) %{_libdir}/libkcharselectapplet.??
 %attr(755,root,root) %{_libdir}/libkcharselectapplet.so.*.*.*
 %{_applnkdir}/Utilities/KCharSelect.desktop
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
@@ -661,7 +660,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_applnkdir}/Utilities/knotes.desktop
 %{_datadir}/apps/knotes
 %{_datadir}/config/knotesrc
-%{_includedir}/KNotesIface.h
 %{_pixmapsdir}/*/*/apps/knotes.*
 %lang(en) %{_htmldir}/en/knotes
 
@@ -680,7 +678,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/lib*.la
-%attr(755,root,root) %{_libdir}/libark.so
-%attr(755,root,root) %{_libdir}/libkcharselectapplet.so
+%attr(755,root,root) %{_libdir}/libark.??
+%attr(755,root,root) %{_libdir}/libkcharselectapplet.??
 %{_includedir}/*
