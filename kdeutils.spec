@@ -561,9 +561,9 @@ install -d $RPM_BUILD_ROOT%{_applnkdir}/{Settings/KDE,Development/Editors}
 #%{__make} -C kcardtools install DESTDIR=$RPM_BUILD_ROOT
 
 mv $RPM_BUILD_ROOT%{_applnkdir}/Editors/KEdit.desktop $RPM_BUILD_ROOT%{_applnkdir}/Development/Editors
-mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl,CDBakeOven} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
+mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_ROOT%{_applnkdir}/Settings/KDE
 
-mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
+#mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
 bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
 
