@@ -27,7 +27,6 @@ Patch2:		%{name}-userinfo.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
-BuildRequires:	ed
 BuildRequires:	kdebase-devel >= 9:%{version}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
@@ -35,6 +34,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
+BuildRequires:	unsermake
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
