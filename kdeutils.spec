@@ -1594,6 +1594,82 @@ Internationalization and localization files for kwalletmanager.
 %description -l pl kwalletmanager-i18n
 Pliki umiêdzynarodawiaj±ce dla kwalletmanager.
 
+%package kdelirc-i18n
+Summary:	Internationalization and localization files for kdelirc
+Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdelirc
+Group:	X11/Applications
+Requires:	%{name}-kwalletmanager = %{epoch}:%{version}-%{release}
+Obsoletes:	kde-i18n-Affrikaans
+Obsoletes:	kde-i18n-Afrikaans
+Obsoletes:	kde-i18n-Arabic
+Obsoletes:	kde-i18n-Azerbaijani
+Obsoletes:	kde-i18n-Bulgarian
+Obsoletes:	kde-i18n-Bosnian
+Obsoletes:	kde-i18n-Catalan
+Obsoletes:	kde-i18n-Czech
+Obsoletes:	kde-i18n-Danish
+Obsoletes:	kde-i18n-German
+Obsoletes:	kde-i18n-Greek
+Obsoletes:	kde-i18n-English_UK
+Obsoletes:	kde-i18n-British
+Obsoletes:	kde-i18n-Esperanto
+Obsoletes:	kde-i18n-Spanish
+Obsoletes:	kde-i18n-Estonian
+Obsoletes:	kde-i18n-Finnish
+Obsoletes:	kde-i18n-French
+Obsoletes:	kde-i18n-Hebrew
+Obsoletes:	kde-i18n-Hindi
+Obsoletes:	kde-i18n-Croatian
+Obsoletes:	kde-i18n-Hungarian
+Obsoletes:	kde-i18n-Indonesian
+Obsoletes:	kde-i18n-Icelandic
+Obsoletes:	kde-i18n-Italian
+Obsoletes:	kde-i18n-Japanese
+Obsoletes:	kde-i18n-Korean
+Obsoletes:	kde-i18n-Lithuanian
+Obsoletes:	kde-i18n-Latvian
+Obsoletes:	kde-i18n-Maltese
+Obsoletes:	kde-i18n-Malay
+Obsoletes:	kde-i18n-Mongolian
+Obsoletes:	kde-i18n-Dutch
+Obsoletes:	kde-i18n-Norwegian
+Obsoletes:	kde-i18n-Norwegian_Bokmaal
+Obsoletes:	kde-i18n-Norwegian_Bookmal
+Obsoletes:	kde-i18n-Norwegian_Nynorsk
+Obsoletes:	kde-i18n-Polish
+Obsoletes:	kde-i18n-Portugnese
+Obsoletes:	kde-i18n-Portuguese
+Obsoletes:	kde-i18n-Brazil
+Obsoletes:	kde-i18n-Brazil_Portugnese
+Obsoletes:	kde-i18n-Brazil_Portuguese
+Obsoletes:	kde-i18n-Romanian
+Obsoletes:	kde-i18n-Russian
+Obsoletes:	kde-i18n-Slovak
+Obsoletes:	kde-i18n-Slovenian
+Obsoletes:	kde-i18n-Serbian
+Obsoletes:	kde-i18n-Swedish
+Obsoletes:	kde-i18n-Tamil
+Obsoletes:	kde-i18n-Thai
+Obsoletes:	kde-i18n-Turkish
+Obsoletes:	kde-i18n-Ukrainian
+Obsoletes:	kde-i18n-Uzbek
+Obsoletes:	kde-i18n-Venda
+Obsoletes:	kde-i18n-Vietnamese
+Obsoletes:	kde-i18n-Xhosa
+Obsoletes:	kde-i18n-Simplified_Chinese
+Obsoletes:	kde-i18n-Chinese
+Obsoletes:	kde-i18n-Chinese-Big5
+Obsoletes:	kde-i18n-Zulu
+Obsoletes:	kde-i18n-kdelibs
+Obsoletes:	kde-i18n
+
+%description kdelirc-i18n
+Internationalization and localization files for kdelirc.
+
+%description -l pl kdelirc-i18n
+Pliki umiêdzynarodawiaj±ce dla kdelirc.
+
+
 %prep
 %setup -q 
 %patch0 -p1
@@ -1644,6 +1720,34 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 %find_lang ksim			--with-kde
 %find_lang ktimer		--with-kde
 %find_lang kwallet		--with-kde
+%find_lang irkick	        --with-kde
+%find_lang kcmlirc              --with-kde
+cat irkick.lang >> kdelirc.lang
+cat kcmlirc.lang >> kdelirc.lang
+
+files="ark \
+kcalc \
+kcharselect \
+kdelirc \
+kdf \
+kedit \
+kfloppy \
+kgpg \
+khexedit \
+kjots \
+klaptopdaemon \
+kregexpeditor \
+ksim \
+ktimer \
+kwalletmanager"
+
+for i in $files; do
+        echo "%defattr(644,root,root,755)" > ${i}_en.lang
+	grep en\/ ${i}.lang|grep -v apidocs >> ${i}_en.lang
+	grep -v apidocs $i.lang|grep -v en\/ > ${i}.lang.1
+	mv ${i}.lang.1 ${i}.lang
+done
+				
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -1674,6 +1778,8 @@ rm -rf $RPM_BUILD_ROOT
 %files ksim-i18n -f ksim.lang
 %files ktimer-i18n -f ktimer.lang
 %files kwalletmanager-i18n -f kwallet.lang
+%files kdelirc -f kdelirc.lang
+
 
 %files devel
 %defattr(644,root,root,755)
@@ -1683,7 +1789,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/libkregexpeditorcommon.so
 %{_libdir}/libksimcore.so
 
-%files ark -f ark.lang
+%files ark -f ark_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
 %{_libdir}/libkdeinit_ark.la
@@ -1699,7 +1805,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
 
-%files kcalc -f kcalc.lang
+%files kcalc -f kcalc_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
 %{_libdir}/libkdeinit_kcalc.la
@@ -1712,7 +1818,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kcalc.desktop
 %{_iconsdir}/*/*/apps/kcalc.*
 
-%files kcharselect -f kcharselect.lang
+%files kcharselect -f kcharselect_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
@@ -1721,7 +1827,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
 
-%files kdelirc
+%files kdelirc -f kdelirc_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
@@ -1754,7 +1860,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdessh
 
-%files kdf -f kdf.lang
+%files kdf -f kdf_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
@@ -1768,7 +1874,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/kdf.*
 %{_iconsdir}/*/*/apps/kwikdisk.*
 
-%files kedit -f kedit.lang
+%files kedit -f kedit_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
 %{_libdir}/libkdeinit_kedit.la
@@ -1780,13 +1886,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KEdit.desktop
 %{_iconsdir}/*/*/apps/kedit.*
 
-%files kfloppy -f kfloppy.lang
+%files kfloppy -f kfloppy_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
 %{_desktopdir}/kde/KFloppy.desktop
 %{_iconsdir}/*/*/apps/kfloppy.*
 
-%files kgpg -f kgpg.lang
+%files kgpg -f kgpg_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kgpg
 %{_datadir}/apps/kgpg
@@ -1797,7 +1903,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kgpg.desktop
 %{_iconsdir}/*/*/apps/kgpg.png
 
-%files khexedit -f khexedit.lang
+%files khexedit -f khexedit_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
 %{_libdir}/kde3/libkbyteseditwidget.la
@@ -1807,7 +1913,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
 
-%files kjots -f kjots.lang
+%files kjots -f kjots_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kjots
 %{_datadir}/apps/kjots
@@ -1845,7 +1951,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
 
-%files klaptopdaemon -f klaptopdaemon.lang
+%files klaptopdaemon -f klaptopdaemon_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %{_libdir}/libkcmlaptop.la
@@ -1860,7 +1966,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/pcmcia.desktop
 %{_iconsdir}/*/*/*/*laptop*
 
-%files kregexpeditor -f KRegExpEditor.lang
+%files kregexpeditor -f KRegExpEditor_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
 %{_libdir}/libkregexpeditorcommon.la
@@ -1871,7 +1977,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kregexpeditorgui.desktop
 %{_desktopdir}/kde/kregexpeditor.desktop
 
-%files ksim -f ksim.lang
+%files ksim -f ksim_en.lang
 %defattr(644,root,root,755)
 #%attr(755,root,root) %{_bindir}/ksim
 #%{_libdir}/ksim.la
@@ -1887,13 +1993,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/ksim*.png
 %{_iconsdir}/*/*/devices/ksim*.png
 
-%files ktimer -f ktimer.lang
+%files ktimer -f ktimer_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
 
-%files kwalletmanager -f kwallet.lang
+%files kwalletmanager -f kwallet_en.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
 %{_libdir}/kde3/kcm_kwallet.la
