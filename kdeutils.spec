@@ -15,7 +15,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -567,7 +567,6 @@ Summary:	Internationalization and localization files for ark
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla arka
 Group:		X11/Applications
 Requires:	%{name}-ark = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description ark-i18n
@@ -581,7 +580,6 @@ Summary:	Internationalization and localization files for kcalc
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcalca
 Group:		X11/Applications
 Requires:	%{name}-kcalc = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kcalc-i18n
@@ -595,7 +593,6 @@ Summary:	Internationalization and localization files for kcharselect
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kcharselecta
 Group:		X11/Applications
 Requires:	%{name}-kcharselect = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kcharselect-i18n
@@ -609,7 +606,6 @@ Summary:	Internationalization and localization files for kdf
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdf
 Group:		X11/Applications
 Requires:	%{name}-kdf = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-infocenter-i18n >= 9:%{version}
 
 %description kdf-i18n
@@ -623,7 +619,6 @@ Summary:	Internationalization and localization files for kedit
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kedita
 Group:		X11/Applications
 Requires:	%{name}-kedit = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kedit-i18n
@@ -637,7 +632,6 @@ Summary:	Internationalization and localization files for kfloppy
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kfloppy
 Group:		X11/Applications
 Requires:	%{name}-kfloppy = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kfloppy-i18n
@@ -651,7 +645,6 @@ Summary:	Internationalization and localization files for kgpg
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kgpg
 Group:		X11/Applications
 Requires:	%{name}-kgpg = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kgpg-i18n
@@ -665,7 +658,6 @@ Summary:	Internationalization and localization files for khexedit
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla khexedita
 Group:		X11/Applications
 Requires:	%{name}-khexedit = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description khexedit-i18n
@@ -679,7 +671,6 @@ Summary:	Internationalization and localization files for kjots
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kjots
 Group:		X11/Applications
 Requires:	%{name}-kjots = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kjots-i18n
@@ -693,7 +684,6 @@ Summary:	Internationalization and localization files for klaptopdaemon
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla klaptopdaemona
 Group:		X11/Applications
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-infocenter-i18n >= 9:%{version}
 
 %description klaptopdaemon-i18n
@@ -707,7 +697,6 @@ Summary:	Internationalization and localization files for kregexpeditor
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kregexpeditora
 Group:		X11/Applications
 Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kregexpeditor-i18n
@@ -721,7 +710,6 @@ Summary:	Internationalization and localization files for ksim
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ksima
 Group:		X11/Applications
 Requires:	%{name}-ksim = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-kicker-i18n >= 9:%{version}
 
 %description ksim-i18n
@@ -735,7 +723,6 @@ Summary:	Internationalization and localization files for ktimer
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla ktimera
 Group:		X11/Applications
 Requires:	%{name}-ktimer = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description ktimer-i18n
 Internationalization and localization files for ktimer.
@@ -748,7 +735,6 @@ Summary:	Internationalization and localization files for kwalletmanager
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kwalletmanagera
 Group:		X11/Applications
 Requires:	%{name}-kwalletmanager = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kwalletmanager-i18n
@@ -762,7 +748,6 @@ Summary:	Internationalization and localization files for kdelirc
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdelirca
 Group:		X11/Applications
 Requires:	%{name}-kdelirc = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core-i18n >= 9:%{version}
 
 %description kdelirc-i18n
@@ -776,7 +761,6 @@ Summary:	Internationalization and localization files for userinfo
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla userinfo
 Group:		X11/Applications
 Requires:       %{name}-userinfo = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 Requires:	kdm-i18n >= 9:%{version}
 
 %description userinfo-i18n
@@ -790,7 +774,6 @@ Summary:	Internationalization and localization files for kdessh
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdessh
 Group:		X11/Applications
 Requires:       %{name}-kdessh = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description kdessh-i18n
 Internationalization and localization files for kdessh.
@@ -803,7 +786,6 @@ Summary:	Internationalization and localization files for kdepasswd
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdepasswd
 Group:		X11/Applications
 Requires:       %{name}-kdepasswd = %{epoch}:%{version}-%{release}
-Requires:	%{name}-i18n = %{epoch}:%{version}-%{release}
 
 %description kdepasswd-i18n
 Internationalization and localization files for kdepasswd.
