@@ -8,30 +8,10 @@
 +  QString m_kdmDir = "/etc/X11/kdm";
    m_userPicsDir = m_kdmDir + KDM_USER_FACES_DIR;
 -  m_facesDir = m_kdmDir + KDM_FACES_DIR;
-+  m_facesDir = KGlobal::dirs()->resourceDirs("data").last() + "userinfo/faces/";
++  m_facesDir = KGlobal::dirs()->resourceDirs("data").last() + "kdm/pics/faces/";
  
 -  KConfig *kdmconfig = new KConfig("kdm/kdmrc", true);
 +  KConfig *kdmconfig = new KConfig( "/etc/X11/kdm/kdmrc", true );
    kdmconfig->setGroup("X-*-Greeter");
    QString fs = kdmconfig->readEntry( "FaceSource" );
    if (fs == QString::fromLatin1("UserOnly"))
---- kdeutils-030329/kdepasswd/userinfo/pics/Makefile.am~	Mon Mar 24 21:19:25 2003
-+++ kdeutils-030329/kdepasswd/userinfo/pics/Makefile.am	Wed Apr  2 02:18:44 2003
-@@ -1,5 +1,5 @@
- 
--picsdir = $(kde_datadir)/kdm/pics/faces
-+picsdir = $(kde_datadir)/userinfo/faces
- pics_DATA = Star.png Star2.png Star3.png Star4.png Stars.png Stars2.png Night.png BlueMarble1.png Butterfly.png Konqui.png Flower.png BeachBall.png
- 
- EXTRA_DIST = $(pics_DATA)
---- kdeutils-030329/kdepasswd/userinfo/pics/Makefile.in~	Sat Mar 29 00:53:30 2003
-+++ kdeutils-030329/kdepasswd/userinfo/pics/Makefile.in	Wed Apr  2 02:19:09 2003
-@@ -253,7 +253,7 @@
- xdg_appsdir = @xdg_appsdir@
- xdg_directorydir = @xdg_directorydir@
- 
--picsdir = $(kde_datadir)/kdm/pics/faces
-+picsdir = $(kde_datadir)/userinfo/faces
- pics_DATA = Star.png Star2.png Star3.png Star4.png Stars.png Stars2.png Night.png BlueMarble1.png Butterfly.png Konqui.png Flower.png BeachBall.png
- 
- EXTRA_DIST = $(pics_DATA)
