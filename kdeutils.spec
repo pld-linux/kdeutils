@@ -1603,7 +1603,7 @@ Pliki umiêdzynarodawiaj±ce dla kwalletmanager.
 Summary:	Internationalization and localization files for kdelirc
 Summary(pl):	Pliki umiêdzynarodawiaj±ce dla kdelirc
 Group:	X11/Applications
-Requires:	%{name}-kwalletmanager = %{epoch}:%{version}-%{release}
+Requires:	%{name}-kdelirc = %{epoch}:%{version}-%{release}
 Obsoletes:	kde-i18n-Affrikaans
 Obsoletes:	kde-i18n-Afrikaans
 Obsoletes:	kde-i18n-Arabic
@@ -1678,7 +1678,7 @@ Pliki umiêdzynarodawiaj±ce dla kdelirc.
 Summary:        Internationalization and localization files for userinfo
 Summary(pl):    Pliki umiêdzynarodawiaj±ce dla userinfo
 Group:  X11/Applications
-Requires:       %{name}-kwalletmanager = %{epoch}:%{version}-%{release}
+Requires:       %{name}-userinfo = %{epoch}:%{version}-%{release}
 Obsoletes:      kde-i18n-Affrikaans
 Obsoletes:      kde-i18n-Afrikaans
 Obsoletes:      kde-i18n-Arabic
@@ -1753,7 +1753,7 @@ Pliki umiêdzynarodawiaj±ce dla userinfo.
 Summary:        Internationalization and localization files for kdessh
 Summary(pl):    Pliki umiêdzynarodawiaj±ce dla kdessh
 Group:  X11/Applications
-Requires:       %{name}-kwalletmanager = %{epoch}:%{version}-%{release}
+Requires:       %{name}-kdessh = %{epoch}:%{version}-%{release}
 Obsoletes:      kde-i18n-Affrikaans
 Obsoletes:      kde-i18n-Afrikaans
 Obsoletes:      kde-i18n-Arabic
@@ -1828,7 +1828,6 @@ Pliki umiêdzynarodawiaj±ce dla kdessh.
 Summary:        Common internationalization and localization files for kdeutils
 Summary(pl):    Wspó³dzielone pliki umiêdzynarodawiaj±ce dla kdeutils
 Group:  X11/Applications
-Requires:       %{name}-kwalletmanager = %{epoch}:%{version}-%{release}
 Obsoletes:      kde-i18n-Affrikaans
 Obsoletes:      kde-i18n-Afrikaans
 Obsoletes:      kde-i18n-Arabic
@@ -1903,7 +1902,7 @@ Pliki umiêdzynarodawiaj±ce dla kdeutils.
 Summary:        Internationalization and localization files for kdepasswd
 Summary(pl):    Pliki umiêdzynarodawiaj±ce dla kdepasswd
 Group:  X11/Applications
-Requires:       %{name}-kwalletmanager = %{epoch}:%{version}-%{release}
+Requires:       %{name}-kdepasswd = %{epoch}:%{version}-%{release}
 Obsoletes:      kde-i18n-Affrikaans
 Obsoletes:      kde-i18n-Afrikaans
 Obsoletes:      kde-i18n-Arabic
@@ -1995,28 +1994,28 @@ cp /usr/share/automake/config.sub admin
 %{__make}
 
 %install
-#rm -rf $RPM_BUILD_ROOT
-#
-##%{__make} install \
-#	DESTDIR=$RPM_BUILD_ROOT \
-#	kde_htmldir=%{_kdedocdir}
+rm -rf $RPM_BUILD_ROOT
 
-#mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
-#
-##%if %{with i18n}
-#if [ -f "%{SOURCE1}" ] ; then
-#	bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
-#	for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
-#		if [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] ; then
-#			rm -f $f
-#		fi
-#	done
-#else
-#	echo "No i18n sources found and building --with i18n. FIXIT!"
-#	exit 1
-#fi
+%{__make} install \
+	DESTDIR=$RPM_BUILD_ROOT \
+	kde_htmldir=%{_kdedocdir}
 
-##%endif
+mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
+
+%if %{with i18n}
+if [ -f "%{SOURCE1}" ] ; then
+	bzip2 -dc %{SOURCE1} | tar xf - -C $RPM_BUILD_ROOT
+	for f in $RPM_BUILD_ROOT%{_datadir}/locale/*/LC_MESSAGES/*.mo; do
+		if [ "`file $f | sed -e 's/.*,//' -e 's/message.*//'`" -le 1 ] ; then
+			rm -f $f
+		fi
+	done
+else
+	echo "No i18n sources found and building --with i18n. FIXIT!"
+	exit 1
+fi
+
+%endif
 	
 
 %find_lang ark			--with-kde
