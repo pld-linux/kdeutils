@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
-%define         _ver		3.1.92
-%define		_snap		031024
+%define         _ver		3.1.93
+%define		_snap		031103
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	efe0be01ebd1dc73d2fb3c348fd9ff4d
+# Source0-md5:	1700509c4d000052e96d5781d0a0ca14
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -34,8 +34,6 @@ BuildRequires:	libxml2-progs
 BuildRequires:	libtool
 BuildRequires:	sed >= 4.0
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		no_install_post_chrpath		1
 
 %description
 KDE utilities. Package includes:
@@ -531,6 +529,7 @@ done
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
+	--disable-rpath \
 	--enable-final
 
 %{__make}
@@ -789,6 +788,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
+%{_iconsdir}/*/*/*/ktimer.png
 
 %files kwalletmanager -f kwallet.lang                                                    
 %defattr(644,root,root,755)    
