@@ -1021,7 +1021,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/KCharSelect.desktop
 %{_iconsdir}/*/*/apps/kcharselect.*
 
-%files kdelirc -f kdelirc_en.lang
+%files kdelirc 
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
 %{_libdir}/libkdeinit_irkick.la
