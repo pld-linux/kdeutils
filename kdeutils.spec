@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.2
-%define		_snap		030518
+%define		_snap		030602
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -18,8 +18,8 @@ Epoch:		8
 License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
+# Source0-md5:	3694483ddb2a54f1461e52ec9b8034a0
 Source0:	http://team.pld.org.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	bffb8ddfad27317b2a38765dc46558bb
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 Patch2:		%{name}-fix-kdf-mem-leak.patch
