@@ -1,6 +1,6 @@
 
-%define         _state          unstable                                        
-%define         _kdever         kde-3.1-beta1
+%define         _state          unstable
+%define         _kdever         kde-3.1-beta2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -833,7 +833,7 @@ cat {kcmlowbatcrit,kcmlowbatwarn,laptop,powerctrl}.lang >> klaptopdaemon.lang
 #%find_lang kcardchooser	--with-kde
 
 %clean
-%{!?_without_clean:rm -rf $RPM_BUILD_ROOT}
+rm -rf $RPM_BUILD_ROOT
 
 #%post   ark -p /sbin/ldconfig
 #%postun ark -p /sbin/ldconfig
