@@ -748,7 +748,7 @@ mv $RPM_BUILD_ROOT%{_applnkdir}/Settings/{Information,PowerControl} $RPM_BUILD_R
 #mv $RPM_BUILD_ROOT%{_applnkdir}/System/{More/,}/ksim.desktop
 
 # create in toplevel %%{_pixmapsdir} links to icons
-for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
+for i in $RPM_BUILD_ROOT%{_pixmapsdir}/hicolor/48x48/apps/{ark,kab3,kcalc,kcharselect,kedit,kfloppy,khexedit,kjots,kljettool,klpq,laptop_battery,laptop_pcmcia}.png
 do
 %if %{?_with_pixmapsubdirs:1}%{!?_with_pixmapsubdirs:0}
 	ln -sf `echo $i | sed "s:^$RPM_BUILD_ROOT%{_pixmapsdir}/::"` $RPM_BUILD_ROOT%{_pixmapsdir}	
@@ -920,9 +920,8 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/klaptopdaemon.desktop
 %{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/laptop_*.png}
-%{?_with_pixmapsubdirs:%{_pixmapsdir}/*/*/apps/klaptopdaemon.png}
 %{_pixmapsdir}/laptop_*.png
-%{_pixmapsdir}/klaptopdaemon.png
+%{_pixmapsdir}/*/*/apps/klaptopdaemon.png
 
 %files kljettool -f kljettool.lang
 %defattr(644,root,root,755)
