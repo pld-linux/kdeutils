@@ -15,7 +15,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -533,17 +533,28 @@ NarzÍdzie do zarz±dzania has≥ami w KDE.
 %patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-ark/ark.desktop
-
+	-e 's/Terminal=0/Terminal=false/' \
+	ark/ark.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
-kcalc/kcalc.desktop
-
+	-e 's/Terminal=0/Terminal=false/' \
+	kcalc/kcalc.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;TextEditor;X-HexEditor;/' \
-khexedit/khexedit.desktop
-
+	-e 's/Terminal=0/Terminal=false/' \
+	khexedit/khexedit.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
-ksim/ksim.desktop
-
+	-e '/\[Desktop Entry\]/aEncoding=UTF-8' \
+	ksim/ksim.desktop
+%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
+	kcharselect/KCharSelect.desktop \
+	kdf/kdf.desktop \
+	kdf/kwikdisk.desktop \
+	kedit/KEdit.desktop \
+	kfloppy/KFloppy.desktop \
+	khexedit/khexedit.desktop \
+	kjots/Kjots.desktop \
+	kregexpeditor/kregexpeditor.desktop \
+	ktimer/ktimer.desktop \
+	kwallet/kwalletmanager.desktop
 
 %build
 cp %{_datadir}/automake/config.sub admin
