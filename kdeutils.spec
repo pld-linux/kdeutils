@@ -1,7 +1,7 @@
 
 %define         _state          snapshots
 %define         _ver		3.1.92
-%define		_snap		031014
+%define		_snap		031024
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -19,7 +19,7 @@ License:	GPL
 Group:		X11/Applications
 #Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{name}-%{_snap}.tar.bz2
 Source0:	http://www.kernel.pl/~adgor/kde/%{name}-%{_snap}.tar.bz2
-# Source0-md5:	fe23d1b799397824bf30bc1df777cce2
+# Source0-md5:	efe0be01ebd1dc73d2fb3c348fd9ff4d
 Patch0:		%{name}-kdf-label.patch
 Patch1:		%{name}-kedit-confirmoverwrite.patch
 #Patch2:		%{name}-fix-kdf-mem-leak.patch
@@ -207,7 +207,7 @@ Summary:	KDE Archive Manager
 Summary(pl):	Zarz±dca archiwów dla KDE
 Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
-Requires:	konqueror >= 9:%{version}
+Requires:	kdebase-core >= 9:%{version}
        
 %description ark
 Ark is a program for managing and quickly extracting archives.
@@ -353,7 +353,7 @@ Ferramenta de formatação de disquetes.
 Summary:	A frontend for gpg
 Summary(pl):	Nak³adka graficzna na gpg
 Group:		X11/Applications
-Requires:	konqueror >= 9:%{version}
+Requires:	kdebase-core >= 9:%{version}
 
 %description kgpg
 kgpg is a simple, free, open source KDE frontend for gpg.
@@ -414,13 +414,31 @@ Wska¼nik zu¿ycia baterii w laptopie dla KDE.
 Miniaplicativo de status de bateria para laptops
 
 %package kmilo
-Summary:	KDE Special Key Notifier
+Summary:	KDE support for various types of hardware input devices
 Summary(pl):	TODO
 Group:		X11/Applications
 Requires:	kdelibs >= 9:%{version}
 
 %description kmilo
-KDE Special Key Notifier
+This is a kded module that can be extended to support various types of
+hardware input devices that exist, such as those on keyboards.
+It presently supports:
+- PowerBooks
+- Sony Vaio Laptops (tested on Vaio PCG-GRX series)
+
+%description kmilo -l pl
+TODO
+
+%package kmilo-kvaio
+Summary:	Sony Vaio KMilo module
+Summary(pl):	TODO
+Group:		X11/Applications
+Requires:	kdebase-core >= 9:%{version}
+Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Obsoletes:	%{name}-kmilo < 9:3.1.2.031022 
+
+%description kmilo-kvaio
+KMilo Module for Sony Vaio Laptop support.
 
 %description kmilo -l pl
 TODO
@@ -487,9 +505,11 @@ Requires:	kdm >= 9:%{version}
 
 %description userinfo
 Changes user account information.
+This module contains kdepasswd program functionality.
 
 %description userinfo -l pl
 Zmienia informacje o koncie u¿ytkownika.
+Ten modu³ zawiera funkcjonaslno¶æ programu kdepasswd.
 
 %prep
 %setup -q -n %{name}-%{_snap}
@@ -507,7 +527,8 @@ done
 
 %{__make} -f admin/Makefile.common cvs
 
-%configure --enable-final
+%configure \
+	--enable-final
 
 %{__make}
 
@@ -701,17 +722,22 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %{_libdir}/libkmilo.la
 %attr(755,root,root) %{_libdir}/libkmilo.so.*.*.*
-%{_libdir}/kde3/kcm_kvaio.la
-%attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
 %{_libdir}/kde3/kded_kmilod.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
 %{_libdir}/kde3/kmilo_generic.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_generic.so
+%{_datadir}/services/kded/kmilod.desktop
+%dir %{_datadir}/services/kmilo
+%{_datadir}/services/kmilo/kmilo_generic.desktop
+%{_datadir}/servicetypes/kmilo
+
+%files kmilo-kvaio
+%defattr(644,root,root,755)
+%{_libdir}/kde3/kcm_kvaio.la
+%attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
 %{_libdir}/kde3/kmilo_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
-%{_datadir}/services/kded/kmilod.desktop
-%{_datadir}/services/kmilo
-%{_datadir}/servicetypes/kmilo
+%{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_desktopdir}/kde/kvaio.desktop
 
 %files klaptopdaemon -f klaptopdaemon.lang
