@@ -1,9 +1,9 @@
 
 %define		_state		stable
-%define		_ver		3.3.2
+%define		_ver		3.4.0
 
-%define		_minlibsevr	9:3.3.2
-%define		_minbaseevr	9:3.3.2
+%define		_minlibsevr	9:3.4.0
+%define		_minbaseevr	9:3.4.0
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -15,14 +15,13 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Icon:		kde-utils.xpm
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_ver}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	bf50db108408da11e2f2fcacd6b46b51
-Patch0:		%{name}-kdf-label.patch
+# Source0-md5:	cb7e5402eedaca816e210d460e22e53a
+#Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -35,7 +34,7 @@ BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
-BuildRequires:	unsermake >= 040511
+#BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -529,11 +528,13 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 
 %prep
 %setup -q
-%patch0 -p1
+#%patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	ark/ark.desktop
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
+	kdelirc/irkick/irkick.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
 	-e 's/Terminal=0/Terminal=false/' \
 	kcalc/kcalc.desktop
@@ -543,6 +544,8 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
 	-e '/\[Desktop Entry\]/aEncoding=UTF-8' \
 	ksim/ksim.desktop
+%{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
+	kdf/kwikdisk.desktop
 %{__sed} -i -e 's/Terminal=0/Terminal=false/' \
 	kcharselect/KCharSelect.desktop \
 	kdf/kdf.desktop \
@@ -566,9 +569,9 @@ done
 %build
 cp /usr/share/automake/config.sub admin
 
-export UNSERMAKE=/usr/share/unsermake/unsermake
+#export UNSERMAKE=%{_datadir}/unsermake/unsermake
 
-echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
+#echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
@@ -617,6 +620,9 @@ cat kcmlirc.lang >> irkick.lang
 %clean
 rm -rf $RPM_BUILD_ROOT
 
+%post	khexedit	-p /sbin/ldconfig
+%postun	khexedit	-p /sbin/ldconfig
+
 %post	klaptopdaemon	-p /sbin/ldconfig
 %postun	klaptopdaemon	-p /sbin/ldconfig
 
@@ -633,6 +639,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkcmlaptop.so
 %attr(755,root,root) %{_libdir}/libkmilo.so
+%attr(755,root,root) %{_libdir}/libkhexeditcommon.so
 %attr(755,root,root) %{_libdir}/libkregexpeditorcommon.so
 %attr(755,root,root) %{_libdir}/libksimcore.so
 %{_includedir}/*
@@ -644,17 +651,11 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/libkdeinit_ark.so
 %{_libdir}/kde3/ark.la
 %attr(755,root,root) %{_libdir}/kde3/ark.so
-#%{_libdir}/kde3/libarkplugin.la
-#%attr(755,root,root) %{_libdir}/kde3/libarkplugin.so
 %{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
-#%{_datadir}/applnk/.hidden/arkplugin.desktop
 %{_datadir}/apps/ark
-#%{_datadir}/apps/konqueror/servicemenus/ark_directory_service.desktop
-#%{_datadir}/apps/konqueror/servicemenus/arkservicemenu.desktop
 %{_datadir}/config.kcfg/ark.kcfg
 %{_datadir}/services/ark_part.desktop
-#%{_datadir}/services/ark_plugin.desktop
 %{_desktopdir}/kde/ark.desktop
 %{_iconsdir}/*/*/apps/ark.*
 
@@ -676,6 +677,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/kcharselect
 %{_libdir}/kde3/kcharselect_panelapplet.la
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
+%{_datadir}/apps/kcharselect
 %{_datadir}/apps/kconf_update/kcharselect.upd
 %{_datadir}/apps/kicker/applets/kcharselectapplet.desktop
 %{_desktopdir}/kde/KCharSelect.desktop
@@ -723,7 +725,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/*/*/apps/kcmdf.*
 %{_iconsdir}/*/*/apps/kdf.*
 %{_iconsdir}/*/*/apps/kwikdisk.*
-%{_kdedocdir}/en/kinfocenter/blockdevices
 
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
@@ -759,7 +760,13 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/khexedit
 %{_libdir}/kde3/libkbyteseditwidget.la
 %attr(755,root,root) %{_libdir}/kde3/libkbyteseditwidget.so
+%{_libdir}/kde3/libkhexedit2part.la
+%attr(755,root,root) %{_libdir}/kde3/libkhexedit2part.so
+%{_libdir}/libkhexeditcommon.la
+%attr(755,root,root) %{_libdir}/libkhexeditcommon.so.*.*.*
 %{_datadir}/apps/khexedit
+%{_datadir}/apps/khexedit2part
+%{_datadir}/services/khexedit2part.desktop
 %{_datadir}/services/kbyteseditwidget.desktop
 %{_desktopdir}/kde/khexedit.desktop
 %{_iconsdir}/*/*/apps/khexedit.*
@@ -795,6 +802,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_libdir}/kde3/kmilo_powerbook.la
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
+%{_libdir}/kde3/kmilo_asus.la
+%attr(755,root,root) %{_libdir}/kde3/kmilo_asus.so
+%{_libdir}/kde3/kmilo_delli8k.la
+%attr(755,root,root) %{_libdir}/kde3/kmilo_delli8k.so
+%{_datadir}/services/kmilo/kmilo_asus.desktop
+%{_datadir}/services/kmilo/kmilo_delli8k.desktop
 
 %files kmilo-thinkpad
 %defattr(644,root,root,755)
@@ -819,9 +832,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/laptop.desktop
 %{_desktopdir}/kde/pcmcia.desktop
 %{_iconsdir}/*/*/*/*laptop*
-%{_kdedocdir}/en/kcontrol/kcmlowbat*
-%{_kdedocdir}/en/kcontrol/laptop
-%{_kdedocdir}/en/kcontrol/powerctrl
 
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
@@ -837,9 +847,6 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
-#%attr(755,root,root) %{_bindir}/ksim
-#%{_libdir}/ksim.la
-#%attr(755,root,root) %{_libdir}/ksim.so
 %{_libdir}/libksimcore.la
 %attr(755,root,root) %{_libdir}/libksimcore.so.*.*.*
 %{_libdir}/kde3/ksim*.la
@@ -850,14 +857,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/ksim.desktop
 %{_iconsdir}/*/*/apps/ksim*.png
 %{_iconsdir}/*/*/devices/ksim*.png
-%{_kdedocdir}/en/ksim
 
 %files ktimer -f ktimer.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ktimer
 %{_desktopdir}/kde/ktimer.desktop
 %{_iconsdir}/*/*/*/ktimer.png
-%{_kdedocdir}/en/ktimer
 
 %files kwalletmanager -f kwallet.lang
 %defattr(644,root,root,755)
@@ -869,5 +874,5 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/services/kwalletmanager_show.desktop
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
+%{_desktopdir}/kde/kwalletmanager-kwalletd.desktop
 %{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
-%{_kdedocdir}/en/kwallet
