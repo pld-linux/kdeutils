@@ -557,6 +557,11 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 	kregexpeditor/kregexpeditor.desktop \
 	ktimer/ktimer.desktop \
 	kwallet/kwalletmanager.desktop
+for f in `find . -name \*.desktop`; do
+	if grep -q '^Categories=.*[^;]$' $f; then
+		sed -i -e 's/\(^Categories=.*$\)/\1;/' $f
+	fi
+done
 
 %build
 cp %{_datadir}/automake/config.sub admin
