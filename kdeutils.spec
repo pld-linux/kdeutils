@@ -298,6 +298,7 @@ Group:		X11/Applications
 Group(de):	X11/Applikationen
 Group(pl):	X11/Aplikacje
 Requires:	kdelibs >= %{version}
+Obsoletes:	khexedit
 
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
