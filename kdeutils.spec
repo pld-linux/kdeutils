@@ -1,6 +1,8 @@
 
 %define         _state          unstable
-%define         _kdever         kde-3.1-rc5
+%define         _ver		3.1
+%define         _rcver		rc6
+%define         _kdever		kde-%{_ver}-%{_rcver}
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -11,8 +13,8 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	3.1
-Release:	2
+Version:	%{_ver}%{_rcver}
+Release:	1
 Epoch:		7
 License:	GPL
 Group:		X11/Applications
