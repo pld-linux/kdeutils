@@ -35,6 +35,7 @@ BuildRequires:	libtool
 BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
 %endif
 BuildRequires:	net-snmp-devel
+BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 #BuildRequires:	unsermake >= 040511
