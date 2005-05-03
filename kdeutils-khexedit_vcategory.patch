@@ -1,8 +1,0 @@
---- kdeutils-030317/khexedit/khexedit.desktop~	Thu Mar  6 01:06:46 2003
-+++ kdeutils-030317/khexedit/khexedit.desktop	Thu Mar 20 14:10:54 2003
-@@ -67,4 +67,4 @@
- Terminal=0
- X-KDE-StartupNotify=true
- X-DCOP-ServiceType=Multi
--Categories=Qt;KDE;Utility;X-KDE-More
-+Categories=Qt;KDE;HexEditor
