@@ -16,12 +16,13 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	cb7e5402eedaca816e210d460e22e53a
+Patch0:		%{name}-pbbuttonsd.patch
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
@@ -31,8 +32,8 @@ BuildRequires:	ed
 BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
-%ifarch ppc
-BuildRequires:	pbbuttonsd-lib >= 0.5.6-2
+%ifarch %{ix86} ppc
+BuildRequires:	pbbuttonsd-lib >= 0.6.8
 %endif
 BuildRequires:	net-snmp-devel
 BuildRequires:	pkgconfig
@@ -532,6 +533,7 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 
 %prep
 %setup -q
+%patch0 -p1
 %patch100 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
