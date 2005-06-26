@@ -1,10 +1,10 @@
 
 %define		_state		stable
-%define		_kdever		3.4.1
-%define		_ver		3.4.1
-
-%define		_minlibsevr	9:3.4.1
-%define		_minbaseevr	9:3.4.1
+%define		_kdever		3.4.89
+%define		_ver		3.4.89
+%define		_snap		050626
+%define		_minlibsevr	9:3.4.89.050624
+%define		_minbaseevr	9:3.4.89.050625
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -15,16 +15,17 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	%{_ver}
+Version:	%{_ver}.%{_snap}
 Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
-Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	0c3ef37a96ce9f5b0b3ee5d0b31ef4e4
-Patch0:		%{name}-pbbuttonsd.patch
-Patch100:	%{name}-branch.diff
+#Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
+Source0:        ftp://ftp.pld-linux.org/software/kde/%{name}-%{_snap}.tar.bz2
+##% Source0-md5:	0c3ef37a96ce9f5b0b3ee5d0b31ef4e4
+#Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
+#Patch0:		%{name}-pbbuttonsd.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
@@ -532,9 +533,10 @@ Password management tool for KDE.
 NarzÍdzie do zarz±dzania has≥ami w KDE.
 
 %prep
-%setup -q
-%patch0 -p1
+#%setup -q
+%setup -q -n %{name}-%{_snap}
 #%patch100 -p1
+#%patch0 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -897,4 +899,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_desktopdir}/kde/kwalletmanager-kwalletd.desktop
-%{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
+%{_iconsdir}/*/*/apps/kwalletmanager.*
