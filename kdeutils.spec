@@ -1,10 +1,10 @@
 
 %define		_state		stable
-%define		_kdever		3.4.1
-%define		_ver		3.4.1
+%define		_kdever		3.4.2
+%define		_ver		3.4.2
 
-%define		_minlibsevr	9:3.4.1
-%define		_minbaseevr	9:3.4.1
+%define		_minlibsevr	9:3.4.2
+%define		_minbaseevr	9:3.4.2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -16,13 +16,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	0c3ef37a96ce9f5b0b3ee5d0b31ef4e4
-Patch0:		%{name}-pbbuttonsd.patch
+# Source0-md5:	62500e5ee043937592ebc6ad91dd670d
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
@@ -533,7 +532,6 @@ NarzÍdzie do zarz±dzania has≥ami w KDE.
 
 %prep
 %setup -q
-%patch0 -p1
 #%patch100 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
