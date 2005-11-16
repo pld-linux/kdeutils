@@ -28,6 +28,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	ed
+BuildRequires:	gmp-devel
 BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
@@ -801,16 +802,9 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
 %{_libdir}/kde3/kmilo_generic.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_generic.so
-%ifarch %{ix86} ppc
-%{_libdir}/kde3/kmilo_powerbook.la
-%attr(755,root,root) %{_libdir}/kde3/kmilo_powerbook.so
-%endif
 %{_datadir}/services/kded/kmilod.desktop
 %dir %{_datadir}/services/kmilo
 %{_datadir}/services/kmilo/kmilo_generic.desktop
-%ifarch %{ix86} ppc
-%{_datadir}/services/kmilo/kmilo_powerbook.desktop
-%endif
 %{_datadir}/servicetypes/kmilo
 %{_libdir}/kde3/kcm_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
@@ -818,7 +812,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
 %{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_desktopdir}/kde/kvaio.desktop
-%ifarch ppc
+%ifarch %{ix86} ppc
 %attr(755,root,root) %{_libdir}/kde3/kmilo_powerbook.so
 %{_libdir}/kde3/kmilo_powerbook.la
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
