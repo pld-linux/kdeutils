@@ -1,7 +1,7 @@
 
 %define		_state		stable
-%define		_kdever		3.4.3
-%define		_ver		3.4.3
+%define		_kdever		3.5
+%define		_ver		3.5.0
 
 %define		_minlibsevr	9:3.4.3
 %define		_minbaseevr	9:3.4.3
@@ -16,12 +16,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d467284b523bb1268da776cd016ede4d
+# Source0-md5:	801c776b207fea6983854925b9663f9f
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
@@ -754,6 +754,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kfloppy -f kfloppy.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kfloppy
+%{_datadir}/apps/konqueror/servicemenus/floppy_format.desktop
 %{_desktopdir}/kde/KFloppy.desktop
 %{_iconsdir}/*/*/apps/kfloppy.*
 
@@ -895,4 +896,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_desktopdir}/kde/kwalletmanager-kwalletd.desktop
-%{_iconsdir}/crystalsvg/*/apps/kwalletmanager.png
+%{_iconsdir}/[!l]*/*/*/kwalletmanager.*
