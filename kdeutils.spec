@@ -3,8 +3,8 @@
 %define		_kdever		3.5
 %define		_ver		3.5.0
 
-%define		_minlibsevr	9:3.4.3
-%define		_minbaseevr	9:3.4.3
+%define		_minlibsevr	9:3.5.0
+%define		_minbaseevr	9:3.5.0
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -16,12 +16,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	0.1
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	801c776b207fea6983854925b9663f9f
+# Source0-md5:	ca7e9b9b3086df39e0906e5bbeb7454e
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
