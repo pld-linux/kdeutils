@@ -16,12 +16,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	ca7e9b9b3086df39e0906e5bbeb7454e
+# Source0-md5:	d6b2cbe8b7d15166eff261f20ece2718
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
