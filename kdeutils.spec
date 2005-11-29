@@ -1,3 +1,4 @@
+#
 # Conditional build:
 %bcond_without	xmms		# do not force xmms support
 #
@@ -538,9 +539,9 @@ Narzêdzie do zarz±dzania has³ami w KDE.
 
 %package superkaramba
 Summary:	Little interactive widgets on KDE desktop
-Summary(pl):	Male interaktywne widÅ¼ety na pulpicie K
-Group:          X11/Applications
-Requires:       kdebase-core >= %{_minbaseevr}
+Summary(pl):	Ma³e interaktywne wid¿ety na pulpicie KDE
+Group:		X11/Applications
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	superkaramba
 
 %description superkaramba
@@ -548,8 +549,8 @@ SuperKaramba is a tool that allows anyone to easily create and run
 little interactive widgets on a KDE desktop.
 
 %description superkaramba -l pl
-SuperKaramba to narzÄ™dzie pozwalajÄ…ce na Å‚atwe tworzenie i
-uruchamianie maÅ‚ych interaktywnych widÅ¼etÃ³w na pulpicie KDE.
+SuperKaramba to narzêdzie pozwalaj±ce na ³atwe tworzenie i
+uruchamianie ma³ych interaktywnych wid¿etów na pulpicie KDE.
 
 %prep
 %setup -q
