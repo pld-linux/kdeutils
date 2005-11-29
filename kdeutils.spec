@@ -1,4 +1,6 @@
-
+# Conditional build:
+%bcond_without	xmms		# do not force xmms support
+#
 %define		_state		stable
 %define		_kdever		3.5
 %define		_ver		3.5.0
@@ -41,7 +43,7 @@ BuildRequires:	net-snmp-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
-BuildRequires:	xmms-devel
+%{?with_xmms:BuildRequires:	xmms-devel}
 #BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -608,7 +610,7 @@ cp /usr/share/automake/config.sub admin
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
-	--with-xmms \
+	%{?with_xmms:--with-xmms} \
 	--with-snmp \
 %ifarch ppc ppc64
 	--with-powerbook \
@@ -636,6 +638,9 @@ rm -rf *.lang
 	kde_libs_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
+mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
+	$RPM_BUILD_ROOT%{_desktopdir}/kde
+
 
 %find_lang ark			--with-kde
 %find_lang irkick		--with-kde
@@ -924,4 +929,5 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/superkaramba
 %{_datadir}/apps/superkaramba
 %{_datadir}/mimelnk/application/x-superkaramba.desktop
+%{_desktopdir}/kde/superkaramba.desktop
 %{_iconsdir}/[!l]*/*/*/superkaramba*.*
