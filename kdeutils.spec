@@ -32,13 +32,16 @@ BuildRequires:	gmp-devel
 BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
 BuildRequires:	libtool
+BuildRequires:	net-snmp-devel
 %ifarch %{ix86} ppc
 BuildRequires:	pbbuttonsd-lib >= 0.6.8
 %endif
+BuildRequires:	python-devel
 BuildRequires:	net-snmp-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
+BuildRequires:	xmms-devel
 #BuildRequires:	unsermake >= 040511
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -531,9 +534,26 @@ Password management tool for KDE.
 %description kwalletmanager -l pl
 Narz�dzie do zarz�dzania has�ami w KDE.
 
+%package superkaramba
+Summary:	Little interactive widgets on KDE desktop
+Summary(pl):	Male interaktywne widżety na pulpicie K
+Group:          X11/Applications
+Requires:       kdebase-core >= %{_minbaseevr}
+Obsoletes:	superkaramba
+
+%description superkaramba
+SuperKaramba is a tool that allows anyone to easily create and run
+little interactive widgets on a KDE desktop.
+
+%description superkaramba -l pl
+SuperKaramba to narzędzie pozwalające na łatwe tworzenie i
+uruchamianie małych interaktywnych widżetów na pulpicie KDE.
+
 %prep
 %setup -q
 #%patch100 -p1
+
+%{__sed} -i -e 's#/copy.py#/copy.pyc#g' admin/acinclude.m4.in
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	-e 's/Terminal=0/Terminal=false/' \
@@ -584,8 +604,14 @@ cp /usr/share/automake/config.sub admin
 	--disable-rpath \
 	--enable-final \
 	--with-qt-libraries=%{_libdir} \
+	--with-extra-libs="%{_datadir}" \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
+%endif
+	--with-xmms \
+	--with-snmp \
+%ifarch ppc ppc64
+	--with-powerbook \
 %endif
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
 
@@ -630,6 +656,7 @@ cat kcmlirc.lang >> irkick.lang
 %find_lang ksim			--with-kde
 %find_lang ktimer		--with-kde
 %find_lang kwallet		--with-kde
+%find_lang superkaramba		--with-kde
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -891,3 +918,10 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_desktopdir}/kde/kwalletmanager-kwalletd.desktop
 %{_iconsdir}/[!l]*/*/*/kwalletmanager.*
+
+%files superkaramba -f superkaramba.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_bindir}/superkaramba
+%{_datadir}/apps/superkaramba
+%{_datadir}/mimelnk/application/x-superkaramba.desktop
+%{_iconsdir}/[!l]*/*/*/superkaramba*.*
