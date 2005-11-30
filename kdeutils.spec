@@ -19,7 +19,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	%{_ver}
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -542,6 +542,7 @@ Summary:	Little interactive widgets on KDE desktop
 Summary(pl):	Ma³e interaktywne wid¿ety na pulpicie KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
+Provides:	superkaramba = %{version}-%{release}
 Obsoletes:	superkaramba
 
 %description superkaramba
