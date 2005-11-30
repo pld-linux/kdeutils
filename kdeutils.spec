@@ -27,7 +27,6 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.t
 # Source0-md5:	d6b2cbe8b7d15166eff261f20ece2718
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
-BuildRequires:	acl-devel
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
