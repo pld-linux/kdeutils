@@ -1,6 +1,9 @@
 #
 # Conditional build:
 %bcond_without	xmms		# do not force xmms support
+%bcond_with	hidden_visibility	# pass '--fvisibility=hidden'
+					# & '--fvisibility-inlines-hidden'
+					# to g++ 
 #
 %define		_state		stable
 %define		_kdever		3.5
@@ -31,6 +34,7 @@ BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	bzip2
 BuildRequires:	ed
+%{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gmp-devel
 BuildRequires:	kdebase-devel >= %{_minbaseevr}
 BuildRequires:	libxml2-progs
@@ -40,6 +44,7 @@ BuildRequires:	net-snmp-devel
 BuildRequires:	pbbuttonsd-lib >= 0.6.8
 %endif
 BuildRequires:	python-devel
+%{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 BuildRequires:	net-snmp-devel
 BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.129
@@ -598,26 +603,26 @@ done
 %build
 cp /usr/share/automake/config.sub admin
 
-#export UNSERMAKE=%{_datadir}/unsermake/unsermake
-
 #echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
 
 %{__make} -f admin/Makefile.common cvs
 
 %configure \
-	--disable-rpath \
+	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
+	%{!?debug:--disable-rpath} \
 	--enable-final \
-	--with-qt-libraries=%{_libdir} \
-	--with-extra-libs="%{_datadir}" \
+	%{?with_hidden_visibility:--enable-gcc-hidden-visibility} \
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
-	%{?with_xmms:--with-xmms} \
-	--with-snmp \
+	--with-distribution="PLD Linux Distribution" \
+	--with-extra-libs="%{_datadir}" \
 %ifarch ppc ppc64
 	--with-powerbook \
 %endif
-	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full}
+	--with-qt-libraries=%{_libdir} \
+	--with-snmp \
+	%{?with_xmms:--with-xmms}
 
 %{__make}
 
