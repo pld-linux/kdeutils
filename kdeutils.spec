@@ -6,11 +6,11 @@
 					# to g++ 
 #
 %define		_state		stable
-%define		_kdever		3.5
-%define		_ver		3.5.0
+%define		_kdever		3.5.1
+%define		_ver		3.5.1
 
-%define		_minlibsevr	9:3.5.0
-%define		_minbaseevr	9:3.5.0
+%define		_minlibsevr	9:3.5.1
+%define		_minbaseevr	9:3.5.1
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzÍdzia
@@ -22,12 +22,12 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	%{_ver}
-Release:	3
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d6b2cbe8b7d15166eff261f20ece2718
+# Source0-md5:	1286c6a09b04452adfe492de2fad79bd
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
