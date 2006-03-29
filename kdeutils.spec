@@ -1,16 +1,16 @@
+# TODO
+# - locolor icons?
 #
 # Conditional build:
 %bcond_without	xmms		# do not force xmms support
-%bcond_with	hidden_visibility	# pass '--fvisibility=hidden'
-					# & '--fvisibility-inlines-hidden'
-					# to g++ 
+%bcond_with	hidden_visibility	# pass '--fvisibility=hidden' & '--fvisibility-inlines-hidden' to g++ 
 #
 %define		_state		stable
-%define		_kdever		3.5.1
-%define		_ver		3.5.1
+%define		_kdever		3.5.2
+%define		_ver		3.5.2
 
-%define		_minlibsevr	9:3.5.1
-%define		_minbaseevr	9:3.5.1
+%define		_minlibsevr	9:3.5.2
+%define		_minbaseevr	9:3.5.2
 
 Summary:	K Desktop Environment - utilities
 Summary(pl):	K Desktop Environment - narzêdzia
@@ -27,7 +27,7 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{_kdever}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	1286c6a09b04452adfe492de2fad79bd
+# Source0-md5:	08c01d6ceb8fb2173463838e43f986f5
 Patch100:	%{name}-branch.diff
 #Patch0:		%{name}-kdf-label.patch
 BuildRequires:	autoconf
