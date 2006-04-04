@@ -41,6 +41,7 @@ BuildRequires:	net-snmp-devel
 BuildRequires:	pbbuttonsd-lib >= 0.6.8
 %endif
 BuildRequires:	python-devel
+BuildRequires:	python-modules
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
 BuildRequires:	net-snmp-devel
 BuildRequires:	pkgconfig
