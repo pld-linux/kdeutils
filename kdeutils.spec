@@ -1,6 +1,3 @@
-# TODO
-# - locolor icons?
-#
 # Conditional build:
 %bcond_without	xmms		# do not force xmms support
 %bcond_with	hidden_visibility	# pass '--fvisibility=hidden' & '--fvisibility-inlines-hidden' to g++ 
@@ -646,6 +643,8 @@ mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde
 
+# unsupported
+rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/locolor
 
 %find_lang ark			--with-kde
 %find_lang irkick		--with-kde
