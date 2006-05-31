@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	3.5.3
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -666,6 +666,10 @@ cat kcmlirc.lang >> irkick.lang
 %find_lang ktimer		--with-kde
 %find_lang kwallet		--with-kde
 %find_lang superkaramba		--with-kde
+
+# Omit bogus apidocs entries.
+# Otherwise 'kdeutils-apidocs` owner is needed
+sed -i 's/.*apidocs.*//' *.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
