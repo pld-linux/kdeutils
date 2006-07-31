@@ -7,9 +7,9 @@
 %define		_minbaseevr	9:%{version}
 
 Summary:	K Desktop Environment - utilities
-Summary(pl):	K Desktop Environment - narzêdzia
 Summary(es):	KDE - Utilitarios
 Summary(ja):	KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ - ¥æ¡¼¥Æ¥£¥ê¥Æ¥£
+Summary(pl):	K Desktop Environment - narzêdzia
 Summary(pt_BR):	KDE - Utilitários
 Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
 Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
@@ -23,29 +23,28 @@ Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	e24cd91576db3d2414fb30cab47e44e5
 Patch100:	%{name}-branch.diff
-#Patch0:		%{name}-kdf-label.patch
+#Patch0:	%{name}-kdf-label.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
-BuildRequires:	bzip2
 BuildRequires:	ed
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
 BuildRequires:	gmp-devel
 BuildRequires:	kdebase-devel >= %{_minbaseevr}
-BuildRequires:	libxml2-progs
 BuildRequires:	libtool
+BuildRequires:	libxml2-progs
 BuildRequires:	net-snmp-devel
 %ifarch %{ix86} ppc
 BuildRequires:	pbbuttonsd-lib >= 0.6.8
 %endif
+BuildRequires:	net-snmp-devel
+BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
-BuildRequires:	net-snmp-devel
-BuildRequires:	pkgconfig
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
-%{?with_xmms:BuildRequires:	xmms-devel}
 #BuildRequires:	unsermake >= 040511
+%{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -144,11 +143,11 @@ Summary:	Header files for compiling applications that use kdeutils libraries
 Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kdeutils
 Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
-Requires:	kdebase-devel >= %{_minbaseevr}
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kregexpeditor = %{epoch}:%{version}-%{release}
 Requires:	%{name}-ksim = %{epoch}:%{version}-%{release}
+Requires:	kdebase-devel >= %{_minbaseevr}
 
 %description devel
 This package includes the header files you will need to compile
@@ -292,8 +291,8 @@ Summary:	KDE Floppy Formater
 Summary(pl):	Program formatuj±cy dyskietki dla KDE
 Summary(pt_BR):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	dosfstools
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kfloppy
 
 %description kfloppy
@@ -422,8 +421,8 @@ klawiaturze. Aktualnie obs³uguje:
 Summary:	Sony Vaio KMilo module
 Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
 Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 
 %description kmilo-kvaio
@@ -436,8 +435,8 @@ Modu³ KMilo dla laptopów Sony Vaio.
 Summary:	PowerBook KMilo module
 Summary(pl):	Modu³ KMilo dla PowerBooków
 Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 
 %description kmilo-powerbook
@@ -450,8 +449,8 @@ Modu³ KMilo dla PowerBooków.
 Summary:	ThinkPad KMilo module
 Summary(pl):	Modu³ KMilo dla ThinkPadów
 Group:		X11/Applications
-Requires:	kdebase-core >= %{_minbaseevr}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
+Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kmilo-thinkpad
 KMilo module for ThinkPads support.
