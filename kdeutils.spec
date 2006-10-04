@@ -21,7 +21,7 @@ Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	e24cd91576db3d2414fb30cab47e44e5
+# Source0-md5:	a20a732284a3dcb735665e45f5be532e
 #Patch100:	%{name}-branch.diff
 #Patch0:	%{name}-kdf-label.patch
 BuildRequires:	autoconf
