@@ -560,36 +560,20 @@ uruchamianie ma³ych interaktywnych wid¿etów na pulpicie KDE.
 %{__sed} -i -e 's#/copy.py#/copy.pyc#g' admin/acinclude.m4.in
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
-	-e 's/Terminal=0/Terminal=false/' \
 	ark/ark.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
+	-e 's/Terminal=0/Terminal=false/' \
 	kdelirc/irkick/irkick.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Calculator;/' \
-	-e 's/Terminal=0/Terminal=false/' \
 	kcalc/kcalc.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;TextEditor;X-HexEditor;/' \
-	-e 's/Terminal=0/Terminal=false/' \
 	khexedit/khexedit.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;System;Monitor;/' \
 	-e '/\[Desktop Entry\]/aEncoding=UTF-8' \
 	ksim/ksim.desktop
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Applet;/' \
 	kdf/kwikdisk.desktop
-%{__sed} -i -e 's/Terminal=0/Terminal=false/' \
-	kcharselect/KCharSelect.desktop \
-	kdf/kdf.desktop \
-	kdf/kwikdisk.desktop \
-	kedit/KEdit.desktop \
-	kfloppy/KFloppy.desktop \
-	khexedit/khexedit.desktop \
-	kjots/Kjots.desktop \
-	kregexpeditor/kregexpeditor.desktop \
-	ktimer/ktimer.desktop \
-	kwallet/kwalletmanager.desktop
 for f in `find . -name \*.desktop`; do
-	if grep -q '^Categories=.*[^;]$' $f; then
-		sed -i -e 's/\(^Categories=.*$\)/\1;/' $f
-	fi
 	if grep -q '\[ven\]' $f; then
 		sed -i -e 's/\[ven\]/[ve]/' $f
 	fi
@@ -597,10 +581,6 @@ done
 
 %build
 cp /usr/share/automake/config.sub admin
-
-#echo "KDE_OPTIONS = nofinal" >> ksim/monitors/snmp/Makefile.am
-
-%{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
@@ -631,13 +611,11 @@ rm -rf *.lang
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir}
 
 %{__make} -C ksim/monitors/i8k install \
 	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir} \
-	kde_libs_htmldir=%{_kdedocdir}
+	kde_htmldir=%{_kdedocdir}
 
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
