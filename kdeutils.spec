@@ -23,7 +23,8 @@ Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
 # Source0-md5:	a20a732284a3dcb735665e45f5be532e
 #Patch100:	%{name}-branch.diff
-Patch0:		kde-ac260-lt.patch
+Patch0:		kde-common-PLD.patch
+Patch1:		kde-ac260-lt.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ed
@@ -384,6 +385,7 @@ Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
+Requires:	tpctl
 Obsoletes:	laptop
 
 %description klaptopdaemon
@@ -556,8 +558,7 @@ uruchamianie ma³ych interaktywnych wid¿etów na pulpicie KDE.
 %setup -q
 #%patch100 -p1
 %patch0 -p1
-
-%{__sed} -i -e 's#/copy.py#/copy.pyc#g' admin/acinclude.m4.in
+%patch1 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
@@ -581,6 +582,7 @@ done
 
 %build
 cp /usr/share/automake/config.sub admin
+%{__make} -f admin/Makefile.common cvs
 
 %configure \
 	--%{?debug:en}%{!?debug:dis}able-debug%{?debug:=full} \
@@ -597,6 +599,7 @@ cp /usr/share/automake/config.sub admin
 %endif
 	--with-qt-libraries=%{_libdir} \
 	--with-snmp \
+	--with-pythondir=/usr \
 	%{?with_xmms:--with-xmms}
 
 %{__make}
@@ -607,7 +610,7 @@ cp /usr/share/automake/config.sub admin
 
 %install
 rm -rf $RPM_BUILD_ROOT
-rm -rf *.lang
+rm -f *.lang
 
 %{__make} install \
 	DESTDIR=$RPM_BUILD_ROOT \
