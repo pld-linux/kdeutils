@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	3.5.5
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -385,7 +385,9 @@ Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
 Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
+%ifarch %{ix86}
 Requires:	tpctl
+%endif
 Obsoletes:	laptop
 
 %description klaptopdaemon
