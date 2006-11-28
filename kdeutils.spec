@@ -48,6 +48,8 @@ BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define         _noautoreq      libtool(.*)
+
 %description
 KDE utilities. Package includes:
  - Ark - archive manager,
