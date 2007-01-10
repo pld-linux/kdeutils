@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
 Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
 Name:		kdeutils
 Version:	3.5.5
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -25,6 +25,7 @@ Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.t
 #Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
+Patch2:		kde-am.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ed
@@ -47,8 +48,6 @@ BuildRequires:	sed >= 4.0
 #BuildRequires:	unsermake >= 040511
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define         _noautoreq      libtool(.*)
 
 %description
 KDE utilities. Package includes:
@@ -563,6 +562,7 @@ uruchamianie ma³ych interaktywnych wid¿etów na pulpicie KDE.
 #%patch100 -p1
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
@@ -631,6 +631,9 @@ mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
 # unsupported
 rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/locolor
 
+# drop la files
+rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+
 %find_lang ark			--with-kde
 %find_lang irkick		--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -676,21 +679,23 @@ rm -rf $RPM_BUILD_ROOT
 
 %files devel
 %defattr(644,root,root,755)
+%{_libdir}/libkcmlaptop.la
 %attr(755,root,root) %{_libdir}/libkcmlaptop.so
+%{_libdir}/libkmilo.la
 %attr(755,root,root) %{_libdir}/libkmilo.so
+%{_libdir}/libkhexeditcommon.la
 %attr(755,root,root) %{_libdir}/libkhexeditcommon.so
+%{_libdir}/libkregexpeditorcommon.la
 %attr(755,root,root) %{_libdir}/libkregexpeditorcommon.so
+%{_libdir}/libksimcore.la
 %attr(755,root,root) %{_libdir}/libksimcore.so
 %{_includedir}/*
 
 %files ark -f ark.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/ark
-%{_libdir}/libkdeinit_ark.la
 %attr(755,root,root) %{_libdir}/libkdeinit_ark.so
-%{_libdir}/kde3/ark.la
 %attr(755,root,root) %{_libdir}/kde3/ark.so
-%{_libdir}/kde3/libarkpart.la
 %attr(755,root,root) %{_libdir}/kde3/libarkpart.so
 %{_datadir}/apps/ark
 %{_datadir}/config.kcfg/ark.kcfg
@@ -701,9 +706,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kcalc -f kcalc.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcalc
-%{_libdir}/libkdeinit_kcalc.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kcalc.so
-%{_libdir}/kde3/kcalc.la
 %attr(755,root,root) %{_libdir}/kde3/kcalc.so
 %{_datadir}/apps/kcalc
 %{_datadir}/apps/kconf_update/kcalcrc.upd
@@ -714,7 +717,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kcharselect -f kcharselect.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kcharselect
-%{_libdir}/kde3/kcharselect_panelapplet.la
 %attr(755,root,root) %{_libdir}/kde3/kcharselect_panelapplet.so
 %{_datadir}/apps/kcharselect
 %{_datadir}/apps/kconf_update/kcharselect.upd
@@ -725,11 +727,8 @@ rm -rf $RPM_BUILD_ROOT
 %files kdelirc -f irkick.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/irkick
-%{_libdir}/libkdeinit_irkick.la
 %attr(755,root,root) %{_libdir}/libkdeinit_irkick.so
-%{_libdir}/kde3/irkick.la
 %attr(755,root,root) %{_libdir}/kde3/irkick.so
-%{_libdir}/kde3/kcm_kcmlirc.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kcmlirc.so
 %{_datadir}/apps/irkick
 %{_datadir}/apps/profiles/klauncher.profile.xml
@@ -755,7 +754,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kdf
 %attr(755,root,root) %{_bindir}/kwikdisk
-%{_libdir}/kde3/kcm_kdf.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kdf.so
 %{_datadir}/apps/kdf
 %{_desktopdir}/kde/kcmdf.desktop
@@ -768,9 +766,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kedit -f kedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kedit
-%{_libdir}/libkdeinit_kedit.la
 %attr(755,root,root) %{_libdir}/libkdeinit_kedit.so
-%{_libdir}/kde3/kedit.la
 %attr(755,root,root) %{_libdir}/kde3/kedit.so
 %{_datadir}/apps/kedit
 %{_datadir}/config.kcfg/kedit.kcfg
@@ -798,11 +794,8 @@ rm -rf $RPM_BUILD_ROOT
 %files khexedit -f khexedit.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/khexedit
-%{_libdir}/kde3/libkbyteseditwidget.la
 %attr(755,root,root) %{_libdir}/kde3/libkbyteseditwidget.so
-%{_libdir}/kde3/libkhexedit2part.la
 %attr(755,root,root) %{_libdir}/kde3/libkhexedit2part.so
-%{_libdir}/libkhexeditcommon.la
 %attr(755,root,root) %{_libdir}/libkhexeditcommon.so.*.*.*
 %{_datadir}/apps/khexedit
 %{_datadir}/apps/khexedit2part
@@ -821,39 +814,29 @@ rm -rf $RPM_BUILD_ROOT
 
 %files kmilo
 %defattr(644,root,root,755)
-%{_libdir}/libkmilo.la
 %attr(755,root,root) %{_libdir}/libkmilo.so.*.*.*
-%{_libdir}/kde3/kded_kmilod.la
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
-%{_libdir}/kde3/kmilo_generic.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_generic.so
 %{_datadir}/services/kded/kmilod.desktop
 %dir %{_datadir}/services/kmilo
 %{_datadir}/services/kmilo/kmilo_generic.desktop
 %{_datadir}/servicetypes/kmilo
-%{_libdir}/kde3/kcm_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kvaio.so
-%{_libdir}/kde3/kmilo_kvaio.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_kvaio.so
 %{_datadir}/services/kmilo/kmilo_kvaio.desktop
 %{_desktopdir}/kde/kvaio.desktop
 %ifarch %{ix86} ppc
 %attr(755,root,root) %{_libdir}/kde3/kmilo_powerbook.so
-%{_libdir}/kde3/kmilo_powerbook.la
 %{_datadir}/services/kmilo/kmilo_powerbook.desktop
 %endif
-%{_libdir}/kde3/kmilo_asus.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_asus.so
-%{_libdir}/kde3/kmilo_delli8k.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_delli8k.so
 %{_datadir}/services/kmilo/kmilo_asus.desktop
 %{_datadir}/services/kmilo/kmilo_delli8k.desktop
 
 %files kmilo-thinkpad
 %defattr(644,root,root,755)
-%{_libdir}/kde3/kcm_thinkpad.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_thinkpad.so
-%{_libdir}/kde3/kmilo_thinkpad.la
 %attr(755,root,root) %{_libdir}/kde3/kmilo_thinkpad.so
 %{_datadir}/services/kmilo/kmilo_thinkpad.desktop
 %{_desktopdir}/kde/thinkpad.desktop
@@ -861,11 +844,8 @@ rm -rf $RPM_BUILD_ROOT
 %files klaptopdaemon -f kcontrol.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
-%{_libdir}/libkcmlaptop.la
 %attr(755,root,root) %{_libdir}/libkcmlaptop.so.*.*.*
-%{_libdir}/kde3/kded_klaptopdaemon.la
 %attr(755,root,root) %{_libdir}/kde3/kded_klaptopdaemon.so
-%{_libdir}/kde3/kcm_laptop.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
 %{_datadir}/apps/klaptopdaemon
 %{_datadir}/services/kded/klaptopdaemon.desktop
@@ -876,9 +856,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kregexpeditor -f KRegExpEditor.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
-%{_libdir}/libkregexpeditorcommon.la
 %attr(755,root,root) %{_libdir}/libkregexpeditorcommon.so.*.*.*
-%{_libdir}/kde3/libkregexpeditorgui.la
 %attr(755,root,root) %{_libdir}/kde3/libkregexpeditorgui.so
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
@@ -887,9 +865,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
-%{_libdir}/libksimcore.la
 %attr(755,root,root) %{_libdir}/libksimcore.so.*.*.*
-%{_libdir}/kde3/ksim*.la
 %attr(755,root,root) %{_libdir}/kde3/ksim*.so
 %{_datadir}/apps/kicker/extensions/ksim.desktop
 %{_datadir}/apps/ksim
@@ -907,7 +883,6 @@ rm -rf $RPM_BUILD_ROOT
 %files kwalletmanager -f kwallet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kwalletmanager
-%{_libdir}/kde3/kcm_kwallet.la
 %attr(755,root,root) %{_libdir}/kde3/kcm_kwallet.so
 %{_datadir}/apps/kwalletmanager
 %{_datadir}/services/kwallet_config.desktop
