@@ -1,0 +1,97 @@
+diff -burN kdeutils-3.5.5/kmilo/thinkpad.orig/kcmthinkpad/kcmthinkpad_general.ui kdeutils-3.5.5/kmilo/thinkpad/kcmthinkpad/kcmthinkpad_general.ui
+--- kdeutils-3.5.5/kmilo/thinkpad.orig/kcmthinkpad/kcmthinkpad_general.ui	2005-10-10 16:59:12.000000000 +0200
++++ kdeutils-3.5.5/kmilo/thinkpad/kcmthinkpad/kcmthinkpad_general.ui	2007-01-12 22:30:22.866001109 +0100
+@@ -60,7 +60,15 @@
+                         <string>Change volume in software (required by R30/R31)</string>
+                     </property>
+                 </widget>
+-                <widget class="QLayoutWidget" row="2" column="0">
++                <widget class="QCheckBox" row="2" column="0">
++                    <property name="name">
++                        <cstring>mCbThinklightNotice</cstring>
++                    </property>
++                    <property name="text">
++                        <string>Display ThinkLight notice</string>
++                    </property>
++                </widget>
++                <widget class="QLayoutWidget" row="3" column="0">
+                     <property name="name">
+                         <cstring>layout27</cstring>
+                     </property>
+@@ -236,6 +244,12 @@
+         <slot>slotChanged()</slot>
+     </connection>
+     <connection>
++        <sender>mCbThinklightNotice</sender>
++        <signal>toggled(bool)</signal>
++        <receiver>KCMThinkpadGeneral</receiver>
++        <slot>slotChanged()</slot>
++    </connection>
++    <connection>
+         <sender>mSpinboxVolumeStep</sender>
+         <signal>valueChanged(int)</signal>
+         <receiver>KCMThinkpadGeneral</receiver>
+@@ -275,6 +289,7 @@
+ <tabstops>
+     <tabstop>mCbRun</tabstop>
+     <tabstop>mCbSoftwareVolume</tabstop>
++    <tabstop>mCbThinklightNotice</tabstop>
+     <tabstop>mSpinboxVolumeStep</tabstop>
+     <tabstop>commandExec</tabstop>
+     <tabstop>commandExecHome</tabstop>
+diff -burN kdeutils-3.5.5/kmilo/thinkpad.orig/kcmthinkpad/main.cpp kdeutils-3.5.5/kmilo/thinkpad/kcmthinkpad/main.cpp
+--- kdeutils-3.5.5/kmilo/thinkpad.orig/kcmthinkpad/main.cpp	2006-10-01 19:28:14.000000000 +0200
++++ kdeutils-3.5.5/kmilo/thinkpad/kcmthinkpad/main.cpp	2007-01-12 22:31:23.788989630 +0100
+@@ -136,6 +136,7 @@
+ 	config.setGroup("thinkpad");
+ 
+ 	config.writeEntry("run", m_KCMThinkpadGeneral->mCbRun->isChecked());
++	config.writeEntry("thinklight", m_KCMThinkpadGeneral->mCbThinklightNotice->isChecked());
+ 	config.writeEntry("softwareVolume", m_KCMThinkpadGeneral->mCbSoftwareVolume->isChecked());
+ 	config.writeEntry("volumeStep", m_KCMThinkpadGeneral->mSpinboxVolumeStep->value());
+ 	config.writeEntry("buttonThinkpad", m_KCMThinkpadGeneral->commandExec->url());
+@@ -171,6 +172,7 @@
+ 	config.setGroup("thinkpad");
+ 
+ 	m_KCMThinkpadGeneral->mCbRun->setChecked(config.readBoolEntry("run", false));
++	m_KCMThinkpadGeneral->mCbThinklightNotice->setChecked(config.readBoolEntry("thinklight", false));
+ 	m_KCMThinkpadGeneral->mCbSoftwareVolume->setChecked(config.readBoolEntry("softwareVolume", true));
+ 	m_KCMThinkpadGeneral->mSpinboxVolumeStep->setValue(config.readNumEntry("volumeStep", 14));
+ 	m_KCMThinkpadGeneral->commandExec->setURL(config.readEntry("buttonThinkpad", "/usr/bin/konsole"));
+diff -burN kdeutils-3.5.5/kmilo/thinkpad.orig/thinkpad.cpp kdeutils-3.5.5/kmilo/thinkpad/thinkpad.cpp
+--- kdeutils-3.5.5/kmilo/thinkpad.orig/thinkpad.cpp	2006-10-01 19:28:14.000000000 +0200
++++ kdeutils-3.5.5/kmilo/thinkpad/thinkpad.cpp	2007-01-12 22:35:00.739142745 +0100
+@@ -103,7 +103,7 @@
+ 	}
+ 
+ 	// determine the state of ThinkLight
+-	if (thinkpad_state.thinklight_toggle != last_thinkpad_state.thinklight_toggle) {
++	if (m_thinklight && thinkpad_state.thinklight_toggle != last_thinkpad_state.thinklight_toggle) {
+ 		showToggleMessage(i18n("ThinkLight is on"), i18n("ThinkLight is off"), thinkpad_state.thinklight_toggle == 1);
+ 	}
+ 
+@@ -441,6 +441,7 @@
+ 
+ 	m_nvramFile = config->readEntry("nvram", "/dev/nvram");
+ 	m_softwareVolume = config->readBoolEntry("softwareVolume", true);
++	m_thinklight = config->readBoolEntry("thinklight", true);
+ 	m_run = config->readBoolEntry("run", false);
+ 	m_volumeStep = config->readNumEntry("volumeStep", defaultVolumeStep);
+ 	m_buttonThinkpad = config->readEntry("buttonThinkpad", "/usr/bin/konsole");
+diff -burN kdeutils-3.5.5/kmilo/thinkpad.orig/thinkpad.h kdeutils-3.5.5/kmilo/thinkpad/thinkpad.h
+--- kdeutils-3.5.5/kmilo/thinkpad.orig/thinkpad.h	2006-01-19 17:49:10.000000000 +0100
++++ kdeutils-3.5.5/kmilo/thinkpad/thinkpad.h	2007-01-12 22:34:12.267130275 +0100
+@@ -155,6 +155,13 @@
+ 		bool m_softwareVolume;
+ 
+ 		/**
++		 * Make it possible to disable thinklight notices, as there
++		 * are people who use thinlight as a way to inform about
++		 * some events (e.g. about mail that arrived in kmail)
++		 */
++		bool m_thinklight;
++
++		/**
+ 		 * Config variable determines if this kmilo service is run or not
+ 		 */
+ 		bool m_run;
