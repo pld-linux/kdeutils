@@ -7,13 +7,13 @@
 %define		_minbaseevr	9:%{version}
 
 Summary:	K Desktop Environment - utilities
-Summary(es.UTF-8):   KDE - Utilitarios
-Summary(ja.UTF-8):   KDEデスクトップ環境 - ユーティリティ
-Summary(pl.UTF-8):   K Desktop Environment - narzędzia
-Summary(pt_BR.UTF-8):   KDE - Utilitários
-Summary(ru.UTF-8):   K Desktop Environment - Утилиты
-Summary(uk.UTF-8):   K Desktop Environment - Утиліти
-Summary(zh_CN.UTF-8):   KDE实用工具
+Summary(es.UTF-8):	KDE - Utilitarios
+Summary(ja.UTF-8):	KDEデスクトップ環境 - ユーティリティ
+Summary(pl.UTF-8):	K Desktop Environment - narzędzia
+Summary(pt_BR.UTF-8):	KDE - Utilitários
+Summary(ru.UTF-8):	K Desktop Environment - Утилиты
+Summary(uk.UTF-8):	K Desktop Environment - Утиліти
+Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.6
 Release:	1
@@ -141,8 +141,8 @@ Utilitários para o KDE. Programas disponíveis neste pacote:
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
-Summary(pl.UTF-8):   Pliki nagłówkowe do kompilacji aplikacji używających bibliotek kdeutils
-Summary(pt_BR.UTF-8):   Arquivos de inclusão para as bibliotecas do kdeutils
+Summary(pl.UTF-8):	Pliki nagłówkowe do kompilacji aplikacji używających bibliotek kdeutils
+Summary(pt_BR.UTF-8):	Arquivos de inclusão para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
@@ -164,8 +164,8 @@ que usem as bibliotecas do kdeutils
 
 %package ark
 Summary:	KDE Archive Manager
-Summary(pl.UTF-8):   Zarządca archiwów dla KDE
-Summary(pt_BR.UTF-8):   Gerenciador de pacotes TAR/comprimidos do KDE
+Summary(pl.UTF-8):	Zarządca archiwów dla KDE
+Summary(pt_BR.UTF-8):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -183,8 +183,8 @@ Gerenciador de pacotes TAR/comprimidos do KDE.
 
 %package kcalc
 Summary:	KDE Calculator
-Summary(pl.UTF-8):   Kalkulator dla KDE
-Summary(pt_BR.UTF-8):   Calculadora do KDE
+Summary(pl.UTF-8):	Kalkulator dla KDE
+Summary(pt_BR.UTF-8):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcalc
@@ -200,8 +200,8 @@ Calculadora do KDE.
 
 %package kcharselect
 Summary:	KDE Character Selector
-Summary(pl.UTF-8):   Program do wybierania znaków dla KDE
-Summary(pt_BR.UTF-8):   Ferramenta de seleção de caracteres
+Summary(pl.UTF-8):	Program do wybierania znaków dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de seleção de caracteres
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcharselect
@@ -214,7 +214,7 @@ Program do wybierania znaków.
 
 %package kdelirc
 Summary:	KDE frontend for the Linux Infrared Remote Control system
-Summary(pl.UTF-8):   Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwienią)
+Summary(pl.UTF-8):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwienią)
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -238,8 +238,8 @@ Control - zdalnego sterowania podczerwienią). Ma dwa cele:
 
 %package kdessh
 Summary:	KDE SSH Frontend
-Summary(pl.UTF-8):   Frontend SSH dla KDE
-Summary(pt_BR.UTF-8):   Ferramenta de execução remota de programas
+Summary(pl.UTF-8):	Frontend SSH dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de execução remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdessh
@@ -255,8 +255,8 @@ Ferramenta de execução remota de programas.
 
 %package kdf
 Summary:	KDE Disk space GUI
-Summary(pl.UTF-8):   df dla KDE
-Summary(pt_BR.UTF-8):   Mostra o status de espaço em disco
+Summary(pl.UTF-8):	df dla KDE
+Summary(pt_BR.UTF-8):	Mostra o status de espaço em disco
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	kdf
@@ -272,8 +272,8 @@ Mostra o status de espaço em disco.
 
 %package kedit
 Summary:	KDE Text Editor
-Summary(pl.UTF-8):   Edytor tekstu dla KDE
-Summary(pt_BR.UTF-8):   Editor de texto melhorado do KDE
+Summary(pl.UTF-8):	Edytor tekstu dla KDE
+Summary(pt_BR.UTF-8):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kedit
@@ -289,8 +289,8 @@ Editor de texto melhorado do KDE.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
-Summary(pl.UTF-8):   Program formatujący dyskietki dla KDE
-Summary(pt_BR.UTF-8):   Ferramenta de formatação de disquetes
+Summary(pl.UTF-8):	Program formatujący dyskietki dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de formatação de disquetes
 Group:		X11/Applications
 Requires:	dosfstools
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -309,7 +309,7 @@ Ferramenta de formatação de disquetes.
 
 %package kgpg
 Summary:	A frontend for gpg
-Summary(pl.UTF-8):   Nakładka graficzna na gpg
+Summary(pl.UTF-8):	Nakładka graficzna na gpg
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kgpg
@@ -346,8 +346,8 @@ gpg przeznaczoną dla KDE. Ma następujące możliwości:
 
 %package khexedit
 Summary:	KDE Hex Editor
-Summary(pl.UTF-8):   Edytor szesnastkowy dla KDE
-Summary(pt_BR.UTF-8):   Editor hexadecimal para arquivos binários
+Summary(pl.UTF-8):	Edytor szesnastkowy dla KDE
+Summary(pt_BR.UTF-8):	Editor hexadecimal para arquivos binários
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	khexedit
@@ -363,8 +363,8 @@ Editor hexadecimal para arquivos binários.
 
 %package kjots
 Summary:	KDE Note taker
-Summary(pl.UTF-8):   Notatnik dla KDE
-Summary(pt_BR.UTF-8):   Ferramenta de armazenamento de livros
+Summary(pl.UTF-8):	Notatnik dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kjots
@@ -381,8 +381,8 @@ Ferramenta de armazenamento de livros.
 
 %package klaptopdaemon
 Summary:	KDE Laptop Daemon
-Summary(pl.UTF-8):   Wskaźnik zużycia baterii w laptopie dla KDE
-Summary(pt_BR.UTF-8):   Miniaplicativo de status de bateria para laptops
+Summary(pl.UTF-8):	Wskaźnik zużycia baterii w laptopie dla KDE
+Summary(pt_BR.UTF-8):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
 %ifarch %{ix86}
@@ -401,7 +401,7 @@ Miniaplicativo de status de bateria para laptops
 
 %package kmilo
 Summary:	KDE support for various types of hardware input devices
-Summary(pl.UTF-8):   Wsparcie KDE dla różnych rodzajów sprzętowych urządzeń wejściowych
+Summary(pl.UTF-8):	Wsparcie KDE dla różnych rodzajów sprzętowych urządzeń wejściowych
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdeutils-kmilo-kvaio
@@ -423,7 +423,7 @@ klawiaturze. Aktualnie obsługuje:
 
 %package kmilo-kvaio
 Summary:	Sony Vaio KMilo module
-Summary(pl.UTF-8):   Moduł KMilo dla laptopów Sony Vaio
+Summary(pl.UTF-8):	Moduł KMilo dla laptopów Sony Vaio
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -437,7 +437,7 @@ Moduł KMilo dla laptopów Sony Vaio.
 
 %package kmilo-powerbook
 Summary:	PowerBook KMilo module
-Summary(pl.UTF-8):   Moduł KMilo dla PowerBooków
+Summary(pl.UTF-8):	Moduł KMilo dla PowerBooków
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -451,7 +451,7 @@ Moduł KMilo dla PowerBooków.
 
 %package kmilo-thinkpad
 Summary:	ThinkPad KMilo module
-Summary(pl.UTF-8):   Moduł KMilo dla ThinkPadów
+Summary(pl.UTF-8):	Moduł KMilo dla ThinkPadów
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -464,7 +464,7 @@ Moduł KMilo dla ThinkPadów.
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
-Summary(pl.UTF-8):   Graficzny edytor wyrażeń regularnych
+Summary(pl.UTF-8):	Graficzny edytor wyrażeń regularnych
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kregexpeditor
@@ -477,7 +477,7 @@ Graficzny edytor wyrażeń regularnych.
 
 %package ksim
 Summary:	K System Information Monitor
-Summary(pl.UTF-8):   K System Information Monitor - monitor informacji o systemie
+Summary(pl.UTF-8):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
 Requires:	kdebase-desktop >= %{_minbaseevr}
 
@@ -509,8 +509,8 @@ możliwościach:
 
 %package ktimer
 Summary:	KDE Timer
-Summary(pl.UTF-8):   Timer dla KDE
-Summary(pt_BR.UTF-8):   Monitor de tempo em forma de mini-aplicativo
+Summary(pl.UTF-8):	Timer dla KDE
+Summary(pt_BR.UTF-8):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	ktimer
@@ -530,7 +530,7 @@ Monitor de tempo em forma de mini-aplicativo.
 
 %package kwalletmanager
 Summary:	Password management tool for KDE
-Summary(pl.UTF-8):   Narzędzie do zarządzania hasłami dla KDE
+Summary(pl.UTF-8):	Narzędzie do zarządzania hasłami dla KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -542,7 +542,7 @@ Narzędzie do zarządzania hasłami w KDE.
 
 %package superkaramba
 Summary:	Little interactive widgets on KDE desktop
-Summary(pl.UTF-8):   Małe interaktywne widżety na pulpicie KDE
+Summary(pl.UTF-8):	Małe interaktywne widżety na pulpicie KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	superkaramba = %{version}-%{release}
