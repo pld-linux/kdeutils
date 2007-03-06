@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	3.5.6
-Release:	2
+Release:	3
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -922,5 +922,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_bindir}/superkaramba
 %{_datadir}/apps/superkaramba
 %{_datadir}/mimelnk/application/x-superkaramba.desktop
+%dir %{_datadir}/themes/%{name}
 %{_desktopdir}/kde/superkaramba.desktop
 %{_iconsdir}/[!l]*/*/*/superkaramba*.*
