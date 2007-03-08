@@ -16,7 +16,7 @@ Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
 Version:	3.5.6
-Release:	3
+Release:	4
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -624,6 +624,7 @@ rm -f *.lang
 	DESTDIR=$RPM_BUILD_ROOT \
 	kde_htmldir=%{_kdedocdir}
 
+install -d $RPM_BUILD_ROOT%{_datadir}/themes/%{name}
 mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
 mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
 	$RPM_BUILD_ROOT%{_desktopdir}/kde
