@@ -15,18 +15,17 @@ Summary(ru):	K Desktop Environment - ı‘…Ã…‘Ÿ
 Summary(uk):	K Desktop Environment - ı‘…Ã¶‘…
 Summary(zh_CN):	KDE µ”√π§æﬂ
 Name:		kdeutils
-Version:	3.5.7
-Release:	2
+Version:	3.5.8
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	5f167f53bdbf0b8c71c2d0f0ff7593fd
+# Source0-md5:	d1a0fcc83f35428a76cf7523a04ba19c
 #Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
 Patch2:		%{name}-kmilo-thinklight_notice.patch
-Patch3:		%{name}-libs.patch
 BuildRequires:	autoconf
 BuildRequires:	automake
 BuildRequires:	ed
@@ -564,7 +563,6 @@ uruchamianie ma≥ych interaktywnych widøetÛw na pulpicie KDE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
