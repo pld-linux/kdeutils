@@ -16,7 +16,7 @@ Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.8
-Release:	1
+Release:	2
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
