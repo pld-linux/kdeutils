@@ -7,13 +7,13 @@
 %define		_minbaseevr	9:%{version}
 
 Summary:	K Desktop Environment - utilities
-Summary(es):	KDE - Utilitarios
-Summary(ja):	KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ - ¥æ¡¼¥Æ¥£¥ê¥Æ¥£
-Summary(pl):	K Desktop Environment - narzêdzia
-Summary(pt_BR):	KDE - Utilitários
-Summary(ru):	K Desktop Environment - õÔÉÌÉÔÙ
-Summary(uk):	K Desktop Environment - õÔÉÌ¦ÔÉ
-Summary(zh_CN):	KDEÊµÓÃ¹¤¾ß
+Summary(es.UTF-8):	KDE - Utilitarios
+Summary(ja.UTF-8):	KDEãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç’°å¢ƒ - ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
+Summary(pl.UTF-8):	K Desktop Environment - narzÄ™dzia
+Summary(pt_BR.UTF-8):	KDE - UtilitÃ¡rios
+Summary(ru.UTF-8):	K Desktop Environment - Ğ£Ñ‚Ğ¸Ğ»Ğ¸Ñ‚Ñ‹
+Summary(uk.UTF-8):	K Desktop Environment - Ğ£Ñ‚Ğ¸Ğ»Ñ–Ñ‚Ğ¸
+Summary(zh_CN.UTF-8):	KDEå®ç”¨å·¥å…·
 Name:		kdeutils
 Version:	3.5.8
 Release:	2
@@ -66,10 +66,10 @@ KDE utilities. Package includes:
  - KTop - task manager,
  - ksim - system monitor.
 
-%description -l es
+%description -l es.UTF-8
 Utilitarios para KDE. Programas disponibles en este paquete:
  - Ark,
- - KCalc - calculadora científica,
+ - KCalc - calculadora cientÃ­fica,
  - KCharSelect,
  - KDESsh,
  - Kdf -
@@ -81,69 +81,69 @@ Utilitarios para KDE. Programas disponibles en este paquete:
  - KTimer.
  - ksim
 
-%description -l ja
-KDE¥Ç¥¹¥¯¥È¥Ã¥×´Ä¶­ÍÑ¤Î¥æ¡¼¥Æ¥£¥ê¥Æ¥£
-°Ê²¼¤Î¤è¤¦¤Ê¥Ñ¥Ã¥±¡¼¥¸¤¬Æş¤Ã¤Æ¤¤¤Ş¤¹¡£
+%description -l ja.UTF-8
+KDEãƒ‡ã‚¹ã‚¯ãƒˆãƒƒãƒ—ç’°å¢ƒç”¨ã®ãƒ¦ãƒ¼ãƒ†ã‚£ãƒªãƒ†ã‚£
+ä»¥ä¸‹ã®ã‚ˆã†ãªãƒ‘ãƒƒã‚±ãƒ¼ã‚¸ãŒå…¥ã£ã¦ã„ã¾ã™ã€‚
 
-- ark - ¥¢¡¼¥«¥¤¥ÖÁàºî¥Ä¡¼¥ë
-- kcalc - ÅÅÂî
-- kedit - ¥Æ¥­¥¹¥È¥¨¥Ç¥£¥¿
-- kfloppy - ¥Õ¥í¥Ã¥Ô¡¼¥Õ¥©¡¼¥Ş¥Ã¥¿
-- khexedit - ¥Ğ¥¤¥Ê¥ê¥¨¥Ç¥£¥¿
+- ark - ã‚¢ãƒ¼ã‚«ã‚¤ãƒ–æ“ä½œãƒ„ãƒ¼ãƒ«
+- kcalc - é›»å“
+- kedit - ãƒ†ã‚­ã‚¹ãƒˆã‚¨ãƒ‡ã‚£ã‚¿
+- kfloppy - ãƒ•ãƒ­ãƒƒãƒ”ãƒ¼ãƒ•ã‚©ãƒ¼ãƒãƒƒã‚¿
+- khexedit - ãƒã‚¤ãƒŠãƒªã‚¨ãƒ‡ã‚£ã‚¿
 - kjots - note taker
 
-%description -l pl
-Narzêdzia dla KDE. Pakiet zawiera:
- - Ark - program do zarz±dzania archiwami,
+%description -l pl.UTF-8
+NarzÄ™dzia dla KDE. Pakiet zawiera:
+ - Ark - program do zarzÄ…dzania archiwami,
  - KCalc - kalkulator,
- - KCharSelect - narzêdzie do wybierania znaków,
+ - KCharSelect - narzÄ™dzie do wybierania znakÃ³w,
  - KDEPasswd,
- - KDESsh - narzêdzie do zdalnego wykonywania programów,
+ - KDESsh - narzÄ™dzie do zdalnego wykonywania programÃ³w,
  - Kdf - graficzny interfejs do sprawdzania miejsca na dysku,
  - KEdit - edytor tekstu,
- - KFloppy - narzêdzie do formatowania dyskietek,
- - KHexedit - szesnastkowy edytor plików,
+ - KFloppy - narzÄ™dzie do formatowania dyskietek,
+ - KHexedit - szesnastkowy edytor plikÃ³w,
  - KJots - notatnik,
- - KLaptopDaemon - demon dla laptopów,
+ - KLaptopDaemon - demon dla laptopÃ³w,
  - KTimer - timer,
- - KTop - zarz±dca zadañ,
+ - KTop - zarzÄ…dca zadaÅ„,
  - ksim - monitor systemu.
 
-%description -l pt_BR
-Utilitários para o KDE. Programas disponíveis neste pacote:
+%description -l pt_BR.UTF-8
+UtilitÃ¡rios para o KDE. Programas disponÃ­veis neste pacote:
  - Ark - controle de tempo pessoal,
- - KCalc - calculadora científica,
+ - KCalc - calculadora cientÃ­fica,
  - KCharSelect,
- - KDESsh - ferramenta de execução remota de programas,
+ - KDESsh - ferramenta de execuÃ§Ã£o remota de programas,
  - KEdit - editor de textos simples
- - KFloppy - ferramenta de formatação de disquetes,
+ - KFloppy - ferramenta de formataÃ§Ã£o de disquetes,
  - KHexEdit - editor hexadecimal,
  - KJots - bloco de notas,
  - KLaptopDaemon - miniaplicativo de status de bateria para laptops,
  - KTimer - Monitor de tempo em forma de mini-aplicativo.
 
-%description -l ru
-õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. ÷ËÌÀŞÁÅÔ:
- - ark - ÍÅÎÅÄÖÅÒ ÁÒÈÉ×Ï× tar/gzip,
- - kcalc - ÎÁÕŞÎÙÊ ËÁÌØËÕÌÑÔÏÒ,
- - kedit - ĞÒÏÓÔÏÊ ÔÅËÓÔÏ×ÙÊ ÒÅÄÁËÔÏÒ,
- - kfloppy - ÕÔÉÌÉÔÁ ÄÌÑ ÆÏÒÍÁÔÉÒÏ×ÁÎÉÑ ÆÌÏĞĞÉ-ÄÉÓËÏ×,
- - khexedit - ÒÅÄÁËÔÏÒ ÂÉÎÁÒÎÙÈ ÆÁÊÌÏ×,
- - kjots - ÂÌÏËÎÏÔ,
+%description -l ru.UTF-8
+Ğ£Ñ‚Ğ¸Ğ»Ğ¸Ñ‚Ñ‹ Ğ´Ğ»Ñ K Desktop Environment. Ğ’ĞºĞ»ÑÑ‡Ğ°ĞµÑ‚:
+ - ark - Ğ¼ĞµĞ½ĞµĞ´Ğ¶ĞµÑ€ Ğ°Ñ€Ñ…Ğ¸Ğ²Ğ¾Ğ² tar/gzip,
+ - kcalc - Ğ½Ğ°ÑƒÑ‡Ğ½Ñ‹Ğ¹ ĞºĞ°Ğ»ÑŒĞºÑƒĞ»ÑÑ‚Ğ¾Ñ€,
+ - kedit - Ğ¿Ñ€Ğ¾ÑÑ‚Ğ¾Ğ¹ Ñ‚ĞµĞºÑÑ‚Ğ¾Ğ²Ñ‹Ğ¹ Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€,
+ - kfloppy - ÑƒÑ‚Ğ¸Ğ»Ğ¸Ñ‚Ğ° Ğ´Ğ»Ñ Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ‚Ğ¸Ñ€Ğ¾Ğ²Ğ°Ğ½Ğ¸Ñ Ñ„Ğ»Ğ¾Ğ¿Ğ¿Ğ¸-Ğ´Ğ¸ÑĞºĞ¾Ğ²,
+ - khexedit - Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€ Ğ±Ğ¸Ğ½Ğ°Ñ€Ğ½Ñ‹Ñ… Ñ„Ğ°Ğ¹Ğ»Ğ¾Ğ²,
+ - kjots - Ğ±Ğ»Ğ¾ĞºĞ½Ğ¾Ñ‚,
 
-%description -l uk
-õÔÉÌÉÔÙ ÄÌÑ K Desktop Environment. í¦ÓÔÉÔØ:
- - ark - ÍÅÎÅÄÖÅÒ ÁÒÈ¦×¦× tar/gzip,
- - kcalc - ÎÁÕŞÎÉÊ ËÁÌØËÕÌÑÔÏÒ,
- - kedit - ĞÒÏÓÔÉÊ ÔÅËÓÔÏ×ÉÊ ÒÅÄÁËÔÏÒ,
- - kfloppy - ÕÔÉÌ¦ÔÁ ÄÌÑ ÆÏÒÍÁÔÕ×ÁÎÎÑ ÆÌÏĞ¦-ÄÉÓË¦×,
- - khexedit - ÒÅÄÁËÔÏÒ Â¦ÎÁÒÎÉÈ ÆÁÊÌ¦×,
- - kjots - ÎÏÔÁÔÎÉË,
+%description -l uk.UTF-8
+Ğ£Ñ‚Ğ¸Ğ»Ğ¸Ñ‚Ñ‹ Ğ´Ğ»Ñ K Desktop Environment. ĞœÑ–ÑÑ‚Ğ¸Ñ‚ÑŒ:
+ - ark - Ğ¼ĞµĞ½ĞµĞ´Ğ¶ĞµÑ€ Ğ°Ñ€Ñ…Ñ–Ğ²Ñ–Ğ² tar/gzip,
+ - kcalc - Ğ½Ğ°ÑƒÑ‡Ğ½Ğ¸Ğ¹ ĞºĞ°Ğ»ÑŒĞºÑƒĞ»ÑÑ‚Ğ¾Ñ€,
+ - kedit - Ğ¿Ñ€Ğ¾ÑÑ‚Ğ¸Ğ¹ Ñ‚ĞµĞºÑÑ‚Ğ¾Ğ²Ğ¸Ğ¹ Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€,
+ - kfloppy - ÑƒÑ‚Ğ¸Ğ»Ñ–Ñ‚Ğ° Ğ´Ğ»Ñ Ñ„Ğ¾Ñ€Ğ¼Ğ°Ñ‚ÑƒĞ²Ğ°Ğ½Ğ½Ñ Ñ„Ğ»Ğ¾Ğ¿Ñ–-Ğ´Ğ¸ÑĞºÑ–Ğ²,
+ - khexedit - Ñ€ĞµĞ´Ğ°ĞºÑ‚Ğ¾Ñ€ Ğ±Ñ–Ğ½Ğ°Ñ€Ğ½Ğ¸Ñ… Ñ„Ğ°Ğ¹Ğ»Ñ–Ğ²,
+ - kjots - Ğ½Ğ¾Ñ‚Ğ°Ñ‚Ğ½Ğ¸Ğº,
 
 %package devel
 Summary:	Header files for compiling applications that use kdeutils libraries
-Summary(pl):	Pliki nag³ówkowe do kompilacji aplikacji u¿ywaj±cych bibliotek kdeutils
-Summary(pt_BR):	Arquivos de inclusão para as bibliotecas do kdeutils
+Summary(pl.UTF-8):	Pliki nagÅ‚Ã³wkowe do kompilacji aplikacji uÅ¼ywajÄ…cych bibliotek kdeutils
+Summary(pt_BR.UTF-8):	Arquivos de inclusÃ£o para as bibliotecas do kdeutils
 Group:		X11/Development/Libraries
 Requires:	%{name}-klaptopdaemon = %{epoch}:%{version}-%{release}
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
@@ -155,18 +155,18 @@ Requires:	kdebase-devel >= %{_minbaseevr}
 This package includes the header files you will need to compile
 applications that use kdeutils libraries.
 
-%description devel -l pl
-Ten pakiet zawiera pliki nag³ówkowe niezbêdne do kompilacji aplikacji
-u¿ywaj±cych bibliotek kdeutils.
+%description devel -l pl.UTF-8
+Ten pakiet zawiera pliki nagÅ‚Ã³wkowe niezbÄ™dne do kompilacji aplikacji
+uÅ¼ywajÄ…cych bibliotek kdeutils.
 
-%description devel -l pt_BR
-Arquivos de inclusão para desenvolvimento e compilação de programas
+%description devel -l pt_BR.UTF-8
+Arquivos de inclusÃ£o para desenvolvimento e compilaÃ§Ã£o de programas
 que usem as bibliotecas do kdeutils
 
 %package ark
 Summary:	KDE Archive Manager
-Summary(pl):	Zarz±dca archiwów dla KDE
-Summary(pt_BR):	Gerenciador de pacotes TAR/comprimidos do KDE
+Summary(pl.UTF-8):	ZarzÄ…dca archiwÃ³w dla KDE
+Summary(pt_BR.UTF-8):	Gerenciador de pacotes TAR/comprimidos do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -174,18 +174,18 @@ Requires:	kdebase-core >= %{_minbaseevr}
 Ark is a program for managing and quickly extracting archives. It
 supports arj, rar, zip, tar, zoo, lha and other formats.
 
-%description ark -l pl
-Ark jest programem s³u¿±cym do zarz±dzania i szybkiego rozpakowywania
-archiwów. Obs³uguje archiwa arj, rar, zip, tar, zoo, lha oraz inne
+%description ark -l pl.UTF-8
+Ark jest programem sÅ‚uÅ¼Ä…cym do zarzÄ…dzania i szybkiego rozpakowywania
+archiwÃ³w. ObsÅ‚uguje archiwa arj, rar, zip, tar, zoo, lha oraz inne
 formaty.
 
-%description ark -l pt_BR
+%description ark -l pt_BR.UTF-8
 Gerenciador de pacotes TAR/comprimidos do KDE.
 
 %package kcalc
 Summary:	KDE Calculator
-Summary(pl):	Kalkulator dla KDE
-Summary(pt_BR):	Calculadora do KDE
+Summary(pl.UTF-8):	Kalkulator dla KDE
+Summary(pt_BR.UTF-8):	Calculadora do KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcalc
@@ -193,16 +193,16 @@ Obsoletes:	kcalc
 %description kcalc
 Calculator for KDE.
 
-%description kcalc -l pl
+%description kcalc -l pl.UTF-8
 Kalkulator dla KDE.
 
-%description kcalc -l pt_BR
+%description kcalc -l pt_BR.UTF-8
 Calculadora do KDE.
 
 %package kcharselect
 Summary:	KDE Character Selector
-Summary(pl):	Program do wybierania znaków dla KDE
-Summary(pt_BR):	Ferramenta de seleção de caracteres
+Summary(pl.UTF-8):	Program do wybierania znakÃ³w dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de seleÃ§Ã£o de caracteres
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kcharselect
@@ -210,12 +210,12 @@ Obsoletes:	kcharselect
 %description kcharselect
 Application for selecting characters.
 
-%description kcharselect -l pl
-Program do wybierania znaków.
+%description kcharselect -l pl.UTF-8
+Program do wybierania znakÃ³w.
 
 %package kdelirc
 Summary:	KDE frontend for the Linux Infrared Remote Control system
-Summary(pl):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwieni±)
+Summary(pl.UTF-8):	Frontend KDE dla systemu LIRC (zdalnego sterowania podczerwieniÄ…)
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
@@ -228,19 +228,19 @@ system. It has two aims:
 - provide a system-tray applet to act as a proxy between the LIRC
   system and KDE (applications).
 
-%description kdelirc -l pl
+%description kdelirc -l pl.UTF-8
 KDELIRC to frontend KDE dla systemu LIRC (Linux Infrared Remote
-Control - zdalnego sterowania podczerwieni±). Ma dwa cele:
-- zapewnienie modu³u dla centrum sterowania do konfiguracji dowi±zañ
-  aplikacji do przycisków pilota oraz konfiguracji samych pilotów (czyli
+Control - zdalnego sterowania podczerwieniÄ…). Ma dwa cele:
+- zapewnienie moduÅ‚u dla centrum sterowania do konfiguracji dowiÄ…zaÅ„
+  aplikacji do przyciskÃ³w pilota oraz konfiguracji samych pilotÃ³w (czyli
   konfiguracji lirc)
-- zapewnienie apletu tacki systemowej s³u¿±cego jako proxy pomiêdzy
+- zapewnienie apletu tacki systemowej sÅ‚uÅ¼Ä…cego jako proxy pomiÄ™dzy
   systemem LIRC oraz KDE (aplikacjami).
 
 %package kdessh
 Summary:	KDE SSH Frontend
-Summary(pl):	Frontend SSH dla KDE
-Summary(pt_BR):	Ferramenta de execução remota de programas
+Summary(pl.UTF-8):	Frontend SSH dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de execuÃ§Ã£o remota de programas
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdessh
@@ -248,16 +248,16 @@ Obsoletes:	kdessh
 %description kdessh
 A KDE SSH frontend.
 
-%description kdessh -l pl
+%description kdessh -l pl.UTF-8
 Frontend SSH dla KDE.
 
-%description kdessh -l pt_BR
-Ferramenta de execução remota de programas.
+%description kdessh -l pt_BR.UTF-8
+Ferramenta de execuÃ§Ã£o remota de programas.
 
 %package kdf
 Summary:	KDE Disk space GUI
-Summary(pl):	df dla KDE
-Summary(pt_BR):	Mostra o status de espaço em disco
+Summary(pl.UTF-8):	df dla KDE
+Summary(pt_BR.UTF-8):	Mostra o status de espaÃ§o em disco
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
 Obsoletes:	kdf
@@ -265,16 +265,16 @@ Obsoletes:	kdf
 %description kdf
 This program shows the disk usage of the mounted devices.
 
-%description kdf -l pl
-Ten program pokazuje zajêto¶æ dysku dla zamontowanych urz±dzeñ.
+%description kdf -l pl.UTF-8
+Ten program pokazuje zajÄ™toÅ›Ä‡ dysku dla zamontowanych urzÄ…dzeÅ„.
 
-%description kdf -l pt_BR
-Mostra o status de espaço em disco.
+%description kdf -l pt_BR.UTF-8
+Mostra o status de espaÃ§o em disco.
 
 %package kedit
 Summary:	KDE Text Editor
-Summary(pl):	Edytor tekstu dla KDE
-Summary(pt_BR):	Editor de texto melhorado do KDE
+Summary(pl.UTF-8):	Edytor tekstu dla KDE
+Summary(pt_BR.UTF-8):	Editor de texto melhorado do KDE
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kedit
@@ -282,16 +282,16 @@ Obsoletes:	kedit
 %description kedit
 Simple text editor for KDE.
 
-%description kedit -l pl
+%description kedit -l pl.UTF-8
 Prosty edytor tekstu dla KDE.
 
-%description kedit -l pt_BR
+%description kedit -l pt_BR.UTF-8
 Editor de texto melhorado do KDE.
 
 %package kfloppy
 Summary:	KDE Floppy Formater
-Summary(pl):	Program formatuj±cy dyskietki dla KDE
-Summary(pt_BR):	Ferramenta de formatação de disquetes
+Summary(pl.UTF-8):	Program formatujÄ…cy dyskietki dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de formataÃ§Ã£o de disquetes
 Group:		X11/Applications
 Requires:	dosfstools
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -301,16 +301,16 @@ Obsoletes:	kfloppy
 KFloppy formats floppy disks and puts a DOS or ext2fs filesystem on
 them.
 
-%description kfloppy -l pl
-KFloppy formatuje dyskietki i zak³ada na nich system plików DOS lub
+%description kfloppy -l pl.UTF-8
+KFloppy formatuje dyskietki i zakÅ‚ada na nich system plikÃ³w DOS lub
 ext2.
 
-%description kfloppy -l pt_BR
-Ferramenta de formatação de disquetes.
+%description kfloppy -l pt_BR.UTF-8
+Ferramenta de formataÃ§Ã£o de disquetes.
 
 %package kgpg
 Summary:	A frontend for gpg
-Summary(pl):	Nak³adka graficzna na gpg
+Summary(pl.UTF-8):	NakÅ‚adka graficzna na gpg
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kgpg
@@ -328,27 +328,27 @@ kgpg is a simple, free, open source KDE frontend for gpg. It features
   signatures
 - drag & drop encryption + clipboard en/decryption
 
-%description kgpg -l pl
-kgpg jest prost±, darmow±, z otwartymi ¼ród³ami, graficzn± nak³adk± na
-gpg przeznaczon± dla KDE. Ma nastêpuj±ce mo¿liwo¶ci:
-- tryb edytora umo¿liwiaj±cy napisanie/wklejenie tekstu oraz
+%description kgpg -l pl.UTF-8
+kgpg jest prostÄ…, darmowÄ…, z otwartymi ÅºrÃ³dÅ‚ami, graficznÄ… nakÅ‚adkÄ… na
+gpg przeznaczonÄ… dla KDE. Ma nastÄ™pujÄ…ce moÅ¼liwoÅ›ci:
+- tryb edytora umoÅ¼liwiajÄ…cy napisanie/wklejenie tekstu oraz
   zaszyfrowanie/odszyfrowanie/podpisanie/sprawdzenie go,
-- zarz±dzanie kluczami: import, eksport, usuwanie, podpisywanie,
-  generowanie oraz edycjê,
-- integracjê z Konquerorem: klikniêcie lewym przyciskiem na pliku w
-  celu odszyfrowania/sprawdzenia go, klikniêcie prawym przyciskiem na
+- zarzÄ…dzanie kluczami: import, eksport, usuwanie, podpisywanie,
+  generowanie oraz edycjÄ™,
+- integracjÄ™ z Konquerorem: klikniÄ™cie lewym przyciskiem na pliku w
+  celu odszyfrowania/sprawdzenia go, klikniÄ™cie prawym przyciskiem na
   pliku w celu zaszyfrowania/podpisania go,
-- szyfrowanie: obs³uga szyfrów symetrycznych; wiele kluczy i domy¶lne
-  szyfrowanie kluczem; opcjonalnie niszczenie plików ¼ród³owych,
+- szyfrowanie: obsÅ‚uga szyfrÃ³w symetrycznych; wiele kluczy i domyÅ›lne
+  szyfrowanie kluczem; opcjonalnie niszczenie plikÃ³w ÅºrÃ³dÅ‚owych,
 - sygnatury: tworzenie i sprawdzanie oddzielonych i czysto tekstowych
   sygnatur,
-- szyfrowanie metod± przeci±gnij-i-upu¶æ oraz szyfrowanie i
+- szyfrowanie metodÄ… przeciÄ…gnij-i-upuÅ›Ä‡ oraz szyfrowanie i
   odszyfrowywanie schowka.
 
 %package khexedit
 Summary:	KDE Hex Editor
-Summary(pl):	Edytor szesnastkowy dla KDE
-Summary(pt_BR):	Editor hexadecimal para arquivos binários
+Summary(pl.UTF-8):	Edytor szesnastkowy dla KDE
+Summary(pt_BR.UTF-8):	Editor hexadecimal para arquivos binÃ¡rios
 Group:		X11/Applications/Editors
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	khexedit
@@ -356,16 +356,16 @@ Obsoletes:	khexedit
 %description khexedit
 Hex Editor is a small and simple viewer for binary files.
 
-%description khexedit -l pl
-Hex Editor jest ma³ym i prostym edytorem plików binarnych.
+%description khexedit -l pl.UTF-8
+Hex Editor jest maÅ‚ym i prostym edytorem plikÃ³w binarnych.
 
-%description khexedit -l pt_BR
-Editor hexadecimal para arquivos binários.
+%description khexedit -l pt_BR.UTF-8
+Editor hexadecimal para arquivos binÃ¡rios.
 
 %package kjots
 Summary:	KDE Note taker
-Summary(pl):	Notatnik dla KDE
-Summary(pt_BR):	Ferramenta de armazenamento de livros
+Summary(pl.UTF-8):	Notatnik dla KDE
+Summary(pt_BR.UTF-8):	Ferramenta de armazenamento de livros
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kjots
@@ -374,16 +374,16 @@ Obsoletes:	kjots
 kjots is a small note taker program. Name and idea are taken from the
 jots program included in the tkgoodstuff package.
 
-%description kjots -l pl
-KJots to ma³y program do zapisywania notatek.
+%description kjots -l pl.UTF-8
+KJots to maÅ‚y program do zapisywania notatek.
 
-%description kjots -l pt_BR
+%description kjots -l pt_BR.UTF-8
 Ferramenta de armazenamento de livros.
 
 %package klaptopdaemon
 Summary:	KDE Laptop Daemon
-Summary(pl):	Wska¼nik zu¿ycia baterii w laptopie dla KDE
-Summary(pt_BR):	Miniaplicativo de status de bateria para laptops
+Summary(pl.UTF-8):	WskaÅºnik zuÅ¼ycia baterii w laptopie dla KDE
+Summary(pt_BR.UTF-8):	Miniaplicativo de status de bateria para laptops
 Group:		X11/Applications
 Requires:	kdebase-infocenter >= %{_minbaseevr}
 %ifarch %{ix86}
@@ -394,15 +394,15 @@ Obsoletes:	laptop
 %description klaptopdaemon
 A laptop battery monitoring tool for KDE
 
-%description klaptopdaemon -l pl
-Wska¼nik zu¿ycia baterii w laptopie dla KDE.
+%description klaptopdaemon -l pl.UTF-8
+WskaÅºnik zuÅ¼ycia baterii w laptopie dla KDE.
 
-%description klaptopdaemon -l pt_BR
+%description klaptopdaemon -l pt_BR.UTF-8
 Miniaplicativo de status de bateria para laptops
 
 %package kmilo
 Summary:	KDE support for various types of hardware input devices
-Summary(pl):	Wsparcie KDE dla ró¿nych rodzajów sprzêtowych urz±dzeñ wej¶ciowych
+Summary(pl.UTF-8):	Wsparcie KDE dla rÃ³Å¼nych rodzajÃ³w sprzÄ™towych urzÄ…dzeÅ„ wejÅ›ciowych
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	kdeutils-kmilo-kvaio
@@ -415,16 +415,16 @@ presently supports:
 - PowerBooks
 - Sony Vaio laptops (tested on Vaio PCG-GRX series)
 
-%description kmilo -l pl
-To jest modu³ kded, który mo¿e byæ rozszerzany, by obs³ugiwaæ ró¿ne
-rodzaje sprzêtowych urz±dzeñ wej¶ciowych, takich jak te na
-klawiaturze. Aktualnie obs³uguje:
+%description kmilo -l pl.UTF-8
+To jest moduÅ‚ kded, ktÃ³ry moÅ¼e byÄ‡ rozszerzany, by obsÅ‚ugiwaÄ‡ rÃ³Å¼ne
+rodzaje sprzÄ™towych urzÄ…dzeÅ„ wejÅ›ciowych, takich jak te na
+klawiaturze. Aktualnie obsÅ‚uguje:
 - PowerBooki
 - laptopy Sony Vaio (testowany na Vaio z serii PCG-GRX)
 
 %package kmilo-kvaio
 Summary:	Sony Vaio KMilo module
-Summary(pl):	Modu³ KMilo dla laptopów Sony Vaio
+Summary(pl.UTF-8):	ModuÅ‚ KMilo dla laptopÃ³w Sony Vaio
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -433,12 +433,12 @@ Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 %description kmilo-kvaio
 KMilo module for Sony Vaio laptop support.
 
-%description kmilo-kvaio -l pl
-Modu³ KMilo dla laptopów Sony Vaio.
+%description kmilo-kvaio -l pl.UTF-8
+ModuÅ‚ KMilo dla laptopÃ³w Sony Vaio.
 
 %package kmilo-powerbook
 Summary:	PowerBook KMilo module
-Summary(pl):	Modu³ KMilo dla PowerBooków
+Summary(pl.UTF-8):	ModuÅ‚ KMilo dla PowerBookÃ³w
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -447,12 +447,12 @@ Obsoletes:	kdeutils-kmilo < 9:3.1.2.031022
 %description kmilo-powerbook
 KMilo module for PowerBooks support.
 
-%description kmilo-powerbook -l pl
-Modu³ KMilo dla PowerBooków.
+%description kmilo-powerbook -l pl.UTF-8
+ModuÅ‚ KMilo dla PowerBookÃ³w.
 
 %package kmilo-thinkpad
 Summary:	ThinkPad KMilo module
-Summary(pl):	Modu³ KMilo dla ThinkPadów
+Summary(pl.UTF-8):	ModuÅ‚ KMilo dla ThinkPadÃ³w
 Group:		X11/Applications
 Requires:	%{name}-kmilo = %{epoch}:%{version}-%{release}
 Requires:	kdebase-core >= %{_minbaseevr}
@@ -460,12 +460,12 @@ Requires:	kdebase-core >= %{_minbaseevr}
 %description kmilo-thinkpad
 KMilo module for ThinkPads support.
 
-%description kmilo-thinkpad -l pl
-Modu³ KMilo dla ThinkPadów.
+%description kmilo-thinkpad -l pl.UTF-8
+ModuÅ‚ KMilo dla ThinkPadÃ³w.
 
 %package kregexpeditor
 Summary:	Graphical regular expression editor
-Summary(pl):	Graficzny edytor wyra¿eñ regularnych
+Summary(pl.UTF-8):	Graficzny edytor wyraÅ¼eÅ„ regularnych
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Obsoletes:	kregexpeditor
@@ -473,12 +473,12 @@ Obsoletes:	kregexpeditor
 %description kregexpeditor
 Graphical regular expression editor.
 
-%description kregexpeditor -l pl
-Graficzny edytor wyra¿eñ regularnych.
+%description kregexpeditor -l pl.UTF-8
+Graficzny edytor wyraÅ¼eÅ„ regularnych.
 
 %package ksim
 Summary:	K System Information Monitor
-Summary(pl):	K System Information Monitor - monitor informacji o systemie
+Summary(pl.UTF-8):	K System Information Monitor - monitor informacji o systemie
 Group:		X11/Applications
 Requires:	kdebase-desktop >= %{_minbaseevr}
 
@@ -494,24 +494,24 @@ A KDE system monitoring tool that features:
 - APM laptop battery meter
 - CPU plugin that can monitor CPU usage.
 
-%description ksim -l pl
-Narzêdzie do monitorowania systemu dla KDE o nastêpuj±cych
-mo¿liwo¶ciach:
-- obs³uga motywów GKrellma
-- wy¶wietlanie nazwy komputera
-- wy¶wietlanie uptime'u, stanu pamiêci i swapa
-- wtyczka wykorzystania systemu plików
+%description ksim -l pl.UTF-8
+NarzÄ™dzie do monitorowania systemu dla KDE o nastÄ™pujÄ…cych
+moÅ¼liwoÅ›ciach:
+- obsÅ‚uga motywÃ³w GKrellma
+- wyÅ›wietlanie nazwy komputera
+- wyÅ›wietlanie uptime'u, stanu pamiÄ™ci i swapa
+- wtyczka wykorzystania systemu plikÃ³w
 - wtyczka informacji o dysku
-- wtyczka sieciowa potrafi±ca monitorowaæ eth0, ppp0 i inne
-- wtyczka czujników potrafi±ca monitorowaæ dowolne czujniki przez
+- wtyczka sieciowa potrafiÄ…ca monitorowaÄ‡ eth0, ppp0 i inne
+- wtyczka czujnikÃ³w potrafiÄ…ca monitorowaÄ‡ dowolne czujniki przez
   lm_sensors
-- miernik baterii laptopów korzystaj±cy z APM
-- wtyczka procesora monitoruj±ca obci±¿enie procesora.
+- miernik baterii laptopÃ³w korzystajÄ…cy z APM
+- wtyczka procesora monitorujÄ…ca obciÄ…Å¼enie procesora.
 
 %package ktimer
 Summary:	KDE Timer
-Summary(pl):	Timer dla KDE
-Summary(pt_BR):	Monitor de tempo em forma de mini-aplicativo
+Summary(pl.UTF-8):	Timer dla KDE
+Summary(pt_BR.UTF-8):	Monitor de tempo em forma de mini-aplicativo
 Group:		X11/Applications
 Requires:	kdelibs >= %{_minlibsevr}
 Obsoletes:	ktimer
@@ -521,29 +521,29 @@ This is a timer application for KDE. It allows you to execute commands
 after a certain amount of time. It allows looping commands as well as
 delaying the execution of a command.
 
-%description ktimer -l pl
-To jest aplikacja timera dla KDE. Umo¿liwia wykonywanie poleceñ po
-okre¶lonym czasie, zapêtlanie poleceñ, a tak¿e opó¼nienie wykonywania
-poleceñ.
+%description ktimer -l pl.UTF-8
+To jest aplikacja timera dla KDE. UmoÅ¼liwia wykonywanie poleceÅ„ po
+okreÅ›lonym czasie, zapÄ™tlanie poleceÅ„, a takÅ¼e opÃ³Åºnienie wykonywania
+poleceÅ„.
 
-%description ktimer -l pt_BR
+%description ktimer -l pt_BR.UTF-8
 Monitor de tempo em forma de mini-aplicativo.
 
 %package kwalletmanager
 Summary:	Password management tool for KDE
-Summary(pl):	Narzêdzie do zarz±dzania has³ami dla KDE
+Summary(pl.UTF-8):	NarzÄ™dzie do zarzÄ…dzania hasÅ‚ami dla KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 
 %description kwalletmanager
 Password management tool for KDE.
 
-%description kwalletmanager -l pl
-Narzêdzie do zarz±dzania has³ami w KDE.
+%description kwalletmanager -l pl.UTF-8
+NarzÄ™dzie do zarzÄ…dzania hasÅ‚ami w KDE.
 
 %package superkaramba
 Summary:	Little interactive widgets on KDE desktop
-Summary(pl):	Ma³e interaktywne wid¿ety na pulpicie KDE
+Summary(pl.UTF-8):	MaÅ‚e interaktywne widÅ¼ety na pulpicie KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
 Provides:	superkaramba = %{version}-%{release}
@@ -553,9 +553,9 @@ Obsoletes:	superkaramba
 SuperKaramba is a tool that allows anyone to easily create and run
 little interactive widgets on a KDE desktop.
 
-%description superkaramba -l pl
-SuperKaramba to narzêdzie pozwalaj±ce na ³atwe tworzenie i
-uruchamianie ma³ych interaktywnych wid¿etów na pulpicie KDE.
+%description superkaramba -l pl.UTF-8
+SuperKaramba to narzÄ™dzie pozwalajÄ…ce na Å‚atwe tworzenie i
+uruchamianie maÅ‚ych interaktywnych widÅ¼etÃ³w na pulpicie KDE.
 
 %prep
 %setup -q
