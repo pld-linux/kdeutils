@@ -647,6 +647,7 @@ if [ ! -f installed.stamp ]; then
 
 	# drop la files
 	rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	touch installed.stamp
 fi
 
 rm -f *.lang
@@ -904,7 +905,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_desktopdir}/kde/kwallet.desktop
 %{_desktopdir}/kde/kwalletmanager.desktop
 %{_desktopdir}/kde/kwalletmanager-kwalletd.desktop
-%{_iconsdir}/[!l]*/*/*/kwalletmanager.*
+%{_iconsdir}/hicolor/*/*/kwalletmanager.*
 
 %files superkaramba -f superkaramba.lang
 %defattr(644,root,root,755)
@@ -913,4 +914,4 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mimelnk/application/x-superkaramba.desktop
 %dir %{_datadir}/themes/superkaramba
 %{_desktopdir}/kde/superkaramba.desktop
-%{_iconsdir}/[!l]*/*/*/superkaramba*.*
+%{_iconsdir}/crystalsvg/*/*/superkaramba*.*
