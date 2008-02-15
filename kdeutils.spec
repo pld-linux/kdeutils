@@ -1,3 +1,14 @@
+# TODO
+# - unpackaged
+#   /usr/lib/libkcmlaptop.so.0
+#   /usr/lib/libkdeinit_ark.la
+#   /usr/lib/libkdeinit_irkick.la
+#   /usr/lib/libkdeinit_kcalc.la
+#   /usr/lib/libkdeinit_kedit.la
+#   /usr/lib/libkhexeditcommon.so.0
+#   /usr/lib/libkmilo.so.1
+#   /usr/lib/libkregexpeditorcommon.so.1
+#   /usr/lib/libksimcore.so.1
 #
 # Conditional build:
 %bcond_without	xmms			# do not force xmms support
@@ -16,13 +27,13 @@ Summary(ru.UTF-8):	K Desktop Environment - Утилиты
 Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
-Version:	3.5.8
-Release:	2
+Version:	3.5.9
+Release:	0.1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
 Source0:	ftp://ftp.kde.org/pub/kde/%{_state}/%{version}/src/%{name}-%{version}.tar.bz2
-# Source0-md5:	d1a0fcc83f35428a76cf7523a04ba19c
+# Source0-md5:	dbe5ddff57141f27778601df5571e182
 #Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
@@ -44,9 +55,9 @@ BuildRequires:	pkgconfig
 BuildRequires:	python-devel
 BuildRequires:	python-modules
 %{?with_hidden_visibility:BuildRequires:	qt-devel >= 6:3.3.5.051113-1}
+BuildRequires:	rpmbuild(find_lang) >= 1.32
 BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
-#BuildRequires:	unsermake >= 040511
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -613,28 +624,32 @@ cp /usr/share/automake/config.sub admin
 %{__make} -C ksim/monitors/i8k
 
 %install
-rm -rf $RPM_BUILD_ROOT
+if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
+	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
+	%{__make} install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_htmldir=%{_kdedocdir}
+
+	%{__make} -C ksim/monitors/i8k install \
+		DESTDIR=$RPM_BUILD_ROOT \
+		kde_htmldir=%{_kdedocdir}
+		touch makeinstall.stamp
+fi
+
+if [ ! -f installed.stamp ]; then
+	install -d $RPM_BUILD_ROOT%{_datadir}/themes/superkaramba
+	mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
+	mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
+		$RPM_BUILD_ROOT%{_desktopdir}/kde
+
+	# unsupported
+	rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/locolor
+
+	# drop la files
+	rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+fi
+
 rm -f *.lang
-
-%{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-
-%{__make} -C ksim/monitors/i8k install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	kde_htmldir=%{_kdedocdir}
-
-install -d $RPM_BUILD_ROOT%{_datadir}/themes/superkaramba
-mv $RPM_BUILD_ROOT%{_desktopdir}/kde/kwallet{config,}.desktop
-mv $RPM_BUILD_ROOT%{_datadir}/applnk/Utilities/superkaramba.desktop \
-	$RPM_BUILD_ROOT%{_desktopdir}/kde
-
-# unsupported
-rm -rf $RPM_BUILD_ROOT%{_datadir}/icons/locolor
-
-# drop la files
-rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
-
 %find_lang ark			--with-kde
 %find_lang irkick		--with-kde
 %find_lang KRegExpEditor	--with-kde
@@ -642,10 +657,8 @@ rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
 %find_lang kcharselect		--with-kde
 %find_lang kcontrol		--with-kde
 %find_lang kdf			--with-kde
-%find_lang blockdevices		--with-kde
-cat blockdevices.lang >> kdf.lang
-%find_lang kcmlirc		--with-kde
-cat kcmlirc.lang >> irkick.lang
+%find_lang kinfocenter/blockdevices --with-kde -a kdf.lang
+%find_lang kcmlirc		--with-kde -a irkick.lang
 %find_lang kedit		--with-kde
 %find_lang kfloppy		--with-kde
 %find_lang kgpg			--with-kde
@@ -657,8 +670,8 @@ cat kcmlirc.lang >> irkick.lang
 %find_lang superkaramba		--with-kde
 
 # Omit bogus apidocs entries.
-# Otherwise 'kdeutils-apidocs` owner is needed
-sed -i 's/.*apidocs.*//' *.lang
+# Otherwise 'kdeutils-apidocs' owner is needed
+%{__sed} -i -e '/apidocs/d' *.lang
 
 %clean
 rm -rf $RPM_BUILD_ROOT
