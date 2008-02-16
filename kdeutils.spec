@@ -1,14 +1,3 @@
-# TODO
-# - unpackaged
-#   /usr/lib/libkcmlaptop.so.0
-#   /usr/lib/libkdeinit_ark.la
-#   /usr/lib/libkdeinit_irkick.la
-#   /usr/lib/libkdeinit_kcalc.la
-#   /usr/lib/libkdeinit_kedit.la
-#   /usr/lib/libkhexeditcommon.so.0
-#   /usr/lib/libkmilo.so.1
-#   /usr/lib/libkregexpeditorcommon.so.1
-#   /usr/lib/libksimcore.so.1
 #
 # Conditional build:
 %bcond_without	xmms			# do not force xmms support
@@ -28,7 +17,7 @@ Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.9
-Release:	0.1
+Release:	1
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -647,6 +636,11 @@ if [ ! -f installed.stamp ]; then
 
 	# drop la files
 	rm -f $RPM_BUILD_ROOT%{_libdir}/kde3/*.la
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libkdeinit_ark.la
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libkdeinit_irkick.la
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libkdeinit_kcalc.la
+	rm -f $RPM_BUILD_ROOT%{_libdir}/libkdeinit_kedit.la
+
 	touch installed.stamp
 fi
 
@@ -812,6 +806,7 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{_libdir}/kde3/libkbyteseditwidget.so
 %attr(755,root,root) %{_libdir}/kde3/libkhexedit2part.so
 %attr(755,root,root) %{_libdir}/libkhexeditcommon.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkhexeditcommon.so.0
 %{_datadir}/apps/khexedit
 %{_datadir}/apps/khexedit2part
 %{_datadir}/services/khexedit2part.desktop
@@ -830,6 +825,7 @@ rm -rf $RPM_BUILD_ROOT
 %files kmilo
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libkmilo.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkmilo.so.1
 %attr(755,root,root) %{_libdir}/kde3/kded_kmilod.so
 %attr(755,root,root) %{_libdir}/kde3/kmilo_generic.so
 %{_datadir}/services/kded/kmilod.desktop
@@ -860,6 +856,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/klaptop*
 %attr(755,root,root) %{_libdir}/libkcmlaptop.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkcmlaptop.so.0
 %attr(755,root,root) %{_libdir}/kde3/kded_klaptopdaemon.so
 %attr(755,root,root) %{_libdir}/kde3/kcm_laptop.so
 %{_datadir}/apps/klaptopdaemon
@@ -872,6 +869,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/kregexpeditor
 %attr(755,root,root) %{_libdir}/libkregexpeditorcommon.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libkregexpeditorcommon.so.1
 %attr(755,root,root) %{_libdir}/kde3/libkregexpeditorgui.so
 %{_datadir}/apps/kregexpeditor
 %{_datadir}/services/kregexpeditorgui.desktop
@@ -881,6 +879,7 @@ rm -rf $RPM_BUILD_ROOT
 %files ksim -f ksim.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/libksimcore.so.*.*.*
+%attr(755,root,root) %ghost %{_libdir}/libksimcore.so.1
 %attr(755,root,root) %{_libdir}/kde3/ksim*.so
 %{_datadir}/apps/kicker/extensions/ksim.desktop
 %{_datadir}/apps/ksim
