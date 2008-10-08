@@ -17,7 +17,7 @@ Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.10
-Release:	4
+Release:	5
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -566,7 +566,7 @@ uruchamianie małych interaktywnych widżetów na pulpicie KDE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
-%patch3 -p1
+%patch3 -p0
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
