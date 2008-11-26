@@ -548,6 +548,7 @@ Summary:	Little interactive widgets on KDE desktop
 Summary(pl.UTF-8):	Małe interaktywne widżety na pulpicie KDE
 Group:		X11/Applications
 Requires:	kdebase-core >= %{_minbaseevr}
+Suggests:	python-PyKDE
 Provides:	superkaramba = %{version}-%{release}
 Obsoletes:	superkaramba
 
