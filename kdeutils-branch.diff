@@ -1,0 +1,45 @@
+Index: kcalc/kcalcdisplay.cpp
+===================================================================
+--- kcalc/kcalcdisplay.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 958220)
++++ kcalc/kcalcdisplay.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 958220)
+@@ -102,11 +102,7 @@
+ 
+ void KCalcDisplay::slotCopy(void)
+ {
+-	QString txt;
+-	if (_num_base != NB_DECIMAL)
+-		txt = QLabel::text();
+-	else
+-		txt = _display_amount.toQString();
++	QString txt = QLabel::text();
+ 	if (_num_base == NB_HEX)
+ 		txt.prepend( "0x" );
+ 	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
+Index: ark/arkwidget.cpp
+===================================================================
+--- ark/arkwidget.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 958220)
++++ ark/arkwidget.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 958220)
+@@ -566,11 +566,15 @@
+ 
+         // TODO: remote Archives should be handled by createArchive
+         if ( archive.isLocalFile() )
++        {
+             if ( !createArchive( archive.path() ) )
+                  return false;
++        }
+         else
++        {
+             if ( !createArchive( tmpDir() + archive.fileName() ) )
+                  return false;
++        }
+     return true;
+ 
+     }
+
+Property changes on: .
+___________________________________________________________________
+Deleted: svn:mergeinfo
+Added: svn:externals
+   + admin https://svn.kde.org/home/kde/branches/KDE/3.5/kde-common/admin
+
+
