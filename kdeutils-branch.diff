@@ -1,7 +1,20 @@
+Index: kgpg/listkeys.h
+===================================================================
+--- kgpg/listkeys.h	(.../tags/KDE/3.5.10/kdeutils)	(revision 1007405)
++++ kgpg/listkeys.h	(.../branches/KDE/3.5/kdeutils)	(revision 1007405)
+@@ -51,7 +51,7 @@
+ class KgpgInterface;
+ class KSelectAction;
+ 
+-typedef struct gpgKey
++struct gpgKey
+ {
+         QString gpgkeymail;
+         QString gpgkeyname;
 Index: kcalc/kcalcdisplay.cpp
 ===================================================================
---- kcalc/kcalcdisplay.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 958220)
-+++ kcalc/kcalcdisplay.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 958220)
+--- kcalc/kcalcdisplay.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 1007405)
++++ kcalc/kcalcdisplay.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 1007405)
 @@ -102,11 +102,7 @@
  
  void KCalcDisplay::slotCopy(void)
@@ -17,8 +30,8 @@ Index: kcalc/kcalcdisplay.cpp
  	(QApplication::clipboard())->setText(txt, QClipboard::Clipboard);
 Index: ark/arkwidget.cpp
 ===================================================================
---- ark/arkwidget.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 958220)
-+++ ark/arkwidget.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 958220)
+--- ark/arkwidget.cpp	(.../tags/KDE/3.5.10/kdeutils)	(revision 1007405)
++++ ark/arkwidget.cpp	(.../branches/KDE/3.5/kdeutils)	(revision 1007405)
 @@ -566,11 +566,15 @@
  
          // TODO: remote Archives should be handled by createArchive
