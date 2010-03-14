@@ -615,6 +615,8 @@ cp /usr/share/automake/config.sub admin
 # lets outsmart the configure script
 %{__make} -C ksim/monitors/i8k
 
+rm -f makeinstall.stamp
+
 %install
 if [ ! -f makeinstall.stamp -o ! -d $RPM_BUILD_ROOT ]; then
 	rm -rf makeinstall.stamp installed.stamp $RPM_BUILD_ROOT
