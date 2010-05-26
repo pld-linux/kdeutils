@@ -1,6 +1,7 @@
 #
 # Conditional build:
 %bcond_without	xmms			# do not force xmms support
+%bcond_with	arts			# build with aRts support
 %bcond_with	hidden_visibility	# gcc hidden visibility
 #
 %define		_state		stable
@@ -17,7 +18,7 @@ Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.10
-Release:	9
+Release:	10
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -27,6 +28,7 @@ Patch100:	%{name}-branch.diff
 Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
 Patch2:		%{name}-kmilo-thinklight_notice.patch
+Patch3:		kde-am.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
 BuildRequires:	automake
@@ -50,6 +52,9 @@ BuildRequires:	rpmbuild(macros) >= 1.129
 BuildRequires:	sed >= 4.0
 %{?with_xmms:BuildRequires:	xmms-devel}
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+# build broken with spaces in CC
+%undefine	with_ccache
 
 %description
 KDE utilities. Package includes:
@@ -566,6 +571,7 @@ uruchamianie małych interaktywnych widżetów na pulpicie KDE.
 %patch0 -p1
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
@@ -599,6 +605,7 @@ cp /usr/share/automake/config.sub admin
 %if "%{_lib}" == "lib64"
 	--enable-libsuffix=64 \
 %endif
+	--with%{!?with_arts:out}-arts \
 	--with-distribution="PLD Linux Distribution" \
 	--with-extra-libs="%{_datadir}" \
 %ifarch ppc ppc64
