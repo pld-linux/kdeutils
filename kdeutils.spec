@@ -18,7 +18,7 @@ Summary(uk.UTF-8):	K Desktop Environment - Утиліти
 Summary(zh_CN.UTF-8):	KDE实用工具
 Name:		kdeutils
 Version:	3.5.10
-Release:	10
+Release:	11
 Epoch:		9
 License:	GPL
 Group:		X11/Applications
@@ -29,8 +29,10 @@ Patch0:		kde-common-PLD.patch
 Patch1:		kde-ac260-lt.patch
 Patch2:		%{name}-kmilo-thinklight_notice.patch
 Patch3:		kde-am.patch
+Patch4:		no-statfs-proto.patch
 URL:		http://www.kde.org/
 BuildRequires:	autoconf
+BuildRequires:	autoconf < 2.64
 BuildRequires:	automake
 BuildRequires:	ed
 %{?with_hidden_visibility:BuildRequires:	gcc-c++ >= 5:4.1.0-0.20051206r108118.1}
@@ -572,6 +574,7 @@ uruchamianie małych interaktywnych widżetów na pulpicie KDE.
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %{__sed} -i -e 's/Categories=.*/Categories=Qt;KDE;Utility;Archiving;/' \
 	ark/ark.desktop
